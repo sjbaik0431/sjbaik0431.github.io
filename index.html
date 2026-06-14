@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BSJ AI 허브 — 백상진 전체 Pages 인덱스</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060912;--card:#0d1424;--card2:#111827;--border:#1c2a45;
+  --gold:#d4a960;--gold2:#f0c987;--t1:#eaf0fb;--t2:#9aa8c4;--t3:#5d6b8a;
+  --blue:#4f8ef7;--teal:#34d3a6;--purple:#a259f7;
+}
+body{background:var(--bg);color:var(--t1);font-family:'Pretendard','Noto Sans KR',sans-serif;min-height:100vh}
+
+/* HEADER */
+.hero{
+  background:linear-gradient(160deg,#0a1628 0%,#060912 60%);
+  padding:36px 20px 28px;text-align:center;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(79,142,247,0.08) 0%,transparent 70%);
+}
+.hero-badge{
+  display:inline-block;background:rgba(212,169,96,0.12);border:1px solid rgba(212,169,96,0.3);
+  color:var(--gold);border-radius:20px;padding:4px 14px;font-size:11px;
+  letter-spacing:1px;margin-bottom:14px;
+}
+.hero h1{
+  font-family:'Noto Serif KR',serif;font-size:26px;font-weight:800;
+  color:var(--gold2);line-height:1.3;margin-bottom:8px;
+}
+.hero p{font-size:13px;color:var(--t3);line-height:1.6}
+.hero-stats{
+  display:flex;justify-content:center;gap:20px;margin-top:20px;
+  flex-wrap:wrap;
+}
+.hs{text-align:center}
+.hs-n{font-size:28px;font-weight:800;color:var(--gold)}
+.hs-l{font-size:11px;color:var(--t3);margin-top:2px}
+
+/* QUICK LINKS */
+.quick{padding:16px 16px 8px}
+.quick-title{font-size:11px;color:var(--t3);letter-spacing:1px;margin-bottom:10px;padding-left:4px}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qcard{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:14px 14px;text-decoration:none;display:block;transition:all 0.2s;
+  position:relative;overflow:hidden;
+}
+.qcard::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--teal));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.3s;
+}
+.qcard:hover::after{transform:scaleX(1)}
+.qcard:hover{border-color:var(--blue);background:var(--card2)}
+.qcard-icon{font-size:22px;margin-bottom:6px}
+.qcard-label{font-size:12px;font-weight:700;color:var(--t1)}
+.qcard-cnt{font-size:11px;color:var(--t3);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:8px 16px 16px}
+.sec-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 4px 10px;
+  border-bottom:1px solid var(--border);margin-bottom:10px;
+}
+.sec-title{font-size:13px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:6px}
+.sec-more{
+  font-size:11px;color:var(--blue);text-decoration:none;
+  background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.2);
+  border-radius:6px;padding:3px 10px;
+}
+.file-list{display:flex;flex-direction:column;gap:6px}
+.fitem{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:10px 12px;text-decoration:none;display:flex;align-items:center;
+  gap:8px;transition:all 0.2s;
+}
+.fitem:hover{border-color:var(--blue);background:var(--card2)}
+.fitem-name{flex:1;font-size:12px;color:var(--t1);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fitem-arrow{color:var(--t3);font-size:14px;flex-shrink:0}
+
+/* MASTER INDEX LINK */
+.master-link{
+  margin:16px;background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(52,211,166,0.1));
+  border:1px solid rgba(79,142,247,0.3);border-radius:14px;
+  padding:18px;text-align:center;text-decoration:none;display:block;
+}
+.master-link h3{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.master-link p{font-size:12px;color:var(--t3)}
+
+footer{padding:24px;text-align:center;color:var(--t3);font-size:11px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">BSJ AI PAGES HUB</div>
+  <h1>백상진 통합<br>대시보드 허브</h1>
+  <p>GitHub Pages 전체 라이브 URL 인덱스<br>2026.06.14 23:29 기준</p>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-n">355</div><div class="hs-l">전체 페이지</div></div>
+    <div class="hs"><div class="hs-n">8</div><div class="hs-l">저장소</div></div>
+    <div class="hs"><div class="hs-n">100%</div><div class="hs-l">라이브 상태</div></div>
+  </div>
+</div>
+
+<div class="quick">
+  <div class="quick-title">▸ 저장소별 바로가기</div>
+  <div class="quick-grid">
+<a class="qcard" href="https://sjbaik0431.github.io/claude/" target="_blank">
+  <div class="qcard-icon">🤖</div>
+  <div class="qcard-label">BSJ AI HUB</div>
+  <div class="qcard-cnt">283개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/jincheon-megapolis/" target="_blank">
+  <div class="qcard-icon">🏭</div>
+  <div class="qcard-label">진천메가폴리스</div>
+  <div class="qcard-cnt">52개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/imwon-sil/" target="_blank">
+  <div class="qcard-icon">👔</div>
+  <div class="qcard-label">임원실</div>
+  <div class="qcard-cnt">11개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/jincheon-ir-2026-05/" target="_blank">
+  <div class="qcard-icon">📊</div>
+  <div class="qcard-label">진천 IR</div>
+  <div class="qcard-cnt">3개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/bid-autofill/" target="_blank">
+  <div class="qcard-icon">📝</div>
+  <div class="qcard-label">입찰자동화</div>
+  <div class="qcard-cnt">2개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/marketing-report/" target="_blank">
+  <div class="qcard-icon">📣</div>
+  <div class="qcard-label">마케팅리포트</div>
+  <div class="qcard-cnt">2개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/dapullim-playbook/" target="_blank">
+  <div class="qcard-icon">⚖️</div>
+  <div class="qcard-label">다풀림플레이북</div>
+  <div class="qcard-cnt">1개 페이지</div>
+</a>
+<a class="qcard" href="https://sjbaik0431.github.io/my-github/" target="_blank">
+  <div class="qcard-icon">💻</div>
+  <div class="qcard-label">MY GitHub</div>
+  <div class="qcard-cnt">1개 페이지</div>
+</a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">🤖 BSJ AI HUB</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/claude/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/claude/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/claude_work_index.html" target="_blank"><span class="fitem-name">claude_work_index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/bsj_master_index.html" target="_blank"><span class="fitem-name">bsj_master_index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/1skill_2week_dashboard_20260415.html" target="_blank"><span class="fitem-name">1skill_2week_dashboard_20260415</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/1skill_2week_plan_20260411.html" target="_blank"><span class="fitem-name">1skill_2week_plan_20260411</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/1skill_comprehensive_20260423.html" target="_blank"><span class="fitem-name">1skill_comprehensive_20260423</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/claude/" target="_blank" style="border-style:dashed;color:var(--t3)"><span class="fitem-name" style="color:var(--blue)">… 외 277개 더 보기</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">🏭 진천메가폴리스</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/jincheon-megapolis/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/apify_jincheon_megapolis_20260518.html" target="_blank"><span class="fitem-name">apify_jincheon_megapolis_20260518</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/investor-attraction.html" target="_blank"><span class="fitem-name">investor-attraction</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/jincheon.html" target="_blank"><span class="fitem-name">jincheon</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/jincheon_agents_20260508.html" target="_blank"><span class="fitem-name">jincheon_agents_20260508</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/jincheon_ai_platform_hub_20260523.html" target="_blank"><span class="fitem-name">jincheon_ai_platform_hub_20260523</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-megapolis/" target="_blank" style="border-style:dashed;color:var(--t3)"><span class="fitem-name" style="color:var(--blue)">… 외 46개 더 보기</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">👔 임원실</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/imwon-sil/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/v01-mfg/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/v02-mfg/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/v03-mfg/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/v04-mfg/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/v05-lease/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/imwon-sil/" target="_blank" style="border-style:dashed;color:var(--t3)"><span class="fitem-name" style="color:var(--blue)">… 외 5개 더 보기</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">📊 진천 IR</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/jincheon-ir-2026-05/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-ir-2026-05/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-ir-2026-05/ir_map_dashboard.html" target="_blank"><span class="fitem-name">ir_map_dashboard</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/jincheon-ir-2026-05/ir_top10_package.html" target="_blank"><span class="fitem-name">ir_top10_package</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">📝 입찰자동화</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/bid-autofill/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/bid-autofill/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/bid-autofill/%EC%82%AC%EC%9A%A9%EC%84%A4%EB%AA%85%EC%84%9C.html" target="_blank"><span class="fitem-name">사용설명서</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">📣 마케팅리포트</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/marketing-report/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/marketing-report/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+<a class="fitem" href="https://sjbaik0431.github.io/marketing-report/songpa_gold_marketing_2026.html" target="_blank"><span class="fitem-name">songpa_gold_marketing_2026</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">⚖️ 다풀림플레이북</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/dapullim-playbook/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/dapullim-playbook/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+</div></div>
+<div class="section">
+<div class="sec-header">
+  <div class="sec-title">💻 MY GitHub</div>
+  <a class="sec-more" href="https://sjbaik0431.github.io/my-github/" target="_blank">열기 →</a>
+</div>
+<div class="file-list">
+<a class="fitem" href="https://sjbaik0431.github.io/my-github/index.html" target="_blank"><span class="fitem-name">index</span><span class="fitem-arrow">›</span></a>
+</div></div>
+
+<a class="master-link" href="https://sjbaik0431.github.io/claude/bsj_master_index.html" target="_blank">
+  <h3>🌐 전체 355개 대시보드 인덱스</h3>
+  <p>검색·카테고리 필터 포함 마스터 인덱스 열기</p>
+</a>
+
+<footer>sjbaik0431.github.io · BSJ GitHub Pages Hub · 2026.06.14 23:29 — 백상진</footer>
+</body></html>
