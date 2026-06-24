@@ -859,71 +859,67 @@ select.form-control option{background:var(--bg-card2);}
 
       <!-- Apps Script code (hidden, for copy) — setupAllTabs + doGet 통합 -->
       <div id="apps-script-code" style="display:none;">/* ================================================
-   컨텐츠 킬러 — Google Apps Script 통합 스크립트
+   컨텐츠 킬러 — Google Apps Script 통합 스크립트 v2
    사용법:
-     1) 이 코드 전체를 Apps Script 편집기에 붙여넣기
-     2) setupAllTabs() 실행 → 탭 6개 자동 생성 (1회)
-     3) 배포 → 새 배포 → 웹 앱 → 액세스: 모든 사용자 → 배포
+     1) 기존 코드 전체 삭제 후 이 코드 붙여넣기
+     2) 함수 선택창에서 [setupAllTabs] 선택 후 ▶ 실행 (탭 생성, 1회)
+     3) 배포 → 새 배포 → 웹 앱
+        실행 계정: 나 / 액세스: 모든 사용자(익명 포함) → 배포
      4) 생성된 URL을 대시보드 설정 [웹훅 URL] 에 붙여넣기
    ================================================ */
 
+// ① 탭 생성 (1회 실행용) — autoResizeColumns 제거로 빠름
 function setupAllTabs() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var ui = SpreadsheetApp.getUi();
-  var tabs = [
-    {name:'📋 렌탈_현황',  headers:['렌탈ID','장비ID','장비명','고객명','시작일(YYYY-MM-DD)','반납일(YYYY-MM-DD)','일수','금액(원)','상태','메모'], color:'#1f6feb'},
-    {name:'🔧 수리_현황',  headers:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고'], color:'#d29922'},
-    {name:'👥 고객_관리',  headers:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모'], color:'#3fb950'},
-    {name:'🤝 파트너사',   headers:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처'], color:'#bc8cff'},
-    {name:'🎥 장비_카탈로그', headers:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태'], color:'#ffa657'},
-    {name:'📊 업계통계',   headers:['항목','값','단위','비고'], color:'#f85149'}
+  var defs = [
+    {name:'📋 렌탈_현황',     color:'#1f6feb', cols:['렌탈ID','장비ID','장비명','고객명','시작일','반납일','일수','금액(원)','상태','메모']},
+    {name:'🔧 수리_현황',     color:'#d29922', cols:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고']},
+    {name:'👥 고객_관리',     color:'#3fb950', cols:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모']},
+    {name:'🤝 파트너사',      color:'#bc8cff', cols:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처']},
+    {name:'🎥 장비_카탈로그', color:'#ffa657', cols:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태']},
+    {name:'📊 업계통계',      color:'#f85149', cols:['항목','값','단위','비고']}
   ];
-  tabs.forEach(function(tab, i) {
-    var sheet = ss.getSheetByName(tab.name);
-    if (!sheet) sheet = ss.insertSheet(tab.name, i);
-    var hr = sheet.getRange(1, 1, 1, tab.headers.length);
-    hr.setValues([tab.headers]);
-    hr.setBackground(tab.color);
-    hr.setFontColor('#ffffff');
-    hr.setFontWeight('bold');
-    sheet.setFrozenRows(1);
-    sheet.autoResizeColumns(1, tab.headers.length);
-    sheet.setTabColor(tab.color);
+  defs.forEach(function(d, i) {
+    var s = ss.getSheetByName(d.name) || ss.insertSheet(d.name, i);
+    s.setTabColor(d.color);
+    s.setFrozenRows(1);
+    var r = s.getRange(1, 1, 1, d.cols.length);
+    r.setValues([d.cols]);
+    r.setFontColor('#ffffff').setFontWeight('bold').setBackground(d.color);
+    // 열 너비 일괄 고정 (autoResize 대신 — 빠름)
+    for (var c = 1; c <= d.cols.length; c++) s.setColumnWidth(c, 140);
   });
-  ui.alert('✅ 탭 설정 완료!\n6개 탭이 생성되었습니다.\n\n다음 단계:\n배포 → 새 배포 → 웹 앱\n→ 실행 계정: 나\n→ 액세스: 모든 사용자\n→ 배포 클릭 후 URL 복사');
+  SpreadsheetApp.getUi().alert('✅ 탭 6개 생성 완료!\n\n다음: 배포 → 새 배포 → 웹 앱\n실행계정: 나 / 액세스: 모든 사용자\n→ 배포 후 URL을 대시보드에 입력하세요.');
 }
 
-/* ── 웹훅 엔드포인트: 대시보드가 이 URL로 데이터를 가져감 ── */
+// ② 웹훅 엔드포인트 (배포 후 대시보드가 호출)
 function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var result = {
-    rentals:   readSheet(ss, '📋 렌탈_현황'),
-    repairs:   readSheet(ss, '🔧 수리_현황'),
-    customers: readSheet(ss, '👥 고객_관리'),
-    partners:  readSheet(ss, '🤝 파트너사'),
+  var out = {
+    rentals:   _rows(ss, '📋 렌탈_현황'),
+    repairs:   _rows(ss, '🔧 수리_현황'),
+    customers: _rows(ss, '👥 고객_관리'),
+    partners:  _rows(ss, '🤝 파트너사'),
     updatedAt: new Date().toISOString()
   };
-  var output = ContentService.createTextOutput(JSON.stringify(result));
-  output.setMimeType(ContentService.MimeType.JSON);
-  return output;
+  return ContentService
+    .createTextOutput(JSON.stringify(out))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
-function readSheet(ss, name) {
-  var sheet = ss.getSheetByName(name);
-  if (!sheet) return [];
-  var data = sheet.getDataRange().getValues();
-  if (data.length < 2) return [];
-  var headers = data[0].map(function(h) { return String(h).trim(); });
-  return data.slice(1)
-    .filter(function(row) { return row.some(function(v) { return v !== '' && v !== null; }); })
-    .map(function(row) {
-      var obj = {};
-      headers.forEach(function(h, i) {
-        var v = row[i];
-        obj[h] = (v instanceof Date) ? Utilities.formatDate(v, 'Asia/Seoul', 'yyyy-MM-dd') : v;
-      });
-      return obj;
+function _rows(ss, name) {
+  var s = ss.getSheetByName(name);
+  if (!s) return [];
+  var d = s.getDataRange().getValues();
+  if (d.length < 2) return [];
+  var h = d[0];
+  return d.slice(1).filter(function(r){ return r.some(function(v){return v!=='';});}).map(function(r){
+    var o={};
+    h.forEach(function(k,i){
+      o[k]=(r[i] instanceof Date)?Utilities.formatDate(r[i],'Asia/Seoul','yyyy-MM-dd'):r[i];
     });
+    return o;
+  });
 }</div>
     </div>
   </div>
