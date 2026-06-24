@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>컨텐츠 킬러 — 장비 렌탈 관리 시스템</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="equipment_data.js"></script>
+<script src="industry_data.js"></script>
+<style>
+:root {
+  --bg-main: #0d1117;
+  --bg-card: #161b22;
+  --bg-card2: #21262d;
+  --accent: #1f6feb;
+  --accent-hover: #388bfd;
+  --accent-glow: rgba(31,111,235,0.25);
+  --success: #3fb950;
+  --warning: #d29922;
+  --danger: #f85149;
+  --purple: #bc8cff;
+  --orange: #ffa657;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --border: #30363d;
+  --border-light: #21262d;
+  --sidebar-w: 220px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg-main);color:var(--text-primary);display:flex;min-height:100vh;font-size:14px;}
+
+/* ── SIDEBAR ── */
+#sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--bg-card);
+  border-right:1px solid var(--border);display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;z-index:100;
+}
+.logo{padding:20px 16px 16px;border-bottom:1px solid var(--border);}
+.logo-text{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.3px;}
+.logo-sub{font-size:11px;color:var(--text-secondary);margin-top:2px;}
+.logo-badge{display:inline-block;background:var(--accent);color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;margin-top:4px;}
+nav{flex:1;overflow-y:auto;padding:8px 0;}
+.nav-section{padding:4px 16px 2px;font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-top:8px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;border-radius:6px;margin:1px 8px;transition:all .15s;color:var(--text-secondary);font-size:13px;}
+.nav-item:hover{background:var(--bg-card2);color:var(--text-primary);}
+.nav-item.active{background:rgba(31,111,235,.2);color:var(--accent);font-weight:500;}
+.nav-item .ico{width:16px;text-align:center;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;}
+.sidebar-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--text-secondary);}
+
+/* ── MAIN ── */
+#main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;}
+.topbar{background:var(--bg-card);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.topbar-title{font-size:15px;font-weight:600;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-family:inherit;font-weight:500;transition:all .15s;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-hover);}
+.btn-secondary{background:var(--bg-card2);color:var(--text-primary);border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--border);}
+.btn-danger{background:rgba(248,81,73,.15);color:var(--danger);border:1px solid rgba(248,81,73,.3);}
+.btn-success{background:rgba(63,185,80,.15);color:var(--success);border:1px solid rgba(63,185,80,.3);}
+.btn-sm{padding:4px 10px;font-size:12px;}
+
+/* ── PAGE ── */
+.page{display:none;padding:24px;}
+.page.active{display:block;}
+
+/* ── CARDS ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative;overflow:hidden;}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi-card.blue::before{background:var(--accent);}
+.kpi-card.green::before{background:var(--success);}
+.kpi-card.yellow::before{background:var(--warning);}
+.kpi-card.purple::before{background:var(--purple);}
+.kpi-label{font-size:11px;color:var(--text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.kpi-value{font-size:26px;font-weight:700;letter-spacing:-1px;line-height:1;}
+.kpi-sub{font-size:11px;color:var(--text-secondary);margin-top:6px;}
+.kpi-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:2px 7px;border-radius:10px;}
+.kpi-trend.up{background:rgba(63,185,80,.15);color:var(--success);}
+.kpi-trend.down{background:rgba(248,81,73,.15);color:var(--danger);}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px;}
+.card-title{font-size:14px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;}
+th{font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:13px;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.02);}
+
+/* ── STATUS BADGES ── */
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;}
+.badge-blue{background:rgba(31,111,235,.2);color:var(--accent);}
+.badge-green{background:rgba(63,185,80,.2);color:var(--success);}
+.badge-yellow{background:rgba(210,153,34,.2);color:var(--warning);}
+.badge-red{background:rgba(248,81,73,.2);color:var(--danger);}
+.badge-purple{background:rgba(188,140,255,.2);color:var(--purple);}
+.badge-orange{background:rgba(255,166,87,.2);color:var(--orange);}
+.badge-gray{background:var(--bg-card2);color:var(--text-secondary);}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;width:560px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+.modal-lg{width:720px;}
+.modal-head{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center;}
+.modal-head h3{font-size:16px;font-weight:600;}
+.modal-close{background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:4px;}
+.modal-close:hover{background:var(--bg-card2);color:var(--text-primary);}
+.modal-body{padding:20px;}
+.modal-footer{padding:0 20px 20px;display:flex;gap:8px;justify-content:flex-end;}
+
+/* ── FORM ── */
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:12px;color:var(--text-secondary);margin-bottom:6px;font-weight:500;}
+.form-control{width:100%;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:9px 12px;color:var(--text-primary);font-size:13px;font-family:inherit;transition:border-color .15s;}
+.form-control:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+select.form-control option{background:var(--bg-card2);}
+
+/* ── SEARCH BAR ── */
+.search-bar{position:relative;margin-bottom:16px;}
+.search-bar input{padding-left:36px;}
+.search-bar::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;}
+
+/* ── PROGRESS BARS ── */
+.progress-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.progress-label{width:100px;font-size:12px;color:var(--text-secondary);flex-shrink:0;}
+.progress-bar{flex:1;height:6px;background:var(--bg-card2);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:10px;transition:width 1s ease;}
+.progress-val{width:32px;font-size:12px;text-align:right;flex-shrink:0;}
+
+/* ── EQUIPMENT GRID ── */
+.equip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+.equip-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all .15s;}
+.equip-card:hover{border-color:var(--accent);transform:translateY(-1px);}
+.equip-cat-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
+.equip-name{font-size:13px;font-weight:600;margin:8px 0 4px;}
+.equip-brand{font-size:11px;color:var(--text-secondary);}
+.equip-price{font-size:14px;font-weight:700;color:var(--accent);margin-top:8px;}
+.equip-price span{font-size:10px;font-weight:400;color:var(--text-secondary);}
+
+/* ── CUSTOMER CARD ── */
+.customer-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;transition:border-color .15s;cursor:pointer;}
+.customer-card:hover{border-color:var(--accent);}
+.customer-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;margin-right:12px;}
+
+/* ── CALENDAR ── */
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-header{font-size:11px;color:var(--text-secondary);text-align:center;padding:6px 0;font-weight:600;}
+.cal-day{min-height:80px;background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:6px;font-size:11px;}
+.cal-day.other-month{opacity:0.4;}
+.cal-day.today{border-color:var(--accent);}
+.cal-day-num{font-weight:600;margin-bottom:4px;}
+.cal-event{font-size:10px;background:rgba(31,111,235,.3);color:var(--accent);border-radius:3px;padding:2px 4px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cal-event.rented{background:rgba(63,185,80,.25);color:var(--success);}
+.cal-event.returned{background:rgba(139,148,158,.2);color:var(--text-secondary);}
+
+/* ── AI INSIGHT CARDS ── */
+.insight-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px;border-left:3px solid;}
+.insight-card.urgent{border-left-color:var(--danger);}
+.insight-card.high{border-left-color:var(--warning);}
+.insight-card.medium{border-left-color:var(--accent);}
+.insight-card.low{border-left-color:var(--text-secondary);}
+.insight-title{font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.insight-desc{font-size:12px;color:var(--text-secondary);line-height:1.6;}
+
+/* ── PARTNER CARD ── */
+.partner-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:18px;transition:all .15s;}
+.partner-card:hover{border-color:var(--accent);}
+.partner-region{font-size:10px;color:var(--text-secondary);margin-bottom:4px;}
+.partner-name{font-size:15px;font-weight:700;margin-bottom:12px;}
+.partner-stat{display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;}
+.partner-stat-label{color:var(--text-secondary);}
+.partner-stat-val{font-weight:600;}
+
+/* ── QR DISPLAY ── */
+.qr-box{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:20px;text-align:center;}
+.qr-placeholder{width:160px;height:160px;background:#fff;margin:0 auto 12px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#333;position:relative;}
+.qr-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:120px;height:120px;}
+.qr-cell{background:#000;border-radius:1px;}
+.qr-cell.w{background:#fff;}
+
+/* ── CONTRACT ── */
+.contract-paper{background:#fff;color:#111;padding:40px;border-radius:8px;font-size:13px;line-height:1.8;}
+.contract-paper h2{text-align:center;font-size:18px;margin-bottom:20px;border-bottom:2px solid #111;padding-bottom:10px;}
+.contract-section{margin-bottom:16px;}
+.contract-section h4{font-size:13px;font-weight:700;margin-bottom:6px;}
+.contract-table{width:100%;border-collapse:collapse;font-size:12px;}
+.contract-table th,.contract-table td{border:1px solid #ccc;padding:6px 10px;}
+.contract-table th{background:#f5f5f5;}
+.sign-row{display:flex;justify-content:space-around;margin-top:40px;text-align:center;}
+.sign-box{width:160px;}
+.sign-line{border-top:1px solid #111;margin-top:40px;padding-top:4px;}
+
+/* ── FILTER TABS ── */
+.filter-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;}
+.filter-tab{padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--text-secondary);font-size:12px;cursor:pointer;transition:all .15s;font-family:inherit;}
+.filter-tab:hover,.filter-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* ── NOTIFICATION ── */
+#notification{position:fixed;bottom:24px;right:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 18px;font-size:13px;z-index:9999;display:none;box-shadow:0 8px 32px rgba(0,0,0,.5);max-width:320px;}
+#notification.show{display:flex;align-items:center;gap:10px;}
+#notification.success{border-left:3px solid var(--success);}
+#notification.error{border-left:3px solid var(--danger);}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;}
+
+/* ── ANIMATION ── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.page.active{animation:fadeIn .2s ease;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+.pulse{animation:pulse 2s infinite;}
+
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block;margin-right:4px;animation:pulse 2s infinite;}
+
+/* ── TOP EQUIP LIST ── */
+.rank-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-light);}
+.rank-row:last-child{border-bottom:none;}
+.rank-num{width:22px;height:22px;border-radius:50%;background:var(--bg-card2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.rank-num.top{background:var(--accent);color:#fff;}
+.rank-info{flex:1;min-width:0;}
+.rank-name{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rank-cat{font-size:10px;color:var(--text-secondary);}
+.rank-stat{text-align:right;flex-shrink:0;}
+.rank-count{font-size:13px;font-weight:700;color:var(--accent);}
+.rank-rev{font-size:10px;color:var(--text-secondary);}
+
+/* Chart containers */
+.chart-wrap{position:relative;height:240px;}
+.chart-wrap-sm{position:relative;height:180px;}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<aside id="sidebar">
+  <div class="logo">
+    <div class="logo-text">📡 컨텐츠 킬러</div>
+    <div class="logo-sub">방송장비 렌탈 관리 시스템</div>
+    <span class="logo-badge">FRANCHISE v3.0</span>
+  </div>
+  <nav>
+    <div class="nav-section">메인</div>
+    <div class="nav-item active" data-page="dashboard" onclick="goPage('dashboard',this)">
+      <span class="ico">📊</span> 대시보드
+    </div>
+    <div class="nav-item" data-page="rentals" onclick="goPage('rentals',this)">
+      <span class="ico">📋</span> 렌탈 현황
+      <span class="nav-badge" id="active-count">23</span>
+    </div>
+    <div class="nav-section">장비·고객</div>
+    <div class="nav-item" data-page="equipment" onclick="goPage('equipment',this)">
+      <span class="ico">🎥</span> 장비 카탈로그
+    </div>
+    <div class="nav-item" data-page="customers" onclick="goPage('customers',this)">
+      <span class="ico">👥</span> 고객 관리
+    </div>
+    <div class="nav-item" data-page="calendar" onclick="goPage('calendar',this)">
+      <span class="ico">📅</span> 캘린더
+    </div>
+    <div class="nav-section">분석·파트너</div>
+    <div class="nav-item" data-page="insights" onclick="goPage('insights',this)">
+      <span class="ico">🤖</span> AI 경영인사이트
+    </div>
+    <div class="nav-item" data-page="partners" onclick="goPage('partners',this)">
+      <span class="ico">🤝</span> 파트너 플랫폼
+    </div>
+    <div class="nav-section">설정</div>
+    <div class="nav-item" data-page="settings" onclick="goPage('settings',this)">
+      <span class="ico">⚙️</span> 설정
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="live-dot"></span>실시간 운영 중<br>
+    총 장비 <strong>847</strong>개 | 파트너 <strong>5</strong>사
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main id="main">
+
+<!-- ── 대시보드 홈 ── -->
+<div id="page-dashboard" class="page active">
+  <div class="topbar">
+    <span class="topbar-title">📊 대시보드 홈</span>
+    <div class="topbar-right">
+      <span style="font-size:12px;color:var(--text-secondary)">2026년 6월 24일 (화)</span>
+      <button class="btn btn-primary" onclick="openModal('new-rental')">＋ 새 렌탈 등록</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-label">현재 렌탈 중</div>
+        <div class="kpi-value" id="kpi-active">0</div>
+        <div class="kpi-sub">건 <span class="kpi-trend up">▲ 12%</span></div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">이번 달 매출</div>
+        <div class="kpi-value" id="kpi-revenue">0</div>
+        <div class="kpi-sub">만원 <span class="kpi-trend up">▲ 8.5%</span></div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="kpi-label">장비 가동률</div>
+        <div class="kpi-value" id="kpi-util">0</div>
+        <div class="kpi-sub">% <span class="kpi-trend up">▲ 3.2%p</span></div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-label">전체 장비</div>
+        <div class="kpi-value" id="kpi-equip">0</div>
+        <div class="kpi-sub">개 | 신규 고객 <strong id="kpi-newcust">0</strong>명</div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">월별 매출 추이 <span style="font-size:11px;color:var(--text-secondary)">2026년</span></div>
+        <div class="chart-wrap"><canvas id="chart-revenue"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-title">카테고리별 가동률</div>
+        <div class="chart-wrap"><canvas id="chart-util"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="grid-2">
+      <!-- Recent Rentals -->
+      <div class="card">
+        <div class="card-title">
+          최근 렌탈
+          <button class="btn btn-secondary btn-sm" onclick="goPage('rentals',null)">전체 보기</button>
+        </div>
+        <table>
+          <thead><tr><th>장비</th><th>고객</th><th>기간</th><th>금액</th><th>상태</th></tr></thead>
+          <tbody id="recent-rentals-body"></tbody>
+        </table>
+      </div>
+      <!-- Top Equipment -->
+      <div class="card">
+        <div class="card-title">인기 장비 TOP 10</div>
+        <div id="top-equip-list"></div>
+      </div>
+    </div>
+
+    <!-- Client Distribution + Category Utilization Table -->
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">고객 유형 분포</div>
+        <div style="display:flex;align-items:center;gap:20px;">
+          <div class="chart-wrap-sm" style="width:180px;flex-shrink:0;"><canvas id="chart-client"></canvas></div>
+          <div id="client-legend" style="flex:1;"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">카테고리 현황</div>
+        <div id="cat-table"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── 렌탈 현황 ── -->
+<div id="page-rentals" class="page">
+  <div class="topbar">
+    <span class="topbar-title">📋 렌탈 현황</span>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="openModal('new-rental')">＋ 새 렌탈 등록</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <div class="filter-tabs" id="rental-filter-tabs">
+      <button class="filter-tab active" onclick="filterRentals('all',this)">전체</button>
+      <button class="filter-tab" onclick="filterRentals('rented',this)">렌탈 중</button>
+      <button class="filter-tab" onclick="filterRentals('returned',this)">반납 완료</button>
+      <button class="filter-tab" onclick="filterRentals('reserved',this)">예약</button>
+    </div>
+    <div class="search-bar">
+      <input class="form-control" id="rental-search" placeholder="장비명, 고객명으로 검색..." oninput="renderRentalsTable()">
+    </div>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table>
+        <thead><tr><th>렌탈 ID</th><th>장비</th><th>고객</th><th>시작일</th><th>반납일</th><th>일수</th><th>금액</th><th>상태</th><th>액션</th></tr></thead>
+        <tbody id="rentals-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 장비 카탈로그 ── -->
+<div id="page-equipment" class="page">
+  <div class="topbar">
+    <span class="topbar-title">🎥 장비 카탈로그</span>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="openModal('new-rental')">＋ 렌탈 등록</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <div class="filter-tabs" id="equip-cat-tabs">
+      <button class="filter-tab active" onclick="filterEquip('all',this)">전체</button>
+    </div>
+    <div class="search-bar">
+      <input class="form-control" id="equip-search" placeholder="장비명, 브랜드, 스펙 검색..." oninput="renderEquipGrid()">
+    </div>
+    <div class="equip-grid" id="equip-grid"></div>
+  </div>
+</div>
+
+<!-- ── 고객 관리 ── -->
+<div id="page-customers" class="page">
+  <div class="topbar">
+    <span class="topbar-title">👥 고객 관리</span>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="openModal('new-customer')">＋ 고객 등록</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterCustomers('all',this)">전체</button>
+      <button class="filter-tab" onclick="filterCustomers('VIP',this)">VIP</button>
+      <button class="filter-tab" onclick="filterCustomers('Gold',this)">Gold</button>
+      <button class="filter-tab" onclick="filterCustomers('Silver',this)">Silver</button>
+    </div>
+    <div class="search-bar">
+      <input class="form-control" id="cust-search" placeholder="고객명, 담당자 검색..." oninput="renderCustomers()">
+    </div>
+    <div id="customers-list"></div>
+  </div>
+</div>
+
+<!-- ── 캘린더 ── -->
+<div id="page-calendar" class="page">
+  <div class="topbar">
+    <span class="topbar-title">📅 렌탈 캘린더</span>
+    <div class="topbar-right">
+      <button class="btn btn-secondary" onclick="changeMonth(-1)">◀ 이전</button>
+      <span id="cal-month-label" style="font-weight:600;min-width:100px;text-align:center;"></span>
+      <button class="btn btn-secondary" onclick="changeMonth(1)">다음 ▶</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <div class="card">
+      <div class="calendar-grid">
+        <div class="cal-header">일</div><div class="cal-header">월</div><div class="cal-header">화</div>
+        <div class="cal-header">수</div><div class="cal-header">목</div><div class="cal-header">금</div><div class="cal-header">토</div>
+      </div>
+      <div class="calendar-grid" id="cal-body" style="margin-top:4px;"></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">이번 달 렌탈 일정</div>
+        <div id="cal-events-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">반납 예정 (7일 이내)</div>
+        <div id="cal-returns-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── AI 경영인사이트 ── -->
+<div id="page-insights" class="page">
+  <div class="topbar">
+    <span class="topbar-title">🤖 AI 경영 인사이트</span>
+    <div class="topbar-right">
+      <span style="font-size:12px;color:var(--text-secondary)">마지막 분석: 오늘 오전 6:00</span>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <div class="grid-2">
+      <div>
+        <div class="card-title" style="margin-bottom:16px;">AI 추천 액션 <span class="badge badge-red" style="margin-left:8px;">5건</span></div>
+        <div id="ai-insights-list"></div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-title">카테고리별 수익 현황</div>
+          <div id="cat-revenue-list"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">월별 YoY 성장률</div>
+          <div class="chart-wrap"><canvas id="chart-growth"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 파트너 플랫폼 ── -->
+<div id="page-partners" class="page">
+  <div class="topbar">
+    <span class="topbar-title">🤝 파트너 플랫폼</span>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="showToast('파트너 가입 신청 폼이 전송됩니다.','success')">＋ 파트너 신규 모집</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <!-- Partner Summary KPIs -->
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-label">전체 파트너</div>
+        <div class="kpi-value">5</div>
+        <div class="kpi-sub">개사 활성</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">파트너 합산 매출</div>
+        <div class="kpi-value">5,160</div>
+        <div class="kpi-sub">만원/월</div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="kpi-label">파트너 장비 합계</div>
+        <div class="kpi-value">516</div>
+        <div class="kpi-sub">개</div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-label">커버리지</div>
+        <div class="kpi-value">5</div>
+        <div class="kpi-sub">개 광역권</div>
+      </div>
+    </div>
+    <div class="grid-3" id="partners-grid"></div>
+
+    <!-- Partner map coverage -->
+    <div class="card" style="margin-top:0;">
+      <div class="card-title">지역별 커버리지 현황</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:center;">
+        <div style="background:var(--bg-card2);border-radius:8px;padding:16px;border:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🏙️</div>
+          <div style="font-weight:700;font-size:13px;">서울/본사</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">본점 운영</div>
+          <div class="badge badge-blue" style="margin-top:8px;">본점</div>
+        </div>
+        <div style="background:var(--bg-card2);border-radius:8px;padding:16px;border:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🌊</div>
+          <div style="font-weight:700;font-size:13px;">부산/경남</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">씨네렌탈</div>
+          <div class="badge badge-green" style="margin-top:8px;">Active</div>
+        </div>
+        <div style="background:var(--bg-card2);border-radius:8px;padding:16px;border:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🏔️</div>
+          <div style="font-weight:700;font-size:13px;">대구/경북</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">방송장비</div>
+          <div class="badge badge-green" style="margin-top:8px;">Active</div>
+        </div>
+        <div style="background:var(--bg-card2);border-radius:8px;padding:16px;border:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🌿</div>
+          <div style="font-weight:700;font-size:13px;">광주/전남</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">미디어렌탈</div>
+          <div class="badge badge-green" style="margin-top:8px;">Active</div>
+        </div>
+        <div style="background:var(--bg-card2);border-radius:8px;padding:16px;border:1px solid var(--border);">
+          <div style="font-size:24px;margin-bottom:8px;">🌊</div>
+          <div style="font-weight:700;font-size:13px;">인천/경기</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:4px;">영상장비</div>
+          <div class="badge badge-green" style="margin-top:8px;">Active</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:12px;background:rgba(210,153,34,.1);border:1px solid rgba(210,153,34,.3);border-radius:6px;font-size:12px;color:var(--warning);">
+        ⚠️ AI 인사이트: 경기도 북부(의정부/고양/파주) 권역 파트너 공백 — 신규 모집 시 예상 월 1,200만원 추가 매출
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 설정 ── -->
+<div id="page-settings" class="page">
+  <div class="topbar">
+    <span class="topbar-title">⚙️ 설정</span>
+  </div>
+  <div style="padding:24px;">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">회사 정보</div>
+        <div class="form-group"><div class="form-label">회사명</div><input class="form-control" value="컨텐츠 킬러"></div>
+        <div class="form-group"><div class="form-label">대표자</div><input class="form-control" value="백상진"></div>
+        <div class="form-group"><div class="form-label">사업자등록번호</div><input class="form-control" placeholder="000-00-00000"></div>
+        <div class="form-group"><div class="form-label">주소</div><input class="form-control" placeholder="서울특별시 ..."></div>
+        <div class="form-group"><div class="form-label">대표 전화</div><input class="form-control" placeholder="02-000-0000"></div>
+        <button class="btn btn-primary" onclick="showToast('회사 정보가 저장되었습니다.','success')">저장</button>
+      </div>
+      <div class="card">
+        <div class="card-title">시스템 설정</div>
+        <div class="form-group"><div class="form-label">기본 렌탈 단위</div>
+          <select class="form-control"><option>프로젝트 단위</option><option>일 단위</option></select>
+        </div>
+        <div class="form-group"><div class="form-label">가격 정책</div>
+          <select class="form-control"><option>정찰 고정가</option><option>협의가</option></select>
+        </div>
+        <div class="form-group"><div class="form-label">계약서 로고 표시</div>
+          <select class="form-control"><option>표시</option><option>미표시</option></select>
+        </div>
+        <div class="form-group"><div class="form-label">신규 예약 알림</div>
+          <select class="form-control"><option>앱 내 알림</option><option>사용 안 함</option></select>
+        </div>
+        <button class="btn btn-primary" onclick="showToast('시스템 설정이 저장되었습니다.','success')">저장</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">데이터 관리</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="exportData()">📥 데이터 내보내기 (JSON)</button>
+        <button class="btn btn-secondary" onclick="showToast('엑셀 내보내기 기능 준비 중입니다.','success')">📊 Excel 내보내기</button>
+        <button class="btn btn-secondary" onclick="showToast('PDF 보고서 생성 중...','success')">📄 PDF 보고서</button>
+        <button class="btn btn-danger" onclick="if(confirm('로컬 렌탈 데이터를 초기화합니까?'))clearRentals()">🗑️ 렌탈 데이터 초기화</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ══ MODALS ══ -->
+
+<!-- 새 렌탈 등록 Modal -->
+<div class="overlay" id="modal-new-rental">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>새 렌탈 등록</h3>
+      <button class="modal-close" onclick="closeModal('new-rental')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">장비 카테고리</div>
+          <select class="form-control" id="sel-cat" onchange="onCatChange()">
+            <option value="">선택하세요</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">세부 분류</div>
+          <select class="form-control" id="sel-sub" onchange="onSubChange()" disabled>
+            <option value="">카테고리 먼저 선택</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">장비 선택</div>
+        <select class="form-control" id="sel-item" onchange="onItemChange()" disabled>
+          <option value="">세부 분류 먼저 선택</option>
+        </select>
+      </div>
+      <div class="form-group" id="item-info-box" style="display:none;">
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px;font-size:12px;">
+          <div style="font-weight:600;margin-bottom:4px;" id="item-info-name"></div>
+          <div style="color:var(--text-secondary);" id="item-info-specs"></div>
+          <div style="margin-top:6px;"><span style="color:var(--accent);font-weight:700;" id="item-info-price"></span></div>
+          <div id="item-info-status" style="margin-top:4px;"></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">고객명</div>
+          <input class="form-control" id="rental-customer" list="customer-list-dl" placeholder="고객명 입력 또는 선택">
+          <datalist id="customer-list-dl"></datalist>
+        </div>
+        <div class="form-group">
+          <div class="form-label">고객 유형</div>
+          <select class="form-control" id="rental-ctype">
+            <option>방송국/OTT</option><option>영상 제작사</option>
+            <option>유튜버/크리에이터</option><option>공공기관</option><option>기타</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">렌탈 시작일</div>
+          <input class="form-control" type="date" id="rental-start">
+        </div>
+        <div class="form-group">
+          <div class="form-label">반납 예정일</div>
+          <input class="form-control" type="date" id="rental-end" onchange="calcRentalAmt()">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">수량</div>
+          <input class="form-control" type="number" id="rental-qty" value="1" min="1" onchange="calcRentalAmt()">
+        </div>
+        <div class="form-group">
+          <div class="form-label">총 금액</div>
+          <input class="form-control" id="rental-amount" readonly style="color:var(--accent);font-weight:700;">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">메모</div>
+        <textarea class="form-control" id="rental-memo" rows="2" placeholder="특이사항 입력..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('new-rental')">취소</button>
+      <button class="btn btn-secondary" onclick="previewContract()">계약서 미리보기</button>
+      <button class="btn btn-primary" onclick="saveRental()">렌탈 등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- 장비 상세 Modal -->
+<div class="overlay" id="modal-equip-detail">
+  <div class="modal modal-lg">
+    <div class="modal-head">
+      <h3 id="equip-modal-title">장비 상세</h3>
+      <button class="modal-close" onclick="closeModal('equip-detail')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="grid-2">
+        <div>
+          <div class="qr-box" id="equip-qr-box">
+            <div class="qr-placeholder">
+              <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="40" height="40" fill="#000"/>
+                <rect x="5" y="5" width="30" height="30" fill="#fff"/>
+                <rect x="10" y="10" width="20" height="20" fill="#000"/>
+                <rect x="80" y="0" width="40" height="40" fill="#000"/>
+                <rect x="85" y="5" width="30" height="30" fill="#fff"/>
+                <rect x="90" y="10" width="20" height="20" fill="#000"/>
+                <rect x="0" y="80" width="40" height="40" fill="#000"/>
+                <rect x="5" y="85" width="30" height="30" fill="#fff"/>
+                <rect x="10" y="90" width="20" height="20" fill="#000"/>
+                <rect x="45" y="5" width="5" height="5" fill="#000"/>
+                <rect x="55" y="5" width="5" height="5" fill="#000"/>
+                <rect x="65" y="5" width="5" height="5" fill="#000"/>
+                <rect x="45" y="15" width="15" height="5" fill="#000"/>
+                <rect x="45" y="25" width="5" height="10" fill="#000"/>
+                <rect x="55" y="25" width="10" height="5" fill="#000"/>
+                <rect x="45" y="45" width="10" height="10" fill="#000"/>
+                <rect x="60" y="45" width="5" height="5" fill="#000"/>
+                <rect x="70" y="45" width="5" height="15" fill="#000"/>
+                <rect x="80" y="45" width="10" height="5" fill="#000"/>
+                <rect x="45" y="60" width="5" height="20" fill="#000"/>
+                <rect x="55" y="60" width="10" height="5" fill="#000"/>
+                <rect x="55" y="70" width="5" height="10" fill="#000"/>
+                <rect x="65" y="60" width="15" height="5" fill="#000"/>
+                <rect x="80" y="55" width="5" height="10" fill="#000"/>
+                <rect x="90" y="55" width="10" height="5" fill="#000"/>
+                <rect x="90" y="65" width="5" height="15" fill="#000"/>
+                <rect x="100" y="65" width="5" height="5" fill="#000"/>
+                <rect x="50" y="85" width="10" height="5" fill="#000"/>
+                <rect x="65" y="80" width="5" height="10" fill="#000"/>
+                <rect x="75" y="80" width="5" height="5" fill="#000"/>
+                <rect x="85" y="80" width="5" height="5" fill="#000"/>
+                <rect x="75" y="90" width="15" height="5" fill="#000"/>
+                <rect x="95" y="85" width="5" height="10" fill="#000"/>
+                <rect x="105" y="85" width="5" height="5" fill="#000"/>
+                <rect x="50" y="95" width="5" height="10" fill="#000"/>
+                <rect x="60" y="100" width="10" height="5" fill="#000"/>
+              </svg>
+            </div>
+            <div style="font-size:11px;color:var(--text-secondary);" id="equip-qr-id">장비 ID</div>
+          </div>
+          <div style="margin-top:12px;text-align:center;">
+            <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ QR 라벨 인쇄</button>
+          </div>
+        </div>
+        <div>
+          <div id="equip-modal-info"></div>
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="rentThisEquip()">렌탈 등록</button>
+            <button class="btn btn-secondary" onclick="closeModal('equip-detail')">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 계약서 Modal -->
+<div class="overlay" id="modal-contract">
+  <div class="modal modal-lg">
+    <div class="modal-head">
+      <h3>📄 렌탈 계약서</h3>
+      <button class="modal-close" onclick="closeModal('contract')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="contract-content"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('contract')">닫기</button>
+      <button class="btn btn-primary" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 고객 등록 Modal -->
+<div class="overlay" id="modal-new-customer">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>고객 등록</h3>
+      <button class="modal-close" onclick="closeModal('new-customer')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><div class="form-label">고객(회사)명</div><input class="form-control" id="nc-name"></div>
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">고객 유형</div>
+          <select class="form-control" id="nc-type"><option>방송국/OTT</option><option>영상 제작사</option><option>유튜버/크리에이터</option><option>공공기관</option><option>기타</option></select>
+        </div>
+        <div class="form-group"><div class="form-label">담당자명</div><input class="form-control" id="nc-contact"></div>
+      </div>
+      <div class="form-group"><div class="form-label">연락처</div><input class="form-control" id="nc-phone" placeholder="02-000-0000"></div>
+      <div class="form-group"><div class="form-label">메모</div><textarea class="form-control" id="nc-notes" rows="2"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('new-customer')">취소</button>
+      <button class="btn btn-primary" onclick="saveCustomer()">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- 알림 Toast -->
+<div id="notification"></div>
+
+<script>
+// ══════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════
+const STORAGE_KEY = 'ck_rentals_v1';
+const CUST_KEY    = 'ck_customers_v1';
+
+let rentals   = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || [...INDUSTRY_DATA.recentRentals];
+let customers = JSON.parse(localStorage.getItem(CUST_KEY)    || 'null') || [...INDUSTRY_DATA.sampleCustomers];
+let currentRentalFilter = 'all';
+let currentEquipCat     = 'all';
+let currentCustFilter   = 'all';
+let currentEquipForRental = null;
+let calYear = 2026, calMonth = 5; // June 2026 (0-indexed)
+
+// ══════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════
+function goPage(pageId, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  else {
+    const target = document.querySelector(`[data-page="${pageId}"]`);
+    if (target) target.classList.add('active');
+  }
+  // Init page-specific rendering
+  if (pageId === 'dashboard')  initDashboard();
+  if (pageId === 'rentals')    renderRentalsTable();
+  if (pageId === 'equipment')  initEquipPage();
+  if (pageId === 'customers')  renderCustomers();
+  if (pageId === 'calendar')   renderCalendar();
+  if (pageId === 'insights')   renderInsights();
+  if (pageId === 'partners')   renderPartners();
+}
+
+// ══════════════════════════════════════════
+//  DASHBOARD
+// ══════════════════════════════════════════
+function initDashboard() {
+  const s = INDUSTRY_DATA.marketStats;
+  countUp('kpi-active', s.activeRentals);
+  countUp('kpi-revenue', Math.round(s.monthlyRevenue / 10000));
+  countUp('kpi-util', s.utilizationRate, 1);
+  countUp('kpi-equip', s.totalEquipment);
+  countUp('kpi-newcust', s.newCustomersThisMonth);
+  renderRecentRentals();
+  renderTopEquip();
+  renderCatTable();
+  setTimeout(() => {
+    renderRevenueChart();
+    renderUtilChart();
+    renderClientChart();
+  }, 100);
+}
+
+function countUp(id, target, decimals = 0) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let start = 0, duration = 800, step = 16;
+  const inc = target / (duration / step);
+  const timer = setInterval(() => {
+    start = Math.min(start + inc, target);
+    el.textContent = start.toFixed(decimals);
+    if (start >= target) clearInterval(timer);
+  }, step);
+}
+
+function renderRecentRentals() {
+  const tbody = document.getElementById('recent-rentals-body');
+  if (!tbody) return;
+  const rows = [...rentals].slice(-5).reverse();
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td style="font-size:11px;color:var(--text-secondary)">${r.id}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.equipName}</td>
+      <td>${r.customer}</td>
+      <td style="font-size:11px">${r.startDate}</td>
+      <td>${r.amount ? fmtKRW(r.amount) : '-'}</td>
+      <td>${statusBadge(r.status)}</td>
+    </tr>
+  `).join('');
+}
+
+function renderTopEquip() {
+  const el = document.getElementById('top-equip-list');
+  if (!el) return;
+  el.innerHTML = INDUSTRY_DATA.topEquipment.map(e => `
+    <div class="rank-row">
+      <div class="rank-num ${e.rank <= 3 ? 'top' : ''}">${e.rank}</div>
+      <div class="rank-info">
+        <div class="rank-name" title="${e.name}">${e.name}</div>
+        <div class="rank-cat">${e.category}</div>
+      </div>
+      <div class="rank-stat">
+        <div class="rank-count">${e.rentCount}건</div>
+        <div class="rank-rev">${fmtKRW(e.revenue)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCatTable() {
+  const el = document.getElementById('cat-table');
+  if (!el) return;
+  el.innerHTML = `<table><thead><tr><th>카테고리</th><th>렌탈중/전체</th><th>가동률</th><th>월 수익</th></tr></thead><tbody>` +
+    INDUSTRY_DATA.utilizationByCategory.map(c => `
+      <tr>
+        <td><span class="equip-cat-dot" style="background:${getCatColor(c.id)}"></span>${c.name}</td>
+        <td>${c.rentedCount}/${c.totalCount}</td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;height:4px;background:var(--bg-card2);border-radius:10px;overflow:hidden;">
+              <div style="width:${c.utilization}%;height:100%;background:${getCatColor(c.id)};border-radius:10px;"></div>
+            </div>
+            <span style="font-size:11px;width:30px">${c.utilization}%</span>
+          </div>
+        </td>
+        <td style="color:var(--success)">${fmtKRW(c.revenue)}</td>
+      </tr>
+    `).join('') + '</tbody></table>';
+}
+
+// ── Charts ──
+let charts = {};
+function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+
+function renderRevenueChart() {
+  destroyChart('revenue');
+  const ctx = document.getElementById('chart-revenue');
+  if (!ctx) return;
+  const d = INDUSTRY_DATA.monthlyRevenue;
+  charts['revenue'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.map(m => m.month),
+      datasets: [
+        { label: '매출', data: d.map(m => m.revenue/10000), backgroundColor: 'rgba(31,111,235,.7)', borderRadius: 4, borderSkipped: false },
+        { label: '목표', data: d.map(m => m.target/10000), type: 'line', borderColor: 'rgba(63,185,80,.7)', backgroundColor: 'transparent', pointRadius: 3, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#8b949e', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#21262d' } },
+        y: { ticks: { color: '#8b949e', font: { size: 10 }, callback: v => v + '만' }, grid: { color: '#21262d' } }
+      }
+    }
+  });
+}
+
+function renderUtilChart() {
+  destroyChart('util');
+  const ctx = document.getElementById('chart-util');
+  if (!ctx) return;
+  const d = INDUSTRY_DATA.utilizationByCategory;
+  charts['util'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: d.map(c => c.name.split('/')[0]),
+      datasets: [{ label: '가동률', data: d.map(c => c.utilization), backgroundColor: d.map(c => getCatColor(c.id) + 'bb'), borderRadius: 4, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { max: 100, ticks: { color: '#8b949e', callback: v => v + '%' }, grid: { color: '#21262d' } },
+        y: { ticks: { color: '#e6edf3', font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+function renderClientChart() {
+  destroyChart('client');
+  const ctx = document.getElementById('chart-client');
+  if (!ctx) return;
+  const d = INDUSTRY_DATA.clientTypeDistribution;
+  charts['client'] = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: d.map(c => c.type),
+      datasets: [{ data: d.map(c => c.percentage), backgroundColor: d.map(c => c.color), borderWidth: 2, borderColor: '#161b22' }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '60%',
+      plugins: { legend: { display: false } }
+    }
+  });
+  const leg = document.getElementById('client-legend');
+  if (leg) leg.innerHTML = d.map(c => `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:${c.color};display:inline-block;flex-shrink:0"></span>
+      <span style="font-size:12px;flex:1">${c.type}</span>
+      <span style="font-size:13px;font-weight:700">${c.percentage}%</span>
+    </div>
+  `).join('');
+}
+
+function renderGrowthChart() {
+  destroyChart('growth');
+  const ctx = document.getElementById('chart-growth');
+  if (!ctx) return;
+  const d = INDUSTRY_DATA.monthlyRevenue;
+  const growthData = d.map(m => +((( m.revenue - m.target) / m.target * 100).toFixed(1)));
+  charts['growth'] = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: d.map(m => m.month),
+      datasets: [{
+        label: 'vs 목표(%)',
+        data: growthData,
+        borderColor: '#3fb950',
+        backgroundColor: 'rgba(63,185,80,.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: growthData.map(v => v >= 0 ? '#3fb950' : '#f85149'),
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#8b949e', font: { size: 10 } }, grid: { color: '#21262d' } },
+        y: { ticks: { color: '#8b949e', callback: v => v + '%' }, grid: { color: '#21262d' } }
+      }
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+//  RENTALS
+// ══════════════════════════════════════════
+function renderRentalsTable() {
+  const tbody = document.getElementById('rentals-table-body');
+  if (!tbody) return;
+  const q = (document.getElementById('rental-search')?.value || '').toLowerCase();
+  let rows = rentals.filter(r => {
+    const matchFilter = currentRentalFilter === 'all' || r.status === currentRentalFilter;
+    const matchSearch = !q || r.equipName.toLowerCase().includes(q) || r.customer.toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  }).reverse();
+
+  tbody.innerHTML = rows.length ? rows.map(r => `
+    <tr>
+      <td style="font-size:11px;color:var(--text-secondary)">${r.id}</td>
+      <td>${r.equipName}</td>
+      <td>${r.customer}</td>
+      <td style="font-size:11px">${r.startDate}</td>
+      <td style="font-size:11px">${r.endDate}</td>
+      <td style="text-align:center">${r.days || '-'}</td>
+      <td>${r.amount ? fmtKRW(r.amount) : '-'}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td>
+        <div style="display:flex;gap:4px;">
+          ${r.status === 'rented' ? `<button class="btn btn-success btn-sm" onclick="returnRental('${r.id}')">반납</button>` : ''}
+          <button class="btn btn-secondary btn-sm" onclick="showContract('${r.id}')">계약서</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteRental('${r.id}')">삭제</button>
+        </div>
+      </td>
+    </tr>
+  `).join('') : `<tr><td colspan="9" style="text-align:center;color:var(--text-secondary);padding:30px;">렌탈 내역이 없습니다.</td></tr>`;
+
+  document.getElementById('active-count').textContent = rentals.filter(r => r.status === 'rented').length;
+}
+
+function filterRentals(status, el) {
+  currentRentalFilter = status;
+  document.querySelectorAll('#rental-filter-tabs .filter-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderRentalsTable();
+}
+
+function returnRental(id) {
+  const r = rentals.find(x => x.id === id);
+  if (r) { r.status = 'returned'; saveRentals(); renderRentalsTable(); showToast('반납 처리되었습니다.', 'success'); }
+}
+
+function deleteRental(id) {
+  if (!confirm('이 렌탈 내역을 삭제합니까?')) return;
+  rentals = rentals.filter(r => r.id !== id);
+  saveRentals();
+  renderRentalsTable();
+  showToast('삭제되었습니다.', 'success');
+}
+
+function showContract(id) {
+  const r = rentals.find(x => x.id === id);
+  if (!r) return;
+  buildContract(r);
+  openModal('contract');
+}
+
+// ══════════════════════════════════════════
+//  EQUIPMENT
+// ══════════════════════════════════════════
+function initEquipPage() {
+  const tabs = document.getElementById('equip-cat-tabs');
+  if (!tabs) return;
+  tabs.innerHTML = `<button class="filter-tab active" onclick="filterEquip('all',this)">전체</button>` +
+    EQUIPMENT_DATA.categories.map(c => `<button class="filter-tab" onclick="filterEquip('${c.id}',this)">${c.name}</button>`).join('');
+  renderEquipGrid();
+}
+
+function filterEquip(catId, el) {
+  currentEquipCat = catId;
+  document.querySelectorAll('#equip-cat-tabs .filter-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderEquipGrid();
+}
+
+function renderEquipGrid() {
+  const grid = document.getElementById('equip-grid');
+  if (!grid) return;
+  const q = (document.getElementById('equip-search')?.value || '').toLowerCase();
+  let items = EQUIPMENT_DATA.items.filter(item => {
+    const matchCat = currentEquipCat === 'all' || item.categoryId === currentEquipCat;
+    const matchSearch = !q || item.name.toLowerCase().includes(q) || (item.brand||'').toLowerCase().includes(q) || (item.specs||'').toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+  grid.innerHTML = items.map(item => {
+    const cat = EQUIPMENT_DATA.categories.find(c => c.id === item.categoryId);
+    return `
+      <div class="equip-card" onclick="showEquipDetail('${item.id}')">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:10px;color:var(--text-secondary)">${item.id}</span>
+          ${statusBadge(item.status || 'available')}
+        </div>
+        <div class="equip-name">
+          <span class="equip-cat-dot" style="background:${cat?.color||'#8b949e'}"></span>${item.name}
+        </div>
+        <div class="equip-brand">${item.brand || ''} · ${cat?.name || ''}</div>
+        ${item.specs ? `<div style="font-size:10px;color:var(--text-secondary);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${item.specs}">${item.specs}</div>` : ''}
+        <div class="equip-price">${fmtKRW(item.dailyRate||0)} <span>/ 일</span></div>
+      </div>
+    `;
+  }).join('') || `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-secondary);">검색 결과가 없습니다.</div>`;
+}
+
+function showEquipDetail(itemId) {
+  const item = EQUIPMENT_DATA.items.find(i => i.id === itemId);
+  if (!item) return;
+  const cat = EQUIPMENT_DATA.categories.find(c => c.id === item.categoryId);
+  const sub = EQUIPMENT_DATA.subcategories?.find(s => s.id === item.subcategoryId);
+  currentEquipForRental = item;
+
+  document.getElementById('equip-modal-title').textContent = item.name;
+  document.getElementById('equip-qr-id').textContent = item.id;
+  document.getElementById('equip-modal-info').innerHTML = `
+    <table style="width:100%;font-size:12px;">
+      <tr><td style="color:var(--text-secondary);padding:4px 0;width:80px">ID</td><td><strong>${item.id}</strong></td></tr>
+      <tr><td style="color:var(--text-secondary);padding:4px 0">카테고리</td><td>${cat?.name || ''}</td></tr>
+      ${sub ? `<tr><td style="color:var(--text-secondary);padding:4px 0">분류</td><td>${sub.name}</td></tr>` : ''}
+      <tr><td style="color:var(--text-secondary);padding:4px 0">브랜드</td><td>${item.brand || '-'}</td></tr>
+      <tr><td style="color:var(--text-secondary);padding:4px 0">스펙</td><td style="line-height:1.6">${item.specs || '-'}</td></tr>
+      <tr><td style="color:var(--text-secondary);padding:4px 0">일 렌탈가</td><td style="color:var(--accent);font-size:15px;font-weight:700">${fmtKRW(item.dailyRate||0)}</td></tr>
+      <tr><td style="color:var(--text-secondary);padding:4px 0">수량</td><td>${item.quantity || 1}개</td></tr>
+      <tr><td style="color:var(--text-secondary);padding:4px 0">상태</td><td>${statusBadge(item.status || 'available')}</td></tr>
+    </table>
+  `;
+  openModal('equip-detail');
+}
+
+function rentThisEquip() {
+  if (!currentEquipForRental) return;
+  closeModal('equip-detail');
+  openModal('new-rental');
+  setTimeout(() => {
+    const item = currentEquipForRental;
+    const catSel = document.getElementById('sel-cat');
+    catSel.value = item.categoryId;
+    onCatChange();
+    setTimeout(() => {
+      const subSel = document.getElementById('sel-sub');
+      subSel.value = item.subcategoryId;
+      onSubChange();
+      setTimeout(() => {
+        const itemSel = document.getElementById('sel-item');
+        itemSel.value = item.id;
+        onItemChange();
+      }, 50);
+    }, 50);
+  }, 100);
+}
+
+// ══════════════════════════════════════════
+//  CUSTOMERS
+// ══════════════════════════════════════════
+function renderCustomers() {
+  const el = document.getElementById('customers-list');
+  if (!el) return;
+  const q = (document.getElementById('cust-search')?.value || '').toLowerCase();
+  let list = customers.filter(c => {
+    const matchFilter = currentCustFilter === 'all' || c.grade === currentCustFilter;
+    const matchSearch = !q || c.name.toLowerCase().includes(q) || (c.contact||'').toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  });
+  const gradeColor = {VIP:'red',Gold:'yellow',Silver:'gray'};
+  el.innerHTML = list.map(c => `
+    <div class="customer-card">
+      <div style="display:flex;align-items:flex-start;flex:1">
+        <div class="customer-avatar" style="background:${typeColor(c.type)}22;color:${typeColor(c.type)}">${c.name[0]}</div>
+        <div>
+          <div style="font-weight:600;font-size:14px">${c.name}
+            <span class="badge badge-${gradeColor[c.grade]||'gray'}" style="margin-left:6px">${c.grade||''}</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${c.type} · ${c.contact||''} · ${c.phone||''}</div>
+          ${c.notes ? `<div style="font-size:11px;color:var(--text-secondary);margin-top:4px">${c.notes}</div>` : ''}
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;min-width:120px">
+        <div style="font-size:13px;font-weight:700;color:var(--accent)">${fmtKRW(c.totalSpend||0)}</div>
+        <div style="font-size:11px;color:var(--text-secondary)">누적 ${c.totalRentals||0}건</div>
+        <div style="font-size:10px;color:var(--text-secondary);margin-top:2px">최근: ${c.lastRental||'-'}</div>
+      </div>
+    </div>
+  `).join('') || `<div style="text-align:center;padding:40px;color:var(--text-secondary)">고객이 없습니다.</div>`;
+}
+
+function filterCustomers(grade, el) {
+  currentCustFilter = grade;
+  document.querySelectorAll('#page-customers .filter-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderCustomers();
+}
+
+function saveCustomer() {
+  const name = document.getElementById('nc-name').value.trim();
+  if (!name) { showToast('고객명을 입력하세요.', 'error'); return; }
+  const c = {
+    id: 'C' + String(customers.length + 1).padStart('3','0'),
+    name,
+    type: document.getElementById('nc-type').value,
+    contact: document.getElementById('nc-contact').value,
+    phone: document.getElementById('nc-phone').value,
+    notes: document.getElementById('nc-notes').value,
+    totalRentals: 0, totalSpend: 0, grade: 'Silver',
+    lastRental: '-'
+  };
+  customers.push(c);
+  localStorage.setItem(CUST_KEY, JSON.stringify(customers));
+  closeModal('new-customer');
+  renderCustomers();
+  showToast('고객이 등록되었습니다.', 'success');
+}
+
+// ══════════════════════════════════════════
+//  CALENDAR
+// ══════════════════════════════════════════
+function renderCalendar() {
+  const label = document.getElementById('cal-month-label');
+  if (label) label.textContent = `${calYear}년 ${calMonth+1}월`;
+
+  const body = document.getElementById('cal-body');
+  if (!body) return;
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = new Date();
+
+  let cells = '';
+  for (let i = 0; i < firstDay; i++) {
+    const d = new Date(calYear, calMonth, -firstDay + i + 1);
+    cells += `<div class="cal-day other-month"><div class="cal-day-num">${d.getDate()}</div></div>`;
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const isToday = today.getFullYear() === calYear && today.getMonth() === calMonth && today.getDate() === d;
+    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayRentals = rentals.filter(r => r.startDate === dateStr || r.endDate === dateStr);
+    cells += `<div class="cal-day${isToday?' today':''}">
+      <div class="cal-day-num">${d}</div>
+      ${dayRentals.map(r => `<div class="cal-event ${r.status}" title="${r.equipName} · ${r.customer}">${r.equipName.substring(0,8)}</div>`).join('')}
+    </div>`;
+  }
+  body.innerHTML = cells;
+
+  // Events list
+  const evList = document.getElementById('cal-events-list');
+  const monthRentals = rentals.filter(r => r.startDate && r.startDate.startsWith(`${calYear}-${String(calMonth+1).padStart(2,'0')}`));
+  if (evList) {
+    evList.innerHTML = monthRentals.length ? monthRentals.map(r => `
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light);font-size:12px;">
+        <div>
+          <div style="font-weight:500">${r.equipName}</div>
+          <div style="color:var(--text-secondary)">${r.customer} · ${r.startDate}~${r.endDate}</div>
+        </div>
+        <div>${statusBadge(r.status)}</div>
+      </div>
+    `).join('') : `<div style="color:var(--text-secondary);font-size:12px;padding:16px 0">이번 달 렌탈 일정이 없습니다.</div>`;
+  }
+
+  // Returns list
+  const retList = document.getElementById('cal-returns-list');
+  const now = new Date();
+  const soon = new Date(now); soon.setDate(soon.getDate() + 7);
+  const returns = rentals.filter(r => {
+    if (r.status !== 'rented') return false;
+    const end = new Date(r.endDate);
+    return end >= now && end <= soon;
+  });
+  if (retList) {
+    retList.innerHTML = returns.length ? returns.map(r => `
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border-light);font-size:12px;">
+        <div>
+          <div style="font-weight:500">${r.equipName}</div>
+          <div style="color:var(--text-secondary)">${r.customer}</div>
+        </div>
+        <div style="color:var(--warning);font-weight:600">${r.endDate} 반납</div>
+      </div>
+    `).join('') : `<div style="color:var(--text-secondary);font-size:12px;padding:16px 0">7일 이내 반납 예정 없음</div>`;
+  }
+}
+
+function changeMonth(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+// ══════════════════════════════════════════
+//  INSIGHTS
+// ══════════════════════════════════════════
+function renderInsights() {
+  const el = document.getElementById('ai-insights-list');
+  if (el) {
+    const icons = {'trending-up':'📈','alert-triangle':'⚠️','users':'👥','dollar-sign':'💰','map-pin':'📍'};
+    const labels = {urgent:'긴급',high:'높음',medium:'보통',low:'낮음'};
+    const colors = {urgent:'badge-red',high:'badge-yellow',medium:'badge-blue',low:'badge-gray'};
+    el.innerHTML = INDUSTRY_DATA.aiInsights.map(ins => `
+      <div class="insight-card ${ins.priority}">
+        <div class="insight-title">
+          ${icons[ins.icon]||'💡'} ${ins.title}
+          <span class="badge ${colors[ins.priority]}" style="margin-left:auto">${labels[ins.priority]}</span>
+        </div>
+        <div class="insight-desc">${ins.description}</div>
+      </div>
+    `).join('');
+  }
+
+  const rev = document.getElementById('cat-revenue-list');
+  if (rev) {
+    rev.innerHTML = INDUSTRY_DATA.utilizationByCategory.map(c => `
+      <div class="progress-row">
+        <div class="progress-label" title="${c.name}">${c.name.split('/')[0]}</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${c.utilization}%;background:${getCatColor(c.id)}"></div></div>
+        <div style="font-size:12px;width:70px;text-align:right;color:var(--success)">${fmtKRW(c.revenue)}</div>
+      </div>
+    `).join('');
+  }
+
+  setTimeout(renderGrowthChart, 100);
+}
+
+// ══════════════════════════════════════════
+//  PARTNERS
+// ══════════════════════════════════════════
+function renderPartners() {
+  const grid = document.getElementById('partners-grid');
+  if (!grid) return;
+  const statusMap = {active:'badge-green',growth:'badge-yellow'};
+  const statusLabel = {active:'운영중',growth:'성장중'};
+  grid.innerHTML = INDUSTRY_DATA.franchisePartners.map(p => `
+    <div class="partner-card">
+      <div class="partner-region">${p.region}</div>
+      <div class="partner-name">${p.name}</div>
+      <div class="partner-stat"><span class="partner-stat-label">장비 수</span><span class="partner-stat-val">${p.equipmentCount}개</span></div>
+      <div class="partner-stat"><span class="partner-stat-label">월 매출</span><span class="partner-stat-val" style="color:var(--success)">${fmtKRW(p.monthlyRevenue)}</span></div>
+      <div class="partner-stat"><span class="partner-stat-label">가입일</span><span class="partner-stat-val">${p.joinDate}</span></div>
+      <div class="partner-stat"><span class="partner-stat-label">연락처</span><span class="partner-stat-val" style="font-size:11px">${p.contact}</span></div>
+      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
+        <span class="badge ${statusMap[p.status]||'badge-gray'}">${statusLabel[p.status]||p.status}</span>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('${p.name} 상세 페이지 준비 중','success')">상세보기</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══════════════════════════════════════════
+//  NEW RENTAL MODAL - 3-level dropdowns
+// ══════════════════════════════════════════
+function initRentalModal() {
+  // Fill category dropdown
+  const catSel = document.getElementById('sel-cat');
+  catSel.innerHTML = `<option value="">카테고리 선택</option>` +
+    EQUIPMENT_DATA.categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+
+  // Fill customer datalist
+  const dl = document.getElementById('customer-list-dl');
+  if (dl) dl.innerHTML = customers.map(c => `<option value="${c.name}">`).join('');
+
+  // Default dates
+  const today = new Date().toISOString().split('T')[0];
+  const nxt = new Date(); nxt.setDate(nxt.getDate() + 3);
+  document.getElementById('rental-start').value = today;
+  document.getElementById('rental-end').value = nxt.toISOString().split('T')[0];
+}
+
+function onCatChange() {
+  const catId = document.getElementById('sel-cat').value;
+  const subSel = document.getElementById('sel-sub');
+  const itemSel = document.getElementById('sel-item');
+  subSel.disabled = true; subSel.innerHTML = `<option value="">세부 분류 선택</option>`;
+  itemSel.disabled = true; itemSel.innerHTML = `<option value="">세부 분류 먼저 선택</option>`;
+  document.getElementById('item-info-box').style.display = 'none';
+  document.getElementById('rental-amount').value = '';
+
+  if (!catId) return;
+  const subs = EQUIPMENT_DATA.subcategories?.filter(s => s.categoryId === catId) || [];
+  subSel.innerHTML = `<option value="">세부 분류 선택</option>` + subs.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+  subSel.disabled = false;
+}
+
+function onSubChange() {
+  const subId = document.getElementById('sel-sub').value;
+  const itemSel = document.getElementById('sel-item');
+  itemSel.disabled = true; itemSel.innerHTML = `<option value="">장비 선택</option>`;
+  document.getElementById('item-info-box').style.display = 'none';
+
+  if (!subId) return;
+  const items = EQUIPMENT_DATA.items.filter(i => i.subcategoryId === subId);
+  itemSel.innerHTML = `<option value="">장비 선택</option>` + items.map(i =>
+    `<option value="${i.id}" ${i.status==='rented'?'style="color:var(--danger)"':''}>${i.name} - ${fmtKRW(i.dailyRate||0)}/일 ${i.status==='rented'?'[렌탈중]':''}</option>`
+  ).join('');
+  itemSel.disabled = false;
+}
+
+function onItemChange() {
+  const itemId = document.getElementById('sel-item').value;
+  if (!itemId) { document.getElementById('item-info-box').style.display = 'none'; return; }
+  const item = EQUIPMENT_DATA.items.find(i => i.id === itemId);
+  if (!item) return;
+  document.getElementById('item-info-name').textContent = item.name;
+  document.getElementById('item-info-specs').textContent = item.specs || '';
+  document.getElementById('item-info-price').textContent = fmtKRW(item.dailyRate||0) + ' / 일';
+  document.getElementById('item-info-status').innerHTML = statusBadge(item.status || 'available');
+  document.getElementById('item-info-box').style.display = 'block';
+  calcRentalAmt();
+}
+
+function calcRentalAmt() {
+  const itemId = document.getElementById('sel-item')?.value;
+  const start = document.getElementById('rental-start')?.value;
+  const end = document.getElementById('rental-end')?.value;
+  const qty = parseInt(document.getElementById('rental-qty')?.value || 1);
+  if (!itemId || !start || !end) return;
+  const item = EQUIPMENT_DATA.items.find(i => i.id === itemId);
+  if (!item) return;
+  const days = Math.max(1, Math.round((new Date(end) - new Date(start)) / 86400000));
+  const amt = (item.dailyRate || 0) * days * qty;
+  document.getElementById('rental-amount').value = fmtKRW(amt);
+}
+
+function saveRental() {
+  const itemId = document.getElementById('sel-item')?.value;
+  const customer = document.getElementById('rental-customer')?.value?.trim();
+  const start = document.getElementById('rental-start')?.value;
+  const end = document.getElementById('rental-end')?.value;
+  if (!itemId) { showToast('장비를 선택하세요.', 'error'); return; }
+  if (!customer) { showToast('고객명을 입력하세요.', 'error'); return; }
+  if (!start || !end) { showToast('기간을 설정하세요.', 'error'); return; }
+
+  const item = EQUIPMENT_DATA.items.find(i => i.id === itemId);
+  const qty = parseInt(document.getElementById('rental-qty')?.value || 1);
+  const days = Math.max(1, Math.round((new Date(end) - new Date(start)) / 86400000));
+  const amount = (item?.dailyRate || 0) * days * qty;
+
+  const rental = {
+    id: 'R' + Date.now(),
+    equipId: itemId,
+    equipName: item?.name || itemId,
+    customer,
+    startDate: start,
+    endDate: end,
+    days,
+    amount,
+    status: 'rented',
+    qty,
+    memo: document.getElementById('rental-memo')?.value || ''
+  };
+  rentals.push(rental);
+  saveRentals();
+  if (item) item.status = 'rented';
+  closeModal('new-rental');
+  showToast(`렌탈이 등록되었습니다. (${customer} · ${item?.name})`, 'success');
+  renderRentalsTable();
+  document.getElementById('active-count').textContent = rentals.filter(r => r.status === 'rented').length;
+}
+
+// ══════════════════════════════════════════
+//  CONTRACT
+// ══════════════════════════════════════════
+function previewContract() {
+  const itemId = document.getElementById('sel-item')?.value;
+  const customer = document.getElementById('rental-customer')?.value?.trim();
+  if (!itemId || !customer) { showToast('장비와 고객을 먼저 입력하세요.', 'error'); return; }
+  const item = EQUIPMENT_DATA.items.find(i => i.id === itemId);
+  const start = document.getElementById('rental-start')?.value;
+  const end = document.getElementById('rental-end')?.value;
+  const days = Math.max(1, Math.round((new Date(end) - new Date(start)) / 86400000));
+  const amount = (item?.dailyRate || 0) * days;
+  buildContract({ id: 'DRAFT-' + Date.now(), equipName: item?.name, customer, startDate: start, endDate: end, days, amount });
+  openModal('contract');
+}
+
+function buildContract(r) {
+  const el = document.getElementById('contract-content');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="contract-paper">
+      <h2>방송장비 렌탈 계약서</h2>
+      <div class="contract-section">
+        <h4>제1조 [당사자]</h4>
+        <table class="contract-table">
+          <tr><th>구분</th><th>업체명</th><th>대표자</th><th>연락처</th></tr>
+          <tr><td>임대인(갑)</td><td>컨텐츠 킬러</td><td>백상진</td><td>-</td></tr>
+          <tr><td>임차인(을)</td><td>${r.customer}</td><td>-</td><td>-</td></tr>
+        </table>
+      </div>
+      <div class="contract-section">
+        <h4>제2조 [렌탈 장비]</h4>
+        <table class="contract-table">
+          <tr><th>장비명</th><th>장비 ID</th><th>렌탈 기간</th><th>일 요금</th><th>합계</th></tr>
+          <tr>
+            <td>${r.equipName||'-'}</td>
+            <td>${r.equipId||r.id}</td>
+            <td>${r.startDate} ~ ${r.endDate} (${r.days}일)</td>
+            <td>${r.days > 0 ? fmtKRW(Math.round(r.amount/r.days)) : '-'}</td>
+            <td><strong>${fmtKRW(r.amount)}</strong></td>
+          </tr>
+        </table>
+      </div>
+      <div class="contract-section">
+        <h4>제3조 [이용 조건]</h4>
+        <ol style="padding-left:20px;font-size:12px;line-height:2">
+          <li>임차인은 장비를 선량한 관리자의 주의로 사용하여야 합니다.</li>
+          <li>반납 지연 시 1일당 일 요금의 100%를 추가 부담합니다.</li>
+          <li>장비 파손·분실 시 수리비 또는 실구입가를 배상합니다.</li>
+          <li>계약 취소는 시작일 3일 전까지만 가능합니다.</li>
+          <li>계약 금액의 30%를 계약금으로 선납합니다.</li>
+        </ol>
+      </div>
+      <div class="contract-section">
+        <h4>제4조 [지불 조건]</h4>
+        <p style="font-size:12px">렌탈료 합계 <strong>${fmtKRW(r.amount)}</strong>원 (VAT 별도)<br>
+        계약금 ${fmtKRW(Math.round(r.amount*0.3))}원 (계약 시) + 잔금 ${fmtKRW(Math.round(r.amount*0.7))}원 (인도 시)</p>
+      </div>
+      <div class="sign-row">
+        <div class="sign-box">
+          <div style="font-size:12px">임대인(갑)</div>
+          <div class="sign-line">컨텐츠 킬러 (인)</div>
+        </div>
+        <div class="sign-box">
+          <div style="font-size:12px">임차인(을)</div>
+          <div class="sign-line">${r.customer} (인)</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:20px;font-size:11px;color:#666">계약 번호: ${r.id} | 작성일: ${new Date().toLocaleDateString('ko-KR')}</div>
+    </div>
+  `;
+}
+
+// ══════════════════════════════════════════
+//  MODAL HELPERS
+// ══════════════════════════════════════════
+function openModal(name) {
+  const el = document.getElementById('modal-' + name);
+  if (!el) return;
+  el.classList.add('open');
+  if (name === 'new-rental') initRentalModal();
+}
+
+function closeModal(name) {
+  const el = document.getElementById('modal-' + name);
+  if (el) el.classList.remove('open');
+}
+
+// Close on overlay click
+document.querySelectorAll('.overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+});
+
+// ══════════════════════════════════════════
+//  UTILS
+// ══════════════════════════════════════════
+function fmtKRW(n) {
+  if (n >= 10000000) return (n/10000000).toFixed(1).replace(/\.0$/,'') + '억';
+  if (n >= 10000) return Math.round(n/10000) + '만';
+  return n.toLocaleString('ko-KR') + '원';
+}
+
+function statusBadge(s) {
+  const map = {rented:'badge-green',available:'badge-blue',returned:'badge-gray',reserved:'badge-yellow',maintenance:'badge-orange'};
+  const label = {rented:'렌탈중',available:'대여가능',returned:'반납',reserved:'예약',maintenance:'점검중'};
+  return `<span class="badge ${map[s]||'badge-gray'}">${label[s]||s}</span>`;
+}
+
+function typeColor(t) {
+  const m = {'방송국':'#1f6feb','제작사':'#3fb950','유튜버':'#d29922','공공기관':'#bc8cff'};
+  for (const k of Object.keys(m)) { if (t && t.includes(k)) return m[k]; }
+  return '#8b949e';
+}
+
+function getCatColor(id) {
+  const cat = EQUIPMENT_DATA.categories.find(c => c.id === id);
+  return cat?.color || '#8b949e';
+}
+
+function saveRentals() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rentals));
+}
+
+function clearRentals() {
+  rentals = [...INDUSTRY_DATA.recentRentals];
+  saveRentals();
+  renderRentalsTable();
+  showToast('렌탈 데이터가 초기화되었습니다.', 'success');
+}
+
+function exportData() {
+  const blob = new Blob([JSON.stringify({rentals, customers}, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `ck-data-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+}
+
+function showToast(msg, type = 'success') {
+  const el = document.getElementById('notification');
+  el.textContent = (type === 'success' ? '✓ ' : '✕ ') + msg;
+  el.className = 'show ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  initDashboard();
+});
+</script>
+</body>
+</html>
