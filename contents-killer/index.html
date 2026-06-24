@@ -2177,6 +2177,8 @@ async function fetchFromWebhook() {
 
 // 저장된 웹훅 URL 복원
 function restoreWebhookUrl() {
+  const DEFAULT = 'https://script.google.com/macros/s/AKfycbxpyXTGffsr79VLVymnLvdeQT6L6TH3MXmWE0EymdOWwjN61Z17sh-pPNXrh3-ShRtFOA/exec';
+  if (!localStorage.getItem(WEBHOOK_KEY)) localStorage.setItem(WEBHOOK_KEY, DEFAULT);
   const saved = localStorage.getItem(WEBHOOK_KEY);
   const input = document.getElementById('webhook-url');
   if (saved && input) input.value = saved;
