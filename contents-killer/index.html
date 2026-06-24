@@ -791,10 +791,60 @@ select.form-control option{background:var(--bg-card2);}
       <div class="card-title">데이터 관리</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn btn-secondary" onclick="exportData()">📥 데이터 내보내기 (JSON)</button>
-        <button class="btn btn-secondary" onclick="showToast('엑셀 내보내기 기능 준비 중입니다.','success')">📊 Excel 내보내기</button>
+        <button class="btn btn-secondary" onclick="exportCSV('rentals')">📋 렌탈 CSV 내보내기</button>
+        <button class="btn btn-secondary" onclick="exportCSV('repairs')">🔧 수리 CSV 내보내기</button>
+        <button class="btn btn-secondary" onclick="exportCSV('customers')">👥 고객 CSV 내보내기</button>
         <button class="btn btn-secondary" onclick="showToast('PDF 보고서 생성 중...','success')">📄 PDF 보고서</button>
         <button class="btn btn-danger" onclick="if(confirm('로컬 렌탈 데이터를 초기화합니까?'))clearRentals()">🗑️ 렌탈 데이터 초기화</button>
       </div>
+    </div>
+
+    <!-- Google Sheets 연동 -->
+    <div class="card" style="border-color:rgba(31,111,235,.4);background:linear-gradient(135deg,#0d1a2e 0%,#161b22 100%);">
+      <div class="card-title" style="color:#fff;">
+        <span>🔗 Google Sheets 연동</span>
+        <a href="https://docs.google.com/spreadsheets/d/1MI9h-_uhOj7Fsc0HzPk4S6gTdHfcmYFHSrXymQp2SGI/edit" target="_blank" class="btn btn-primary btn-sm">📊 시트 열기</a>
+      </div>
+      <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:16px;">
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:4px;">구글 시트 URL</div>
+        <div style="font-size:12px;color:var(--accent);word-break:break-all;user-select:all;">https://docs.google.com/spreadsheets/d/1MI9h-_uhOj7Fsc0HzPk4S6gTdHfcmYFHSrXymQp2SGI/edit</div>
+      </div>
+
+      <!-- 3-step instructions -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:6px;">①</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;">탭 자동 설정</div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">시트 열기 → 확장 프로그램 → Apps Script → 아래 코드 붙여넣기 → 실행</div>
+          <button class="btn btn-secondary btn-sm" style="margin-top:8px;" onclick="copyAppsScript()">📋 스크립트 복사</button>
+        </div>
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:6px;">②</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;">데이터 입력</div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">6개 탭에 데이터 입력<br>(렌탈·수리·고객·파트너·장비·업계통계)</div>
+          <button class="btn btn-secondary btn-sm" style="margin-top:8px;" onclick="exportAllCSV()">📤 현재 데이터 내보내기</button>
+        </div>
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:6px;">③</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;">CSV 가져오기</div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;">시트에서 CSV 다운로드 후 아래 버튼으로 대시보드에 반영</div>
+          <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="document.getElementById('csv-import-input').click()">📥 CSV 가져오기</button>
+        </div>
+      </div>
+
+      <!-- CSV import area -->
+      <input type="file" id="csv-import-input" accept=".csv" style="display:none;" onchange="importCSV(event)">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;">
+        <select class="form-control" id="csv-import-type" style="font-size:12px;">
+          <option value="rentals">📋 렌탈 현황</option>
+          <option value="repairs">🔧 수리 현황</option>
+          <option value="customers">👥 고객 관리</option>
+        </select>
+        <button class="btn btn-secondary" onclick="document.getElementById('csv-import-input').click()">CSV 파일 선택 후 가져오기</button>
+      </div>
+
+      <!-- Apps Script code (hidden, for copy) -->
+      <div id="apps-script-code" style="display:none;">function setupAllTabs(){var ss=SpreadsheetApp.getActiveSpreadsheet();var ui=SpreadsheetApp.getUi();var tabs=[{name:'📋 렌탈_현황',headers:['렌탈ID','장비ID','장비명','고객명','시작일(YYYY-MM-DD)','반납일(YYYY-MM-DD)','일수','금액(원)','상태','메모'],color:'#1f6feb'},{name:'🔧 수리_현황',headers:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고'],color:'#d29922'},{name:'👥 고객_관리',headers:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모'],color:'#3fb950'},{name:'🤝 파트너사',headers:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처'],color:'#bc8cff'},{name:'🎥 장비_카탈로그',headers:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태'],color:'#ffa657'},{name:'📊 업계통계',headers:['항목','값','단위','비고'],color:'#f85149'}];tabs.forEach(function(tab,i){var sheet=ss.getSheetByName(tab.name);if(!sheet){sheet=ss.insertSheet(tab.name,i);}var hr=sheet.getRange(1,1,1,tab.headers.length);hr.setValues([tab.headers]);hr.setBackground(tab.color);hr.setFontColor('#ffffff');hr.setFontWeight('bold');sheet.setFrozenRows(1);sheet.autoResizeColumns(1,tab.headers.length);sheet.setTabColor(tab.color);});ui.alert('✅ 컨텐츠 킬러 탭 설정 완료!\n\n6개 탭이 생성되었습니다:\n• 📋 렌탈_현황\n• 🔧 수리_현황\n• 👥 고객_관리\n• 🤝 파트너사\n• 🎥 장비_카탈로그\n• 📊 업계통계');}</div>
     </div>
   </div>
 </div>
@@ -1825,11 +1875,136 @@ function clearRentals() {
 }
 
 function exportData() {
-  const blob = new Blob([JSON.stringify({rentals, customers}, null, 2)], {type:'application/json'});
+  const blob = new Blob([JSON.stringify({rentals, customers, repairs}, null, 2)], {type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = `ck-data-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
+}
+
+// ── CSV Export ──
+function toCSV(rows) {
+  return rows.map(row =>
+    row.map(v => {
+      const s = String(v ?? '');
+      return s.includes(',') || s.includes('"') || s.includes('\n') ? `"${s.replace(/"/g,'""')}"` : s;
+    }).join(',')
+  ).join('\n');
+}
+
+function downloadCSV(content, filename) {
+  const BOM = '﻿'; // UTF-8 BOM for Excel
+  const blob = new Blob([BOM + content], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+}
+
+function exportCSV(type) {
+  const today = new Date().toISOString().split('T')[0];
+  if (type === 'rentals') {
+    const headers = ['렌탈ID','장비ID','장비명','고객명','시작일','반납일','일수','금액(원)','상태','메모'];
+    const rows = rentals.map(r => [r.id,r.equipId||'',r.equipName,r.customer,r.startDate,r.endDate,r.days||'',r.amount||'',r.status,r.memo||'']);
+    downloadCSV(toCSV([headers,...rows]), `ck-렌탈현황-${today}.csv`);
+    showToast('렌탈 현황 CSV 다운로드 완료', 'success');
+  } else if (type === 'repairs') {
+    const headers = ['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고'];
+    const rows = repairs.map(r => [r.id,r.equipId,r.equipName,r.issue,r.status,r.receivedDate,r.expectedDate,r.vendor||'',r.cost||0,r.technician||'',r.notes||'']);
+    downloadCSV(toCSV([headers,...rows]), `ck-수리현황-${today}.csv`);
+    showToast('수리 현황 CSV 다운로드 완료', 'success');
+  } else if (type === 'customers') {
+    const headers = ['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모'];
+    const rows = customers.map(c => [c.id,c.name,c.type||'',c.contact||'',c.phone||'',c.totalRentals||0,c.lastRental||'',c.totalSpend||0,c.grade||'',c.notes||'']);
+    downloadCSV(toCSV([headers,...rows]), `ck-고객관리-${today}.csv`);
+    showToast('고객 관리 CSV 다운로드 완료', 'success');
+  }
+}
+
+function exportAllCSV() {
+  exportCSV('rentals');
+  setTimeout(() => exportCSV('repairs'), 300);
+  setTimeout(() => exportCSV('customers'), 600);
+  showToast('3개 CSV 파일 다운로드 시작 (렌탈/수리/고객)', 'success');
+}
+
+// ── CSV Import ──
+function importCSV(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const type = document.getElementById('csv-import-type').value;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const text = e.target.result.replace(/^﻿/, ''); // strip BOM
+      const lines = text.trim().split('\n').map(l => l.split(',').map(v => v.replace(/^"|"$/g,'').replace(/""/g,'"').trim()));
+      if (lines.length < 2) { showToast('데이터가 없습니다.', 'error'); return; }
+      const headers = lines[0];
+      const dataRows = lines.slice(1).filter(r => r.some(v => v));
+
+      if (type === 'rentals') {
+        const imported = dataRows.map(r => ({
+          id: r[0]||`R${Date.now()}`, equipId: r[1]||'', equipName: r[2]||'',
+          customer: r[3]||'', startDate: r[4]||'', endDate: r[5]||'',
+          days: parseInt(r[6])||0, amount: parseInt(r[7])||0,
+          status: r[8]||'rented', memo: r[9]||''
+        }));
+        // Merge: update existing, add new
+        imported.forEach(imp => {
+          const idx = rentals.findIndex(x => x.id === imp.id);
+          if (idx >= 0) rentals[idx] = imp; else rentals.push(imp);
+        });
+        saveRentals();
+        showToast(`렌탈 ${imported.length}건 가져오기 완료`, 'success');
+      } else if (type === 'repairs') {
+        const imported = dataRows.map(r => ({
+          id: r[0]||`REP${Date.now()}`, equipId: r[1]||'', equipName: r[2]||'',
+          issue: r[3]||'', status: r[4]||'received', receivedDate: r[5]||'',
+          expectedDate: r[6]||'-', vendor: r[7]||'', cost: parseInt(r[8])||0,
+          technician: r[9]||'', notes: r[10]||''
+        }));
+        imported.forEach(imp => {
+          const idx = repairs.findIndex(x => x.id === imp.id);
+          if (idx >= 0) repairs[idx] = imp; else repairs.push(imp);
+        });
+        saveRepairs();
+        showToast(`수리 ${imported.length}건 가져오기 완료`, 'success');
+      } else if (type === 'customers') {
+        const imported = dataRows.map(r => ({
+          id: r[0]||`C${Date.now()}`, name: r[1]||'', type: r[2]||'',
+          contact: r[3]||'', phone: r[4]||'',
+          totalRentals: parseInt(r[5])||0, lastRental: r[6]||'-',
+          totalSpend: parseInt(r[7])||0, grade: r[8]||'Silver', notes: r[9]||''
+        }));
+        imported.forEach(imp => {
+          const idx = customers.findIndex(x => x.id === imp.id);
+          if (idx >= 0) customers[idx] = imp; else customers.push(imp);
+        });
+        localStorage.setItem(CUST_KEY, JSON.stringify(customers));
+        showToast(`고객 ${imported.length}건 가져오기 완료`, 'success');
+      }
+    } catch(err) {
+      showToast('CSV 파싱 오류: ' + err.message, 'error');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+
+// ── Apps Script Copy ──
+function copyAppsScript() {
+  const code = document.getElementById('apps-script-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast('Apps Script 코드가 클립보드에 복사되었습니다.\n구글 시트 → 확장 프로그램 → Apps Script → 붙여넣기 → 실행', 'success');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = code;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Apps Script 코드 복사 완료!', 'success');
+  });
 }
 
 function showToast(msg, type = 'success') {
