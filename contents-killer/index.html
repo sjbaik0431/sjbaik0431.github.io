@@ -240,6 +240,43 @@ select.form-control option{background:var(--bg-card2);}
 /* Chart containers */
 .chart-wrap{position:relative;height:240px;}
 .chart-wrap-sm{position:relative;height:180px;}
+
+/* ── AUDIO GUIDE BAR ── */
+#audio-guide-bar{
+  background:linear-gradient(90deg,#0d2040 0%,#161b22 100%);
+  border-bottom:1px solid var(--border);
+  padding:10px 24px;
+  display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:60;
+  transition:all .3s;
+}
+#audio-guide-bar.hidden{display:none;}
+#agb-label{font-size:12px;font-weight:600;color:#fff;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+#agb-wave{display:flex;align-items:flex-end;gap:2px;height:14px;}
+#agb-wave span{width:3px;background:var(--accent);border-radius:2px;animation:wave 1s ease-in-out infinite;}
+#agb-wave span:nth-child(2){animation-delay:.15s;}
+#agb-wave span:nth-child(3){animation-delay:.3s;}
+#agb-wave span:nth-child(4){animation-delay:.45s;}
+@keyframes wave{0%,100%{height:4px;}50%{height:14px;}}
+#agb-wave.paused span{animation-play-state:paused;}
+#agb-play-btn{background:var(--accent);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s;}
+#agb-play-btn:hover{background:var(--accent-hover);}
+#agb-progress-wrap{flex:1;height:4px;background:var(--border);border-radius:10px;cursor:pointer;position:relative;}
+#agb-progress-fill{height:100%;background:var(--accent);border-radius:10px;width:0%;transition:width .5s linear;}
+#agb-section-label{font-size:11px;color:var(--text-secondary);white-space:nowrap;min-width:120px;}
+#agb-time{font-size:11px;color:var(--text-secondary);white-space:nowrap;font-variant-numeric:tabular-nums;}
+#agb-close{background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:16px;padding:4px;line-height:1;border-radius:4px;}
+#agb-close:hover{color:var(--text-primary);background:var(--bg-card2);}
+
+/* ── REPAIR PAGE ── */
+.repair-card{background:var(--bg-card2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:10px;transition:border-color .15s;}
+.repair-card:hover{border-color:var(--accent);}
+.repair-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.repair-equip{font-size:14px;font-weight:600;}
+.repair-id{font-size:10px;color:var(--text-secondary);margin-top:2px;}
+.repair-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12px;margin-top:8px;}
+.repair-field label{color:var(--text-secondary);font-size:10px;display:block;margin-bottom:2px;}
+.repair-field span{font-weight:500;}
 </style>
 </head>
 <body>
@@ -259,6 +296,10 @@ select.form-control option{background:var(--bg-card2);}
     <div class="nav-item" data-page="rentals" onclick="goPage('rentals',this)">
       <span class="ico">📋</span> 렌탈 현황
       <span class="nav-badge" id="active-count">23</span>
+    </div>
+    <div class="nav-item" data-page="repairs" onclick="goPage('repairs',this)">
+      <span class="ico">🔧</span> 수리 현황
+      <span class="nav-badge" id="repair-count" style="background:var(--warning)">0</span>
     </div>
     <div class="nav-section">장비·고객</div>
     <div class="nav-item" data-page="equipment" onclick="goPage('equipment',this)">
@@ -290,6 +331,23 @@ select.form-control option{background:var(--bg-card2);}
 
 <!-- ══ MAIN ══ -->
 <main id="main">
+
+<!-- ══ AUDIO GUIDE BAR ══ -->
+<div id="audio-guide-bar">
+  <div id="agb-label">
+    <span>🎙️ 사용 가이드</span>
+    <div id="agb-wave" class="paused">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <button id="agb-play-btn" onclick="toggleGuide()" title="재생/일시정지">▶</button>
+  <div id="agb-progress-wrap" onclick="seekGuide(event)">
+    <div id="agb-progress-fill"></div>
+  </div>
+  <span id="agb-section-label">재생 버튼을 눌러 가이드를 시작하세요</span>
+  <span id="agb-time">04:00</span>
+  <button id="agb-close" onclick="stopGuide()" title="닫기">✕</button>
+</div>
 
 <!-- ── 대시보드 홈 ── -->
 <div id="page-dashboard" class="page active">
@@ -399,6 +457,123 @@ select.form-control option{background:var(--bg-card2);}
         <thead><tr><th>렌탈 ID</th><th>장비</th><th>고객</th><th>시작일</th><th>반납일</th><th>일수</th><th>금액</th><th>상태</th><th>액션</th></tr></thead>
         <tbody id="rentals-table-body"></tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 수리 현황 ── -->
+<div id="page-repairs" class="page">
+  <div class="topbar">
+    <span class="topbar-title">🔧 수리 현황</span>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="openModal('new-repair')">＋ 수리 접수</button>
+    </div>
+  </div>
+  <div style="padding:24px;">
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card yellow">
+        <div class="kpi-label">수리 접수중</div>
+        <div class="kpi-value" id="rep-kpi-received">0</div>
+        <div class="kpi-sub">건</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">수리 진행중</div>
+        <div class="kpi-value" id="rep-kpi-repairing">0</div>
+        <div class="kpi-sub">건</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">이번 달 완료</div>
+        <div class="kpi-value" id="rep-kpi-completed">0</div>
+        <div class="kpi-sub">건</div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-label">누적 수리 비용</div>
+        <div class="kpi-value" id="rep-kpi-cost">0</div>
+        <div class="kpi-sub">만원</div>
+      </div>
+    </div>
+    <!-- Filter & Search -->
+    <div class="filter-tabs" id="repair-filter-tabs">
+      <button class="filter-tab active" onclick="filterRepairs('all',this)">전체</button>
+      <button class="filter-tab" onclick="filterRepairs('received',this)">접수대기</button>
+      <button class="filter-tab" onclick="filterRepairs('repairing',this)">수리중</button>
+      <button class="filter-tab" onclick="filterRepairs('completed',this)">완료</button>
+      <button class="filter-tab" onclick="filterRepairs('unrepairable',this)">수리불가</button>
+    </div>
+    <div class="search-bar">
+      <input class="form-control" id="repair-search" placeholder="장비명, 불량내용, 수리업체 검색..." oninput="renderRepairs()">
+    </div>
+    <!-- Cards -->
+    <div id="repairs-list"></div>
+  </div>
+</div>
+
+<!-- 수리 접수 Modal -->
+<div class="overlay" id="modal-new-repair">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🔧 수리 접수</h3>
+      <button class="modal-close" onclick="closeModal('new-repair')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">장비 ID</div>
+          <input class="form-control" id="rep-equip-id" placeholder="CAM-001" oninput="autoFillRepairEquip()">
+        </div>
+        <div class="form-group">
+          <div class="form-label">장비명</div>
+          <input class="form-control" id="rep-equip-name" placeholder="자동입력 또는 직접 입력">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">불량 / 증상 내용</div>
+        <textarea class="form-control" id="rep-issue" rows="2" placeholder="예) 전원 불안정, 렌즈 마운트 느슨함, 팬 소음 과다..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">접수일</div>
+          <input class="form-control" type="date" id="rep-received-date">
+        </div>
+        <div class="form-group">
+          <div class="form-label">완료 예정일</div>
+          <input class="form-control" type="date" id="rep-expected-date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">수리 업체</div>
+          <input class="form-control" id="rep-vendor" placeholder="소니코리아 A/S, 자체수리 등">
+        </div>
+        <div class="form-group">
+          <div class="form-label">예상 수리비 (원)</div>
+          <input class="form-control" type="number" id="rep-cost" placeholder="0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <div class="form-label">담당자</div>
+          <input class="form-control" id="rep-technician" placeholder="담당자명">
+        </div>
+        <div class="form-group">
+          <div class="form-label">상태</div>
+          <select class="form-control" id="rep-status">
+            <option value="received">접수대기</option>
+            <option value="repairing">수리중</option>
+            <option value="completed">완료</option>
+            <option value="unrepairable">수리불가</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">비고</div>
+        <textarea class="form-control" id="rep-notes" rows="2" placeholder="추가 메모..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('new-repair')">취소</button>
+      <button class="btn btn-primary" onclick="saveRepair()">접수 등록</button>
     </div>
   </div>
 </div>
@@ -858,6 +1033,7 @@ function goPage(pageId, el) {
   if (pageId === 'equipment')  initEquipPage();
   if (pageId === 'customers')  renderCustomers();
   if (pageId === 'calendar')   renderCalendar();
+  if (pageId === 'repairs')    initRepairsPage();
   if (pageId === 'insights')   renderInsights();
   if (pageId === 'partners')   renderPartners();
 }
@@ -1665,10 +1841,352 @@ function showToast(msg, type = 'success') {
 }
 
 // ══════════════════════════════════════════
+//  REPAIRS
+// ══════════════════════════════════════════
+const REP_KEY = 'ck_repairs_v1';
+const SAMPLE_REPAIRS = [
+  {id:'REP-001',equipId:'AUDIO-012',equipName:'Yamaha DM7 디지털믹서',issue:'전원 불안정, 채널 1-4 지속 노이즈 발생 (AI 인사이트 경고 장비)',status:'repairing',receivedDate:'2026-06-18',expectedDate:'2026-06-27',vendor:'아이오디오 서비스센터',cost:350000,technician:'김기술',notes:'부품 입고 후 수리 시작 예정'},
+  {id:'REP-002',equipId:'CAM-005',equipName:'Sony PXW-FX9 풀프레임',issue:'렌즈 마운트 고정 나사 느슨함, 화면 흔들림',status:'received',receivedDate:'2026-06-22',expectedDate:'2026-06-28',vendor:'소니코리아 공식 A/S',cost:120000,technician:'이수리',notes:''},
+  {id:'REP-003',equipId:'LIGHT-003',equipName:'Aputure LS 600d Pro',issue:'쿨링 팬 소음 과다 (60dB 이상)',status:'completed',receivedDate:'2026-06-10',expectedDate:'2026-06-15',vendor:'자체수리',cost:0,technician:'박담당',notes:'팬 교체 완료. 정상 작동 확인.'},
+  {id:'REP-004',equipId:'SUP-014',equipName:'DJI Inspire 3 드론',issue:'메인 배터리 셀 불량, 비행 시간 50% 감소',status:'repairing',receivedDate:'2026-06-20',expectedDate:'2026-07-05',vendor:'DJI 공식 서비스센터',cost:580000,technician:'최드론',notes:'배터리 팩 해외 발주, 입고 대기 중'},
+  {id:'REP-005',equipId:'WL-003',equipName:'Teradek Bolt 4K LT',issue:'수신 거리 급감 (100m→20m)',status:'unrepairable',receivedDate:'2026-06-05',expectedDate:'-',vendor:'테라덱코리아',cost:0,technician:'',notes:'핵심 IC 단종으로 수리 불가. 신품 구입 권장.'},
+];
+
+let repairs = JSON.parse(localStorage.getItem(REP_KEY) || 'null') || [...SAMPLE_REPAIRS];
+let currentRepairFilter = 'all';
+
+function saveRepairs() { localStorage.setItem(REP_KEY, JSON.stringify(repairs)); }
+
+function initRepairsPage() {
+  renderRepairKPIs();
+  renderRepairs();
+}
+
+function renderRepairKPIs() {
+  const received   = repairs.filter(r => r.status === 'received').length;
+  const repairing  = repairs.filter(r => r.status === 'repairing').length;
+  const completed  = repairs.filter(r => r.status === 'completed').length;
+  const totalCost  = repairs.reduce((s, r) => s + (r.cost || 0), 0);
+  countUp('rep-kpi-received',  received);
+  countUp('rep-kpi-repairing', repairing);
+  countUp('rep-kpi-completed', completed);
+  countUp('rep-kpi-cost',      Math.round(totalCost / 10000));
+  document.getElementById('repair-count').textContent = received + repairing;
+}
+
+function filterRepairs(status, el) {
+  currentRepairFilter = status;
+  document.querySelectorAll('#repair-filter-tabs .filter-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderRepairs();
+}
+
+function renderRepairs() {
+  const el = document.getElementById('repairs-list');
+  if (!el) return;
+  const q = (document.getElementById('repair-search')?.value || '').toLowerCase();
+  const list = repairs.filter(r => {
+    const matchF = currentRepairFilter === 'all' || r.status === currentRepairFilter;
+    const matchQ = !q || r.equipName.toLowerCase().includes(q) || r.issue.toLowerCase().includes(q) || (r.vendor||'').toLowerCase().includes(q);
+    return matchF && matchQ;
+  });
+
+  const statusMap = {received:{label:'접수대기',cls:'badge-yellow'},repairing:{label:'수리중',cls:'badge-blue'},completed:{label:'완료',cls:'badge-green'},unrepairable:{label:'수리불가',cls:'badge-red'}};
+  const costColor = {received:'var(--warning)',repairing:'var(--accent)',completed:'var(--success)',unrepairable:'var(--danger)'};
+
+  el.innerHTML = list.length ? list.map(r => {
+    const s = statusMap[r.status] || {label:r.status,cls:'badge-gray'};
+    return `
+    <div class="repair-card">
+      <div class="repair-card-head">
+        <div>
+          <div class="repair-equip">${r.equipName}</div>
+          <div class="repair-id">ID: ${r.equipId} &nbsp;·&nbsp; 접수번호: ${r.id}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="badge ${s.cls}">${s.label}</span>
+          <button class="btn btn-danger btn-sm" onclick="deleteRepair('${r.id}')">삭제</button>
+        </div>
+      </div>
+      <div style="background:rgba(248,81,73,.06);border:1px solid rgba(248,81,73,.15);border-radius:6px;padding:10px 12px;font-size:12px;margin-bottom:10px;">
+        <span style="color:var(--danger);font-weight:600;">⚠ 불량 내용:</span> ${r.issue}
+      </div>
+      <div class="repair-grid">
+        <div class="repair-field"><label>접수일</label><span>${r.receivedDate}</span></div>
+        <div class="repair-field"><label>완료 예정일</label><span style="color:${r.status==='completed'?'var(--success)':'var(--warning)'}">${r.expectedDate || '-'}</span></div>
+        <div class="repair-field"><label>수리 업체</label><span>${r.vendor || '-'}</span></div>
+        <div class="repair-field"><label>수리비</label><span style="color:${costColor[r.status]||'var(--text-primary)'}">${r.cost ? fmtKRW(r.cost) : '무상/미정'}</span></div>
+        <div class="repair-field"><label>담당자</label><span>${r.technician || '-'}</span></div>
+        <div class="repair-field"><label>상태 변경</label>
+          <select style="background:var(--bg-main);border:1px solid var(--border);border-radius:4px;color:var(--text-primary);font-size:11px;padding:2px 4px;font-family:inherit;" onchange="changeRepairStatus('${r.id}',this.value)">
+            <option value="received"  ${r.status==='received'  ?'selected':''}>접수대기</option>
+            <option value="repairing" ${r.status==='repairing' ?'selected':''}>수리중</option>
+            <option value="completed" ${r.status==='completed' ?'selected':''}>완료</option>
+            <option value="unrepairable" ${r.status==='unrepairable'?'selected':''}>수리불가</option>
+          </select>
+        </div>
+      </div>
+      ${r.notes ? `<div style="margin-top:10px;font-size:11px;color:var(--text-secondary);border-top:1px solid var(--border-light);padding-top:8px;">📝 ${r.notes}</div>` : ''}
+    </div>`;
+  }).join('') : `<div style="text-align:center;padding:48px;color:var(--text-secondary);">해당 수리 내역이 없습니다.</div>`;
+}
+
+function changeRepairStatus(id, newStatus) {
+  const r = repairs.find(x => x.id === id);
+  if (r) {
+    r.status = newStatus;
+    if (newStatus === 'completed' && r.expectedDate === '-') r.expectedDate = new Date().toISOString().split('T')[0];
+    saveRepairs();
+    renderRepairKPIs();
+    showToast('수리 상태가 변경되었습니다.', 'success');
+  }
+}
+
+function deleteRepair(id) {
+  if (!confirm('이 수리 내역을 삭제합니까?')) return;
+  repairs = repairs.filter(r => r.id !== id);
+  saveRepairs();
+  initRepairsPage();
+  showToast('삭제되었습니다.', 'success');
+}
+
+function autoFillRepairEquip() {
+  const id = document.getElementById('rep-equip-id').value.trim().toUpperCase();
+  const item = EQUIPMENT_DATA.items.find(i => i.id === id);
+  if (item) document.getElementById('rep-equip-name').value = item.name;
+}
+
+function saveRepair() {
+  const equipId   = document.getElementById('rep-equip-id').value.trim();
+  const equipName = document.getElementById('rep-equip-name').value.trim();
+  const issue     = document.getElementById('rep-issue').value.trim();
+  if (!equipId || !issue) { showToast('장비 ID와 불량 내용을 입력하세요.', 'error'); return; }
+  const rep = {
+    id: 'REP-' + String(repairs.length + 1).padStart(3,'0'),
+    equipId,
+    equipName: equipName || equipId,
+    issue,
+    status:       document.getElementById('rep-status').value,
+    receivedDate: document.getElementById('rep-received-date').value || new Date().toISOString().split('T')[0],
+    expectedDate: document.getElementById('rep-expected-date').value || '-',
+    vendor:       document.getElementById('rep-vendor').value,
+    cost:         parseInt(document.getElementById('rep-cost').value || '0'),
+    technician:   document.getElementById('rep-technician').value,
+    notes:        document.getElementById('rep-notes').value,
+  };
+  repairs.push(rep);
+  saveRepairs();
+  closeModal('new-repair');
+  initRepairsPage();
+  showToast(`수리 접수 완료: ${rep.equipName}`, 'success');
+}
+
+// ══════════════════════════════════════════
+//  AUDIO GUIDE (TTS)
+// ══════════════════════════════════════════
+const GUIDE_SEGMENTS = [
+  {text:'안녕하세요. 컨텐츠 킬러 방송장비 렌탈 관리 시스템 사용 가이드입니다. 이 대시보드는 방송장비 렌탈 비즈니스의 모든 업무를 하나로 통합 관리하는 시스템입니다. 총 8개 메뉴와 188종 장비 데이터, 실시간 렌탈 추적, AI 경영 인사이트, 그리고 5개 파트너사 통합 플랫폼까지 갖추고 있습니다. 지금부터 각 메뉴를 순서대로 안내합니다.',page:'dashboard',label:'📋 소개'},
+  {text:'대시보드 홈 화면입니다. 화면 상단에는 4개의 핵심 지표 카드가 있습니다. 현재 렌탈 중인 건수, 이번 달 매출액, 장비 가동률, 전체 장비 수를 실시간으로 확인하세요. 숫자는 애니메이션으로 카운트업 되어 한눈에 파악하기 좋습니다. 아래쪽에는 월별 매출 추이 차트와 카테고리별 가동률 차트가 나란히 표시됩니다.',page:'dashboard',label:'📊 대시보드 홈'},
+  {text:'화면 하단에는 최근 렌탈 내역과 인기 장비 TOP 10 순위가 표시됩니다. 또한 고객 유형 분포 도넛 차트로 방송국, 제작사, 유튜버, 공공기관의 비율을 확인할 수 있습니다. 카테고리별 현황 표에서는 가동률과 월 수익을 카테고리별로 비교합니다. 우측 상단 새 렌탈 등록 버튼으로 즉시 렌탈을 접수할 수 있습니다.',page:'dashboard',label:'📊 대시보드 하단'},
+  {text:'렌탈 현황 메뉴입니다. 모든 렌탈 내역을 조회하고 관리합니다. 상단 필터 탭으로 렌탈 중, 반납 완료, 예약 건을 구분해서 조회하세요. 장비명이나 고객명으로 실시간 검색도 가능합니다. 반납 버튼을 누르면 즉시 반납 처리가 되고, 계약서 버튼으로 인쇄 가능한 한글 계약서를 자동으로 출력할 수 있습니다.',page:'rentals',label:'📋 렌탈 현황'},
+  {text:'수리 현황 메뉴입니다. 장비의 수리와 정비 이력을 체계적으로 관리합니다. 접수대기, 수리중, 완료, 수리불가 네 가지 상태로 수리 현황을 추적합니다. 각 수리 카드에서 상태를 직접 변경할 수 있어 진행 상황을 실시간으로 업데이트할 수 있습니다. 수리 업체, 예상 비용, 담당자, 완료 예정일을 입력하여 장비 관리를 체계화하세요.',page:'repairs',label:'🔧 수리 현황'},
+  {text:'장비 카탈로그 메뉴입니다. 카메라와 렌즈, 조명과 스탠드, 음향과 마이크, 중계 스위처, 무선 트랜스미터, 모니터와 디스플레이, 지지대와 드론까지 7개 카테고리 188종 장비를 검색하고 상세 정보를 확인합니다. 장비 카드를 클릭하면 장비 고유 QR 코드와 상세 스펙이 표시됩니다. QR 라벨 인쇄 버튼으로 장비 태그도 바로 출력할 수 있습니다.',page:'equipment',label:'🎥 장비 카탈로그'},
+  {text:'고객 관리 메뉴입니다. 방송국, 영상 제작사, 유튜버 크리에이터, 공공기관 고객을 VIP, 골드, 실버 등급으로 분류해 관리합니다. MBC, 스튜디오 드래곤, KBS, 티브이엔 같은 방송국부터 유명 유튜버까지 누적 렌탈 횟수와 총 지출 금액으로 우수 고객을 파악하세요. 새 고객 등록 버튼으로 신규 거래처를 바로 추가할 수 있습니다.',page:'customers',label:'👥 고객 관리'},
+  {text:'캘린더 메뉴에서는 렌탈 일정을 달력 형태로 한눈에 확인합니다. 이전, 다음 버튼으로 월을 이동하고, 날짜에 색상으로 렌탈 중과 반납 일정이 표시됩니다. 7일 이내 반납 예정 장비 목록을 통해 장비 회수 일정을 미리 파악하고 준비할 수 있습니다.',page:'calendar',label:'📅 캘린더'},
+  {text:'AI 경영인사이트 메뉴입니다. 인공지능이 분석한 5가지 핵심 인사이트를 제공합니다. 드론 수요 급증 예측, 음향 장비 집중 점검 필요 알림, 유튜버 고객군 성장 기회, 11월 연말 시즌 사전 준비 권고, 그리고 경기도 북부 파트너 공백 지역 분석까지 비즈니스 기회와 리스크를 우선순위별로 확인하세요. 오른쪽에는 카테고리별 수익 현황과 월별 성장률 차트도 있습니다.',page:'insights',label:'🤖 AI 인사이트'},
+  {text:'파트너 플랫폼 메뉴입니다. 부산 씨네렌탈, 대구 방송장비, 광주 미디어렌탈, 인천 영상장비, 제주 브로드캐스트 5개 파트너사의 운영 현황과 월별 매출을 통합 관리합니다. 각 파트너사의 장비 수, 월 매출, 가입일을 카드 형태로 파악하고, 지역 커버리지 현황 지도에서 서비스 공백 지역도 확인하세요.',page:'partners',label:'🤝 파트너 플랫폼'},
+  {text:'마지막으로 새 렌탈 등록 방법을 안내합니다. 화면 우측 상단 파란색 새 렌탈 등록 버튼을 클릭하세요. 1단계 카테고리 선택, 2단계 세부 분류 선택, 3단계 장비 선택의 3단계 드롭다운으로 빠르게 장비를 지정합니다. 고객명과 렌탈 기간을 입력하면 금액이 자동 계산됩니다. 계약서 미리보기로 계약서를 확인하고, 렌탈 등록 버튼을 누르면 완료됩니다. 이상으로 컨텐츠 킬러 대시보드 사용 가이드를 마칩니다. 감사합니다.',page:'dashboard',label:'✅ 렌탈 등록 안내'},
+];
+
+let guideState = {
+  synth: window.speechSynthesis,
+  isPlaying: false,
+  segIdx: 0,
+  totalSegments: GUIDE_SEGMENTS.length,
+  timerInterval: null,
+  elapsed: 0,
+  totalSecs: 240,
+  utterance: null,
+};
+
+function toggleGuide() {
+  if (guideState.isPlaying) {
+    pauseGuide();
+  } else {
+    playGuide();
+  }
+}
+
+function playGuide() {
+  if (guideState.synth.paused) {
+    guideState.synth.resume();
+    guideState.isPlaying = true;
+    updateGuideUI();
+    startTimer();
+    return;
+  }
+  if (guideState.segIdx >= GUIDE_SEGMENTS.length) {
+    guideState.segIdx = 0;
+    guideState.elapsed = 0;
+  }
+  playSegment(guideState.segIdx);
+}
+
+function playSegment(idx) {
+  if (idx >= GUIDE_SEGMENTS.length) {
+    finishGuide();
+    return;
+  }
+  const seg = GUIDE_SEGMENTS[idx];
+  guideState.synth.cancel();
+
+  const utter = new SpeechSynthesisUtterance(seg.text);
+  utter.lang = 'ko-KR';
+  utter.rate = 1.05;
+  utter.pitch = 1.0;
+
+  // Korean voice preference
+  const voices = guideState.synth.getVoices();
+  const krVoice = voices.find(v => v.lang === 'ko-KR') || voices.find(v => v.lang.startsWith('ko'));
+  if (krVoice) utter.voice = krVoice;
+
+  utter.onstart = () => {
+    guideState.segIdx = idx;
+    guideState.isPlaying = true;
+    updateGuideUI();
+    startTimer();
+    // Navigate to relevant page
+    const navEl = document.querySelector(`[data-page="${seg.page}"]`);
+    goPage(seg.page, navEl);
+    // Scroll main to top
+    document.getElementById('main').scrollTo({top: 0, behavior: 'smooth'});
+  };
+
+  utter.onend = () => {
+    guideState.segIdx = idx + 1;
+    if (guideState.segIdx < GUIDE_SEGMENTS.length) {
+      playSegment(guideState.segIdx);
+    } else {
+      finishGuide();
+    }
+  };
+
+  utter.onerror = () => {
+    guideState.segIdx = idx + 1;
+    if (guideState.segIdx < GUIDE_SEGMENTS.length) {
+      setTimeout(() => playSegment(guideState.segIdx), 500);
+    } else {
+      finishGuide();
+    }
+  };
+
+  guideState.utterance = utter;
+  guideState.synth.speak(utter);
+}
+
+function pauseGuide() {
+  guideState.synth.pause();
+  guideState.isPlaying = false;
+  stopTimer();
+  updateGuideUI();
+}
+
+function stopGuide() {
+  guideState.synth.cancel();
+  guideState.isPlaying = false;
+  guideState.segIdx = 0;
+  guideState.elapsed = 0;
+  stopTimer();
+  document.getElementById('audio-guide-bar').classList.add('hidden');
+}
+
+function finishGuide() {
+  guideState.isPlaying = false;
+  guideState.segIdx = 0;
+  guideState.elapsed = guideState.totalSecs;
+  stopTimer();
+  updateGuideUI();
+  showToast('사용 가이드 재생이 완료되었습니다.', 'success');
+}
+
+function startTimer() {
+  stopTimer();
+  guideState.timerInterval = setInterval(() => {
+    if (!guideState.isPlaying) return;
+    guideState.elapsed = Math.min(guideState.elapsed + 1, guideState.totalSecs);
+    updateGuideProgress();
+  }, 1000);
+}
+
+function stopTimer() {
+  if (guideState.timerInterval) {
+    clearInterval(guideState.timerInterval);
+    guideState.timerInterval = null;
+  }
+}
+
+function updateGuideUI() {
+  const btn   = document.getElementById('agb-play-btn');
+  const wave  = document.getElementById('agb-wave');
+  const label = document.getElementById('agb-section-label');
+  const bar   = document.getElementById('audio-guide-bar');
+  if (!btn) return;
+
+  if (guideState.isPlaying) {
+    btn.textContent = '⏸';
+    wave.classList.remove('paused');
+    bar.style.borderBottom = '1px solid var(--accent)';
+  } else {
+    btn.textContent = '▶';
+    wave.classList.add('paused');
+    bar.style.borderBottom = '1px solid var(--border)';
+  }
+  const seg = GUIDE_SEGMENTS[Math.min(guideState.segIdx, GUIDE_SEGMENTS.length - 1)];
+  label.textContent = seg ? seg.label : '완료';
+  updateGuideProgress();
+}
+
+function updateGuideProgress() {
+  const fill = document.getElementById('agb-progress-fill');
+  const time = document.getElementById('agb-time');
+  if (!fill || !time) return;
+  const pct = Math.min((guideState.elapsed / guideState.totalSecs) * 100, 100);
+  fill.style.width = pct + '%';
+  const remaining = Math.max(guideState.totalSecs - guideState.elapsed, 0);
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  time.textContent = `${m}:${String(s).padStart(2,'0')}`;
+}
+
+function seekGuide(e) {
+  const wrap = document.getElementById('agb-progress-wrap');
+  const pct = e.offsetX / wrap.offsetWidth;
+  guideState.elapsed = Math.floor(pct * guideState.totalSecs);
+  // Jump to corresponding segment
+  const targetIdx = Math.floor(pct * GUIDE_SEGMENTS.length);
+  guideState.segIdx = Math.min(targetIdx, GUIDE_SEGMENTS.length - 1);
+  guideState.synth.cancel();
+  updateGuideProgress();
+  if (guideState.isPlaying) playSegment(guideState.segIdx);
+}
+
+// Load voices async
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = () => {};
+}
+
+// ══════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
   initDashboard();
+  // init repair badge
+  const activeRep = repairs.filter(r => r.status === 'received' || r.status === 'repairing').length;
+  document.getElementById('repair-count').textContent = activeRep;
+  // set today's date defaults for repair modal
+  const today = new Date().toISOString().split('T')[0];
+  const repDate = document.getElementById('rep-received-date');
+  if (repDate) repDate.value = today;
 });
 </script>
 </body>
