@@ -903,10 +903,10 @@ function setupAllTabs() {
 function doGet(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var out = {
-    rentals:   _rows(ss, '📋 렌탈_현황'),
-    repairs:   _rows(ss, '🔧 수리_현황'),
-    customers: _rows(ss, '👥 고객_관리'),
-    partners:  _rows(ss, '🤝 파트너사'),
+    rentals:   _rows(ss, '렌탈_현황'),
+    repairs:   _rows(ss, '수리_현황'),
+    customers: _rows(ss, '고객_관리'),
+    partners:  _rows(ss, '파트너사'),
     updatedAt: new Date().toISOString()
   };
   return ContentService
