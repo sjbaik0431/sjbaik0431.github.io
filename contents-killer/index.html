@@ -843,8 +843,88 @@ select.form-control option{background:var(--bg-card2);}
         <button class="btn btn-secondary" onclick="document.getElementById('csv-import-input').click()">CSV 파일 선택 후 가져오기</button>
       </div>
 
-      <!-- Apps Script code (hidden, for copy) -->
-      <div id="apps-script-code" style="display:none;">function setupAllTabs(){var ss=SpreadsheetApp.getActiveSpreadsheet();var ui=SpreadsheetApp.getUi();var tabs=[{name:'📋 렌탈_현황',headers:['렌탈ID','장비ID','장비명','고객명','시작일(YYYY-MM-DD)','반납일(YYYY-MM-DD)','일수','금액(원)','상태','메모'],color:'#1f6feb'},{name:'🔧 수리_현황',headers:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고'],color:'#d29922'},{name:'👥 고객_관리',headers:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모'],color:'#3fb950'},{name:'🤝 파트너사',headers:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처'],color:'#bc8cff'},{name:'🎥 장비_카탈로그',headers:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태'],color:'#ffa657'},{name:'📊 업계통계',headers:['항목','값','단위','비고'],color:'#f85149'}];tabs.forEach(function(tab,i){var sheet=ss.getSheetByName(tab.name);if(!sheet){sheet=ss.insertSheet(tab.name,i);}var hr=sheet.getRange(1,1,1,tab.headers.length);hr.setValues([tab.headers]);hr.setBackground(tab.color);hr.setFontColor('#ffffff');hr.setFontWeight('bold');sheet.setFrozenRows(1);sheet.autoResizeColumns(1,tab.headers.length);sheet.setTabColor(tab.color);});ui.alert('✅ 컨텐츠 킬러 탭 설정 완료!\n\n6개 탭이 생성되었습니다:\n• 📋 렌탈_현황\n• 🔧 수리_현황\n• 👥 고객_관리\n• 🤝 파트너사\n• 🎥 장비_카탈로그\n• 📊 업계통계');}</div>
+      <!-- 웹훅 URL 입력 -->
+      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;">🔗 웹훅 자동 동기화 <span class="badge badge-yellow" style="font-size:10px;">새 배포 필요</span></div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;line-height:1.6;">
+          아래 스크립트를 Apps Script에 붙여넣고 <strong style="color:#fff;">배포 → 새 배포 → 웹 앱 → 액세스: 모든 사용자</strong>로 배포하면 URL이 생성됩니다.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;">
+          <input class="form-control" id="webhook-url" placeholder="https://script.google.com/macros/s/XXXXXX/exec" style="font-size:11px;">
+          <button class="btn btn-primary" onclick="fetchFromWebhook()">⬇ 지금 가져오기</button>
+          <button class="btn btn-secondary" onclick="saveWebhookUrl()">저장</button>
+        </div>
+        <div id="webhook-status" style="font-size:11px;color:var(--text-secondary);margin-top:6px;"></div>
+      </div>
+
+      <!-- Apps Script code (hidden, for copy) — setupAllTabs + doGet 통합 -->
+      <div id="apps-script-code" style="display:none;">/* ================================================
+   컨텐츠 킬러 — Google Apps Script 통합 스크립트
+   사용법:
+     1) 이 코드 전체를 Apps Script 편집기에 붙여넣기
+     2) setupAllTabs() 실행 → 탭 6개 자동 생성 (1회)
+     3) 배포 → 새 배포 → 웹 앱 → 액세스: 모든 사용자 → 배포
+     4) 생성된 URL을 대시보드 설정 [웹훅 URL] 에 붙여넣기
+   ================================================ */
+
+function setupAllTabs() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ui = SpreadsheetApp.getUi();
+  var tabs = [
+    {name:'📋 렌탈_현황',  headers:['렌탈ID','장비ID','장비명','고객명','시작일(YYYY-MM-DD)','반납일(YYYY-MM-DD)','일수','금액(원)','상태','메모'], color:'#1f6feb'},
+    {name:'🔧 수리_현황',  headers:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고'], color:'#d29922'},
+    {name:'👥 고객_관리',  headers:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모'], color:'#3fb950'},
+    {name:'🤝 파트너사',   headers:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처'], color:'#bc8cff'},
+    {name:'🎥 장비_카탈로그', headers:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태'], color:'#ffa657'},
+    {name:'📊 업계통계',   headers:['항목','값','단위','비고'], color:'#f85149'}
+  ];
+  tabs.forEach(function(tab, i) {
+    var sheet = ss.getSheetByName(tab.name);
+    if (!sheet) sheet = ss.insertSheet(tab.name, i);
+    var hr = sheet.getRange(1, 1, 1, tab.headers.length);
+    hr.setValues([tab.headers]);
+    hr.setBackground(tab.color);
+    hr.setFontColor('#ffffff');
+    hr.setFontWeight('bold');
+    sheet.setFrozenRows(1);
+    sheet.autoResizeColumns(1, tab.headers.length);
+    sheet.setTabColor(tab.color);
+  });
+  ui.alert('✅ 탭 설정 완료!\n6개 탭이 생성되었습니다.\n\n다음 단계:\n배포 → 새 배포 → 웹 앱\n→ 실행 계정: 나\n→ 액세스: 모든 사용자\n→ 배포 클릭 후 URL 복사');
+}
+
+/* ── 웹훅 엔드포인트: 대시보드가 이 URL로 데이터를 가져감 ── */
+function doGet(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var result = {
+    rentals:   readSheet(ss, '📋 렌탈_현황'),
+    repairs:   readSheet(ss, '🔧 수리_현황'),
+    customers: readSheet(ss, '👥 고객_관리'),
+    partners:  readSheet(ss, '🤝 파트너사'),
+    updatedAt: new Date().toISOString()
+  };
+  var output = ContentService.createTextOutput(JSON.stringify(result));
+  output.setMimeType(ContentService.MimeType.JSON);
+  return output;
+}
+
+function readSheet(ss, name) {
+  var sheet = ss.getSheetByName(name);
+  if (!sheet) return [];
+  var data = sheet.getDataRange().getValues();
+  if (data.length < 2) return [];
+  var headers = data[0].map(function(h) { return String(h).trim(); });
+  return data.slice(1)
+    .filter(function(row) { return row.some(function(v) { return v !== '' && v !== null; }); })
+    .map(function(row) {
+      var obj = {};
+      headers.forEach(function(h, i) {
+        var v = row[i];
+        obj[h] = (v instanceof Date) ? Utilities.formatDate(v, 'Asia/Seoul', 'yyyy-MM-dd') : v;
+      });
+      return obj;
+    });
+}</div>
     </div>
   </div>
 </div>
@@ -1993,18 +2073,117 @@ function importCSV(event) {
 
 // ── Apps Script Copy ──
 function copyAppsScript() {
-  const code = document.getElementById('apps-script-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    showToast('Apps Script 코드가 클립보드에 복사되었습니다.\n구글 시트 → 확장 프로그램 → Apps Script → 붙여넣기 → 실행', 'success');
-  }).catch(() => {
+  const code = document.getElementById('apps-script-code').textContent.trim();
+  const fallback = () => {
     const ta = document.createElement('textarea');
-    ta.value = code;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
+    ta.value = code; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
     document.body.removeChild(ta);
-    showToast('Apps Script 코드 복사 완료!', 'success');
-  });
+    showToast('✅ 스크립트 복사 완료! Apps Script에 붙여넣고 ① setupAllTabs 실행 → ② 새 배포(웹 앱)하세요.', 'success');
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() =>
+      showToast('✅ 스크립트 복사 완료! Apps Script에 붙여넣고 ① setupAllTabs 실행 → ② 새 배포(웹 앱)하세요.', 'success')
+    ).catch(fallback);
+  } else { fallback(); }
+}
+
+// ── Webhook (doGet) ──
+const WEBHOOK_KEY = 'ck_webhook_url';
+
+function saveWebhookUrl() {
+  const url = document.getElementById('webhook-url').value.trim();
+  if (!url.startsWith('https://script.google.com/macros/')) {
+    showToast('올바른 Apps Script 웹 앱 URL을 입력하세요.', 'error'); return;
+  }
+  localStorage.setItem(WEBHOOK_KEY, url);
+  showToast('웹훅 URL이 저장되었습니다.', 'success');
+}
+
+async function fetchFromWebhook() {
+  const url = document.getElementById('webhook-url').value.trim() || localStorage.getItem(WEBHOOK_KEY);
+  const status = document.getElementById('webhook-status');
+  if (!url) { showToast('웹훅 URL을 먼저 입력하세요.', 'error'); return; }
+
+  status.textContent = '⏳ 구글 시트에서 데이터 가져오는 중...';
+  status.style.color = 'var(--warning)';
+
+  try {
+    // Apps Script Web App은 리다이렉트를 따라가야 함
+    const resp = await fetch(url, { redirect: 'follow' });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+
+    let updated = [];
+    if (Array.isArray(data.rentals) && data.rentals.length) {
+      data.rentals.forEach(r => {
+        const mapped = {
+          id: r['렌탈ID'] || `R${Date.now()}`,
+          equipId: r['장비ID'] || '',
+          equipName: r['장비명'] || '',
+          customer: r['고객명'] || '',
+          startDate: r['시작일(YYYY-MM-DD)'] || r['시작일'] || '',
+          endDate: r['반납일(YYYY-MM-DD)'] || r['반납일'] || '',
+          days: parseInt(r['일수']) || 0,
+          amount: parseInt(r['금액(원)']) || 0,
+          status: r['상태'] || 'rented',
+          memo: r['메모'] || ''
+        };
+        const idx = rentals.findIndex(x => x.id === mapped.id);
+        if (idx >= 0) rentals[idx] = mapped; else rentals.push(mapped);
+      });
+      saveRentals();
+      updated.push(`렌탈 ${data.rentals.length}건`);
+    }
+    if (Array.isArray(data.repairs) && data.repairs.length) {
+      data.repairs.forEach(r => {
+        const mapped = {
+          id: r['수리ID'] || `REP${Date.now()}`,
+          equipId: r['장비ID'] || '', equipName: r['장비명'] || '',
+          issue: r['불량내용'] || '', status: r['상태'] || 'received',
+          receivedDate: r['접수일'] || '', expectedDate: r['완료예정일'] || '-',
+          vendor: r['수리업체'] || '', cost: parseInt(r['수리비(원)']) || 0,
+          technician: r['담당자'] || '', notes: r['비고'] || ''
+        };
+        const idx = repairs.findIndex(x => x.id === mapped.id);
+        if (idx >= 0) repairs[idx] = mapped; else repairs.push(mapped);
+      });
+      saveRepairs();
+      updated.push(`수리 ${data.repairs.length}건`);
+    }
+    if (Array.isArray(data.customers) && data.customers.length) {
+      data.customers.forEach(c => {
+        const mapped = {
+          id: c['고객ID'] || `C${Date.now()}`, name: c['회사명'] || '',
+          type: c['고객유형'] || '', contact: c['담당자'] || '',
+          phone: c['연락처'] || '', totalRentals: parseInt(c['총렌탈건수']) || 0,
+          lastRental: c['최근렌탈일'] || '-', totalSpend: parseInt(c['총지출(원)']) || 0,
+          grade: c['등급'] || 'Silver', notes: c['메모'] || ''
+        };
+        const idx = customers.findIndex(x => x.id === mapped.id);
+        if (idx >= 0) customers[idx] = mapped; else customers.push(mapped);
+      });
+      localStorage.setItem(CUST_KEY, JSON.stringify(customers));
+      updated.push(`고객 ${data.customers.length}건`);
+    }
+
+    const ts = data.updatedAt ? new Date(data.updatedAt).toLocaleString('ko-KR') : '';
+    status.textContent = `✅ 동기화 완료: ${updated.join(' · ')} ${ts ? '(시트 업데이트: ' + ts + ')' : ''}`;
+    status.style.color = 'var(--success)';
+    showToast(`구글 시트 동기화 완료 — ${updated.join(', ')}`, 'success');
+    localStorage.setItem(WEBHOOK_KEY, url);
+  } catch(err) {
+    status.textContent = `❌ 오류: ${err.message} — CORS 우회가 필요할 수 있습니다. Apps Script 배포 설정을 확인하세요.`;
+    status.style.color = 'var(--danger)';
+    showToast('동기화 실패: ' + err.message, 'error');
+  }
+}
+
+// 저장된 웹훅 URL 복원
+function restoreWebhookUrl() {
+  const saved = localStorage.getItem(WEBHOOK_KEY);
+  const input = document.getElementById('webhook-url');
+  if (saved && input) input.value = saved;
 }
 
 function showToast(msg, type = 'success') {
@@ -2355,13 +2534,12 @@ if (window.speechSynthesis) {
 // ══════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
   initDashboard();
-  // init repair badge
   const activeRep = repairs.filter(r => r.status === 'received' || r.status === 'repairing').length;
   document.getElementById('repair-count').textContent = activeRep;
-  // set today's date defaults for repair modal
   const today = new Date().toISOString().split('T')[0];
   const repDate = document.getElementById('rep-received-date');
   if (repDate) repDate.value = today;
+  restoreWebhookUrl();
 });
 </script>
 </body>
