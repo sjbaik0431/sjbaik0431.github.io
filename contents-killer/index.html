@@ -876,7 +876,7 @@ select.form-control option{background:var(--bg-card2);}
 
       <!-- Apps Script code (hidden, for copy) — setupAllTabs + doGet 통합 -->
       <div id="apps-script-code" style="display:none;">/* ================================================
-   컨텐츠 킬러 — Google Apps Script 통합 스크립트 v2
+   컨텐츠 킬러 — Google Apps Script 통합 스크립트 v3
    사용법:
      1) 기존 코드 전체 삭제 후 이 코드 붙여넣기
      2) 함수 선택창에서 [setupAllTabs] 선택 후 ▶ 실행 (탭 생성, 1회)
@@ -885,16 +885,18 @@ select.form-control option{background:var(--bg-card2);}
      4) 생성된 URL을 대시보드 설정 [웹훅 URL] 에 붙여넣기
    ================================================ */
 
-// ① 탭 생성 (1회 실행용) — autoResizeColumns 제거로 빠름
+var SS_ID = '1MI9h-_uhOj7Fsc0HzPk4S6gTdHfcmYFHSrXymQp2SGI';
+
+// ① 탭 생성 (1회 실행용)
 function setupAllTabs() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = SpreadsheetApp.openById(SS_ID);
   var defs = [
-    {name:'📋 렌탈_현황',     color:'#1f6feb', cols:['렌탈ID','장비ID','장비명','고객명','시작일','반납일','일수','금액(원)','상태','메모']},
-    {name:'🔧 수리_현황',     color:'#d29922', cols:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고']},
-    {name:'👥 고객_관리',     color:'#3fb950', cols:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모']},
-    {name:'🤝 파트너사',      color:'#bc8cff', cols:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처']},
-    {name:'🎥 장비_카탈로그', color:'#ffa657', cols:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태']},
-    {name:'📊 업계통계',      color:'#f85149', cols:['항목','값','단위','비고']}
+    {name:'렌탈_현황',     color:'#1f6feb', cols:['렌탈ID','장비ID','장비명','고객명','시작일','반납일','일수','금액(원)','상태','메모']},
+    {name:'수리_현황',     color:'#d29922', cols:['수리ID','장비ID','장비명','불량내용','상태','접수일','완료예정일','수리업체','수리비(원)','담당자','비고']},
+    {name:'고객_관리',     color:'#3fb950', cols:['고객ID','회사명','고객유형','담당자','연락처','총렌탈건수','최근렌탈일','총지출(원)','등급','메모']},
+    {name:'파트너사',      color:'#bc8cff', cols:['파트너ID','파트너명','지역','도시','장비수','월매출(원)','가입일','상태','연락처']},
+    {name:'장비_카탈로그', color:'#ffa657', cols:['장비ID','카테고리ID','세부분류ID','장비명','브랜드','스펙','일렌탈가(원)','수량','상태']},
+    {name:'업계통계',      color:'#f85149', cols:['항목','값','단위','비고']}
   ];
   defs.forEach(function(d, i) {
     var s = ss.getSheetByName(d.name) || ss.insertSheet(d.name, i);
@@ -903,7 +905,6 @@ function setupAllTabs() {
     var r = s.getRange(1, 1, 1, d.cols.length);
     r.setValues([d.cols]);
     r.setFontColor('#ffffff').setFontWeight('bold').setBackground(d.color);
-    // 열 너비 일괄 고정 (autoResize 대신 — 빠름)
     for (var c = 1; c <= d.cols.length; c++) s.setColumnWidth(c, 140);
   });
   SpreadsheetApp.getUi().alert('✅ 탭 6개 생성 완료!\n\n다음: 배포 → 새 배포 → 웹 앱\n실행계정: 나 / 액세스: 모든 사용자\n→ 배포 후 URL을 대시보드에 입력하세요.');
@@ -911,7 +912,7 @@ function setupAllTabs() {
 
 // ② 웹훅 엔드포인트 (배포 후 대시보드가 호출)
 function doGet(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = SpreadsheetApp.openById(SS_ID);
   var out = {
     rentals:   _rows(ss, '렌탈_현황'),
     repairs:   _rows(ss, '수리_현황'),
@@ -930,10 +931,10 @@ function _rows(ss, name) {
   var d = s.getDataRange().getValues();
   if (d.length < 2) return [];
   var h = d[0];
-  return d.slice(1).filter(function(r){ return r.some(function(v){return v!=='';});}).map(function(r){
-    var o={};
-    h.forEach(function(k,i){
-      o[k]=(r[i] instanceof Date)?Utilities.formatDate(r[i],'Asia/Seoul','yyyy-MM-dd'):r[i];
+  return d.slice(1).filter(function(r){ return r.some(function(v){ return v !== ''; }); }).map(function(r){
+    var o = {};
+    h.forEach(function(k, i){
+      o[k] = (r[i] instanceof Date) ? Utilities.formatDate(r[i], 'Asia/Seoul', 'yyyy-MM-dd') : r[i];
     });
     return o;
   });
