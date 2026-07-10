@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>렉싱턴에임즈코리아 — AI 기반 양방향 산업단지 분양 플랫폼</title>
+<meta name="description" content="기업과 산업단지를 AI가 데이터로 연결합니다. 이전·증설 검토 기업을 9개월 먼저 포착하는 양방향 산업단지 분양 플랫폼. 산단분양.com">
+<style>
+:root {
+  --g1: #0d3b2b;
+  --g2: #155a42;
+  --g3: #2e7d5b;
+  --g4: #4a9e7a;
+  --gold: #c9a227;
+  --gold2: #e6c86a;
+  --gold3: #f7ecc9;
+  --ivory: #faf8f2;
+  --ivory2: #f2ede0;
+  --ink: #1a2920;
+  --ink2: #3d4f46;
+  --muted: #5a6b62;
+  --line: #d8d2c4;
+  --white: #ffffff;
+  --danger: #b3372f;
+  --info: #2b5d8a;
+  --warn: #ffd54a;
+  --radius: 10px;
+  --sidebar-w: 250px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+.t-hero   { font-size: clamp(30px, 4.4vw, 52px); font-weight: 800; line-height: 1.18; letter-spacing: -.02em; }
+.t-h1     { font-size: clamp(22px, 3vw, 34px); font-weight: 800; line-height: 1.3; letter-spacing: -.01em; }
+.t-h3     { font-size: 18px; font-weight: 700; }
+.t-body   { font-size: 15px; line-height: 1.8; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  background: rgba(10, 42, 31, .97);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0,0,0,.25);
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 800; font-size: 15px; color: #fff;
+  letter-spacing: .06em; white-space: nowrap;
+}
+.nav-brand .brand-sub {
+  font-size: 11px; font-weight: 500; color: var(--gold2);
+  letter-spacing: .04em; margin-left: 2px;
+}
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a, .nav-links button.linklike {
+  color: rgba(255,255,255,.78);
+  font-size: 13.5px; font-weight: 500;
+  padding: 7px 12px; border-radius: 6px;
+  transition: background .15s, color .15s;
+  background: none; border: none; cursor: pointer; font-family: inherit;
+}
+.nav-links a:hover, .nav-links button.linklike:hover { background: rgba(255,255,255,.1); color: #fff; }
+.nav-cta {
+  background: var(--gold); color: #1c1500 !important;
+  font-weight: 700 !important; border-radius: 20px !important;
+  padding: 7px 18px !important;
+}
+.nav-cta:hover { background: var(--gold2) !important; }
+#soundBtn {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+  color: #fff; width: 34px; height: 34px; border-radius: 50%;
+  font-size: 15px; cursor: pointer; margin-left: 6px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, box-shadow .3s;
+}
+#soundBtn.playing { box-shadow: 0 0 0 0 rgba(201,162,39,.6); animation: soundPulse 1.6s infinite; }
+@keyframes soundPulse {
+  0% { box-shadow: 0 0 0 0 rgba(201,162,39,.55); }
+  70% { box-shadow: 0 0 0 10px rgba(201,162,39,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,162,39,0); }
+}
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background:none; border:none; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ── LAYOUT: SIDEBAR + MAIN ── */
+#layout { display: flex; }
+#sidebar {
+  position: fixed; top: 60px; left: 0; bottom: 0; z-index: 250;
+  width: var(--sidebar-w);
+  background: linear-gradient(180deg, #0a2e22 0%, #0d3b2b 100%);
+  border-right: 1px solid rgba(201,162,39,.3);
+  overflow-y: auto; padding: 18px 14px 30px;
+  scrollbar-width: thin; scrollbar-color: var(--g3) transparent;
+}
+#main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
+
+.sb-title {
+  color: var(--gold2); font-size: 12px; font-weight: 800;
+  letter-spacing: .18em; margin-bottom: 10px; padding-left: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sb-title .ai-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold2);
+  animation: soundPulse 1.8s infinite;
+}
+.sb-notice {
+  background: rgba(255,213,74,.1);
+  border: 1px solid rgba(255,213,74,.5);
+  border-radius: 8px;
+  color: var(--warn);
+  font-size: 12px; font-weight: 700; line-height: 1.65;
+  padding: 10px 12px; margin-bottom: 16px;
+}
+.sb-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.sb-item {
+  width: 100%;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  color: rgba(255,255,255,.85);
+  font-size: 13px; font-weight: 600; font-family: inherit;
+  padding: 10px 10px; cursor: pointer; text-align: left;
+  transition: background .18s, border-color .18s, transform .18s;
+  opacity: 0; transform: translateX(-16px);
+}
+.sb-item.shown { opacity: 1; transform: translateX(0); transition: opacity .4s ease, transform .4s ease, background .18s, border-color .18s; }
+.sb-item:hover {
+  background: rgba(201,162,39,.16);
+  border-color: rgba(201,162,39,.55);
+  transform: translateX(3px);
+}
+.sb-num {
+  flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 6px;
+  background: rgba(201,162,39,.2); color: var(--gold2);
+  border: 1px solid rgba(201,162,39,.4);
+  font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.sb-item .sb-ico { font-size: 15px; flex-shrink: 0; }
+.sb-foot {
+  margin-top: 18px; padding: 0 6px;
+  font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.7;
+}
+.sb-foot a { color: var(--gold2); }
+
+#sbToggle {
+  position: fixed; left: 10px; bottom: 18px; z-index: 260;
+  display: none;
+  background: var(--g1); color: var(--gold2);
+  border: 1.5px solid var(--gold); border-radius: 99px;
+  padding: 9px 16px; font-size: 13px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  font-family: inherit;
+}
+
+@media (max-width: 1080px) {
+  #sidebar { transform: translateX(-100%); transition: transform .28s ease; box-shadow: none; }
+  #sidebar.open { transform: translateX(0); box-shadow: 8px 0 30px rgba(0,0,0,.35); }
+  #main { margin-left: 0; }
+  #sbToggle { display: block; }
+}
+</style>
+<style>
+/* ── HERO ── */
+#hero {
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+  background: linear-gradient(148deg, #0a2e22, #0d3b2b 45%, #0e3f2f 70%, #0a2920);
+  background-size: 220% 220%;
+  animation: heroShift 14s ease-in-out infinite;
+  color: #fff;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 70px 0;
+  position: relative; overflow: hidden;
+}
+@keyframes heroShift {
+  0%, 100% { background-position: 0% 40%; }
+  50% { background-position: 100% 60%; }
+}
+#particles { position: absolute; inset: 0; pointer-events: none; opacity: .5; }
+.hero-rings {
+  position: absolute; right: -4%; top: 50%; transform: translateY(-50%);
+  opacity: .1; pointer-events: none;
+}
+.radar-sweep {
+  position: absolute; right: -4%; top: 50%;
+  width: 560px; height: 560px; margin-top: -280px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(230,200,106,.35), transparent 24%);
+  animation: radarSpin 5.5s linear infinite;
+  pointer-events: none; opacity: .35;
+}
+@keyframes radarSpin { to { transform: rotate(360deg); } }
+.hero-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 28px;
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 44px; align-items: center;
+  position: relative; z-index: 2;
+}
+.hero-logo-col { text-align: center; }
+.hero-logo-col svg { filter: drop-shadow(0 0 26px rgba(201,162,39,.4)); animation: logoFloat 5s ease-in-out infinite; }
+@keyframes logoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.hero-logo-col .logo-label { margin-top: 14px; font-weight: 800; letter-spacing: .2em; font-size: 15px; }
+.hero-logo-col .logo-label span { color: var(--gold2); }
+.hero-txt .eyebrow {
+  display: inline-block;
+  background: var(--gold); color: #1c1500;
+  font-size: 11px; font-weight: 800; letter-spacing: .12em;
+  padding: 4px 14px; border-radius: 99px;
+  margin-bottom: 18px;
+}
+.hero-txt h1 { text-wrap: balance; }
+.hero-txt h1 em {
+  font-style: normal; color: var(--gold2);
+  display: block; font-size: .5em; letter-spacing: .12em;
+  font-weight: 700; margin-bottom: 8px;
+}
+.hero-tagline {
+  margin-top: 20px;
+  font-size: 18px; color: rgba(255,255,255,.85);
+  font-weight: 500; line-height: 1.7;
+  min-height: 62px;
+}
+.hero-tagline b { color: var(--gold2); }
+.type-cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--gold2); vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero-btns { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold); color: #1c1500;
+  font-size: 15px; font-weight: 800;
+  padding: 14px 30px; border-radius: 8px; border: none;
+  cursor: pointer; transition: background .15s, transform .1s;
+  display: inline-block; font-family: inherit;
+  box-shadow: 0 0 0 0 rgba(201,162,39,.5);
+  animation: soundPulse 2.4s infinite;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,.35);
+  color: rgba(255,255,255,.85);
+  font-size: 15px; font-weight: 600;
+  padding: 13px 30px; border-radius: 8px;
+  cursor: pointer; transition: border-color .15s, background .15s;
+  display: inline-block; font-family: inherit;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.06); }
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-logo-col { order: -1; }
+  .hero-btns { justify-content: center; }
+  .radar-sweep { display: none; }
+}
+
+/* ── SECTIONS ── */
+.section { padding: 72px 0; }
+.section.alt { background: var(--white); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+.sec-eyebrow {
+  display: inline-block;
+  background: var(--gold3); color: var(--g1);
+  font-size: 11px; font-weight: 800; letter-spacing: .12em;
+  padding: 4px 14px; border-radius: 99px;
+  margin-bottom: 12px;
+}
+.sec-title { text-wrap: balance; border-left: 4px solid var(--gold); padding-left: 16px; margin-bottom: 6px; }
+.sec-sub { color: var(--muted); margin-bottom: 32px; max-width: 640px; }
+
+/* platform */
+.bidirectional {
+  display: flex; align-items: stretch; gap: 0;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line);
+  margin: 32px 0;
+}
+.bidir-col { flex: 1; padding: 28px 24px; }
+.bidir-col.old { background: var(--ivory2); }
+.bidir-col.new { background: var(--g1); color: #fff; }
+.bidir-arrow {
+  display: flex; align-items: center; justify-content: center;
+  width: 60px; flex-shrink: 0;
+  background: linear-gradient(to right, var(--ivory2), var(--g1));
+  font-size: 22px; color: var(--gold);
+}
+.bidir-col h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.bidir-col.new h3 { color: var(--gold2); }
+.bidir-col p { font-size: 13.5px; line-height: 1.75; }
+.bidir-col.old p { color: var(--ink2); }
+.bidir-col.new p { color: rgba(255,255,255,.78); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+.tag.r { background: #f6dedc; color: var(--danger); }
+.tag.g { background: #e3f0e8; color: var(--g2); }
+.flow-diagram { display: flex; align-items: center; gap: 0; overflow-x: auto; padding: 8px 0; margin: 24px 0; }
+.flow-step {
+  flex: 1; min-width: 130px;
+  background: var(--white); border: 1.5px solid var(--g2);
+  border-radius: var(--radius); padding: 12px 14px; text-align: center;
+}
+.flow-step b { display: block; font-size: 13.5px; color: var(--g1); margin-bottom: 4px; }
+.flow-step span { font-size: 12px; color: var(--muted); }
+.flow-step.accent { background: var(--gold3); border-color: var(--gold); }
+.flow-arr { flex-shrink: 0; font-size: 20px; color: var(--gold); font-weight: 700; padding: 0 6px; }
+
+/* parks */
+.parks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 32px; }
+.park-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden; cursor: pointer;
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.park-card:hover { box-shadow: 0 10px 34px rgba(13,59,43,.16); transform: translateY(-4px); border-color: var(--gold); }
+.park-card-top { background: var(--g1); padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; }
+.park-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: var(--gold2); flex-shrink: 0;
+}
+.park-card-top h3 { font-size: 16px; color: #fff; font-weight: 700; }
+.park-card-top p { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 2px; }
+.park-card-body { padding: 18px 20px; }
+.park-meta { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+.park-point {
+  font-size: 13.5px; color: var(--ink2);
+  background: var(--ivory); border-left: 3px solid var(--gold);
+  padding: 8px 12px; border-radius: 0 6px 6px 0; line-height: 1.65;
+}
+.park-badge {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 99px;
+  background: var(--gold3); color: var(--g1);
+}
+.park-more { margin-top: 12px; font-size: 12.5px; font-weight: 700; color: var(--g2); }
+.park-more::after { content: ' →'; }
+
+/* agents */
+.agents-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px; }
+.agent-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+.agent-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(13,59,43,.12); }
+.agent-top { padding: 22px 22px 16px; border-bottom: 1px solid var(--line); }
+.agent-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+.agent-name { font-size: 18px; font-weight: 800; color: var(--g1); }
+.agent-role-tag { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 800; padding: 2px 9px; border-radius: 99px; }
+.agent-body { padding: 18px 22px; background: var(--white); }
+.agent-desc { font-size: 13.5px; color: var(--ink2); line-height: 1.75; }
+.agent-kpi { margin-top: 14px; font-size: 12px; color: var(--muted); }
+.agent-kpi strong { color: var(--g1); }
+.agent-card:nth-child(1) .agent-top { background: #edf3f8; }
+.agent-card:nth-child(1) .agent-role-tag { background: #dde9f4; color: var(--info); }
+.agent-card:nth-child(2) .agent-top { background: #edf5ef; }
+.agent-card:nth-child(2) .agent-role-tag { background: #e3f0e8; color: var(--g2); }
+.agent-card:nth-child(3) .agent-top { background: #fdf7e3; }
+.agent-card:nth-child(3) .agent-role-tag { background: #f7ecc9; color: #7a5f10; }
+.callout {
+  border-left: 4px solid var(--gold); background: var(--gold3);
+  padding: 14px 18px; border-radius: 0 10px 10px 0;
+  font-size: 14px; line-height: 1.75; margin-top: 24px;
+}
+.callout.green { border-color: var(--g2); background: #edf5ef; }
+.signal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
+.signal-card { border-radius: var(--radius); padding: 14px 16px; border: 1px solid var(--line); }
+.signal-card.c1 { background: #fdf0ef; border-left: 4px solid #b3372f; }
+.signal-card.c2 { background: #fdf4e7; border-left: 4px solid #e07820; }
+.signal-card.c3 { background: #fdfce7; border-left: 4px solid #c8b820; }
+.signal-card.c4 { background: #edf3f8; border-left: 4px solid var(--info); }
+.signal-card b { display: block; font-size: 13.5px; margin-bottom: 4px; }
+.signal-card span { font-size: 12.5px; color: var(--muted); }
+</style>
+<style>
+/* ── FAQ ── */
+#faq { background: var(--white); }
+.faq-list { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
+.faq-item { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: box-shadow .2s; }
+.faq-item.open { box-shadow: 0 4px 20px rgba(13,59,43,.08); }
+.faq-q {
+  width: 100%; text-align: left; background: var(--white);
+  border: none; cursor: pointer; padding: 18px 22px;
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  line-height: 1.5; transition: background .15s; font-family: inherit;
+}
+.faq-q:hover { background: var(--ivory); }
+.faq-item.open .faq-q { background: var(--g1); color: #fff; }
+.faq-num {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold3); color: var(--g1);
+  font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.faq-item.open .faq-num { background: rgba(201,162,39,.3); color: var(--gold2); }
+.faq-q-text { flex: 1; }
+.faq-icon { flex-shrink: 0; margin-left: auto; margin-top: 2px; font-size: 18px; color: var(--gold); transition: transform .25s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.faq-item.open .faq-a { max-height: 640px; }
+.faq-a-inner { padding: 18px 22px 22px; font-size: 14.5px; line-height: 1.82; color: var(--ink2); border-top: 1px solid var(--line); }
+.faq-a-inner strong { color: var(--g1); }
+.faq-a-inner ul { margin: 10px 0 0 18px; }
+.faq-a-inner ul li { margin-bottom: 6px; }
+.faq-a-inner .a-callout {
+  background: var(--gold3); border-left: 3px solid var(--gold);
+  padding: 10px 14px; border-radius: 0 8px 8px 0;
+  margin-top: 12px; font-size: 13.5px;
+}
+.faq-cats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.faq-cat-btn {
+  background: var(--ivory2); border: 1px solid var(--line);
+  color: var(--ink2); font-size: 13px; font-weight: 600;
+  padding: 6px 16px; border-radius: 99px;
+  cursor: pointer; transition: background .15s; font-family: inherit;
+}
+.faq-cat-btn:hover, .faq-cat-btn.active { background: var(--g1); border-color: var(--g1); color: #fff; }
+
+/* ── CONTACT ── */
+#contact {
+  background: linear-gradient(148deg, #0a2e22, #0d3b2b 60%, #0e4033);
+  color: #fff; padding: 80px 0;
+}
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.contact-info h2 { color: #fff; border-color: var(--gold); }
+.contact-info p { color: rgba(255,255,255,.72); margin-top: 14px; font-size: 15px; line-height: 1.8; }
+.contact-info .email-link {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+  background: rgba(201,162,39,.15); border: 1px solid rgba(201,162,39,.4);
+  color: var(--gold2); padding: 10px 18px; border-radius: 8px;
+  font-size: 14px; font-weight: 700; transition: background .15s;
+}
+.contact-info .email-link:hover { background: rgba(201,162,39,.25); }
+.contact-form { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 28px; }
+.contact-form h3 { font-size: 17px; color: #fff; margin-bottom: 20px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 12.5px; font-weight: 700; color: var(--gold2); letter-spacing: .06em; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff; font-size: 14px; font-family: inherit;
+  padding: 10px 14px; border-radius: 8px; outline: none;
+  transition: border-color .15s;
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,.35); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+.form-group select option { background: var(--g1); color: #fff; }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-submit {
+  width: 100%; background: var(--gold); color: #1c1500;
+  font-size: 15px; font-weight: 800;
+  padding: 14px; border: none; border-radius: 8px;
+  cursor: pointer; transition: background .15s; font-family: inherit;
+}
+.form-submit:hover { background: var(--gold2); }
+.form-submit:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ── FOOTER ── */
+#footer {
+  background: #071e15; color: rgba(255,255,255,.55);
+  padding: 32px 24px; text-align: center;
+  font-size: 13px; line-height: 1.8;
+}
+#footer b { color: var(--gold2); }
+
+/* ── MODALS ── */
+.modal-back {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(7,30,21,.75); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-back.open { display: flex; animation: fadeIn .22s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.modal {
+  background: var(--white); border-radius: 16px;
+  max-width: 720px; width: 100%; max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  animation: modalUp .28s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes modalUp { from { opacity: 0; transform: translateY(30px) scale(.97); } to { opacity: 1; transform: none; } }
+.modal-head {
+  background: var(--g1); color: #fff;
+  padding: 20px 24px; display: flex; align-items: center; gap: 14px;
+  position: sticky; top: 0; z-index: 2;
+}
+.modal-head .m-num {
+  width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(201,162,39,.25); border: 1px solid var(--gold);
+  color: var(--gold2); font-weight: 800; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-head h3 { font-size: 17px; flex: 1; }
+.modal-close {
+  background: rgba(255,255,255,.12); border: none; color: #fff;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-size: 16px; cursor: pointer; flex-shrink: 0;
+}
+.modal-close:hover { background: rgba(255,255,255,.25); }
+.modal-body { padding: 24px; }
+.modal-visual {
+  background: var(--ivory); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px; margin-bottom: 18px;
+  text-align: center;
+}
+.modal-visual svg { max-width: 100%; height: auto; }
+.modal-desc { font-size: 14.5px; color: var(--ink2); line-height: 1.85; }
+.modal-desc strong { color: var(--g1); }
+.modal-note {
+  margin-top: 16px; font-size: 13px; font-weight: 700;
+  background: rgba(255,213,74,.15); border: 1px solid rgba(201,162,39,.45);
+  color: #7a5f10; border-radius: 8px; padding: 10px 14px;
+}
+.modal-links { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+.modal-links a, .modal-links button {
+  font-size: 13px; font-weight: 700; padding: 9px 18px; border-radius: 8px;
+  border: 1.5px solid var(--g2); color: var(--g1); background: none;
+  cursor: pointer; font-family: inherit; transition: background .15s;
+}
+.modal-links a:hover, .modal-links button:hover { background: #edf5ef; }
+.modal-links a.gold { background: var(--gold); border-color: var(--gold); color: #1c1500; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 14px 0; }
+.spec-table th { background: var(--ivory2); color: var(--g1); text-align: left; padding: 8px 12px; width: 130px; font-weight: 700; border-bottom: 1px solid var(--line); }
+.spec-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); color: var(--ink2); }
+
+/* ── AUTH ── */
+.auth-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
+.auth-tab {
+  flex: 1; padding: 10px; font-size: 14px; font-weight: 700;
+  border: 1px solid var(--line); background: var(--ivory);
+  border-radius: 8px; cursor: pointer; font-family: inherit;
+  color: var(--muted);
+}
+.auth-tab.active { background: var(--g1); color: #fff; border-color: var(--g1); }
+.auth-form .form-group label { color: var(--g1); }
+.auth-form .form-group input, .auth-form .form-group select {
+  background: var(--ivory); border: 1px solid var(--line); color: var(--ink);
+}
+.auth-form .form-group input:focus, .auth-form .form-group select:focus { border-color: var(--gold); }
+.auth-form .form-group select option { background: #fff; color: var(--ink); }
+.auth-msg { font-size: 13px; margin-top: 10px; font-weight: 600; min-height: 20px; }
+.auth-msg.ok { color: var(--g2); }
+.auth-msg.err { color: var(--danger); }
+.member-badge {
+  display: inline-block; font-size: 11px; font-weight: 800;
+  background: rgba(201,162,39,.2); color: var(--gold2);
+  border: 1px solid rgba(201,162,39,.4);
+  padding: 2px 10px; border-radius: 99px; margin-left: 6px;
+}
+
+/* ── ADMIN ── */
+#adminView {
+  position: fixed; inset: 0; z-index: 600;
+  background: #0a1f17; color: #e8f0ec;
+  display: none; overflow-y: auto;
+}
+#adminView.open { display: block; }
+.adm-wrap { max-width: 1080px; margin: 0 auto; padding: 30px 24px 60px; }
+.adm-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 26px; flex-wrap: wrap; }
+.adm-head h2 { font-size: 22px; color: #fff; }
+.adm-head h2 span { color: var(--gold2); }
+.adm-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.adm-btn {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+  color: #fff; font-size: 12.5px; font-weight: 700;
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; font-family: inherit;
+}
+.adm-btn:hover { background: rgba(255,255,255,.16); }
+.adm-btn.danger { border-color: rgba(220,90,80,.6); color: #ff9d94; }
+.adm-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 26px; }
+.adm-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px; padding: 16px 18px;
+}
+.adm-card .n { font-size: 28px; font-weight: 800; color: var(--gold2); }
+.adm-card .l { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 2px; }
+.adm-panel {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 20px; margin-bottom: 20px;
+}
+.adm-panel h3 { font-size: 14px; color: var(--gold2); letter-spacing: .08em; margin-bottom: 14px; }
+.adm-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.adm-table th { text-align: left; color: rgba(255,255,255,.5); padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,.15); font-weight: 700; }
+.adm-table td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,.07); color: rgba(255,255,255,.85); }
+.adm-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12.5px; }
+.adm-bar-row .lbl { width: 170px; flex-shrink: 0; color: rgba(255,255,255,.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adm-bar-row .bar { flex: 1; height: 16px; background: rgba(255,255,255,.07); border-radius: 4px; overflow: hidden; }
+.adm-bar-row .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--g3), var(--gold)); border-radius: 4px; transition: width .8s cubic-bezier(.2,.8,.3,1); }
+.adm-bar-row .val { width: 40px; text-align: right; color: var(--gold2); font-weight: 700; }
+#admLogin {
+  max-width: 380px; margin: 12vh auto 0; text-align: center;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px; padding: 36px 30px;
+}
+#admLogin h2 { color: #fff; font-size: 19px; margin: 12px 0 6px; }
+#admLogin p { font-size: 13px; color: rgba(255,255,255,.55); margin-bottom: 18px; }
+#admLogin input {
+  width: 100%; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 8px;
+  color: #fff; font-size: 16px; letter-spacing: .3em; text-align: center;
+  padding: 12px; outline: none; font-family: inherit;
+}
+#admLogin input:focus { border-color: var(--gold); }
+
+/* ── TOAST / MISC ── */
+#toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--g1); color: #fff; border: 1px solid var(--gold);
+  border-radius: 99px; padding: 11px 22px;
+  font-size: 13.5px; font-weight: 600; z-index: 700;
+  opacity: 0; transition: opacity .25s, transform .25s;
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+  max-width: 92vw; text-align: center;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.progress-bar { position: fixed; top: 60px; left: 0; z-index: 299; height: 2px; background: var(--gold); width: 0; }
+#backTop {
+  position: fixed; bottom: 28px; right: 24px; z-index: 90;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--g1); color: var(--gold2);
+  border: 1.5px solid var(--gold);
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0; transform: translateY(12px);
+  transition: opacity .2s, transform .2s;
+}
+#backTop.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .sb-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .radar-sweep, .hero-logo-col svg, .btn-primary, #hero { animation: none !important; }
+}
+/* ── INTRO OVERLAY (음악 동기 ~15초) ── */
+#intro {
+  position: fixed; inset: 0; z-index: 900;
+  background:
+    radial-gradient(ellipse at 28% 18%, rgba(201,162,39,.15), transparent 52%),
+    radial-gradient(ellipse at 76% 82%, rgba(46,125,91,.28), transparent 56%),
+    linear-gradient(148deg, #071e15, #0d3b2b 55%, #0a2920);
+  overflow: hidden;
+  transition: opacity 1.1s ease;
+}
+#intro.out { opacity: 0; pointer-events: none; }
+.intro-scene {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 24px;
+  opacity: 0; transform: translateY(28px) scale(.97);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.intro-scene.on { opacity: 1; transform: none; }
+.intro-title {
+  font-size: clamp(42px, 7.5vw, 88px);
+  font-weight: 900; letter-spacing: -.02em;
+  color: #fff; text-align: center; line-height: 1.12;
+  text-shadow: 0 0 44px rgba(201,162,39,.4);
+}
+.intro-title em { font-style: normal; color: var(--gold2); }
+.intro-sub {
+  font-size: clamp(13px, 1.6vw, 17px); font-weight: 700;
+  color: rgba(255,255,255,.65); letter-spacing: .32em;
+}
+.intro-chart { width: min(90vw, 840px); height: auto; filter: drop-shadow(0 0 26px rgba(201,162,39,.28)); }
+.iline { stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+.on .iline { transition: stroke-dashoffset 2.9s cubic-bezier(.6,.04,.25,1); stroke-dashoffset: 0; }
+.on .iline.d2 { transition-delay: .4s; }
+.iarea { opacity: 0; }
+.on .iarea { transition: opacity 1.6s ease 1.7s; opacity: 1; }
+.ibar { transform: scaleY(0); transform-origin: bottom; transform-box: fill-box; }
+.on .ibar { animation: barUp .95s cubic-bezier(.2,.9,.3,1.18) forwards; }
+@keyframes barUp { to { transform: scaleY(1); } }
+.iglow { opacity: 0; }
+.on .iglow { animation: glowPop .7s ease 2.8s forwards, glowPulse 1.5s ease-in-out 3.5s infinite; }
+@keyframes glowPop { from { opacity: 0; } to { opacity: 1; } }
+@keyframes glowPulse { 50% { opacity: .5; } }
+.ilabel { opacity: 0; }
+.on .ilabel { transition: opacity .9s ease 2.5s; opacity: 1; }
+#introSkip {
+  position: absolute; right: 26px; bottom: 26px; z-index: 5;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.3);
+  color: rgba(255,255,255,.85); border-radius: 99px;
+  padding: 9px 20px; font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  transition: background .15s;
+}
+#introSkip:hover { background: rgba(255,255,255,.18); }
+.intro-hint {
+  position: absolute; bottom: 34px; left: 0; right: 0;
+  text-align: center; font-size: 12px;
+  color: rgba(255,255,255,.42); letter-spacing: .12em;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) { #intro { display: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ── INTRO ANIMATION ── -->
+<div id="intro">
+  <!-- scene 0: 브랜드 -->
+  <div class="intro-scene on" id="isc0">
+    <svg width="130" height="130" viewBox="0 0 240 240" aria-hidden="true">
+      <circle cx="120" cy="120" r="112" fill="none" stroke="#c9a227" stroke-width="7"/>
+      <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(230,200,106,.5)" stroke-width="3"/>
+      <circle cx="120" cy="120" r="60" fill="none" stroke="rgba(230,200,106,.8)" stroke-width="4"/>
+      <circle cx="120" cy="120" r="24" fill="#c9a227"/>
+      <circle cx="120" cy="120" r="9" fill="#0d3b2b"/>
+      <path d="M28 208 L98 134" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+      <path d="M84 132 L122 118 L106 156 Z" fill="#ffffff"/>
+    </svg>
+    <div class="intro-title" style="font-size:clamp(28px,4.2vw,50px);">LEXINGTON <em>AMES</em> KOREA</div>
+    <div class="intro-sub">AI INDUSTRIAL PLATFORM · 산단분양.com</div>
+  </div>
+
+  <!-- scene 1: 분양률 -->
+  <div class="intro-scene" id="isc1">
+    <div class="intro-title"><em>분양률</em></div>
+    <svg class="intro-chart" viewBox="0 0 840 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="igA" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e6c86a" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#e6c86a" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="igB" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#155a42"/>
+          <stop offset="1" stop-color="#4a9e7a"/>
+        </linearGradient>
+      </defs>
+      <g stroke="rgba(255,255,255,.09)" stroke-width="1">
+        <path d="M60 80 H800"/><path d="M60 150 H800"/><path d="M60 220 H800"/><path d="M60 290 H800"/>
+      </g>
+      <path d="M60 30 V360 H800" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+      <g>
+        <rect class="ibar" x="90"  y="322" width="52" height="38"  rx="5" fill="url(#igB)" style="animation-delay:.15s"/>
+        <rect class="ibar" x="176" y="304" width="52" height="56"  rx="5" fill="url(#igB)" style="animation-delay:.3s"/>
+        <rect class="ibar" x="262" y="278" width="52" height="82"  rx="5" fill="url(#igB)" style="animation-delay:.45s"/>
+        <rect class="ibar" x="348" y="244" width="52" height="116" rx="5" fill="url(#igB)" style="animation-delay:.6s"/>
+        <rect class="ibar" x="434" y="204" width="52" height="156" rx="5" fill="url(#igB)" style="animation-delay:.75s"/>
+        <rect class="ibar" x="520" y="156" width="52" height="204" rx="5" fill="url(#igB)" style="animation-delay:.9s"/>
+        <rect class="ibar" x="606" y="104" width="52" height="256" rx="5" fill="url(#igB)" style="animation-delay:1.05s"/>
+        <rect class="ibar" x="692" y="52"  width="52" height="308" rx="5" fill="#c9a227"    style="animation-delay:1.2s"/>
+      </g>
+      <path class="iarea" d="M60 336 C230 328 340 306 450 262 C560 218 640 150 780 52 L780 360 L60 360 Z" fill="url(#igA)"/>
+      <path class="iline" pathLength="1000" d="M60 336 C230 328 340 306 450 262 C560 218 640 150 780 52"
+            fill="none" stroke="#e6c86a" stroke-width="8" stroke-linecap="round"/>
+      <g class="iglow">
+        <circle cx="780" cy="52" r="26" fill="rgba(230,200,106,.25)"/>
+        <circle cx="780" cy="52" r="11" fill="#e6c86a"/>
+        <path d="M744 96 L780 52 M780 52 L748 48 M780 52 L784 86" stroke="#e6c86a" stroke-width="7" stroke-linecap="round" fill="none"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- scene 2: 보조금 ↑ / 세금 ↓ -->
+  <div class="intro-scene" id="isc2">
+    <div class="intro-title"><em>보조금</em> · 각종 <em>세금 감면</em></div>
+    <svg class="intro-chart" viewBox="0 0 840 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="rgba(255,255,255,.09)" stroke-width="1">
+        <path d="M60 80 H800"/><path d="M60 150 H800"/><path d="M60 220 H800"/><path d="M60 290 H800"/>
+      </g>
+      <path d="M60 30 V360 H800" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+      <path class="iline" pathLength="1000" d="M60 330 C240 312 400 262 540 190 C640 138 700 100 760 62"
+            fill="none" stroke="#e6c86a" stroke-width="8" stroke-linecap="round"/>
+      <path class="iline d2" pathLength="1000" d="M60 78 C230 92 390 140 540 226 C640 282 700 306 760 326"
+            fill="none" stroke="#e07868" stroke-width="8" stroke-linecap="round" stroke-dasharray="1000"/>
+      <g class="iglow">
+        <circle cx="760" cy="62" r="22" fill="rgba(230,200,106,.25)"/>
+        <circle cx="760" cy="62" r="10" fill="#e6c86a"/>
+        <circle cx="760" cy="326" r="22" fill="rgba(224,120,104,.22)"/>
+        <circle cx="760" cy="326" r="10" fill="#e07868"/>
+      </g>
+      <g class="ilabel" font-weight="800">
+        <text x="700" y="34" font-size="26" fill="#e6c86a">보조금 ↑</text>
+        <text x="716" y="372" font-size="26" fill="#e07868">세금 ↓</text>
+      </g>
+    </svg>
+  </div>
+
+  <button id="introSkip" onclick="skipIntro()">건너뛰기 →</button>
+  <div class="intro-hint">🎻 화면을 클릭하면 사운드와 함께 재생됩니다</div>
+</div>
+
+<div class="progress-bar" id="progressBar"></div>
+<div id="toast"></div>
+
+<!-- ── NAVIGATION ── -->
+<nav id="nav" role="navigation" aria-label="메인 메뉴">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <svg width="28" height="28" viewBox="0 0 240 240" aria-hidden="true">
+        <circle cx="120" cy="120" r="112" fill="none" stroke="#c9a227" stroke-width="7"/>
+        <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(230,200,106,.5)" stroke-width="3"/>
+        <circle cx="120" cy="120" r="60" fill="none" stroke="rgba(230,200,106,.8)" stroke-width="4"/>
+        <circle cx="120" cy="120" r="24" fill="#c9a227"/>
+        <circle cx="120" cy="120" r="9" fill="#0d3b2b"/>
+        <path d="M28 208 L98 134" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+        <path d="M84 132 L122 118 L106 156 Z" fill="#ffffff"/>
+        <path d="M120 14 A106 106 0 0 1 218 84" fill="none" stroke="#e6c86a" stroke-width="7" stroke-linecap="round"/>
+        <path d="M224 66 L221 95 L196 79 Z" fill="#e6c86a"/>
+        <path d="M120 226 A106 106 0 0 1 22 156" fill="none" stroke="#e6c86a" stroke-width="7" stroke-linecap="round"/>
+        <path d="M16 174 L19 145 L44 161 Z" fill="#e6c86a"/>
+      </svg>
+      LEXINGTON AMES
+      <span class="brand-sub">렉싱턴에임즈코리아</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#platform" onclick="navVoice('플랫폼')">플랫폼</a></li>
+      <li><a href="#parks" onclick="navVoice('산업단지')">산업단지</a></li>
+      <li><a href="#ai" onclick="navVoice('AI 시스템')">AI 시스템</a></li>
+      <li><a href="#faq" onclick="navVoice('자주 묻는 질문')">FAQ</a></li>
+      <li id="navAuthLi"><button class="linklike" onclick="openAuth('login')">로그인 · 회원가입</button></li>
+      <li><a href="#contact" class="nav-cta" onclick="navVoice('분양 문의')">분양 문의</a></li>
+      <li><button id="soundBtn" title="사운드 켜기/끄기" onclick="toggleSound()">🔊</button></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="메뉴 열기" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── SIDEBAR: AI SOLUTIONS ── -->
+<aside id="sidebar" aria-label="AI 솔루션 메뉴">
+  <div class="sb-title"><span class="ai-dot"></span>AI SOLUTIONS</div>
+  <div class="sb-notice">⚠ AI 솔루션은 공개 서비스가 아니라 1:1 맞춤 서비스로 제공됩니다.</div>
+  <ul class="sb-list" id="sbList">
+    <li><button class="sb-item" onclick="openTool(1)"><span class="sb-num">01</span><span class="sb-ico">📡</span>이전기업 자동 탐지</button></li>
+    <li><button class="sb-item" onclick="openTool(2)"><span class="sb-num">02</span><span class="sb-ico">📰</span>주간 신호 자동 보고서</button></li>
+    <li><button class="sb-item" onclick="openTool(3)"><span class="sb-num">03</span><span class="sb-ico">🧮</span>세금감면 계산기</button></li>
+    <li><button class="sb-item" onclick="openTool(4)"><span class="sb-num">04</span><span class="sb-ico">🗂</span>전국 산단 비교 DB</button></li>
+    <li><button class="sb-item" onclick="openTool(5)"><span class="sb-num">05</span><span class="sb-ico">🗺</span>입지 분석 지도</button></li>
+    <li><button class="sb-item" onclick="openTool(6)"><span class="sb-num">06</span><span class="sb-ico">📑</span>IR 패키지 자동 생성</button></li>
+    <li><button class="sb-item" onclick="openTool(7)"><span class="sb-num">07</span><span class="sb-ico">✉️</span>뉴스레터 자동 발행</button></li>
+    <li><button class="sb-item" onclick="openTool(8)"><span class="sb-num">08</span><span class="sb-ico">📋</span>CRM 영업 파이프라인</button></li>
+    <li><button class="sb-item" onclick="openTool(9)"><span class="sb-num">09</span><span class="sb-ico">📊</span>시행사 분양 대시보드</button></li>
+    <li><button class="sb-item" onclick="openTool(10)"><span class="sb-num">10</span><span class="sb-ico">🤖</span>AI 상담 어시스턴트</button></li>
+  </ul>
+  <div class="sb-foot">
+    도입 상담: 분양 문의로 접수해 주세요.
+  </div>
+</aside>
+<button id="sbToggle" onclick="toggleSidebar()">☰ AI 솔루션</button>
+
+<div id="layout"><main id="main">
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <canvas id="particles"></canvas>
+  <div class="radar-sweep"></div>
+  <svg class="hero-rings" width="560" height="560" viewBox="0 0 600 600" aria-hidden="true">
+    <circle cx="300" cy="300" r="280" fill="none" stroke="#c9a227" stroke-width="2"/>
+    <circle cx="300" cy="300" r="220" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+    <circle cx="300" cy="300" r="160" fill="none" stroke="#c9a227" stroke-width="1"/>
+    <circle cx="300" cy="300" r="100" fill="none" stroke="#c9a227" stroke-width="2"/>
+    <circle cx="300" cy="300" r="50" fill="none" stroke="#c9a227" stroke-width="3"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-logo-col">
+      <svg width="190" height="190" viewBox="0 0 240 240" aria-label="렉싱턴에임즈코리아 로고">
+        <circle cx="120" cy="120" r="112" fill="none" stroke="#c9a227" stroke-width="7"/>
+        <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(230,200,106,.55)" stroke-width="3"/>
+        <circle cx="120" cy="120" r="60" fill="none" stroke="rgba(230,200,106,.85)" stroke-width="4"/>
+        <circle cx="120" cy="120" r="24" fill="#c9a227"/>
+        <circle cx="120" cy="120" r="9" fill="#0d3b2b"/>
+        <path d="M28 208 L98 134" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+        <path d="M84 132 L122 118 L106 156 Z" fill="#ffffff"/>
+        <path d="M120 14 A106 106 0 0 1 218 84" fill="none" stroke="#e6c86a" stroke-width="7" stroke-linecap="round"/>
+        <path d="M224 66 L221 95 L196 79 Z" fill="#e6c86a"/>
+        <path d="M120 226 A106 106 0 0 1 22 156" fill="none" stroke="#e6c86a" stroke-width="7" stroke-linecap="round"/>
+        <path d="M16 174 L19 145 L44 161 Z" fill="#e6c86a"/>
+      </svg>
+      <div class="logo-label">LEXINGTON <span>AMES</span></div>
+      <div style="font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.25em;margin-top:3px">렉싱턴에임즈코리아</div>
+    </div>
+    <div class="hero-txt">
+      <span class="eyebrow">AI INDUSTRIAL PLATFORM · 산단분양.com</span>
+      <h1 class="t-hero">
+        <em>LEXINGTON AMES KOREA</em>
+        기업을 가장 풍요로운 입지로,<br>정확하게 안내합니다
+      </h1>
+      <p class="hero-tagline"><span id="typeTarget"></span><span class="type-cursor"></span></p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary" onclick="navVoice('분양 문의')">분양 문의하기</a>
+        <a href="#platform" class="btn-ghost">플랫폼 살펴보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLATFORM ── -->
+<section class="section alt" id="platform">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-eyebrow">PLATFORM</span>
+      <h2 class="sec-title t-h1">양방향 산업단지 분양 플랫폼</h2>
+      <p class="sec-sub t-body">정보가 한 방향으로 흐르는 '광고판'이 아니라, 수요와 공급의 데이터가 양방향으로 순환하며 스스로 똑똑해지는 매칭 엔진입니다.</p>
+    </div>
+    <div class="reveal bidirectional">
+      <div class="bidir-col old">
+        <h3>기존 단방향 모델 (AS-IS)</h3>
+        <p>현수막·광고 게시 → 전화 대기 → 시행사 연결. 사후관리 없음, 기업 니즈 데이터 없음, <strong>기다리는 영업</strong>.</p>
+        <div class="tag-row">
+          <span class="tag r">데이터 축적 0</span>
+          <span class="tag r">사후관리 없음</span>
+        </div>
+      </div>
+      <div class="bidir-arrow">⇄</div>
+      <div class="bidir-col new">
+        <h3>렉싱턴에임즈코리아 모델 (TO-BE)</h3>
+        <p>시행사는 실시간 분양·상담 대시보드를, 기업은 업종·규모·사유 기반 최적 산단 추천을 받고, AI가 신호를 탐지해 <strong style="color:var(--gold2)">먼저 찾아가는 영업.</strong></p>
+        <div class="tag-row">
+          <span class="tag g">수요↔공급 데이터 순환</span>
+          <span class="tag g">매칭 정확도 자가 학습</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3 class="t-h3" style="margin-bottom:14px;color:var(--g1)">양방향 데이터 순환 구조</h3>
+      <div class="flow-diagram">
+        <div class="flow-step"><b>수요 기업</b><span>이전·증설 니즈</span></div>
+        <div class="flow-arr">⇄</div>
+        <div class="flow-step accent"><b>LEXINGTON AMES KOREA</b><span>AI 신호탐지·매칭·피드백 축적</span></div>
+        <div class="flow-arr">⇄</div>
+        <div class="flow-step"><b>시행사(SPC)</b><span>산단 공급·분양 조건</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ── INDUSTRIAL PARKS ── -->
+<section class="section" id="parks">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-eyebrow">INDUSTRIAL PARKS</span>
+      <h2 class="sec-title t-h1">초기 포트폴리오 — 4개 산업단지</h2>
+      <p class="sec-sub t-body">경기 남부 산업용지 포화와 반도체 특별법 시행령의 비수도권 입지 의무화로, 음성·진천은 경기권 차량 1시간 이내라는 결정적 이점을 보유합니다. <strong>카드를 클릭하면 상세 정보를 볼 수 있습니다.</strong></p>
+    </div>
+    <div class="parks-grid reveal">
+      <div class="park-card" onclick="openPark(1)">
+        <div class="park-card-top">
+          <div class="park-num">01</div>
+          <div><h3>천평 산업단지</h3><p>충북 음성</p></div>
+        </div>
+        <div class="park-card-body">
+          <p class="park-meta">약 27만 평 · 인허가 진행 중</p>
+          <div class="park-point">사전청약 단계 — 초기 분양가 메리트가 가장 큰 산단</div>
+          <span class="park-badge">사전청약 가격 메리트</span>
+          <div class="park-more">상세 정보 보기</div>
+        </div>
+      </div>
+      <div class="park-card" onclick="openPark(2)">
+        <div class="park-card-top">
+          <div class="park-num">02</div>
+          <div><h3>대풍 산업단지</h3><p>음성 대소IC 앞</p></div>
+        </div>
+        <div class="park-card-body">
+          <p class="park-meta">분양 예정</p>
+          <div class="park-point">대소IC 초인접 — 경기권 접근성 최상급</div>
+          <span class="park-badge">경기권 접근성 최우수</span>
+          <div class="park-more">상세 정보 보기</div>
+        </div>
+      </div>
+      <div class="park-card" onclick="openPark(3)">
+        <div class="park-card-top">
+          <div class="park-num">03</div>
+          <div><h3>괴산 청안 산업단지</h3><p>충북 괴산</p></div>
+        </div>
+        <div class="park-card-body">
+          <p class="park-meta">인허가 완료</p>
+          <div class="park-point">인허가 완료로 빠른 입주 가능 — 증평·내수 연계 확장축</div>
+          <span class="park-badge">인허가 완료</span>
+          <div class="park-more">상세 정보 보기</div>
+        </div>
+      </div>
+      <div class="park-card" onclick="openPark(4)">
+        <div class="park-card-top">
+          <div class="park-num">04</div>
+          <div><h3>진천 메가폴리스</h3><p>충북 진천 문백면</p></div>
+        </div>
+        <div class="park-card-body">
+          <p class="park-meta">142만㎡ · 분양 중</p>
+          <div class="park-point">기회발전특구 지정 — 세제 감면 전국 최대 수준</div>
+          <span class="park-badge" style="background:var(--g1);color:#fff;">기회발전특구</span>
+          <div class="park-more">상세 정보 보기</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AI AGENTS ── -->
+<section class="section alt" id="ai">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-eyebrow">AI SYSTEM</span>
+      <h2 class="sec-title t-h1">멀티 에이전틱 AI — 3인 체제</h2>
+      <p class="sec-sub t-body">렉싱턴에임즈코리아는 네이티브 AI 컴퍼니를 지향합니다. 세 명의 AI 에이전트를 정식 직원처럼 채용하고 이름·역할·업무 범위를 부여합니다.</p>
+    </div>
+    <div class="agents-grid reveal">
+      <div class="agent-card">
+        <div class="agent-top">
+          <span class="agent-icon">🔭</span>
+          <div><span class="agent-name">AI-1 스카우트</span><span class="agent-role-tag">발굴</span></div>
+        </div>
+        <div class="agent-body">
+          <p class="agent-desc">ALPHA(공공·인허가)·BETA(금융·공시)·GAMMA(뉴스·채용·네트워크) 채널을 매일 순찰하여 신호를 수집·점수화·등급 판정합니다. 주간 신호 보고서를 자동 발행합니다.</p>
+          <div class="agent-kpi"><strong>KPI:</strong> 주간 신규 신호 건수 · CRITICAL 적중률</div>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-top">
+          <span class="agent-icon">📚</span>
+          <div><span class="agent-name">AI-2 큐레이터</span><span class="agent-role-tag">정보·콘텐츠</span></div>
+        </div>
+        <div class="agent-body">
+          <p class="agent-desc">전국 산단 비교 DB를 최신화하고 주간 뉴스레터를 기획·집필·디자인·발송합니다. 웹 콘텐츠와 세금계산기를 지속적으로 관리합니다.</p>
+          <div class="agent-kpi"><strong>KPI:</strong> 뉴스레터 열람률 · DB 최신성</div>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-top">
+          <span class="agent-icon">🤝</span>
+          <div><span class="agent-name">AI-3 클로저</span><span class="agent-role-tag">영업지원</span></div>
+        </div>
+        <div class="agent-body">
+          <p class="agent-desc">CRM 단계를 관리하고 CRITICAL 탐지 시 맞춤 IR 패키지를 자동 생성합니다. 미팅 후 팔로업 문자·메일 초안을 준비합니다.</p>
+          <div class="agent-kpi"><strong>KPI:</strong> IR 발송→상담 전환율</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout reveal" style="margin-top:24px;">
+      <strong>역할 분담의 대원칙 — "AI는 준비하고, 사람은 결정한다."</strong> 세 에이전트는 오케스트레이터의 조율 아래 협업하되, 최종 의사결정·대면 영업·계약 협상은 언제나 대표의 몫으로 남깁니다.
+    </div>
+    <div class="reveal" style="margin-top:32px;">
+      <h3 class="t-h3" style="color:var(--g1);margin-bottom:14px;">신호 탐지 등급 체계</h3>
+      <div class="signal-grid">
+        <div class="signal-card c1"><b>🔴 CRITICAL (85점+)</b><span>2채널 이상 교차검증 → IR 패키지 자동 생성 + 즉시 접촉 알림</span></div>
+        <div class="signal-card c2"><b>🟠 URGENT (70~84점)</b><span>48시간 내 컨택 권고</span></div>
+        <div class="signal-card c3"><b>🟡 WATCH (55~69점)</b><span>모니터링 강화</span></div>
+        <div class="signal-card c4"><b>🔵 MONITOR (40~54점)</b><span>주간 보고 포함</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ── FAQ ── -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-eyebrow">FAQ</span>
+      <h2 class="sec-title t-h1">자주 묻는 질문 20가지</h2>
+      <p class="sec-sub t-body">플랫폼, 산업단지, AI 시스템, 계약·보안, 상담 절차에 대한 궁금증을 답변합니다.</p>
+    </div>
+
+    <div class="faq-cats reveal">
+      <button class="faq-cat-btn active" onclick="filterFaq('all', this)">전체</button>
+      <button class="faq-cat-btn" onclick="filterFaq('company', this)">회사 소개</button>
+      <button class="faq-cat-btn" onclick="filterFaq('parks', this)">산업단지</button>
+      <button class="faq-cat-btn" onclick="filterFaq('ai', this)">AI 시스템</button>
+      <button class="faq-cat-btn" onclick="filterFaq('contract', this)">계약·보안</button>
+      <button class="faq-cat-btn" onclick="filterFaq('process', this)">상담·절차</button>
+    </div>
+
+    <div class="faq-list reveal" id="faqList">
+
+      <!-- 1 -->
+      <div class="faq-item" data-cat="company">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">01</span>
+          <span class="faq-q-text">렉싱턴에임즈코리아는 어떤 회사인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>충북 4개 산업단지(천평·대풍·괴산 청안·진천 메가폴리스)의 분양권을 기반으로 출발하여 전국으로 확대하는 AI 기반 양방향 산업단지 분양 플랫폼 회사입니다.</strong><br><br>
+            AI 3인(스카우트·큐레이터·클로저)이 발굴→콘텐츠→영업지원 전 과정을 자동 수행하고, 사람은 전략 결정·시행사 계약 협상·핵심 기업 PT 등 가장 중요한 만남과 결정에 집중하는 AI 네이티브 운영 체계를 갖추고 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="faq-item" data-cat="company">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">02</span>
+          <span class="faq-q-text">왜 "렉싱턴에임즈(Lexington Ames)"라는 이름인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            미국의 두 도시명의 병합에서 탄생한 이름입니다.<br><br>
+            <ul>
+              <li><strong>Lexington</strong> — 미국에서 가장 풍요롭고 살기 좋은 도시로 꼽히는 지명. 기업이 도달할 최고의 입지를 상징합니다.</li>
+              <li><strong>Ames</strong> — 미국의 대표적 연구·대학 도시. 영어 'aim(조준)'과 같은 발음으로, 데이터로 목표를 정확하게 조준해 안내한다는 약속을 담습니다.</li>
+            </ul>
+            <div class="a-callout">"기업을 가장 풍요로운 입지로, 정확하게." — 이것이 LEXINGTON AMES KOREA의 브랜드 약속입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="faq-item" data-cat="company">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">03</span>
+          <span class="faq-q-text">기존 산업단지 분양 방식과 무엇이 다른가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            기존 방식은 현수막·광고 게시 후 전화를 기다리는 단방향 영업입니다. 데이터 축적이 없고 사후관리도 없습니다.<br><br>
+            렉싱턴에임즈코리아는 <strong>먼저 찾아가는 양방향 영업</strong>입니다.
+            <ul>
+              <li>이전 검토 기업을 발표 전 최대 9개월 먼저 포착</li>
+              <li>세제·용수·전력·교통을 데이터로 비교하여 최적 입지 제시</li>
+              <li>모든 상담 이력이 DB로 축적되어 플랫폼이 스스로 똑똑해짐</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="faq-item" data-cat="company">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">04</span>
+          <span class="faq-q-text">이전·증설을 고려 중인 기업인데 서비스 비용이 있나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>기업(수요자)에게는 별도 비용이 없습니다.</strong> 수수료는 산단을 분양하는 시행사(공급자)로부터 받는 구조입니다.<br><br>
+            기업은 무료로 산업단지 비교분석 자료, 세금감면 계산기, 입지 지도, 맞춤 산단 추천 서비스를 이용할 수 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="faq-item" data-cat="parks">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">05</span>
+          <span class="faq-q-text">현재 어떤 산업단지를 취급하나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            충북 권역 4개 산업단지를 초기 포트폴리오로 운영합니다.
+            <ul>
+              <li><strong>천평 산업단지</strong> — 충북 음성, 약 27만 평, 사전청약 단계</li>
+              <li><strong>대풍 산업단지</strong> — 음성 대소IC 앞, 분양 예정</li>
+              <li><strong>괴산 청안 산업단지</strong> — 인허가 완료</li>
+              <li><strong>진천 메가폴리스</strong> — 142만㎡, 분양 중, 기회발전특구</li>
+            </ul>
+            M+3 이후 충북 전역 20여 개 산단으로 확대하고, M+6 이후 전국 확대를 계획합니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="faq-item" data-cat="parks">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">06</span>
+          <span class="faq-q-text">진천 메가폴리스 기회발전특구 혜택은 무엇인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            기회발전특구는 비수도권 기업 투자 유치를 위해 정부가 지정한 특구로, 세제 감면이 전국 산업단지 중 최대 수준입니다.
+            <ul>
+              <li><strong>법인세 감면</strong> — 일정 기간 최대 100% 면제</li>
+              <li><strong>취득세·재산세 감면</strong> — 지방세 대폭 경감</li>
+              <li><strong>정책 자금 우대</strong> — 금융 지원 및 보조금 연계</li>
+            </ul>
+            <div class="a-callout">세금감면 계산기를 통해 업종과 투자 규모를 입력하면 예상 감면액을 즉시 확인할 수 있습니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="faq-item" data-cat="parks">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">07</span>
+          <span class="faq-q-text">천평·대풍 산업단지는 어떤 기업에게 적합한가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            두 산단 모두 경기권 접근성이 핵심 강점입니다.
+            <ul>
+              <li><strong>천평</strong> — 사전청약 단계의 가격 메리트가 크며, 초기 분양가 이점을 원하는 기업에 적합</li>
+              <li><strong>대풍</strong> — 대소IC 초인접으로 경기권 물류·통근 접근성이 최상급. 수도권에서 이전하는 제조·물류 기업에 1순위 추천</li>
+            </ul>
+            경기 남부(평택·안성·화성·용인) 포화 + 반도체 특별법 비수도권 의무화로 구조적 수요가 형성되고 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="faq-item" data-cat="parks">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">08</span>
+          <span class="faq-q-text">산업단지 비교분석 엔진은 어떤 기준으로 비교하나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            기업의 이전 의사결정 항목을 <strong>표준 스키마</strong>로 정의하고 전국 산단을 동일 기준으로 점수화합니다.
+            <ul>
+              <li>분양가(평당) · 잔여 필지</li>
+              <li>세제 혜택 (법인세·취득세·재산세, 기회발전특구 여부)</li>
+              <li>용수·전력 인프라</li>
+              <li>교통 접근성 (IC 거리·경기권 소요시간)</li>
+              <li>입주 가능 업종·건폐율/용적률</li>
+              <li>인력 수급 (배후도시·통근권)</li>
+            </ul>
+            업종·필요 평수·전력 사용량을 입력하면 조건에 맞는 산단이 점수순으로 정렬됩니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="faq-item" data-cat="parks">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">09</span>
+          <span class="faq-q-text">분양가와 잔여 필지는 어떻게 확인하나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            산업단지 비교분석 페이지에서 각 산단의 분양가와 잔여 필지를 확인할 수 있습니다. AI 큐레이터가 분양공고문과 시행사 제공 자료를 바탕으로 수시 갱신합니다.<br><br>
+            <strong>정확한 정보와 맞춤 견적은 상담 문의를 통해 제공드립니다.</strong> 업종·평수 조건에 따라 최적 필지를 매칭해 드립니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="faq-item" data-cat="ai">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">10</span>
+          <span class="faq-q-text">AI 스카우트는 이전 검토 기업을 어떻게 찾나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            3채널 탐지 체계(JSIS)를 운영합니다.
+            <ul>
+              <li><strong>ALPHA 채널 (공공·인허가)</strong> — 건축허가 신청, 환경 배출시설 설치허가, 산업용 전력 신규계약, 개발행위허가. 착공 6~12개월 전 포착</li>
+              <li><strong>BETA 채널 (금융·공시)</strong> — DART CAPEX 급증, 시설투자 목적 CB/BW 발행, 생산능력(CAPA) 변화. 가장 이른 재무 신호</li>
+              <li><strong>GAMMA 채널 (뉴스·채용·네트워크)</strong> — 생산직 대규모 채용, 부지 물색 보도, 임원 인터뷰 증설 언급, 비공식 커뮤니티</li>
+            </ul>
+            <div class="a-callout"><strong>핵심 원칙:</strong> 부지를 확정한 기업은 버리고, 검토 중인 기업만 잡습니다. 골든타임 전략입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="faq-item" data-cat="ai">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">11</span>
+          <span class="faq-q-text">CRITICAL, URGENT 같은 신호 등급은 무엇인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            탐지된 신호를 점수화하여 4단계로 분류합니다.
+            <ul>
+              <li><strong>🔴 CRITICAL (85점+)</strong> — 2채널 이상 교차검증. IR 패키지 자동 생성 + 즉시 접촉 알림</li>
+              <li><strong>🟠 URGENT (70~84점)</strong> — 48시간 내 컨택 권고</li>
+              <li><strong>🟡 WATCH (55~69점)</strong> — 모니터링 강화</li>
+              <li><strong>🔵 MONITOR (40~54점)</strong> — 주간 보고 포함</li>
+            </ul>
+            모든 지표는 통합 대시보드에서 자동 집계됩니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="faq-item" data-cat="ai">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">12</span>
+          <span class="faq-q-text">AI 큐레이터가 만드는 뉴스레터는 어떤 내용인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            매주 1회 자동 제작·발송되는 산업단지 전문 뉴스레터입니다.
+            <ul>
+              <li>주요 산단 소식 및 분양 업데이트</li>
+              <li>세제·정책 변경 사항</li>
+              <li>기업 이전 성공 사례</li>
+              <li>정책 자금 및 지원 제도 안내</li>
+            </ul>
+            초기 500명에서 5,000명+로 확대할 계획이며, 열람·클릭·회신이 자동으로 수집되어 관심 기업의 CRM 우선순위가 갱신됩니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="faq-item" data-cat="ai">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">13</span>
+          <span class="faq-q-text">AI 클로저가 만드는 IR 패키지란 무엇인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            CRITICAL 등급 기업이 탐지되면 AI 클로저가 즉시 자동 생성하는 맞춤형 영업 자료입니다.
+            <ul>
+              <li>해당 기업 분석 (업종·규모·이전 이유 추정)</li>
+              <li>추천 산단 및 최적 필지 제안</li>
+              <li>세금감면 시뮬레이션</li>
+              <li>이전 비용편익 분석</li>
+            </ul>
+            담당자는 IR 패키지를 검토하고 승인하면 즉시 첫 접촉에 활용할 수 있습니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="faq-item" data-cat="ai">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">14</span>
+          <span class="faq-q-text">AI가 모든 것을 자동으로 결정하나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>아닙니다. "AI는 준비하고, 사람은 결정한다"가 핵심 원칙입니다.</strong>
+            <ul>
+              <li><strong>AI 전결</strong> — 데이터 수집, 신호 점수화, 보고서 생성, DB 갱신</li>
+              <li><strong>승인 후 실행</strong> — 대외 발송, 비용 지출</li>
+              <li><strong>사람이 직접 결정</strong> — 계약 관련 일체</li>
+            </ul>
+            대면 영업, 핵심 기업 PT, 계약 협상은 반드시 사람이 직접 수행합니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="faq-item" data-cat="process">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">15</span>
+          <span class="faq-q-text">회원 가입은 어떻게 하며, 회원 종류는 무엇이 있나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            상단 메뉴의 <strong>로그인 · 회원가입</strong>에서 1분 안에 가입할 수 있습니다. 회원 종류는 4가지입니다.
+            <ul>
+              <li><strong>기업 회원</strong> — 이전·증설 검토 기업. 맞춤 산단 추천·자료 요청·상담 예약</li>
+              <li><strong>시행사 회원</strong> — 산단 공급자. 자사 산단 분양 파이프라인 대시보드</li>
+              <li><strong>파트너 회원</strong> — 분양팀·중개 파트너. 실적·배분 현황 공유</li>
+              <li><strong>일반 회원</strong> — 뉴스레터 구독 및 기본 정보 열람</li>
+            </ul>
+            <div class="a-callout">회원 유형에 따라 접근 가능한 서비스가 다르며, AI 솔루션은 회원 등급과 무관하게 <strong>1:1 맞춤 서비스</strong>로만 제공됩니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 -->
+      <div class="faq-item" data-cat="contract">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">16</span>
+          <span class="faq-q-text">시행사에게 제공하는 대시보드 서비스는 무엇인가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            계약 시행사는 자사 산단의 <strong>실시간 분양·상담 파이프라인 대시보드</strong>에 접근할 수 있습니다.
+            <ul>
+              <li>분양 진행 현황 (단계별 기업 수, 전환율)</li>
+              <li>상담 기업 목록 및 관심도 지표</li>
+              <li>주간 리포트 자동 발행</li>
+              <li>마케팅 자동화 연동</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17 -->
+      <div class="faq-item" data-cat="contract">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">17</span>
+          <span class="faq-q-text">기업 DB 정보는 외부에 공개되나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>절대 공개하지 않습니다.</strong> 이것은 본 사업의 핵심 자산입니다.<br><br>
+            "어떤 기업이 이전을 검토 중인가"에 대한 정보는 내부 관리자 등급에서만 접근하며, 어떤 경우에도 외부에 노출되지 않습니다.<br><br>
+            플랫폼 회원 등급별 접근 권한:
+            <ul>
+              <li><strong>공개</strong> — 산단 비교분석, 세금감면 계산기, 분양 문의 폼</li>
+              <li><strong>기업 회원</strong> — 맞춤 산단 추천, 자료 요청, 상담 예약</li>
+              <li><strong>시행사 회원</strong> — 자사 산단 분양 파이프라인 대시보드</li>
+              <li><strong>내부 관리자</strong> — 기업 DB 현황 (내부 전용)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18 -->
+      <div class="faq-item" data-cat="process">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">18</span>
+          <span class="faq-q-text">상담 문의부터 계약까지 어떤 순서로 진행되나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            6단계 영업 프로세스로 진행됩니다.
+            <ul>
+              <li><strong>① 탐지</strong> — AI 스카우트가 CRITICAL 기업 포착 (또는 직접 문의 접수)</li>
+              <li><strong>② IR 생성</strong> — AI 클로저가 기업분석·추천 산단·세금감면 시뮬레이션 패키지 자동 생성</li>
+              <li><strong>③ 첫 접촉</strong> — 업종별 문안 AI 사전 준비, 승인 후 전화·이메일 발송</li>
+              <li><strong>④ 방문 브리핑</strong> — PT 자료·예상 Q&amp;A까지 시스템이 준비, 담당자 직접 진행</li>
+              <li><strong>⑤ 현장 안내·협의</strong> — 시행사 조건 조율, 금융·행정 지원 연계</li>
+              <li><strong>⑥ 계약·사후관리</strong> — 인허가 대행·세제 컨설팅 → 재계약·소개로 연결</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 19 -->
+      <div class="faq-item" data-cat="process">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">19</span>
+          <span class="faq-q-text">뉴스레터 구독과 웹 회원 가입을 하면 어떤 혜택이 있나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>뉴스레터 구독</strong> — 매주 산업단지 소식, 세제 변경, 이전 성공사례, 정책자금 정보를 무료로 수신합니다.<br><br>
+            <strong>기업 회원 가입</strong> — 아래 기능을 추가로 이용할 수 있습니다.
+            <ul>
+              <li>업종·규모·사유 기반 맞춤 산단 추천</li>
+              <li>상세 자료 요청 및 다운로드</li>
+              <li>온라인 상담 예약</li>
+            </ul>
+            <div class="a-callout">온라인에서의 모든 활동(클릭, 계산기 사용, 자료 요청)은 관심도 점수로 환산되어, 최적의 타이밍에 담당자가 직접 연락을 드립니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 20 -->
+      <div class="faq-item" data-cat="process">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">20</span>
+          <span class="faq-q-text">플랫폼은 언제 오픈하며, 지금 문의하면 어떻게 되나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>D+7 MVP 런칭을 목표로 준비 중입니다.</strong><br><br>
+            런칭 1주 플랜:
+            <ul>
+              <li><strong>Day 1~2</strong> — 브랜드 확정 + 웹사이트 골격 구축</li>
+              <li><strong>Day 3~4</strong> — 4개 산단 비교분석 데이터 + 세금감면 계산기 탑재</li>
+              <li><strong>Day 5</strong> — 기업 DB(1,000社+) 이관 + CRM 시트 연동</li>
+              <li><strong>Day 6</strong> — 뉴스레터 창간호 제작 + 수신자 500명 등록</li>
+              <li><strong>Day 7</strong> — 공개 런칭 + 안내 발송</li>
+            </ul>
+            <div class="a-callout">지금 문의하시면 런칭 즉시 맞춤 산단 비교분석 자료를 우선 제공드립니다. 하단 상담 문의 폼을 이용해 주세요.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /faq-list -->
+  </div>
+</section>
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="sec-eyebrow" style="background:rgba(201,162,39,.2);color:var(--gold2);">CONTACT</span>
+        <h2 class="sec-title t-h1">분양 문의 &amp; 상담 신청</h2>
+        <p>이전·증설을 검토 중이신가요? 업종과 희망 평수만 알려주시면 최적의 산업단지 비교분석 자료를 준비해 드립니다.</p>
+        <a href="mailto:bsj0431@gmail.com" class="email-link">✉ bsj0431@gmail.com</a>
+        <div style="margin-top:28px;font-size:13px;color:rgba(255,255,255,.5);">
+          <div style="margin-bottom:8px;"><strong style="color:var(--gold2);">초기 포트폴리오</strong></div>
+          천평 산업단지 · 대풍 산업단지<br>괴산 청안 산업단지 · 진천 메가폴리스
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <h3>상담 문의 양식</h3>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label for="f-company">회사명</label>
+            <input type="text" id="f-company" name="회사명" placeholder="㈜ 회사명" required>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label for="f-name">담당자</label>
+              <input type="text" id="f-name" name="담당자" placeholder="성함" required>
+            </div>
+            <div class="form-group">
+              <label for="f-tel">연락처</label>
+              <input type="tel" id="f-tel" name="연락처" placeholder="010-0000-0000" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-email">이메일 <span style="font-weight:500;color:rgba(255,255,255,.45)">(답변 수신용)</span></label>
+            <input type="email" id="f-email" name="email" placeholder="reply@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="f-type">문의 유형</label>
+            <select id="f-type" name="문의유형">
+              <option value="">선택해 주세요</option>
+              <option>산업용지 분양 문의 (기업 이전·증설)</option>
+              <option>시행사 플랫폼 계약 문의</option>
+              <option>산업단지 비교분석 자료 요청</option>
+              <option>AI 솔루션 1:1 맞춤 서비스 문의</option>
+              <option>뉴스레터 구독</option>
+              <option>기타 문의</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-msg">문의 내용</label>
+            <textarea id="f-msg" name="문의내용" placeholder="업종, 희망 평수, 이전 희망 시기 등을 적어 주시면 맞춤 자료를 준비해 드립니다."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="formBtn">상담 신청하기 →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <div style="max-width:1080px;margin:0 auto;">
+    <div style="margin-bottom:14px;">
+      <svg width="28" height="28" viewBox="0 0 240 240" style="vertical-align:middle;margin-right:8px;" aria-hidden="true">
+        <circle cx="120" cy="120" r="112" fill="none" stroke="#c9a227" stroke-width="7"/>
+        <circle cx="120" cy="120" r="60" fill="none" stroke="rgba(230,200,106,.8)" stroke-width="4"/>
+        <circle cx="120" cy="120" r="24" fill="#c9a227"/>
+        <circle cx="120" cy="120" r="9" fill="#0d3b2b"/>
+        <path d="M28 208 L98 134" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
+        <path d="M84 132 L122 118 L106 156 Z" fill="#ffffff"/>
+      </svg>
+      <b>LEXINGTON AMES KOREA — 렉싱턴에임즈코리아</b>
+    </div>
+    <div style="margin-bottom:8px;">기업을 가장 풍요로운 입지로, 정확하게 안내합니다 | AI 기반 양방향 산업단지 분양 플랫폼 | 산단분양.com</div>
+    <div>
+      <a href="mailto:bsj0431@gmail.com" style="color:var(--gold2);">bsj0431@gmail.com</a>
+      &nbsp;·&nbsp; 충북 음성·진천·괴산권 4개 산업단지
+      &nbsp;·&nbsp; © 2026 렉싱턴에임즈코리아
+      &nbsp;·&nbsp; <a href="#admin" style="color:rgba(255,255,255,.35);" onclick="openAdmin()">관리자</a>
+    </div>
+  </div>
+</footer>
+
+</main></div><!-- /layout -->
+
+<!-- Back to Top -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<!-- ── TOOL MODAL ── -->
+<div class="modal-back" id="toolModal" onclick="if(event.target===this)closeModal('toolModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="m-num" id="tmNum">01</span>
+      <h3 id="tmTitle"></h3>
+      <button class="modal-close" onclick="closeModal('toolModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-visual" id="tmVisual"></div>
+      <p class="modal-desc" id="tmDesc"></p>
+      <div class="modal-note">⚠ 미리보기 화면입니다. 본 AI 솔루션은 공개 서비스가 아니라 <strong>1:1 맞춤 서비스</strong>로만 제공됩니다. 도입 상담은 분양 문의로 접수해 주세요.</div>
+      <div class="modal-links">
+        <a href="#contact" class="gold" onclick="closeModal('toolModal')">1:1 도입 상담 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PARK MODAL ── -->
+<div class="modal-back" id="parkModal" onclick="if(event.target===this)closeModal('parkModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="m-num" id="pmNum">01</span>
+      <h3 id="pmTitle"></h3>
+      <button class="modal-close" onclick="closeModal('parkModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-visual" id="pmVisual"></div>
+      <table class="spec-table" id="pmSpec"></table>
+      <p class="modal-desc" id="pmDesc"></p>
+      <div class="modal-links" id="pmLinks"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── AUTH MODAL ── -->
+<div class="modal-back" id="authModal" onclick="if(event.target===this)closeModal('authModal')">
+  <div class="modal" style="max-width:440px;">
+    <div class="modal-head">
+      <h3 id="authTitle">로그인 · 회원가입</h3>
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">로그인</button>
+        <button class="auth-tab" id="tabJoin" onclick="switchAuth('join')">회원가입</button>
+      </div>
+      <form class="auth-form" id="authForm" onsubmit="submitAuth(event)">
+        <div class="form-group" id="agName" style="display:none;">
+          <label>이름</label>
+          <input type="text" id="a-name" placeholder="성함">
+        </div>
+        <div class="form-group">
+          <label>이메일</label>
+          <input type="email" id="a-email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label>비밀번호</label>
+          <input type="password" id="a-pw" placeholder="••••••••" required minlength="4">
+        </div>
+        <div class="form-group" id="agType" style="display:none;">
+          <label>회원 종류</label>
+          <select id="a-type">
+            <option value="기업 회원">기업 회원 — 이전·증설 검토 기업</option>
+            <option value="시행사 회원">시행사 회원 — 산단 공급자</option>
+            <option value="파트너 회원">파트너 회원 — 분양팀·중개</option>
+            <option value="일반 회원">일반 회원 — 뉴스레터·정보 열람</option>
+          </select>
+        </div>
+        <div class="form-group" id="agPhone" style="display:none;">
+          <label>핸드폰 번호</label>
+          <input type="tel" id="a-phone" placeholder="010-0000-0000">
+        </div>
+        <div class="form-group" id="agCompany" style="display:none;">
+          <label>회사명 <span style="font-weight:500;color:var(--muted)">(선택)</span></label>
+          <input type="text" id="a-company" placeholder="㈜ 회사명">
+        </div>
+        <button type="submit" class="form-submit" id="authBtn">로그인</button>
+        <div class="auth-msg" id="authMsg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADMIN VIEW ── -->
+<div id="adminView">
+  <div id="admLogin">
+    <svg width="54" height="54" viewBox="0 0 240 240" aria-hidden="true">
+      <circle cx="120" cy="120" r="112" fill="none" stroke="#c9a227" stroke-width="9"/>
+      <circle cx="120" cy="120" r="60" fill="none" stroke="rgba(230,200,106,.7)" stroke-width="5"/>
+      <circle cx="120" cy="120" r="24" fill="#c9a227"/>
+    </svg>
+    <h2>관리자 모드</h2>
+    <p>접속 통계 · 활동 로그 · 문의 관리</p>
+    <input type="password" id="admPw" placeholder="비밀번호" onkeydown="if(event.key==='Enter')admAuth()">
+    <button class="form-submit" style="margin-top:14px;" onclick="admAuth()">접속</button>
+    <div class="auth-msg err" id="admMsg" style="text-align:center;"></div>
+    <button class="adm-btn" style="margin-top:14px;" onclick="closeAdmin()">← 사이트로 돌아가기</button>
+  </div>
+  <div class="adm-wrap" id="admDash" style="display:none;">
+    <div class="adm-head">
+      <h2>📊 LEXINGTON <span>AMES</span> 관리자 대시보드</h2>
+      <div class="adm-btns">
+        <button class="adm-btn" onclick="renderAdmin()">🔄 새로고침</button>
+        <button class="adm-btn" onclick="admExport()">⬇ 데이터 내보내기</button>
+        <button class="adm-btn danger" onclick="admReset()">🗑 통계 초기화</button>
+        <button class="adm-btn" onclick="closeAdmin()">✕ 닫기</button>
+      </div>
+    </div>
+    <div class="adm-cards">
+      <div class="adm-card"><div class="n" id="stToday">0</div><div class="l">오늘 방문</div></div>
+      <div class="adm-card"><div class="n" id="stTotal">0</div><div class="l">누적 방문</div></div>
+      <div class="adm-card"><div class="n" id="stTools">0</div><div class="l">AI 솔루션 클릭</div></div>
+      <div class="adm-card"><div class="n" id="stInq">0</div><div class="l">문의 접수</div></div>
+      <div class="adm-card"><div class="n" id="stUsers">0</div><div class="l">가입 회원</div></div>
+    </div>
+    <div class="adm-panel">
+      <h3>최근 14일 방문 추이</h3>
+      <div id="admChart"></div>
+    </div>
+    <div class="adm-panel">
+      <h3>AI 솔루션 인기 순위 (클릭 수)</h3>
+      <div id="admToolRank"></div>
+    </div>
+    <div class="adm-panel">
+      <h3>가입 회원 목록</h3>
+      <div style="overflow-x:auto;"><table class="adm-table" id="admUserTable"></table></div>
+    </div>
+    <div class="adm-panel">
+      <h3>문의 접수 내역 (이 브라우저 기록)</h3>
+      <div style="overflow-x:auto;"><table class="adm-table" id="admInqTable"></table></div>
+    </div>
+    <div class="adm-panel">
+      <h3>최근 활동 로그</h3>
+      <div style="overflow-x:auto;"><table class="adm-table" id="admLogTable"></table></div>
+    </div>
+    <p style="font-size:11.5px;color:rgba(255,255,255,.35);line-height:1.7;">
+      ※ 본 통계는 정적 사이트 특성상 <b>브라우저(localStorage) 단위</b>로 기록됩니다. 전체 방문자 트래픽 통계는 Cloudflare 대시보드 → Workers &amp; Pages → shiny-surf-fdae → Metrics에서 확인할 수 있으며, 문의 메일 원본은 bsj0431@gmail.com 수신함에 보관됩니다.
+    </p>
+  </div>
+</div>
+<script>
+/* ═══════════ SOUND ENGINE (Web Audio) ═══════════ */
+let AC = null, soundOn = localStorage.getItem('la_sound') !== 'off';
+let introPlayed = false, introTimer = [];
+function ac() { if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)(); return AC; }
+function setSoundBtn() {
+  const b = document.getElementById('soundBtn');
+  b.textContent = soundOn ? '🔊' : '🔇';
+  b.classList.toggle('playing', soundOn && !introPlayed);
+}
+function toggleSound() {
+  soundOn = !soundOn;
+  localStorage.setItem('la_sound', soundOn ? 'on' : 'off');
+  if (!soundOn) { stopIntro(); speechSynthesis.cancel(); }
+  else if (!introPlayed) tryIntro();
+  setSoundBtn();
+}
+/* violin-ish note */
+function vNote(t, freq, dur, vol) {
+  const c = ac();
+  const o1 = c.createOscillator(), o2 = c.createOscillator();
+  o1.type = 'sawtooth'; o2.type = 'sawtooth';
+  o1.frequency.value = freq; o2.frequency.value = freq * 1.004;
+  const vib = c.createOscillator(), vibG = c.createGain();
+  vib.frequency.value = 5.6; vibG.gain.value = freq * .006;
+  vib.connect(vibG); vibG.connect(o1.frequency); vibG.connect(o2.frequency);
+  const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2600; f.Q.value = .8;
+  const g = c.createGain();
+  g.gain.setValueAtTime(0, t);
+  g.gain.linearRampToValueAtTime(vol, t + .035);
+  g.gain.setValueAtTime(vol * .85, t + dur * .7);
+  g.gain.linearRampToValueAtTime(0.0001, t + dur);
+  o1.connect(f); o2.connect(f); f.connect(g); g.connect(master());
+  o1.start(t); o2.start(t); vib.start(t);
+  o1.stop(t + dur + .05); o2.stop(t + dur + .05); vib.stop(t + dur + .05);
+}
+/* low pad for grandeur */
+function pad(t, freq, dur, vol) {
+  const c = ac();
+  const o = c.createOscillator(); o.type = 'sawtooth'; o.frequency.value = freq;
+  const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 500;
+  const g = c.createGain();
+  g.gain.setValueAtTime(0, t);
+  g.gain.linearRampToValueAtTime(vol, t + 1.2);
+  g.gain.setValueAtTime(vol, t + dur - 1.5);
+  g.gain.linearRampToValueAtTime(0.0001, t + dur);
+  o.connect(f); f.connect(g); g.connect(master());
+  o.start(t); o.stop(t + dur + .1);
+}
+let _master = null;
+function master() {
+  if (_master) return _master;
+  const c = ac();
+  _master = c.createGain(); _master.gain.value = .9;
+  const dly = c.createDelay(); dly.delayTime.value = .16;
+  const fb = c.createGain(); fb.gain.value = .22;
+  const wet = c.createGain(); wet.gain.value = .18;
+  _master.connect(c.destination);
+  _master.connect(dly); dly.connect(fb); fb.connect(dly); dly.connect(wet); wet.connect(c.destination);
+  return _master;
+}
+/* Paganini Caprice No.24 theme (A minor) — ~15s synthesized */
+function playIntro() {
+  const c = ac(); if (c.state === 'suspended') c.resume();
+  const N = { A3:220, B3:246.94, C4:261.63, D4:293.66, E4:329.63, F4:349.23, G4:392, A4:440, B4:493.88, C5:523.25, D5:587.33, E5:659.25, F5:698.46, G5:783.99, A5:880, B5:987.77, C6:1046.5, E6:1318.5 };
+  const u = .16; /* sixteenth ≈ 96bpm */
+  const theme = [
+    ['A4',2],['C5',1],['B4',1],['A4',2],['E5',2],
+    ['E5',2],['F5',1],['E5',1],['D5',2],['F5',2],
+    ['F5',2],['G5',1],['F5',1],['E5',2],['G5',2],
+    ['G5',2],['A5',1],['G5',1],['F5',2],['E5',2],
+    ['D5',2],['F5',1],['E5',1],['D5',2],['C5',2],
+    ['B4',2],['D5',1],['C5',1],['B4',2],['A4',2],
+    ['B4',1],['C5',1],['D5',1],['E5',1],['F5',2],['D5',2],
+    ['E5',2],['B4',2],['A4',4]
+  ];
+  let t = c.currentTime + .15;
+  /* grand pad underneath: Am — A2+E3, then E, back to Am */
+  pad(t, 110, 6.5, .10); pad(t, 164.81, 6.5, .07);
+  pad(t + 6.5, 123.47, 3.2, .09); pad(t + 6.5, 164.81, 3.2, .06);
+  pad(t + 9.7, 110, 5.5, .10); pad(t + 9.7, 164.81, 5.5, .07);
+  /* pass 1 */
+  theme.forEach(n => { vNote(t, N[n[0]], n[1] * u, .16); t += n[1] * u; });
+  /* pass 2 — repeat theme an octave up, brighter */
+  theme.forEach(n => { vNote(t, N[n[0]] * 2 > 1400 ? N[n[0]] : N[n[0]] * 2, n[1] * u, .13); t += n[1] * u; });
+  const total = (t - c.currentTime) + .5;
+  introTimer.push(setTimeout(() => { introPlayed = true; setSoundBtn(); }, Math.min(total, 16) * 1000));
+}
+function stopIntro() {
+  introTimer.forEach(clearTimeout);
+  if (AC) { AC.close(); AC = null; _master = null; }
+  introPlayed = true; setSoundBtn();
+}
+function tryIntro() {
+  if (introPlayed || !soundOn) return;
+  try {
+    playIntro(); introPlayed = true; setSoundBtn();
+    toast('🎻 파가니니 카프리스 24번 — 15초 인트로 재생 중');
+    setTimeout(setSoundBtn, 16000);
+  } catch (e) {}
+}
+/* autoplay attempt + fallback to first interaction */
+window.addEventListener('load', () => {
+  setSoundBtn();
+  if (!soundOn) return;
+  const c = ac();
+  if (c.state === 'running') { tryIntro(); }
+  else {
+    const once = () => { tryIntro(); document.removeEventListener('pointerdown', once); document.removeEventListener('keydown', once); };
+    document.addEventListener('pointerdown', once); document.addEventListener('keydown', once);
+    toast('🎻 화면을 클릭하면 웅장한 인트로 사운드가 재생됩니다');
+  }
+});
+/* UI sfx */
+function sfx(type) {
+  if (!soundOn) return;
+  try {
+    const c = ac(); if (c.state === 'suspended') c.resume();
+    const t = c.currentTime;
+    const o = c.createOscillator(), g = c.createGain();
+    if (type === 'click') { o.type = 'sine'; o.frequency.setValueAtTime(660, t); o.frequency.exponentialRampToValueAtTime(990, t + .07); g.gain.setValueAtTime(.12, t); g.gain.exponentialRampToValueAtTime(.001, t + .12); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + .14); }
+    else if (type === 'open') { o.type = 'triangle'; o.frequency.setValueAtTime(440, t); o.frequency.exponentialRampToValueAtTime(880, t + .18); g.gain.setValueAtTime(.14, t); g.gain.exponentialRampToValueAtTime(.001, t + .3); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + .32); }
+    else if (type === 'ok') { [523.25, 659.25, 783.99].forEach((f, i) => { const o2 = c.createOscillator(), g2 = c.createGain(); o2.type = 'sine'; o2.frequency.value = f; g2.gain.setValueAtTime(.001, t + i * .09); g2.gain.linearRampToValueAtTime(.14, t + i * .09 + .03); g2.gain.exponentialRampToValueAtTime(.001, t + i * .09 + .35); o2.connect(g2); g2.connect(c.destination); o2.start(t + i * .09); o2.stop(t + i * .09 + .4); }); }
+  } catch (e) {}
+}
+
+/* ═══════════ VOICE GUIDANCE ═══════════ */
+let koVoice = null;
+function pickVoice() {
+  const vs = speechSynthesis.getVoices();
+  koVoice = vs.find(v => v.lang.startsWith('ko') && /Heami|Yuna|Google/.test(v.name)) || vs.find(v => v.lang.startsWith('ko')) || null;
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text) {
+  if (!soundOn || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ko-KR'; if (koVoice) u.voice = koVoice;
+  u.rate = 1.08; u.pitch = 1.02; u.volume = .9;
+  speechSynthesis.speak(u);
+}
+function navVoice(name) { sfx('click'); speak(name + ' 섹션으로 이동합니다'); logEvt('nav', name); }
+</script>
+<script>
+/* ═══════════ AI TOOLS DATA + MODAL ═══════════ */
+const SVGW = 'width="100%" height="220" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg"';
+function svgFrame(inner) { return '<svg ' + SVGW + '>' + inner + '</svg>'; }
+const grid = '<defs><pattern id="gp" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" fill="none" stroke="#d8d2c4" stroke-width=".6"/></pattern></defs><rect width="640" height="220" fill="#faf8f2"/><rect width="640" height="220" fill="url(#gp)"/>';
+const TOOLS = {
+  1: { name: '이전기업 자동 탐지 레이더', ico: '📡',
+    desc: '<strong>AI 스카우트</strong>가 공공 인허가(ALPHA)·금융 공시(BETA)·뉴스 채용(GAMMA) 3개 채널을 매일 순찰하여, 공장 이전·증설을 검토 중인 기업을 공식 발표 대비 최대 9개월 먼저 포착합니다. 신호는 점수화되어 CRITICAL·URGENT·WATCH·MONITOR 4등급으로 자동 분류됩니다.',
+    voice: '이전기업 자동 탐지 레이더입니다. 이전을 검토하는 기업을 최대 9개월 먼저 찾아냅니다.',
+    svg: svgFrame(grid + '<circle cx="320" cy="110" r="95" fill="none" stroke="#155a42" stroke-width="1.5" opacity=".5"/><circle cx="320" cy="110" r="65" fill="none" stroke="#155a42" stroke-width="1.5" opacity=".6"/><circle cx="320" cy="110" r="35" fill="none" stroke="#155a42" stroke-width="1.5" opacity=".7"/><circle cx="320" cy="110" r="8" fill="#c9a227"/><path d="M320 110 L400 45" stroke="#c9a227" stroke-width="2"/><path d="M320 110 L320 15 A95 95 0 0 1 401 63 Z" fill="#c9a227" opacity=".18"/><circle cx="272" cy="78" r="7" fill="#b3372f"/><text x="272" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#b3372f">CRITICAL</text><circle cx="378" cy="140" r="6" fill="#e07820"/><text x="378" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#e07820">URGENT</text><circle cx="250" cy="150" r="5" fill="#c8b820"/><circle cx="360" cy="70" r="5" fill="#2b5d8a"/><text x="60" y="35" font-size="11" font-weight="800" fill="#155a42">SIGNAL RADAR</text><text x="60" y="52" font-size="9" fill="#5a6b62">ALPHA · BETA · GAMMA 채널 스캔</text>') },
+  2: { name: '주간 신호 자동 보고서', ico: '📰',
+    desc: '탐지된 모든 신호를 주 1회 <strong>보고서로 자동 편집·발행</strong>합니다. 신규 CRITICAL 기업, 등급 변동, 채널별 통계, 추천 액션이 한 장에 정리되어 월요일 아침 메일함에 도착합니다.',
+    voice: '주간 신호 자동 보고서입니다. 한 주의 탐지 결과를 자동으로 정리해 발행합니다.',
+    svg: svgFrame(grid + '<rect x="200" y="18" width="240" height="185" rx="8" fill="#fff" stroke="#d8d2c4"/><rect x="200" y="18" width="240" height="36" rx="8" fill="#0d3b2b"/><text x="320" y="41" text-anchor="middle" font-size="11" font-weight="800" fill="#e6c86a">WEEKLY SIGNAL REPORT</text><rect x="216" y="66" width="130" height="9" rx="4" fill="#c9a227"/><rect x="216" y="84" width="208" height="6" rx="3" fill="#d8d2c4"/><rect x="216" y="96" width="185" height="6" rx="3" fill="#d8d2c4"/><rect x="216" y="115" width="60" height="34" rx="5" fill="#fdf0ef"/><rect x="290" y="115" width="60" height="34" rx="5" fill="#fdf4e7"/><rect x="364" y="115" width="60" height="34" rx="5" fill="#edf3f8"/><text x="246" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#b3372f">3</text><text x="320" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#e07820">7</text><text x="394" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#2b5d8a">21</text><rect x="216" y="162" width="208" height="6" rx="3" fill="#d8d2c4"/><rect x="216" y="174" width="160" height="6" rx="3" fill="#d8d2c4"/>') },
+  3: { name: '세금감면 계산기', ico: '🧮',
+    desc: '업종·투자 규모·입주 산단을 입력하면 <strong>법인세·취득세·재산세 예상 감면액</strong>을 즉시 계산합니다. 기회발전특구(진천 메가폴리스)와 일반 산단의 감면 차이를 한눈에 비교할 수 있습니다.',
+    voice: '세금감면 계산기입니다. 업종과 투자 규모를 입력하면 예상 감면액을 즉시 계산합니다.',
+    svg: svgFrame(grid + '<rect x="150" y="25" width="200" height="170" rx="10" fill="#0d3b2b"/><rect x="166" y="42" width="168" height="34" rx="5" fill="#071e15"/><text x="322" y="65" text-anchor="end" font-size="16" font-weight="800" fill="#e6c86a">₩ 428,000,000</text><g fill="#155a42"><rect x="166" y="88" width="36" height="24" rx="4"/><rect x="210" y="88" width="36" height="24" rx="4"/><rect x="254" y="88" width="36" height="24" rx="4"/><rect x="298" y="88" width="36" height="24" rx="4"/><rect x="166" y="120" width="36" height="24" rx="4"/><rect x="210" y="120" width="36" height="24" rx="4"/><rect x="254" y="120" width="36" height="24" rx="4"/><rect x="166" y="152" width="80" height="24" rx="4"/></g><rect x="298" y="120" width="36" height="56" rx="4" fill="#c9a227"/><rect x="254" y="152" width="36" height="24" rx="4" fill="#155a42"/><g transform="translate(380,40)"><text font-size="11" font-weight="800" fill="#155a42">감면 내역</text><rect y="14" width="170" height="8" rx="4" fill="#e3f0e8"/><rect y="14" width="150" height="8" rx="4" fill="#2e7d5b"/><text y="36" font-size="9" fill="#5a6b62">법인세 100% (5년)</text><rect y="46" width="170" height="8" rx="4" fill="#e3f0e8"/><rect y="46" width="110" height="8" rx="4" fill="#4a9e7a"/><text y="68" font-size="9" fill="#5a6b62">취득세 감면</text><rect y="78" width="170" height="8" rx="4" fill="#e3f0e8"/><rect y="78" width="80" height="8" rx="4" fill="#c9a227"/><text y="100" font-size="9" fill="#5a6b62">재산세 감면</text></g>') },
+  4: { name: '전국 산업단지 비교 DB', ico: '🗂',
+    desc: '전국 산단의 분양가·세제·용수·전력·교통·업종 조건을 <strong>표준 스키마</strong>로 정리한 데이터베이스입니다. 기업 조건을 입력하면 적합 산단이 점수순으로 정렬됩니다.',
+    voice: '전국 산업단지 비교 데이터베이스입니다. 동일 기준으로 산단을 점수화해 비교합니다.',
+    svg: svgFrame(grid + '<rect x="60" y="30" width="520" height="30" rx="5" fill="#0d3b2b"/><text x="80" y="50" font-size="10" font-weight="700" fill="#fff">산업단지</text><text x="240" y="50" font-size="10" font-weight="700" fill="#fff">분양가</text><text x="340" y="50" font-size="10" font-weight="700" fill="#fff">세제</text><text x="430" y="50" font-size="10" font-weight="700" fill="#fff">교통</text><text x="520" y="50" font-size="10" font-weight="700" fill="#fff">적합도</text><g font-size="10" fill="#3d4f46"><rect x="60" y="66" width="520" height="28" fill="#f7ecc9"/><text x="80" y="84" font-weight="700">진천 메가폴리스</text><text x="240" y="84">낮음</text><text x="340" y="84">특구 최대</text><text x="430" y="84">◎</text><text x="520" y="84" font-weight="800" fill="#c9a227">96점</text><rect x="60" y="98" width="520" height="28" fill="#fff"/><text x="80" y="116" font-weight="700">대풍 산업단지</text><text x="240" y="116">중간</text><text x="340" y="116">일반</text><text x="430" y="116">◎</text><text x="520" y="116" font-weight="800" fill="#155a42">91점</text><rect x="60" y="130" width="520" height="28" fill="#fff"/><text x="80" y="148" font-weight="700">천평 산업단지</text><text x="240" y="148">최저</text><text x="340" y="148">일반</text><text x="430" y="148">○</text><text x="520" y="148" font-weight="800" fill="#155a42">88점</text><rect x="60" y="162" width="520" height="28" fill="#fff"/><text x="80" y="180" font-weight="700">괴산 청안</text><text x="240" y="180">중간</text><text x="340" y="180">일반</text><text x="430" y="180">○</text><text x="520" y="180" font-weight="800" fill="#5a6b62">82점</text></g>') },
+  5: { name: '입지 분석 지도', ico: '🗺',
+    desc: 'IC 거리·경기권 소요시간·배후도시·용수/전력 인프라를 <strong>지도 위에 시각화</strong>합니다. 후보 산단 간 입지 조건을 공간적으로 비교할 수 있습니다.',
+    voice: '입지 분석 지도입니다. 교통과 인프라 조건을 지도 위에서 비교합니다.',
+    svg: svgFrame(grid + '<path d="M80 190 Q160 120 240 140 T420 90 T590 60" fill="none" stroke="#2b5d8a" stroke-width="3" opacity=".5"/><path d="M60 90 Q180 100 300 80 T560 130" fill="none" stroke="#5a6b62" stroke-width="2.5" opacity=".4"/><circle cx="240" cy="140" r="26" fill="#c9a227" opacity=".2"/><circle cx="240" cy="140" r="10" fill="#c9a227"/><text x="240" y="182" text-anchor="middle" font-size="10" font-weight="800" fill="#7a5f10">대풍 (대소IC 3분)</text><circle cx="420" cy="90" r="22" fill="#155a42" opacity=".2"/><circle cx="420" cy="90" r="9" fill="#155a42"/><text x="420" y="128" text-anchor="middle" font-size="10" font-weight="800" fill="#155a42">진천 메가폴리스</text><circle cx="150" cy="70" r="8" fill="#0d3b2b"/><text x="150" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#0d3b2b">천평</text><circle cx="530" cy="150" r="8" fill="#2e7d5b"/><text x="530" y="178" text-anchor="middle" font-size="10" font-weight="700" fill="#2e7d5b">괴산 청안</text><rect x="60" y="20" width="150" height="22" rx="11" fill="#0d3b2b"/><text x="135" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#e6c86a">경기권 60분 커버리지</text>') },
+  6: { name: 'IR 패키지 자동 생성', ico: '📑',
+    desc: 'CRITICAL 기업 탐지 즉시 <strong>기업 분석 + 추천 필지 + 세금감면 시뮬레이션 + 비용편익 분석</strong>이 담긴 맞춤 제안서를 자동 생성합니다. 검토·승인만 하면 바로 첫 접촉에 사용할 수 있습니다.',
+    voice: 'IR 패키지 자동 생성기입니다. 맞춤 제안서를 즉시 만들어 드립니다.',
+    svg: svgFrame(grid + '<rect x="235" y="30" width="185" height="165" rx="7" fill="#fff" stroke="#d8d2c4" transform="rotate(-4 320 110)"/><rect x="220" y="25" width="185" height="170" rx="7" fill="#fff" stroke="#d8d2c4" transform="rotate(2 320 110)"/><rect x="228" y="22" width="185" height="172" rx="7" fill="#fff" stroke="#0d3b2b" stroke-width="1.5"/><rect x="228" y="22" width="185" height="40" rx="7" fill="#0d3b2b"/><text x="320" y="47" text-anchor="middle" font-size="10" font-weight="800" fill="#e6c86a">CUSTOM IR PACKAGE</text><rect x="244" y="76" width="100" height="8" rx="4" fill="#c9a227"/><rect x="244" y="94" width="152" height="5" rx="2" fill="#d8d2c4"/><rect x="244" y="104" width="140" height="5" rx="2" fill="#d8d2c4"/><rect x="244" y="122" width="70" height="42" rx="5" fill="#e3f0e8"/><rect x="322" y="122" width="70" height="42" rx="5" fill="#f7ecc9"/><text x="279" y="147" text-anchor="middle" font-size="9" font-weight="700" fill="#155a42">추천 필지</text><text x="357" y="147" text-anchor="middle" font-size="9" font-weight="700" fill="#7a5f10">감면 시뮬</text><rect x="244" y="172" width="152" height="5" rx="2" fill="#d8d2c4"/><circle cx="180" cy="60" r="16" fill="#b3372f"/><text x="180" y="65" text-anchor="middle" font-size="9" font-weight="800" fill="#fff">신규</text><path d="M196 60 L226 50" stroke="#b3372f" stroke-width="2" stroke-dasharray="4 3"/>') },
+  7: { name: '뉴스레터 자동 발행', ico: '✉️',
+    desc: '산단 소식·세제 변경·성공 사례·정책자금 정보를 <strong>주 1회 자동 기획·집필·발송</strong>합니다. 열람·클릭 데이터가 다시 CRM 관심도 점수로 쌓입니다.',
+    voice: '뉴스레터 자동 발행 시스템입니다. 매주 산업단지 소식을 자동으로 만들어 보냅니다.',
+    svg: svgFrame(grid + '<rect x="180" y="40" width="280" height="150" rx="10" fill="#fff" stroke="#d8d2c4"/><path d="M180 60 L320 140 L460 60" fill="none" stroke="#c9a227" stroke-width="3"/><rect x="180" y="40" width="280" height="34" rx="10" fill="#0d3b2b"/><text x="320" y="62" text-anchor="middle" font-size="10" font-weight="800" fill="#e6c86a">LEXINGTON AMES WEEKLY</text><rect x="200" y="120" width="160" height="7" rx="3" fill="#d8d2c4"/><rect x="200" y="136" width="240" height="5" rx="2" fill="#e8e2d4"/><rect x="200" y="148" width="220" height="5" rx="2" fill="#e8e2d4"/><rect x="200" y="164" width="90" height="14" rx="7" fill="#c9a227"/><g><circle cx="120" cy="80" r="4" fill="#155a42"/><circle cx="100" cy="120" r="4" fill="#155a42"/><circle cx="130" cy="160" r="4" fill="#155a42"/><path d="M124 80 L180 95 M104 120 L180 118 M134 158 L180 140" stroke="#155a42" stroke-width="1.5" opacity=".5"/></g><g><circle cx="520" cy="80" r="4" fill="#2e7d5b"/><circle cx="540" cy="120" r="4" fill="#2e7d5b"/><circle cx="510" cy="160" r="4" fill="#2e7d5b"/><path d="M516 82 L460 95 M536 120 L460 118 M506 158 L460 140" stroke="#2e7d5b" stroke-width="1.5" opacity=".5"/></g>') },
+  8: { name: 'CRM 영업 파이프라인', ico: '📋',
+    desc: '탐지→접촉→상담→현장→계약 단계를 <strong>칸반 보드로 자동 관리</strong>합니다. 미팅 후 팔로업 문자·메일 초안까지 AI 클로저가 준비합니다.',
+    voice: 'CRM 영업 파이프라인입니다. 탐지부터 계약까지 모든 단계를 자동으로 관리합니다.',
+    svg: svgFrame(grid + '<g font-size="9" font-weight="800"><rect x="55" y="30" width="120" height="24" rx="5" fill="#edf3f8"/><text x="115" y="46" text-anchor="middle" fill="#2b5d8a">탐지 12</text><rect x="190" y="30" width="120" height="24" rx="5" fill="#fdf4e7"/><text x="250" y="46" text-anchor="middle" fill="#e07820">접촉 7</text><rect x="325" y="30" width="120" height="24" rx="5" fill="#fdfce7"/><text x="385" y="46" text-anchor="middle" fill="#8a7d10">상담 4</text><rect x="460" y="30" width="120" height="24" rx="5" fill="#e3f0e8"/><text x="520" y="46" text-anchor="middle" fill="#155a42">계약 2</text></g><g fill="#fff" stroke="#d8d2c4"><rect x="55" y="62" width="120" height="34" rx="5"/><rect x="55" y="102" width="120" height="34" rx="5"/><rect x="55" y="142" width="120" height="34" rx="5"/><rect x="190" y="62" width="120" height="34" rx="5"/><rect x="190" y="102" width="120" height="34" rx="5"/><rect x="325" y="62" width="120" height="34" rx="5"/><rect x="460" y="62" width="120" height="34" rx="5" stroke="#c9a227" stroke-width="2"/></g><g fill="#d8d2c4"><rect x="66" y="72" width="70" height="5" rx="2"/><rect x="66" y="83" width="50" height="5" rx="2"/><rect x="66" y="112" width="70" height="5" rx="2"/><rect x="66" y="123" width="50" height="5" rx="2"/><rect x="66" y="152" width="70" height="5" rx="2"/><rect x="201" y="72" width="70" height="5" rx="2"/><rect x="201" y="112" width="70" height="5" rx="2"/><rect x="336" y="72" width="70" height="5" rx="2"/><rect x="471" y="72" width="70" height="5" rx="2"/></g><path d="M180 79 L186 79 M315 79 L321 79 M450 79 L456 79" stroke="#c9a227" stroke-width="2"/>') },
+  9: { name: '시행사 분양 대시보드', ico: '📊',
+    desc: '계약 시행사에게 제공되는 <strong>실시간 분양·상담 현황판</strong>입니다. 단계별 기업 수, 전환율, 관심도 지표, 주간 리포트가 자동 집계됩니다.',
+    voice: '시행사 분양 대시보드입니다. 분양 현황을 실시간으로 보여 드립니다.',
+    svg: svgFrame(grid + '<rect x="50" y="25" width="540" height="170" rx="10" fill="#0d3b2b"/><text x="70" y="52" font-size="11" font-weight="800" fill="#e6c86a">분양 현황 DASHBOARD</text><g><rect x="70" y="66" width="110" height="50" rx="6" fill="rgba(255,255,255,.08)"/><text x="125" y="88" text-anchor="middle" font-size="15" font-weight="800" fill="#e6c86a">68%</text><text x="125" y="105" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.6)">분양률</text><rect x="190" y="66" width="110" height="50" rx="6" fill="rgba(255,255,255,.08)"/><text x="245" y="88" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">23</text><text x="245" y="105" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.6)">상담 진행</text><rect x="310" y="66" width="110" height="50" rx="6" fill="rgba(255,255,255,.08)"/><text x="365" y="88" text-anchor="middle" font-size="15" font-weight="800" fill="#4a9e7a">+5</text><text x="365" y="105" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.6)">주간 신규</text></g><g transform="translate(70,130)"><rect width="24" height="42" y="8" fill="#2e7d5b" rx="3"/><rect x="34" width="24" height="50" y="0" fill="#2e7d5b" rx="3"/><rect x="68" width="24" height="34" y="16" fill="#2e7d5b" rx="3"/><rect x="102" width="24" height="44" y="6" fill="#c9a227" rx="3"/><rect x="136" width="24" height="50" y="0" fill="#c9a227" rx="3"/></g><path d="M320 165 L360 145 L400 155 L440 132 L480 138 L520 120" fill="none" stroke="#e6c86a" stroke-width="2.5"/><circle cx="520" cy="120" r="4" fill="#e6c86a"/>') },
+  10: { name: 'AI 상담 어시스턴트', ico: '🤖',
+    desc: '기업 담당자의 질문에 <strong>산단 조건·세제·입주 절차를 24시간 응대</strong>하는 상담 AI입니다. 상담 내용은 자동으로 관심도 점수와 CRM 기록으로 연결됩니다.',
+    voice: 'AI 상담 어시스턴트입니다. 24시간 산업단지 상담을 도와드립니다.',
+    svg: svgFrame(grid + '<rect x="150" y="30" width="340" height="160" rx="12" fill="#fff" stroke="#d8d2c4"/><rect x="150" y="30" width="340" height="30" rx="12" fill="#0d3b2b"/><circle cx="172" cy="45" r="7" fill="#4a9e7a"/><text x="188" y="49" font-size="9" font-weight="700" fill="#fff">AI 상담 — 온라인</text><rect x="170" y="76" width="180" height="26" rx="13" fill="#f2ede0"/><text x="184" y="93" font-size="9" fill="#3d4f46">진천 쪽 세금 감면이 궁금해요</text><rect x="240" y="112" width="230" height="38" rx="13" fill="#0d3b2b"/><text x="256" y="128" font-size="9" fill="#fff">기회발전특구라 법인세 최대 100%,</text><text x="256" y="141" font-size="9" fill="#fff">취득·재산세도 감면됩니다. 계산해 드릴까요?</text><rect x="170" y="160" width="120" height="22" rx="11" fill="#c9a227"/><text x="230" y="175" text-anchor="middle" font-size="9" font-weight="800" fill="#1c1500">📊 감면액 계산하기</text>') }
+};
+function openTool(id) {
+  const t = TOOLS[id];
+  document.getElementById('tmNum').textContent = String(id).padStart(2, '0');
+  document.getElementById('tmTitle').textContent = t.ico + ' ' + t.name;
+  document.getElementById('tmVisual').innerHTML = t.svg;
+  document.getElementById('tmDesc').innerHTML = t.desc;
+  document.getElementById('toolModal').classList.add('open');
+  sfx('open'); speak(t.voice); logEvt('tool', t.name);
+  if (window.innerWidth <= 1080) toggleSidebar(false);
+}
+
+/* ═══════════ PARKS DATA + MODAL ═══════════ */
+const PARKS = {
+  1: { name: '천평 산업단지', loc: '충북 음성군',
+    spec: [['위치', '충북 음성군'], ['규모', '약 27만 평 (89만㎡)'], ['진행 단계', '인허가 진행 중 · 연말 실시설계 승인 예정'], ['분양 방식', '사전청약 (선착순 우선 배정)'], ['핵심 강점', '초기 분양가 메리트 최대']],
+    desc: '사전청약 단계로 <strong>초기 분양가 이점이 가장 큰 산단</strong>입니다. 인허가 완료 전 청약으로 정식 분양가 대비 유리한 조건을 선점할 수 있으며, 음성권 제조 클러스터와 경기 남부 접근성을 동시에 확보합니다.',
+    q: '음성 천평산업단지' },
+  2: { name: '대풍 산업단지', loc: '충북 음성군 대소면',
+    spec: [['위치', '충북 음성군 대소면 (대소IC 초인접)'], ['진행 단계', '분양 예정'], ['교통', '중부고속도로 대소IC 차량 3분 · 경기권 60분 이내'], ['적합 업종', '수도권 이전 제조·물류 기업'], ['핵심 강점', '경기권 접근성 최상급']],
+    desc: '<strong>대소IC 바로 앞</strong>이라는 압도적 입지. 평택·안성·화성·용인 등 경기 남부에서 이전하는 기업이 거래처·인력을 유지하면서 지방 세제 혜택을 누릴 수 있는 1순위 제안 산단입니다.',
+    q: '음성 대풍산업단지' },
+  3: { name: '괴산 청안 산업단지', loc: '충북 괴산군 청안면',
+    spec: [['위치', '충북 괴산군 청안면'], ['진행 단계', '인허가 완료'], ['입주', '빠른 착공·입주 가능'], ['연계', '증평·내수 산업 라인 확장축'], ['핵심 강점', '인허가 리스크 제로']],
+    desc: '<strong>인허가가 완료</strong>되어 행정 리스크 없이 빠른 착공이 가능한 산단입니다. 증평·청주 내수권 산업 라인과 연결되는 확장축에 위치해 협력사 네트워크 구축에 유리합니다.',
+    q: '괴산 청안산업단지' },
+  4: { name: '진천 메가폴리스 산업단지', loc: '충북 진천군 문백면',
+    spec: [['위치', '충북 진천군 문백면'], ['규모', '142만㎡ (약 43만 평)'], ['진행 단계', '분양 중'], ['특구', '기회발전특구 지정 — 법인세 최대 100% 감면'], ['핵심 강점', '세제 감면 전국 최대 수준 + 검증된 운영']],
+    desc: '<strong>기회발전특구 지정</strong>으로 법인세·취득세·재산세 감면이 전국 최대 수준인 대표 산단입니다. 기존 분양 실적과 데이터·대시보드 운영 체계가 검증되어 있어 가장 안정적인 선택지입니다.',
+    q: '진천 메가폴리스 산업단지' }
+};
+function parkSvg(n) {
+  const c = ['#c9a227', '#2e7d5b', '#2b5d8a', '#b3372f'][n - 1];
+  return svgFrame(grid +
+    '<path d="M40 180 L110 120 L190 145 L280 95 L370 118 L470 70 L600 95" fill="none" stroke="#5a6b62" stroke-width="2.5" opacity=".35"/>' +
+    '<g transform="translate(200,50)"><rect width="240" height="120" rx="8" fill="' + c + '" opacity=".14" stroke="' + c + '" stroke-width="2"/>' +
+    '<rect x="16" y="16" width="60" height="38" rx="3" fill="' + c + '" opacity=".55"/><rect x="88" y="16" width="60" height="38" rx="3" fill="' + c + '" opacity=".4"/><rect x="160" y="16" width="62" height="38" rx="3" fill="' + c + '" opacity=".55"/>' +
+    '<rect x="16" y="66" width="60" height="38" rx="3" fill="' + c + '" opacity=".4"/><rect x="88" y="66" width="60" height="38" rx="3" fill="' + c + '" opacity=".6"/><rect x="160" y="66" width="62" height="38" rx="3" fill="' + c + '" opacity=".35"/>' +
+    '<path d="M0 60 H240 M80 0 V120 M152 0 V120" stroke="#faf8f2" stroke-width="3"/></g>' +
+    '<circle cx="130" cy="70" r="15" fill="' + c + '"/><text x="130" y="76" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">0' + n + '</text>' +
+    '<text x="320" y="200" text-anchor="middle" font-size="10" font-weight="700" fill="#5a6b62">단지 배치 개념도 (예시 이미지)</text>');
+}
+function openPark(n) {
+  const p = PARKS[n];
+  document.getElementById('pmNum').textContent = '0' + n;
+  document.getElementById('pmTitle').textContent = p.name + ' — ' + p.loc;
+  document.getElementById('pmVisual').innerHTML = parkSvg(n);
+  document.getElementById('pmSpec').innerHTML = p.spec.map(r => '<tr><th>' + r[0] + '</th><td>' + r[1] + '</td></tr>').join('');
+  document.getElementById('pmDesc').innerHTML = p.desc;
+  document.getElementById('pmLinks').innerHTML =
+    '<a href="https://search.naver.com/search.naver?query=' + encodeURIComponent(p.q) + '" target="_blank" rel="noopener">네이버에서 더 알아보기 ↗</a>' +
+    '<a href="https://map.naver.com/p/search/' + encodeURIComponent(p.q) + '" target="_blank" rel="noopener">지도 보기 ↗</a>' +
+    '<a href="#contact" class="gold" onclick="closeModal(\'parkModal\')">이 산단 분양 문의 →</a>';
+  document.getElementById('parkModal').classList.add('open');
+  sfx('open'); speak(p.name + ' 상세 정보입니다'); logEvt('park', p.name);
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); sfx('click'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') ['toolModal', 'parkModal', 'authModal'].forEach(closeModal); });
+</script>
+<script>
+/* ═══════════ ANALYTICS (localStorage) ═══════════ */
+function lsGet(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function cap(arr, n) { return arr.length > n ? arr.slice(arr.length - n) : arr; }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function logVisit() {
+  const v = lsGet('la_visits', []);
+  v.push({ t: Date.now(), r: document.referrer || 'direct' });
+  lsSet('la_visits', cap(v, 3000));
+}
+function logEvt(type, name) {
+  const ev = lsGet('la_events', []);
+  ev.push({ t: Date.now(), type, name });
+  lsSet('la_events', cap(ev, 3000));
+}
+logVisit();
+
+/* ═══════════ ADMIN MODE (pw: 34045955) ═══════════ */
+const ADM_PW = '34045955';
+function openAdmin() {
+  document.getElementById('adminView').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (sessionStorage.getItem('la_adm') === '1') { showDash(); }
+  else { document.getElementById('admLogin').style.display = 'block'; document.getElementById('admDash').style.display = 'none'; setTimeout(() => document.getElementById('admPw').focus(), 80); }
+}
+function closeAdmin() {
+  document.getElementById('adminView').classList.remove('open');
+  document.body.style.overflow = '';
+  if (location.hash === '#admin') history.replaceState(null, '', location.pathname);
+}
+function admAuth() {
+  if (document.getElementById('admPw').value === ADM_PW) {
+    sessionStorage.setItem('la_adm', '1');
+    document.getElementById('admMsg').textContent = '';
+    document.getElementById('admPw').value = '';
+    sfx('ok'); speak('관리자 모드에 접속했습니다'); showDash();
+  } else {
+    document.getElementById('admMsg').textContent = '비밀번호가 올바르지 않습니다.';
+    sfx('click');
+  }
+}
+function showDash() {
+  document.getElementById('admLogin').style.display = 'none';
+  document.getElementById('admDash').style.display = 'block';
+  renderAdmin();
+}
+function fmtD(t) { const d = new Date(t); return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+function renderAdmin() {
+  const visits = lsGet('la_visits', []), events = lsGet('la_events', []), inq = lsGet('la_inquiries', []), users = lsGet('la_users', []);
+  const d0 = new Date(); d0.setHours(0, 0, 0, 0);
+  document.getElementById('stToday').textContent = visits.filter(v => v.t >= d0.getTime()).length;
+  document.getElementById('stTotal').textContent = visits.length;
+  document.getElementById('stTools').textContent = events.filter(e => e.type === 'tool').length;
+  document.getElementById('stInq').textContent = inq.length;
+  document.getElementById('stUsers').textContent = users.length;
+  /* 14-day bar chart (SVG) */
+  const days = [], counts = [];
+  for (let i = 13; i >= 0; i--) {
+    const s = new Date(); s.setHours(0, 0, 0, 0); s.setDate(s.getDate() - i);
+    const e = s.getTime() + 86400000;
+    days.push((s.getMonth() + 1) + '/' + s.getDate());
+    counts.push(visits.filter(v => v.t >= s.getTime() && v.t < e).length);
+  }
+  const mx = Math.max(...counts, 1), W = 980, H = 190, bw = W / 14;
+  let svg = '<svg width="100%" viewBox="0 0 ' + W + ' ' + (H + 30) + '" xmlns="http://www.w3.org/2000/svg">';
+  counts.forEach((cnt, i) => {
+    const h = Math.round(cnt / mx * (H - 24));
+    const x = i * bw + 10, y = H - h;
+    svg += '<rect x="' + x + '" y="' + y + '" width="' + (bw - 20) + '" height="' + h + '" rx="4" fill="' + (i === 13 ? '#c9a227' : '#2e7d5b') + '"><animate attributeName="height" from="0" to="' + h + '" dur=".6s" fill="freeze"/><animate attributeName="y" from="' + H + '" to="' + y + '" dur=".6s" fill="freeze"/></rect>';
+    if (cnt) svg += '<text x="' + (x + (bw - 20) / 2) + '" y="' + (y - 6) + '" text-anchor="middle" font-size="12" font-weight="700" fill="#e6c86a">' + cnt + '</text>';
+    svg += '<text x="' + (x + (bw - 20) / 2) + '" y="' + (H + 20) + '" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.45)">' + days[i] + '</text>';
+  });
+  svg += '</svg>';
+  document.getElementById('admChart').innerHTML = svg;
+  /* tool ranking */
+  const tc = {};
+  events.filter(e => e.type === 'tool').forEach(e => tc[e.name] = (tc[e.name] || 0) + 1);
+  const rank = Object.entries(tc).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const rm = Math.max(...rank.map(r => r[1]), 1);
+  document.getElementById('admToolRank').innerHTML = rank.length
+    ? rank.map(r => '<div class="adm-bar-row"><span class="lbl">' + r[0] + '</span><span class="bar"><i style="width:' + Math.round(r[1] / rm * 100) + '%"></i></span><span class="val">' + r[1] + '</span></div>').join('')
+    : '<div style="font-size:12.5px;color:rgba(255,255,255,.4);">아직 클릭 기록이 없습니다.</div>';
+  /* members */
+  document.getElementById('admUserTable').innerHTML =
+    '<tr><th>가입일</th><th>이름</th><th>회원 종류</th><th>핸드폰</th><th>이메일</th><th>회사</th></tr>' +
+    (users.length
+      ? users.slice().reverse().map(u => '<tr><td>' + fmtD(u.t) + '</td><td>' + esc(u.name) + '</td><td>' + esc(u.type) + '</td><td>' + esc(u.phone || '-') + '</td><td>' + esc(u.email) + '</td><td>' + esc(u.company || '-') + '</td></tr>').join('')
+      : '<tr><td colspan="6" style="color:rgba(255,255,255,.4);">가입한 회원이 없습니다.</td></tr>');
+  /* inquiries */
+  document.getElementById('admInqTable').innerHTML =
+    '<tr><th>일시</th><th>회사</th><th>담당자</th><th>연락처</th><th>유형</th><th>전송</th></tr>' +
+    (inq.length ? inq.slice().reverse().slice(0, 30).map(q => '<tr><td>' + fmtD(q.t) + '</td><td>' + esc(q.company || '-') + '</td><td>' + esc(q.name || '-') + '</td><td>' + esc(q.tel || '-') + '</td><td>' + esc(q.type || '-') + '</td><td>' + (q.sent ? '✅ 메일' : '💾 로컬') + '</td></tr>').join('')
+      : '<tr><td colspan="6" style="color:rgba(255,255,255,.4);">접수된 문의가 없습니다.</td></tr>');
+  /* recent log */
+  const typeLabel = { nav: '메뉴', tool: 'AI솔루션', park: '산업단지', faq: 'FAQ', inquiry: '문의', auth: '회원', sound: '사운드' };
+  document.getElementById('admLogTable').innerHTML =
+    '<tr><th>일시</th><th>구분</th><th>내용</th></tr>' +
+    events.slice().reverse().slice(0, 40).map(e => '<tr><td>' + fmtD(e.t) + '</td><td>' + (typeLabel[e.type] || e.type) + '</td><td>' + esc(e.name) + '</td></tr>').join('');
+}
+function admExport() {
+  const data = { exported: new Date().toISOString(), visits: lsGet('la_visits', []), events: lsGet('la_events', []), inquiries: lsGet('la_inquiries', []), users: lsGet('la_users', []).map(u => ({ ...u, pw: '***' })) };
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+  a.download = 'lexington-ames-stats.json'; a.click();
+}
+function admReset() {
+  if (!confirm('방문·활동 통계를 초기화할까요? (회원/문의 기록은 유지)')) return;
+  lsSet('la_visits', []); lsSet('la_events', []); renderAdmin();
+}
+if (location.hash === '#admin') setTimeout(openAdmin, 300);
+window.addEventListener('hashchange', () => { if (location.hash === '#admin') openAdmin(); });
+
+/* ═══════════ AUTH (회원가입/로그인 — 데모) ═══════════ */
+let authMode = 'login';
+function openAuth(mode) { switchAuth(mode || 'login'); document.getElementById('authModal').classList.add('open'); sfx('open'); }
+function switchAuth(mode) {
+  authMode = mode;
+  document.getElementById('tabLogin').classList.toggle('active', mode === 'login');
+  document.getElementById('tabJoin').classList.toggle('active', mode === 'join');
+  ['agName', 'agType', 'agCompany', 'agPhone'].forEach(id => document.getElementById(id).style.display = mode === 'join' ? 'block' : 'none');
+  document.getElementById('authBtn').textContent = mode === 'join' ? '회원가입' : '로그인';
+  document.getElementById('authMsg').textContent = '';
+}
+function submitAuth(e) {
+  e.preventDefault();
+  const email = document.getElementById('a-email').value.trim().toLowerCase();
+  const pw = document.getElementById('a-pw').value;
+  const msg = document.getElementById('authMsg');
+  let users = lsGet('la_users', []);
+  if (authMode === 'join') {
+    if (users.find(u => u.email === email)) { msg.className = 'auth-msg err'; msg.textContent = '이미 가입된 이메일입니다.'; return; }
+    const phone = document.getElementById('a-phone').value.trim();
+    if (!phone) { msg.className = 'auth-msg err'; msg.textContent = '핸드폰 번호를 입력해 주세요.'; return; }
+    const u = { email, pw, name: document.getElementById('a-name').value.trim() || email.split('@')[0], type: document.getElementById('a-type').value, company: document.getElementById('a-company').value.trim(), phone, t: Date.now() };
+    users.push(u); lsSet('la_users', users);
+    lsSet('la_session', { email: u.email, name: u.name, type: u.type });
+    msg.className = 'auth-msg ok'; msg.textContent = '가입 완료! ' + u.type + '으로 로그인되었습니다.';
+    sfx('ok'); speak('회원 가입을 환영합니다'); logEvt('auth', '가입: ' + u.type);
+    setTimeout(() => { closeModal('authModal'); renderNavAuth(); }, 900);
+  } else {
+    const u = users.find(u => u.email === email && u.pw === pw);
+    if (!u) { msg.className = 'auth-msg err'; msg.textContent = '이메일 또는 비밀번호가 올바르지 않습니다.'; sfx('click'); return; }
+    lsSet('la_session', { email: u.email, name: u.name, type: u.type });
+    msg.className = 'auth-msg ok'; msg.textContent = u.name + '님, 환영합니다!';
+    sfx('ok'); speak(u.name + '님, 환영합니다'); logEvt('auth', '로그인');
+    setTimeout(() => { closeModal('authModal'); renderNavAuth(); }, 700);
+  }
+}
+function logout() { localStorage.removeItem('la_session'); renderNavAuth(); toast('로그아웃 되었습니다'); logEvt('auth', '로그아웃'); }
+function renderNavAuth() {
+  const s = lsGet('la_session', null);
+  document.getElementById('navAuthLi').innerHTML = s
+    ? '<button class="linklike" onclick="logout()">' + esc(s.name) + ' 님<span class="member-badge">' + esc(s.type) + '</span> · 로그아웃</button>'
+    : '<button class="linklike" onclick="openAuth(\'login\')">로그인 · 회원가입</button>';
+}
+renderNavAuth();
+
+/* ═══════════ CONTACT FORM — 실제 메일 접수 (FormSubmit) + SMS 알림 (Solapi 중계 Worker) ═══════════ */
+const SMS_HOOK = 'https://lexington-sms.bsj0431.workers.dev';
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('formBtn');
+  btn.disabled = true; btn.textContent = '전송 중...';
+  const rec = {
+    t: Date.now(),
+    company: document.getElementById('f-company').value,
+    name: document.getElementById('f-name').value,
+    tel: document.getElementById('f-tel').value,
+    email: document.getElementById('f-email').value,
+    type: document.getElementById('f-type').value,
+    msg: document.getElementById('f-msg').value,
+    sent: false
+  };
+  /* 010-3404-5955 문자 알림 — 실패해도 접수 흐름에는 영향 없음 */
+  fetch(SMS_HOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ company: rec.company, name: rec.name, tel: rec.tel, type: rec.type })
+  }).catch(() => {});
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/bsj0431@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '📩 [산단분양.com] 새 분양 문의 — ' + rec.company,
+        _template: 'table',
+        _captcha: 'false',
+        _autoresponse: rec.name + '님, 렉싱턴에임즈코리아입니다. 문의가 정상 접수되었습니다. 담당자가 확인 후 1영업일 이내에 연락드리겠습니다. 감사합니다. — LEXINGTON AMES KOREA · 산단분양.com',
+        '회사명': rec.company, '담당자': rec.name, '연락처': rec.tel,
+        email: rec.email, '문의유형': rec.type, '문의내용': rec.msg,
+        '알림수신처': '010-3404-5955'
+      })
+    });
+    if (res.ok) rec.sent = true;
+  } catch (err) {}
+  const inq = lsGet('la_inquiries', []); inq.push(rec); lsSet('la_inquiries', cap(inq, 500));
+  logEvt('inquiry', rec.company + ' (' + rec.type + ')');
+  btn.disabled = false; btn.textContent = '상담 신청하기 →';
+  if (rec.sent) {
+    sfx('ok'); speak('문의가 접수되었습니다. 감사합니다');
+    toast('✅ 문의가 접수되었습니다! 확인 메일이 ' + rec.email + '로 발송됩니다.');
+    document.getElementById('contactForm').reset();
+  } else {
+    toast('⚠ 네트워크 오류 — 문의가 임시 저장되었습니다. bsj0431@gmail.com으로 직접 메일 주셔도 됩니다.');
+  }
+}
+
+/* ═══════════ UI: FAQ / MENU / SCROLL / TOAST ═══════════ */
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 4200);
+}
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const was = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!was) { item.classList.add('open'); sfx('click'); logEvt('faq', btn.querySelector('.faq-q-text').textContent.slice(0, 30)); }
+}
+function filterFaq(cat, btn) {
+  document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active'); sfx('click');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.style.display = (cat === 'all' || i.dataset.cat === cat) ? '' : 'none';
+  });
+}
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  if (links.style.display === 'flex') links.style.display = 'none';
+  else links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(10,42,31,.98);padding:12px 24px;gap:4px;z-index:400;align-items:flex-start;';
+}
+function toggleSidebar(force) {
+  const sb = document.getElementById('sidebar');
+  const open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+}
+document.addEventListener('click', e => {
+  if (window.innerWidth <= 900 && !e.target.closest('#nav')) document.getElementById('navLinks').style.display = 'none';
+  if (window.innerWidth <= 1080 && !e.target.closest('#sidebar') && !e.target.closest('#sbToggle')) toggleSidebar(false);
+});
+const progressBar = document.getElementById('progressBar');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY, dh = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (st / dh * 100) + '%';
+  backTop.classList.toggle('visible', st > 400);
+});
+const observer = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* sidebar stagger-in */
+document.querySelectorAll('.sb-item').forEach((el, i) => setTimeout(() => el.classList.add('shown'), 250 + i * 90));
+
+/* ═══════════ TYPING EFFECT ═══════════ */
+const TYPE_LINES = ['기업과 산업단지를 AI가 데이터로 연결하는 양방향 플랫폼', '이전 검토 기업을 최대 9개월 먼저 포착합니다', 'AI는 준비하고, 사람은 결정합니다', '산단분양.com — LEXINGTON AMES KOREA'];
+(function typing() {
+  const el = document.getElementById('typeTarget');
+  let li = 0, ci = 0, del = false;
+  function tick() {
+    const line = TYPE_LINES[li];
+    if (!del) {
+      ci++; el.textContent = line.slice(0, ci);
+      if (ci === line.length) { del = true; return setTimeout(tick, 2200); }
+      setTimeout(tick, 55);
+    } else {
+      ci -= 3; if (ci < 0) ci = 0;
+      el.textContent = line.slice(0, ci);
+      if (ci === 0) { del = false; li = (li + 1) % TYPE_LINES.length; return setTimeout(tick, 350); }
+      setTimeout(tick, 22);
+    }
+  }
+  tick();
+})();
+
+/* ═══════════ PARTICLE NETWORK (hero) ═══════════ */
+(function particles() {
+  const cv = document.getElementById('particles'), ctx = cv.getContext('2d');
+  let W, H, pts = [];
+  function resize() {
+    W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
+    const n = Math.min(70, Math.floor(W * H / 16000));
+    pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .45, vy: (Math.random() - .5) * .45, r: Math.random() * 1.8 + .7 }));
+  }
+  resize(); window.addEventListener('resize', resize);
+  (function draw() {
+    ctx.clearRect(0, 0, W, H);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7);
+      ctx.fillStyle = 'rgba(230,200,106,.75)'; ctx.fill();
+    });
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = dx * dx + dy * dy;
+      if (d < 13000) {
+        ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.strokeStyle = 'rgba(74,158,122,' + (.5 - d / 26000) + ')'; ctx.lineWidth = .7; ctx.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ═══════════ INTRO TIMELINE (~15초, 파가니니 배경음악 동기) ═══════════ */
+(function introTimeline() {
+  const el = document.getElementById('intro');
+  if (!el) { window.skipIntro = function () {}; return; }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); window.skipIntro = function () {}; return; }
+  document.body.style.overflow = 'hidden';
+  const timers = [];
+  const sc = i => document.getElementById('isc' + i);
+  function phase(hide, show) { sc(hide).classList.remove('on'); sc(show).classList.add('on'); }
+  timers.push(setTimeout(() => phase(0, 1), 1700));   /* 분양률 그래프 */
+  timers.push(setTimeout(() => phase(1, 2), 8000));   /* 보조금·세금 그래프 */
+  timers.push(setTimeout(endIntro, 14200));           /* 음악 종료와 함께 페이드아웃 */
+  let ended = false;
+  function endIntro() {
+    if (ended) return; ended = true;
+    timers.forEach(clearTimeout);
+    el.classList.add('out');
+    document.body.style.overflow = '';
+    setTimeout(() => el.remove(), 1200);
+  }
+  window.skipIntro = endIntro;
+})();
+</script>
+</body>
+</html>
