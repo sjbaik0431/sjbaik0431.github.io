@@ -318,6 +318,36 @@ a { color: inherit; text-decoration: none; }
 .tag { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
 .tag.r { background: #f6dedc; color: var(--danger); }
 .tag.g { background: #e3f0e8; color: var(--g2); }
+
+/* ── VOICE GUIDE ── */
+.vg-panel {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 14px; padding: 28px 26px; margin-top: 8px;
+}
+.vg-lang-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.vg-lang-btn {
+  background: var(--ivory2); border: 1px solid var(--line);
+  color: var(--ink2); font-size: 13.5px; font-weight: 700;
+  padding: 8px 22px; border-radius: 99px; cursor: pointer; font-family: inherit;
+  transition: background .15s, color .15s;
+}
+.vg-lang-btn.active { background: var(--g1); border-color: var(--g1); color: #fff; }
+.vg-lang-btn:hover:not(.active) { border-color: var(--gold); }
+.vg-audio { width: 100%; margin-bottom: 8px; height: 40px; }
+.vg-meta { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+.vg-transcript-toggle {
+  background: none; border: 1.5px solid var(--g2); color: var(--g1);
+  font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 8px;
+  cursor: pointer; font-family: inherit; transition: background .15s;
+}
+.vg-transcript-toggle:hover { background: #edf5ef; }
+.vg-transcript {
+  margin-top: 16px; max-height: 380px; overflow-y: auto;
+  background: var(--ivory); border: 1px solid var(--line); border-radius: 10px;
+  padding: 20px 22px; font-size: 14px; line-height: 1.9; color: var(--ink2);
+}
+.vg-transcript p { margin-bottom: 14px; }
+.vg-transcript p:last-child { margin-bottom: 0; }
 .flow-diagram { display: flex; align-items: center; gap: 0; overflow-x: auto; padding: 8px 0; margin: 24px 0; }
 .flow-step {
   flex: 1; min-width: 130px;
@@ -906,6 +936,65 @@ a { color: inherit; text-decoration: none; }
       <div class="hero-btns">
         <a href="#contact" class="btn-primary" onclick="navVoice('분양 문의')">분양 문의하기</a>
         <a href="#platform" class="btn-ghost">플랫폼 살펴보기</a>
+        <a href="#voiceguide" class="btn-ghost">🎧 음성으로 듣기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VOICE GUIDE ── -->
+<section class="section alt" id="voiceguide">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-eyebrow">VOICE GUIDE</span>
+      <h2 class="sec-title t-h1" id="vgTitle">음성 안내</h2>
+      <p class="sec-sub t-body" id="vgSub">약 7분 분량의 음성 안내로 이 사이트를 소개해 드립니다. 언어를 선택해 주세요.</p>
+    </div>
+    <div class="reveal vg-panel">
+      <div class="vg-lang-tabs">
+        <button class="vg-lang-btn active" id="vgBtnKo" onclick="setVgLang('ko')">한국어</button>
+        <button class="vg-lang-btn" id="vgBtnEn" onclick="setVgLang('en')">English</button>
+      </div>
+      <audio class="vg-audio" id="vgAudio" controls preload="none" src="audio/guide_ko.mp3"></audio>
+      <div class="vg-meta" id="vgMeta">재생 시간 약 7분</div>
+      <button class="vg-transcript-toggle" id="vgTranscriptToggle" onclick="toggleTranscript()">문자 버전 보기 ▾</button>
+      <div class="vg-transcript" id="vgTranscript" style="display:none;">
+        <div id="vgTextKo">
+          <p>안녕하세요. 렉싱턴에임즈코리아 홈페이지에 오신 것을 환영합니다. 지금부터 이 사이트가 어떤 곳인지 차근차근 안내해 드리겠습니다.</p>
+          <p>렉싱턴에임즈코리아라는 이름은 미국의 두 도시 이름에서 왔습니다. 렉싱턴은 미국에서 가장 풍요롭고 살기 좋은 도시로 꼽히는 지명이고, 에임즈는 대표적인 연구 도시의 이름이면서 동시에 영어 단어 에임(aim), 그러니까 목표를 향해 정확히 조준한다는 뜻과 발음이 닮았습니다. 그래서 저희는 이렇게 소개합니다. 기업을 가장 풍요로운 입지로, 정확하게 안내합니다.</p>
+          <p>이 회사는 산업단지를 분양하는 방식을 근본적으로 바꾸는 것을 목표로 합니다. 기존의 산업단지 분양은 현수막을 걸고 광고를 낸 뒤 전화가 오기를 기다리는 방식이었습니다. 데이터가 쌓이지 않고, 상담 이후 관리도 이루어지지 않는, 이른바 기다리는 영업이었습니다.</p>
+          <p>렉싱턴에임즈코리아는 정반대로 움직입니다. 공장을 이전하거나 증설하려는 기업을 공식 발표가 나오기 최대 아홉 달 전에 먼저 찾아냅니다. 그리고 그 기업에게 세금 감면, 용수와 전력 인프라, 교통 접근성 같은 조건을 데이터로 비교해서 가장 적합한 산업단지를 먼저 제안합니다. 시행사와 기업 양쪽의 정보가 서로 순환하면서 플랫폼 스스로 점점 똑똑해지는 구조입니다.</p>
+          <p>이 모든 과정은 세 명의 인공지능이 나누어 맡고 있습니다. 첫 번째는 스카우트입니다. 스카우트는 매일 공공 인허가 정보, 기업의 금융과 공시 자료, 뉴스와 채용 공고를 살펴보면서 이전을 검토하는 기업의 신호를 찾아내고 점수를 매깁니다. 두 번째는 큐레이터입니다. 큐레이터는 전국 산업단지 정보를 최신 상태로 관리하고, 매주 뉴스레터를 기획하고 작성해서 발송합니다. 세 번째는 클로저입니다. 클로저는 유망한 기업이 발견되면 그 기업에 맞는 제안 자료를 자동으로 만들어서 첫 상담을 준비합니다. 다만 중요한 원칙이 하나 있습니다. 인공지능은 준비하고, 사람은 결정합니다. 실제 만남과 계약은 언제나 사람이 직접 진행합니다.</p>
+          <p>지금 소개해 드리는 산업단지는 모두 네 곳입니다. 첫 번째, 충북 음성에 위치한 천평 산업단지는 약 27만 평 규모로, 사전청약 단계라 초기 분양가 이점이 가장 큽니다. 두 번째, 음성 대소IC 바로 앞에 위치한 대풍 산업단지는 경기권 접근성이 최상급이어서, 수도권에서 이전하는 제조업과 물류업 기업에게 첫손에 꼽히는 곳입니다. 세 번째, 괴산 청안 산업단지는 인허가가 이미 완료되어 있어 빠르게 착공하고 입주할 수 있습니다. 네 번째, 진천 메가폴리스는 142만㎡ 규모로, 기회발전특구로 지정되어 법인세와 취득세, 재산세 감면이 전국 산업단지 가운데 가장 큰 수준입니다.</p>
+          <p>산업단지 카드를 클릭하시면 위치와 규모, 진행 단계, 핵심 강점을 자세히 확인하실 수 있고, 지도와 검색 링크도 함께 제공됩니다.</p>
+          <p>왼쪽에 있는 인공지능 솔루션 메뉴에서는 모두 열 가지 도구를 하나씩 살펴보실 수 있습니다. 이전 기업 자동 탐지 레이더, 주간 신호 자동 보고서, 세금 감면 계산기, 전국 산업단지 비교 데이터베이스, 입지 분석 지도, 제안서 자동 생성, 뉴스레터 자동 발행, 영업 파이프라인 관리, 시행사를 위한 분양 대시보드, 그리고 상담 인공지능까지 순서대로 번호가 매겨져 있습니다. 메뉴를 클릭하면 실제로 그 도구가 어떤 화면으로 작동하는지 예시 이미지와 설명이 나타납니다. 다만 이 도구들은 화면으로 미리 보는 소개용이며, 공개된 서비스가 아니라 일대일 맞춤 서비스로만 제공된다는 점을 꼭 기억해 주세요. 도입을 원하시면 문의하기를 통해 상담을 신청하시면 됩니다.</p>
+          <p>세금 감면 계산기는 업종과 투자 규모, 그리고 어느 산업단지에 입주할지를 입력하면 예상되는 법인세와 취득세, 재산세 감면액을 곧바로 계산해서 보여줍니다. 특히 진천 메가폴리스처럼 기회발전특구로 지정된 산업단지와 일반 산업단지의 감면 차이를 한눈에 비교할 수 있어서, 투자 의사결정에 실질적인 도움이 됩니다.</p>
+          <p>회원 가입도 가능합니다. 회원은 네 가지 종류로 나뉘는데, 이전이나 증설을 검토하는 기업 회원, 산업단지를 공급하는 시행사 회원, 분양과 중개를 담당하는 파트너 회원, 그리고 뉴스레터와 정보를 받아보는 일반 회원이 있습니다. 상단 메뉴의 로그인과 회원가입 버튼을 누르시면 바로 가입하실 수 있습니다.</p>
+          <p>궁금하신 점이 있다면 아래쪽 문의하기 양식을 이용해 주세요. 회사명과 담당자, 연락처와 이메일, 그리고 문의 유형을 선택해서 보내시면 담당자가 확인 후 하루 안에 연락드립니다. 이전이나 증설을 계획 중인 기업이시라면 별도의 비용 없이 맞춤 산업단지 비교 자료를 받아보실 수 있습니다.</p>
+          <p>관리자와 회원, 방문 통계는 내부에서 별도로 안전하게 관리되며, 어떤 기업 정보도 외부에 공개되지 않습니다. 안심하고 이용하셔도 됩니다.</p>
+          <p>참고로 이 홈페이지에 처음 들어오시면 분양률이 치솟고 세금이 낮아지는 모습을 보여주는 짧은 인트로 애니메이션과 배경 음악이 재생됩니다. 이는 저희 플랫폼이 만들어내는 성과를 상징적으로 표현한 것이니 가볍게 즐겨 주시면 됩니다.</p>
+          <p>문의 사항은 이메일로도 받고 있습니다. bsj0431@gmail.com으로 연락 주셔도 담당자가 확인 후 신속하게 답변드립니다.</p>
+          <p>이 사이트의 주소는 산단분양.com입니다. 즐겨찾기에 추가해 두시면 필요하실 때 언제든 다시 찾아오실 수 있습니다. 그럼 지금부터 천천히 화면을 둘러보시기 바랍니다.</p>
+          <p>지금까지 렉싱턴에임즈코리아 홈페이지를 소개해 드렸습니다. 기업을 가장 풍요로운 입지로, 정확하게 안내한다는 약속을 기억해 주시고, 언제든 편하게 문의해 주시기 바랍니다. 감사합니다.</p>
+        </div>
+        <div id="vgTextEn" style="display:none;">
+          <p>Hello, and welcome to the Lexington Ames Korea website. Let me walk you through what this platform is all about.</p>
+          <p>The name Lexington Ames Korea comes from two American place names. Lexington is widely known as one of the most prosperous and livable cities in the United States, representing the kind of destination every company deserves to reach. Ames is a well known research and university town, and its sound echoes the English word aim, meaning to point precisely toward a goal. Together, they capture our promise: guiding companies to the most prosperous location, with precision.</p>
+          <p>This company exists to change how industrial land is sold in Korea. The traditional approach relied on banners and advertisements, then simply waiting for the phone to ring. No data accumulated, and no follow up happened afterward. It was, in short, a waiting game.</p>
+          <p>Lexington Ames Korea works the opposite way. We identify companies that are considering relocation or expansion up to nine months before any public announcement. Then we compare tax incentives, water and power infrastructure, and transportation access using real data, and proactively propose the best fitting industrial park. Information flows both ways between developers and companies, so the platform keeps getting smarter over time.</p>
+          <p>All of this is carried out by three artificial intelligence agents. The first is the Scout. Every day, the Scout monitors public permits, corporate filings and financial disclosures, along with news and hiring trends, to detect early signals from companies weighing a move, and scores each one. The second is the Curator. The Curator keeps our nationwide industrial park database up to date, and plans, writes, and sends out a weekly newsletter. The third is the Closer. Once a promising company is identified, the Closer automatically prepares a tailored proposal package to support the first outreach. There is one guiding principle behind all of this: artificial intelligence prepares, and people decide. Every real meeting and every contract is always handled directly by a person.</p>
+          <p>Right now, we feature four industrial parks. First, Cheonpyeong Industrial Park in Eumseong, Chungcheongbuk-do, spans roughly 270,000 pyeong and is currently in its pre-subscription stage, offering the strongest early pricing advantage. Second, Daepung Industrial Park sits directly beside the Daeso interchange in Eumseong, giving it the best access to the greater Seoul metropolitan area, making it a top choice for manufacturing and logistics companies relocating from the capital region. Third, Goesan Cheongan Industrial Park has already completed all permitting, allowing for fast groundbreaking and occupancy. Fourth, Jincheon Megapolis covers 1.42 million square meters and has been designated an Opportunity and Growth Special Zone, offering the largest corporate, acquisition, and property tax reductions of any industrial park nationwide.</p>
+          <p>You can click on any park card to see its location, size, current stage, and key strengths in detail, along with map and search links.</p>
+          <p>On the left side of the site, the artificial intelligence solutions menu lets you explore ten different tools one by one, numbered in order: a relocation detection radar, a weekly automated signal report, a tax reduction calculator, a nationwide industrial park comparison database, a location analysis map, an automatic proposal generator, an automated newsletter system, a sales pipeline manager, a developer sales dashboard, and finally an AI consultation assistant. Clicking on any of these brings up a sample screen and description showing exactly how that tool works in practice. Please keep in mind that these tools are shown here only as previews. They are not offered as a public service. They are provided exclusively through one on one custom engagements. If you would like to adopt any of these tools, simply reach out through the inquiry form to schedule a consultation.</p>
+          <p>The tax reduction calculator lets you enter your industry, investment size, and target industrial park, and it instantly calculates the expected corporate, acquisition, and property tax savings. It is especially useful for comparing a special zone like Jincheon Megapolis against an ordinary industrial park, giving you a clear, practical basis for your investment decision.</p>
+          <p>Membership is also available. There are four types of members: corporate members considering relocation or expansion, developer members who supply industrial land, partner members who handle brokerage and sales, and general members who simply receive our newsletter and general information. You can sign up anytime using the login and sign up button at the top of the page.</p>
+          <p>If you have any questions, please use the inquiry form near the bottom of the page. Just fill in your company name, contact person, phone number, email address, and the type of inquiry, and our team will respond within one business day. If your company is planning a relocation or expansion, we will prepare a customized industrial park comparison report for you at no cost.</p>
+          <p>All member data, visit statistics, and company signals are managed securely behind the scenes, and no company information is ever disclosed externally. You can use this platform with complete confidence.</p>
+          <p>By the way, when you first open this website, you will see a short intro animation with rising sales rates and falling taxes, set to background music. This is simply a symbolic way of showing the kind of results our platform helps create, so feel free to sit back and enjoy it.</p>
+          <p>You are also welcome to reach us by email at bsj0431@gmail.com, and our team will get back to you promptly.</p>
+          <p>The address of this website is 산단분양.com (sandanbunyang.com), which literally means "industrial park sale" in Korean. Feel free to bookmark it so you can return anytime you need it. Now, please take your time and explore the rest of the page at your own pace.</p>
+          <p>That concludes our introduction to the Lexington Ames Korea website. Please remember our promise: guiding companies to the most prosperous location, with precision. Whether you represent a company weighing its next move, or a developer looking for the right partner, we would be glad to help. We look forward to hearing from you. Thank you very much for your time today.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2170,6 +2259,37 @@ async function submitForm(e) {
   } else {
     toast('⚠ 네트워크 오류 — 문의가 임시 저장되었습니다. bsj0431@gmail.com으로 직접 메일 주셔도 됩니다.');
   }
+}
+
+/* ═══════════ VOICE GUIDE (KO/EN audio + transcript) ═══════════ */
+const VG_STRINGS = {
+  ko: { title: '음성 안내', sub: '약 7분 분량의 음성 안내로 이 사이트를 소개해 드립니다. 언어를 선택해 주세요.', meta: '재생 시간 약 7분', toggleShow: '문자 버전 보기 ▾', toggleHide: '문자 버전 닫기 ▴' },
+  en: { title: 'Voice Guide', sub: 'Listen to a roughly 7-minute audio guide introducing this website. Choose your language above.', meta: 'Runtime approx. 7 minutes', toggleShow: 'Show text version ▾', toggleHide: 'Hide text version ▴' }
+};
+function setVgLang(lang) {
+  const audio = document.getElementById('vgAudio');
+  audio.pause();
+  audio.src = 'audio/guide_' + lang + '.mp3';
+  document.getElementById('vgBtnKo').classList.toggle('active', lang === 'ko');
+  document.getElementById('vgBtnEn').classList.toggle('active', lang === 'en');
+  document.getElementById('vgTextKo').style.display = lang === 'ko' ? '' : 'none';
+  document.getElementById('vgTextEn').style.display = lang === 'en' ? '' : 'none';
+  const s = VG_STRINGS[lang];
+  document.getElementById('vgTitle').textContent = s.title;
+  document.getElementById('vgSub').textContent = s.sub;
+  document.getElementById('vgMeta').textContent = s.meta;
+  const transcriptOpen = document.getElementById('vgTranscript').style.display !== 'none';
+  document.getElementById('vgTranscriptToggle').textContent = transcriptOpen ? s.toggleHide : s.toggleShow;
+  sfx('click'); logEvt('nav', '음성안내 언어: ' + lang);
+}
+function toggleTranscript() {
+  const t = document.getElementById('vgTranscript');
+  const show = t.style.display === 'none';
+  t.style.display = show ? 'block' : 'none';
+  const lang = document.getElementById('vgBtnKo').classList.contains('active') ? 'ko' : 'en';
+  const s = VG_STRINGS[lang];
+  document.getElementById('vgTranscriptToggle').textContent = show ? s.toggleHide : s.toggleShow;
+  sfx('click'); logEvt('nav', show ? '음성안내 자막 열기' : '음성안내 자막 닫기');
 }
 
 /* ═══════════ UI: FAQ / MENU / SCROLL / TOAST ═══════════ */
