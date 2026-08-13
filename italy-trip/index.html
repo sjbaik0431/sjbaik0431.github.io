@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#7A1F3D"/>
+<title>충주여고 4인방 이탈리아 기행 🇮🇹</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍷%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#7A1F3D; --wine-deep:#5C0F28; --burgundy:#993A5E;
+  --gold:#C8A66B; --gold-deep:#8B7139; --gold-light:#E8D3A6;
+  --olive:#6B7A3B; --terracotta:#C8663D; --sage:#94A585;
+  --ink:#2A1D1F; --ink-soft:#4E3B3F;
+  --cream:#FBF7F0; --paper:#F5EEE0; --gray-warm:#E5DAC7;
+  --success:#5B8C5A; --warning:#D89614; --info:#3A6B8A; --error:#B84040; --highlight:#FF3B5C;
+  --shadow-soft:0 4px 12px rgba(122,31,61,.08);
+  --shadow-card:0 8px 24px rgba(122,31,61,.12);
+  --shadow-pop:0 12px 32px rgba(122,31,61,.20);
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px;
+  --font-heading:'Noto Serif KR','Playfair Display',serif;
+  --font-body:'Noto Sans KR',sans-serif;
+  --font-poem:'Cormorant Garamond','Noto Serif KR',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:180px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--ink);line-height:1.75;min-height:100vh;overflow-x:hidden;font-size:16.5px}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+a{color:var(--wine);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:641px){.container{padding:0 24px}}
+@media(min-width:1025px){.container{padding:0 32px}}
+
+/* ==== 배경 애니메이션 ==== */
+.flourish{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.flourish span{position:absolute;top:-30px;font-size:22px;opacity:.4;animation:swirl 25s linear infinite,drift 12s ease-in-out infinite}
+@keyframes swirl{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(110vh) rotate(360deg)}}
+@keyframes drift{0%,100%{margin-left:0}50%{margin-left:80px}}
+.sparkle{position:absolute;width:4px;height:4px;background:#fff;border-radius:50%;box-shadow:0 0 8px #fff;animation:twinkle 2s infinite}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:1}}
+
+/* ==== TTS 상단 컨트롤바 (매우 큼) ==== */
+.tts-bar{position:sticky;top:0;z-index:200;background:linear-gradient(135deg,#5C0F28 0%,#7A1F3D 100%);color:#F5EEE0;padding:14px 16px;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.tts-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tts-title{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--gold-light);flex:1;min-width:180px}
+.tts-btn{padding:12px 18px;border-radius:10px;font-weight:700;font-size:15px;transition:all .2s;min-height:52px;display:inline-flex;align-items:center;gap:6px}
+.tts-btn-play{background:var(--gold);color:var(--wine-deep);font-size:20px;padding:14px 28px;box-shadow:0 4px 16px rgba(200,166,107,.5)}
+.tts-btn-play:hover{background:var(--gold-light);transform:scale(1.05)}
+.tts-btn-sec{background:rgba(255,255,255,.15);color:#F5EEE0;font-size:14px;padding:10px 14px;min-height:44px}
+.tts-btn-sec:hover{background:rgba(255,255,255,.25)}
+.tts-progress{flex:1;min-width:100px;height:10px;background:rgba(255,255,255,.15);border-radius:6px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0%;transition:width .5s}
+.tts-status{min-width:80px;text-align:right;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold-light)}
+
+/* ==== NAV ==== */
+.navbar{position:sticky;top:80px;z-index:100;background:rgba(251,247,240,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--gold);box-shadow:0 2px 12px rgba(122,31,61,.08)}
+.navbar-inner{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none}
+.navbar-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:10px 16px;border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;border:1.5px solid var(--gray-warm);transition:all .2s;min-height:44px;white-space:nowrap}
+.nav-btn:hover{background:var(--paper);border-color:var(--gold);transform:translateY(-1px)}
+
+/* ==== HERO ==== */
+.hero{position:relative;background:linear-gradient(180deg,#FBF7F0 0%,#F5EEE0 60%,#E8D3A6 100%);padding:60px 0 50px;text-align:center;overflow:hidden;z-index:1;border-bottom:3px solid var(--gold)}
+.hero::before{content:"🍷";position:absolute;top:20px;left:8%;font-size:56px;opacity:.4}
+.hero::after{content:"🎭";position:absolute;top:40px;right:10%;font-size:44px;opacity:.5}
+.hero .celebrate{display:inline-block;padding:6px 20px;background:var(--wine);color:var(--gold-light);border-radius:999px;font-size:14px;letter-spacing:.1em;margin-bottom:16px;font-weight:600}
+.hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(26px,4.5vw,40px);color:var(--wine-deep);line-height:1.3;margin-bottom:12px}
+.hero .subtitle{font-family:var(--font-poem);font-size:clamp(18px,2.5vw,24px);color:var(--ink-soft);margin:8px 0 20px;font-style:italic}
+.hero .dday{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:rgba(255,255,255,.9);border:2px solid var(--gold);border-radius:999px;box-shadow:var(--shadow-soft);font-weight:700;color:var(--wine);font-size:17px}
+.hero .info{margin-top:14px;font-size:14px;color:var(--ink-soft);font-family:var(--font-poem)}
+
+/* ==== FIRST-TIMER NOTE (중요 강조) ==== */
+.first-note{margin:24px 0;padding:20px 24px;background:linear-gradient(135deg,#FFF9F0 0%,#F5E6B3 100%);border:2px solid var(--gold);border-left:6px solid var(--wine);border-radius:var(--r-md);box-shadow:var(--shadow-soft)}
+.first-note h3{color:var(--wine-deep);font-family:var(--font-heading);font-weight:700;font-size:18px;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.first-note p{color:var(--ink);line-height:1.75;font-size:15px}
+
+/* ==== SECTION ==== */
+.section{padding:44px 0;position:relative;z-index:1}
+.section h2{font-family:var(--font-heading);font-size:clamp(22px,3.2vw,28px);font-weight:700;color:var(--wine-deep);margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);padding-left:14px}
+.section .lead{font-family:var(--font-poem);font-size:17px;color:var(--ink-soft);margin-bottom:20px;font-style:italic}
+
+/* ==== CARDS ==== */
+.card{background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--wine);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow-card);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-pop)}
+
+/* ==== COURSE TABS ==== */
+.course-tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.course-tab{flex:1;min-width:280px;padding:16px 20px;background:#fff;border:2px solid var(--gray-warm);border-radius:var(--r-md);cursor:pointer;transition:all .3s}
+.course-tab.active{border-color:var(--wine);background:linear-gradient(135deg,#FFF9F0 0%,#F5E6B3 100%);box-shadow:var(--shadow-pop)}
+.course-tab h4{color:var(--wine-deep);font-family:var(--font-heading);font-weight:700;font-size:16px;margin-bottom:6px}
+.course-tab p{font-size:13px;color:var(--ink-soft);line-height:1.6}
+
+/* ==== TIMELINE ==== */
+.day-row{display:flex;gap:14px;overflow-x:auto;padding:8px 4px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.day-row::-webkit-scrollbar{height:6px}
+.day-row::-webkit-scrollbar-track{background:var(--paper);border-radius:3px}
+.day-row::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.day-card{flex:0 0 280px;scroll-snap-align:start;padding:16px;background:#fff;border:1.5px solid var(--gray-warm);border-radius:var(--r-md);cursor:pointer;transition:all .3s}
+.day-card:hover{background:var(--paper);border-color:var(--wine)}
+.day-card .day-num{display:inline-block;padding:4px 12px;background:var(--wine);color:#fff;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:8px}
+.day-card .day-date{font-weight:700;color:var(--wine-deep);font-size:15px;font-family:var(--font-heading)}
+.day-card .day-city{font-size:14px;color:var(--olive);font-weight:700;margin:2px 0 4px}
+.day-card .day-title{font-size:14.5px;line-height:1.5;color:var(--ink);margin-bottom:6px;font-weight:500}
+.day-card .day-summary{font-size:13px;color:var(--ink-soft);line-height:1.55}
+
+/* ==== PLACE CARDS ==== */
+.place-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.place-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);overflow:hidden;cursor:pointer;transition:all .3s}
+.place-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-pop);border-color:var(--wine)}
+.place-thumb{aspect-ratio:16/10;background:var(--paper) center/cover no-repeat;position:relative}
+.place-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4))}
+.place-thumb .chip-city{position:absolute;top:10px;left:10px;z-index:2;padding:4px 12px;background:rgba(122,31,61,.9);color:#fff;border-radius:8px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)}
+.place-body{padding:16px}
+.place-name{font-size:16px;font-weight:700;color:var(--wine-deep);margin-bottom:2px;font-family:var(--font-heading)}
+.place-it{font-family:'Playfair Display',serif;font-size:13px;color:var(--gold-deep);font-style:italic;margin-bottom:8px}
+.place-intro{font-size:14px;color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.place-poem{font-family:var(--font-poem);font-size:14px;color:var(--wine);font-style:italic;padding:8px 10px;background:var(--paper);border-radius:6px;margin-top:8px}
+.place-dress{font-size:12.5px;color:var(--olive);margin-top:6px}
+
+/* ==== PROGRAMS ==== */
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.prog-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);overflow:hidden;transition:all .3s;position:relative}
+.prog-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-pop)}
+.prog-thumb{aspect-ratio:16/9;background:var(--paper) center/cover no-repeat}
+.prog-body{padding:16px}
+.prog-cat{display:inline-block;padding:2px 10px;background:var(--gold);color:var(--wine-deep);border-radius:6px;font-size:11px;font-weight:700;margin-bottom:6px}
+.prog-name{font-size:15px;font-weight:700;color:var(--wine-deep);margin-bottom:6px;font-family:var(--font-heading)}
+.prog-meta{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+.prog-price{font-family:var(--font-heading);color:var(--wine);font-weight:700;margin:6px 0}
+.prog-why{font-size:13px;color:var(--olive);padding:6px 8px;background:var(--paper);border-radius:6px;margin-top:6px}
+
+/* ==== HOTELS ==== */
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.hotel-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:16px}
+.hotel-city{display:inline-block;padding:2px 10px;background:var(--olive);color:#fff;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:6px}
+.hotel-name{font-family:var(--font-heading);color:var(--wine-deep);font-weight:700;font-size:15px}
+.hotel-price{color:var(--wine);font-weight:700;margin:6px 0}
+.hotel-pros{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+
+/* ==== RESTAURANTS ==== */
+.rest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.rest-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);overflow:hidden}
+.rest-thumb{aspect-ratio:16/9;background:var(--paper) center/cover no-repeat}
+.rest-body{padding:14px}
+.rest-city{display:inline-block;padding:2px 10px;background:var(--terracotta);color:#fff;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:6px}
+.rest-name{font-family:var(--font-heading);color:var(--wine-deep);font-weight:700;font-size:15px;margin-bottom:4px}
+.rest-cuisine{font-size:13px;color:var(--gold-deep);margin-bottom:6px;font-style:italic}
+.rest-menu{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+
+/* ==== CHECKLIST ==== */
+.chk-day{margin-bottom:16px;padding:16px 18px;background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--gold);border-radius:var(--r-md)}
+.chk-day h4{color:var(--wine-deep);font-family:var(--font-heading);font-size:16px;margin-bottom:8px}
+.chk-item{display:flex;gap:10px;padding:6px 0}
+.chk-item input{flex-shrink:0;width:22px;height:22px;margin-top:2px;accent-color:var(--wine);cursor:pointer}
+.chk-item label{flex:1;font-size:14.5px;line-height:1.6;cursor:pointer}
+.chk-item input:checked + label{text-decoration:line-through;color:var(--ink-soft);opacity:.6}
+
+/* ==== PHRASES ==== */
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.phrase-card{padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:8px}
+.phrase-cat{display:inline-block;padding:2px 8px;background:var(--wine);color:#fff;border-radius:4px;font-size:10.5px;font-weight:700;margin-bottom:6px}
+.phrase-ko{font-size:14px;color:var(--ink-soft);margin-bottom:4px}
+.phrase-it{font-family:'Playfair Display',serif;font-weight:700;color:var(--wine-deep);font-size:16px;font-style:italic}
+.phrase-pron{font-size:13px;color:var(--olive);margin-top:2px}
+
+/* ==== EMERGENCY ==== */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.emer-item{display:flex;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);transition:all .2s}
+.emer-item:hover{transform:translateY(-2px);border-color:var(--wine)}
+.emer-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--gold-light),var(--paper));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.emer-label{font-size:13.5px;font-weight:700;color:var(--wine-deep);margin-bottom:2px}
+.emer-phone{font-family:'Playfair Display',serif;font-weight:700;color:var(--wine);font-size:15px}
+.emer-note{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+
+/* ==== 키워드 하이라이트 ==== */
+.kw{transition:all .3s}
+.kw-active{border-bottom:3px solid var(--highlight);color:var(--highlight);font-weight:700;background:rgba(255,59,92,.1);padding:1px 4px;border-radius:4px;animation:kwpulse 1s ease-in-out}
+.kw-done{border-bottom:2px solid var(--ink-soft);color:var(--ink-soft)}
+@keyframes kwpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+/* ==== FOOTER ==== */
+.footer{padding:56px 0 100px;text-align:center;background:linear-gradient(135deg,#5C0F28 0%,#7A1F3D 100%);color:var(--gold-light)}
+.footer p{font-family:var(--font-poem);font-size:20px;line-height:1.9;font-style:italic}
+.footer .from{margin-top:14px;font-size:15px;opacity:.9}
+
+/* ==== TOAST ==== */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:15px;z-index:2000;opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(prefers-reduced-motion:reduce){.flourish{display:none}*,*::before,*::after{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="flourish" id="flourish" aria-hidden="true"></div>
+
+<!-- 최상단 TTS 컨트롤 (크게) -->
+<div class="tts-bar">
+  <div class="tts-inner">
+    <div class="tts-title">🎙️ 15분 해설 · 매 8초마다 키워드 하이라이트</div>
+    <button class="tts-btn tts-btn-play" id="ttsPlay" onclick="ttsPlay()">▶ 재생</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsPause()">⏸</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsStop()">⏹</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsPrev()">⏪</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsNext()">⏩</button>
+    <div class="tts-progress"><div class="tts-progress-fill" id="ttsProg"></div></div>
+    <span class="tts-status" id="ttsStatus">0/92 · 00:00</span>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <button class="nav-btn" onclick="scrollTo2('#note')">📌 안내</button>
+    <button class="nav-btn" onclick="scrollTo2('#courses')">🗺️ 코스</button>
+    <button class="nav-btn" onclick="scrollTo2('#places')">🏛️ 여행지</button>
+    <button class="nav-btn" onclick="scrollTo2('#programs')">✨ 옵션 프로그램</button>
+    <button class="nav-btn" onclick="scrollTo2('#hotels')">🏨 숙소</button>
+    <button class="nav-btn" onclick="scrollTo2('#restaurants')">🍝 맛집</button>
+    <button class="nav-btn" onclick="scrollTo2('#weather')">☀️ 날씨</button>
+    <button class="nav-btn" onclick="scrollTo2('#checklist')">✅ 체크리스트</button>
+    <button class="nav-btn" onclick="scrollTo2('#phrases')">🇮🇹 이탈리아어</button>
+    <button class="nav-btn" onclick="scrollTo2('#emergency')">☎️ 연락처</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="celebrate">🍷 우아한 여행의 시작</span>
+    <h1>충주여고 4인방 · 명화 · 은희 · 은주 · <span data-kw class="kw" data-audio-time="00:00">현교</span>의 이탈리아</h1>
+    <p class="subtitle">밀라노에서 아말피까지 · <span data-kw class="kw" data-audio-time="00:08">9박 10일</span> · 2026년 11월 12일 ~ 21일</p>
+    <div class="dday" id="ddayBadge">⏳</div>
+    <div class="info">"이탈리아의 결이 우리의 삶에 스며드는 열흘"</div>
+  </div>
+</header>
+
+<main>
+  <!-- 안내 (첫방문자 배려) -->
+  <section id="note" class="section" style="padding-top:24px">
+    <div class="container">
+      <div class="first-note">
+        <h3>📌 <span data-kw class="kw" data-audio-time="00:16">이탈리아 여행 처음이신 일행</span>을 고려한 코스 설계</h3>
+        <p>4명 중 한 분이 이탈리아 첫 방문이시라, <strong style="color:var(--wine)">로마와 아말피(포지타노)를 반드시 포함</strong>한 <strong>코스 C(밀라노 in → 로마 out + 아말피)</strong>를 확정 코스로 반영했습니다. 재방문 3인에게도 아말피 해안 경험은 새로울 것입니다.</p>
+        <p style="margin-top:8px">여유형 <strong>밀라노 in-out 코스 A</strong>를 대안으로 병기했으니, 컨디션·체력을 고려하여 선택하실 수 있습니다.</p>
+        <p style="margin-top:8px;font-family:var(--font-poem);color:var(--wine);font-style:italic">"처음 오는 이의 눈에 로마의 저녁 불빛이 얼마나 감동적일지 상상하며, 우리도 다시 초심으로 걷습니다."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 두 코스 비교 -->
+  <section id="courses" class="section" style="padding-top:0">
+    <div class="container">
+      <h2>🗺️ 두 가지 코스 (확정 + 대안)</h2>
+      <div class="lead">확정 <strong>C</strong>는 로마·아말피 포함 종주형, 대안 <strong>A</strong>는 밀라노 왕복 여유형</div>
+      <div class="course-tabs">
+        <div class="course-tab active" data-course="course_c" onclick="showCourse('course_c')">
+          <h4>코스 C (확정) · 밀라노 in → 로마 out + 아말피</h4>
+          <p id="courseCNote"></p>
+        </div>
+        <div class="course-tab" data-course="course_a" onclick="showCourse('course_a')">
+          <h4>코스 A (대안) · 밀라노 in/out 여유형</h4>
+          <p id="courseANote"></p>
+        </div>
+      </div>
+      <div class="day-row" id="dayRow"></div>
+    </div>
+  </section>
+
+  <!-- 여행지 카드 -->
+  <section id="places" class="section" style="background:linear-gradient(135deg,#F5EEE0 0%,#FBF7F0 100%)">
+    <div class="container">
+      <h2>🏛️ 여행지 카드</h2>
+      <div class="lead">각 도시별 필수 명소 · 60대 배려 · 오늘의 시 · 드레스코드 포함</div>
+      <div class="place-grid" id="placesGrid"></div>
+    </div>
+  </section>
+
+  <!-- 옵션 프로그램 15개 -->
+  <section id="programs" class="section">
+    <div class="container">
+      <h2>✨ 옵션 프로그램 15가지 (선택)</h2>
+      <div class="lead">기존 확정 3개(스칼라·아웃렛·뭐라노) 외 추가 15개 추천 · 원하시는 것 선택하시면 반영</div>
+      <div class="prog-grid" id="progGrid"></div>
+    </div>
+  </section>
+
+  <!-- 숙소 -->
+  <section id="hotels" class="section" style="background:linear-gradient(135deg,#F5EEE0 0%,#FBF7F0 100%)">
+    <div class="container">
+      <h2>🏨 3-4성급 가성비 숙소</h2>
+      <div class="lead">위치 우선 · 60대 여성 4인 트윈 2룸 최적 (엘리베이터·조식 포함)</div>
+      <div class="hotel-grid" id="hotelGrid"></div>
+    </div>
+  </section>
+
+  <!-- 맛집 -->
+  <section id="restaurants" class="section">
+    <div class="container">
+      <h2>🍝 도시별 맛집 (매운 것 없음)</h2>
+      <div class="lead">현지 대표 메뉴 · 가격 · 사진</div>
+      <div class="rest-grid" id="restGrid"></div>
+    </div>
+  </section>
+
+  <!-- 날씨 -->
+  <section id="weather" class="section" style="background:linear-gradient(135deg,#F5EEE0 0%,#FBF7F0 100%)">
+    <div class="container">
+      <h2>☀️ 여행 10일 도시별 날씨</h2>
+      <div class="lead">Open-Meteo API 실시간</div>
+      <div id="weatherArea"><div style="padding:20px;text-align:center;color:var(--ink-soft)">불러오는 중...</div></div>
+    </div>
+  </section>
+
+  <!-- 체크리스트 -->
+  <section id="checklist" class="section">
+    <div class="container">
+      <h2>✅ 꼼꼼한 체크리스트</h2>
+      <div class="lead">체크 자동 저장 · 이 기기에만 보관</div>
+      <div id="chkArea"></div>
+    </div>
+  </section>
+
+  <!-- 이탈리아어 -->
+  <section id="phrases" class="section" style="background:linear-gradient(135deg,#F5EEE0 0%,#FBF7F0 100%)">
+    <div class="container">
+      <h2>🇮🇹 간단한 이탈리아어</h2>
+      <div class="lead">발음 표기 포함 · 인사·레스토랑·쇼핑·응급·감정 표현</div>
+      <div class="phrase-grid" id="phraseGrid"></div>
+    </div>
+  </section>
+
+  <!-- 긴급 연락처 -->
+  <section id="emergency" class="section">
+    <div class="container">
+      <h2>☎️ 중요 연락처</h2>
+      <div class="lead">유럽 응급 112 · 대사관 · 항공사 · 예약처</div>
+      <div class="emer-grid" id="emerGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>부오나 포르투나 (Buona Fortuna!) · 명화·은희·은주·현교 4인방의<br/>이탈리아 기행이 <span data-kw class="kw" data-audio-time="14:54">안전하고 행복한</span> 추억으로 가득하기를</p>
+    <p class="from">— 밀라노의 트렌치, 베네치아의 곤돌라, 피렌체의 노을, 로마의 별, 포지타노의 레몬 향과 함께 🍷</p>
+  </div>
+</footer>
+
+<script>
+const DATA = {"places":[{"id":"duomo-milano","name_ko":"밀라노 두오모","name_it":"Duomo di Milano","city":"밀라노","date":"2026-11-13","intro":"이탈리아 최대 고딕 성당(1386~1965). 135개 첨탑·3,400 조각상. 옥상에서 알프스까지 조망.","tips":"★ Duomo Pass Lift(엘리베이터 포함) €20, 65세 이상 €10. 계단 251개 회피 필수. 오전 10-11시 방문 (오후 안개·역광). 어깨·무릎 노출 금지, 숄 필수","hours":"09:00-19:00","admission":"€20 (65+ €10)","address":"Piazza del Duomo, 20122 Milano","coord":{"lat":45.4641,"lng":9.1919},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Milan_Cathedral_from_Piazza_del_Duomo.jpg/1280px-Milan_Cathedral_from_Piazza_del_Duomo.jpg","music":[{"title":"La Traviata Brindisi","artist":"Verdi","youtube_id":"cvOm_zOTiWo"}],"poem":"두오모, 다섯 세기의 기도가 첨탑마다 서리처럼 맺혔네","dress":"트렌치+니트+숄(성당 어깨·무릎 가림), 낮 10-14°C 대응"},{"id":"scala","name_ko":"스칼라 극장 (발레·오페라)","name_it":"Teatro alla Scala","city":"밀라노","date":"2026-11-13","intro":"1778년 개관 세계 3대 오페라 극장. 11/7-21 스트라빈스키 발레 프로그램 (Balanchine 'Apollo' + Pina Bausch 'The Rite of Spring').","tips":"★ 60대 4인은 박스석(Palco II ordine) 강력 추천 - 편안한 좌석·시야. 드레스코드: 저녁 공연 세미포멀 (원피스+숄). 티켓 €25-250. teatroallascala.org","hours":"공연 20:00","admission":"박물관 €15 / 발레 €25-180","address":"Via Filodrammatici 2, 20121 Milano","coord":{"lat":45.467,"lng":9.1895},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Milan_-_Scala_-_Facade.jpg/1280px-Milan_-_Scala_-_Facade.jpg","music":[{"title":"Nessun Dorma","artist":"Puccini/Pavarotti","youtube_id":"cWc7vYjgnTs"}],"poem":"밤이 무대에 스며들 때, 별들도 숨을 죽인다","dress":"세미포멀 원피스+숄+파티 백"},{"id":"galleria","name_ko":"비토리오 에마누엘레 2세 갤러리아","name_it":"Galleria Vittorio Emanuele II","city":"밀라노","date":"2026-11-13","intro":"1877년 완공 세계 최초 아케이드. 프라다 원조 매장. 중앙 황소 모자이크에서 뒤꿈치로 3회 돌면 행운.","tips":"두오모↔스칼라 통로. 야간 조명 아름다움. 저녁 아페리티보 카페 Camparino와 조합","hours":"24시간 (상점 10-20)","admission":"무료","address":"Piazza del Duomo","coord":{"lat":45.4658,"lng":9.19},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Milan_-_Galleria_Vittorio_Emanuele_-_Panorama.jpg/1280px-Milan_-_Galleria_Vittorio_Emanuele_-_Panorama.jpg","music":[{"title":"O Sole Mio","artist":"Pavarotti","youtube_id":"8Sy9ZFDpuUE"}],"poem":"유리 돔 아래, 시간마저 우아하게 걸어간다","dress":"밀라노 스타일 - 클래식 코트+가죽 가방"},{"id":"serravalle","name_ko":"세라발레 디자이너 아웃렛","name_it":"Serravalle Designer Outlet","city":"밀라노 근교","date":"2026-11-14","intro":"유럽 최대 디자이너 아웃렛 (300+ 매장). Prada/Gucci/Armani/Ferragamo/Moncler 등. 정가 대비 30-70% 할인.","tips":"★ Zani Viaggi 셔틀 €20 왕복 (Milano Centrale 09:30 출발). Fashion Passport +10% 할인 카드 옵션. 편한 러닝화·크로스백. 175유로+ 세금 환급 (Global Blue). 4-5시간 쇼핑 후 17:00 셔틀 복귀","hours":"10:00-20:00","admission":"무료 (셔틀 €20)","address":"Serravalle Scrivia, AL","coord":{"lat":44.7333,"lng":8.8667},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Via_Monte_Napoleone_Milano.jpg/1280px-Via_Monte_Napoleone_Milano.jpg","music":[{"title":"Material Girl","artist":"Madonna","youtube_id":"6p-lDYPR2P8"}],"poem":"명품의 결에도, 우리의 취향은 흐트러지지 않는다","dress":"편한 러닝화·크로스백·큰 쇼핑백"},{"id":"last-supper","name_ko":"최후의 만찬 (산타 마리아 델레 그라치에)","name_it":"Il Cenacolo Vinciano","city":"밀라노","date":"2026-11-15","intro":"레오나르도 다 빈치 1495-98년 벽화. 유네스코 세계문화유산. 15분간 25명씩 입장.","tips":"★★ 6-8주 전 예약 필수! cenacolovinciano.org 또는 GetYourGuide 가이드 투어 €50-99. 사진 촬영 금지. 도착 20분 전 픽업","hours":"08:15-19:00 (월 휴관)","admission":"€15+예약 €2 / 가이드 €50-99","address":"Piazza Santa Maria delle Grazie 2","coord":{"lat":45.4659,"lng":9.1709},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/1280px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg","music":[{"title":"Time to Say Goodbye","artist":"Bocelli","youtube_id":"0RZ0MZuiRcU"}],"poem":"오백년의 벽 앞에서, 우리는 잠시 신을 만난다","dress":"단정한 상의+긴 바지 (성당)"},{"id":"sirmione","name_ko":"시르미오네 온천 & 가르다 호수","name_it":"Terme di Sirmione - Aquaria","city":"시르미오네","date":"2026-11-14","intro":"★ 돌로미테 트레킹 대체 옵션 (11월 리프트·산장 폐쇄). 2천년 로마 유황온천 + 가르다 호수뷰. 37도 노천탕.","tips":"★ 60대 최적 힐링. 온천 €48 4시간권. 스칼리제로 성·카툴루스 유적. 밀라노→Desenzano 열차 30분→셔틀 20분. 수영복·수영모 필수. termedisirmione.com 예약","hours":"09:30-22:30","admission":"€48/4h","address":"Piazza Don A. Piatti, 25019 Sirmione","coord":{"lat":45.4936,"lng":10.6062},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sirmione_-_panoramio_%2822%29.jpg/1280px-Sirmione_-_panoramio_%2822%29.jpg","music":[{"title":"Adagio in G minor","artist":"Albinoni","youtube_id":"XMbvcp480Y4"}],"poem":"가르다의 물결 속에, 세월의 무게가 잠긴다","dress":"수영복·수영모·플립플랍·가운·목욕가방"},{"id":"san-marco","name_ko":"산 마르코 광장·대성당","name_it":"Piazza San Marco","city":"베네치아","date":"2026-11-16","intro":"베네치아의 심장. 비잔틴 황금 모자이크. 11월 아쿠아 알타(고조) 시 판자길 설치.","tips":"온라인 예약 €6로 줄서기 회피. 민소매·반바지 금지. 방수 부츠 지참","hours":"09:30-17:15","admission":"€3 (본당)","address":"Piazza San Marco","coord":{"lat":45.434,"lng":12.3388},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/San_Marco_horiz.jpg/1280px-San_Marco_horiz.jpg","music":[{"title":"사계 겨울 L'inverno","artist":"Vivaldi","youtube_id":"jd_JuGiziT4"}],"poem":"천 년의 광장에 비둘기가 앉으니, 시간도 잠시 쉰다","dress":"방수 부츠·긴 코트·모자 (아쿠아 알타 대비)"},{"id":"gondola","name_ko":"곤돌라 세레나데","name_it":"Gondola con Serenata","city":"베네치아","date":"2026-11-16","intro":"공식 30분 €90/대 (야간 €110). 4인 나눠타면 €22.5/인. 공유 세레나데 €59/인 (아코디언+테너).","tips":"★ 60대 인생샷. 산타 마리아 델 질리오 or 오르세올로 승선장. 담요 지참(선착장 대여). 손 잡아줌","hours":"08:00-19:00 (야간 별도)","admission":"€90/대 or €59/인 세레나데","address":"산 마르코 or 리알토","coord":{"lat":45.4331,"lng":12.3388},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venise_-_Gondoles_sur_le_Grand_Canal.jpg/1280px-Venise_-_Gondoles_sur_le_Grand_Canal.jpg","music":[{"title":"O Sole Mio","artist":"Pavarotti","youtube_id":"8Sy9ZFDpuUE"}],"poem":"물결에 실려 흐르는 노래, 그것이 곧 베네치아","dress":"방한 코트+담요+장갑+장식 스카프"},{"id":"murano","name_ko":"뭐라노 유리공예 체험","name_it":"Murano Glass Experience","city":"베네치아","date":"2026-11-16","intro":"★ 13세기 유리공방 집결지. Ellegi Glass Factory 견학+시연 €5/인 (현장). 유리 만들기 워크숍 €55-90.","tips":"산 마르코→Colonna 4.1/4.2 바포레토 25분. 60대 여성 그룹 오전 10시 회차 (한적). 완성품 국제 배송 가능","hours":"09:00-16:00","admission":"€5-90","address":"Fondamenta dei Vetrai, Murano","coord":{"lat":45.4587,"lng":12.3527},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Murano_Glass.jpg/1024px-Murano_Glass.jpg","music":[{"title":"만돌린 협주곡 RV 425","artist":"Vivaldi","youtube_id":"jd_JuGiziT4"}],"poem":"불꽃 속에서 빚어지는 것, 유리인가 시간인가","dress":"편한 신발·앞치마 대여"},{"id":"burano","name_ko":"부라노 컬러 마을","name_it":"Burano","city":"베네치아","date":"2026-11-16","intro":"파스텔 컬러 어부 마을·전통 레이스. 뭐라노 Faro→부라노 12번 바포레토 40분.","tips":"인스타 성지. 산 마르코 왕복 3시간. 뭐라노+부라노 하루 코스","hours":"24h","admission":"무료","address":"Burano, Venezia","coord":{"lat":45.4853,"lng":12.4165},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Burano_-_panorama.jpg/1280px-Burano_-_panorama.jpg","music":[{"title":"Volare","artist":"Modugno","youtube_id":"y0YsGN0BszM"}],"poem":"물감을 흩뿌린 마을, 어부의 무지개","dress":"컬러풀 코트·인생샷 액세서리"},{"id":"uffizi","name_ko":"우피치 미술관","name_it":"Galleria degli Uffizi","city":"피렌체","date":"2026-11-17","intro":"보티첼리 비너스의 탄생·봄, 다빈치·미켈란젤로·라파엘로·카라바조 컬렉션.","tips":"★★ 온라인 사전 예약 필수 €16+€4 예약비. 15분 시간대 지정. 화 휴관. 프라이빗 가이드 €95/인","hours":"08:15-18:30 (월 휴관)","admission":"€20 (온라인)","address":"Piazzale degli Uffizi 6","coord":{"lat":43.7678,"lng":11.2553},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Uffizi_Gallery%2C_Florence.jpg/1280px-Uffizi_Gallery%2C_Florence.jpg","music":[{"title":"O mio babbino caro","artist":"Puccini","youtube_id":"lgkP3vNwbFA"}],"poem":"르네상스의 거장들이 붓끝에 세상을 담았다","dress":"편한 신발+얇은 이너 (실내 서늘)"},{"id":"duomo-firenze","name_ko":"피렌체 두오모","name_it":"Cattedrale di Santa Maria del Fiore","city":"피렌체","date":"2026-11-17","intro":"브루넬레스키의 붉은 돔. 성당 무료, 돔+세례당+종탑+박물관 통합권 €30.","tips":"★ 돔 463계단 (엘리베이터 없음, 60대 부담) - 세례당·성당 내부만. 대신 미켈란젤로 광장에서 두오모 전경","hours":"10:15-15:45","admission":"성당 무료","address":"Piazza del Duomo","coord":{"lat":43.7731,"lng":11.256},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Cattedrale_di_Santa_Maria_del_Fiore_2013-11-16_14-32-53.jpg/1280px-Cattedrale_di_Santa_Maria_del_Fiore_2013-11-16_14-32-53.jpg","music":[{"title":"Con Te Partirò","artist":"Bocelli","youtube_id":"0RZ0MZuiRcU"}],"poem":"붉은 돔 위로 태양이 지고, 도시는 다시 아름다워진다","dress":"단정 롱코트+플랫 슈즈"},{"id":"michelangelo-piazza","name_ko":"미켈란젤로 광장 (일몰)","name_it":"Piazzale Michelangelo","city":"피렌체","date":"2026-11-17","intro":"피렌체 전경 최고 뷰포인트. 두오모+아르노강+토스카나 언덕. 일몰 명소.","tips":"★ 12·13번 버스 SMN역·산타 크로체에서 20분. 도보 오르막 X. 일몰 30분 전(16:30) 도착. 산 미니아토 대성당 그레고리안 성가 17:30 무료","hours":"24h","admission":"무료","address":"Piazzale Michelangelo","coord":{"lat":43.7629,"lng":11.2649},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Panorama_of_Florence_from_Piazzale_Michelangelo.jpg/1280px-Panorama_of_Florence_from_Piazzale_Michelangelo.jpg","music":[{"title":"Miserere","artist":"Zucchero & Pavarotti","youtube_id":"pkbLnrgYRp8"}],"poem":"일몰이 도시를 감쌀 때, 우리는 삶을 다시 사랑한다","dress":"방한 다운+니트+장갑"},{"id":"ponte-vecchio","name_ko":"폰테 베키오","name_it":"Ponte Vecchio","city":"피렌체","date":"2026-11-17","intro":"14세기 석조 아치 다리. 위쪽 금세공 상점가. 저녁 노을 골든타임.","tips":"17-18시 다리 서편 강변에서 사진. 상점가 눈요기만","hours":"24h","admission":"무료","address":"Ponte Vecchio","coord":{"lat":43.768,"lng":11.2531},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/PonteVecchio_from_Ponte_Santa_Trinita.jpg/1280px-PonteVecchio_from_Ponte_Santa_Trinita.jpg","music":[{"title":"La Vita è Bella","artist":"Piovani","youtube_id":"YQeVFA9XVJs"}],"poem":"금빛 창들이 강 위에 늘어서니, 시간도 반짝인다","dress":"저녁 세미포멀"},{"id":"colosseum","name_ko":"콜로세움 & 포로 로마노","name_it":"Colosseo","city":"로마","date":"2026-11-19","intro":"AD 72-80년 5만명 수용 원형경기장. 통합권 24시간 유효. 지하·아레나 특별 투어 €95.","tips":"★ 필수 예약 (2-3주 전). Metro B선 Colosseo역 도보 1분. 편한 운동화 필수. 60세 이상 EU 시민 무료 (한국은 안 됨). 야간 지하 투어 €85","hours":"09:00-16:30 (11월)","admission":"€18 (통합) / Full €24","address":"Piazza del Colosseo 1","coord":{"lat":41.8902,"lng":12.4922},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg/1280px-Colosseum_in_Rome%2C_Italy_-_April_2007.jpg","music":[{"title":"Now We Are Free (Gladiator)","artist":"Hans Zimmer","youtube_id":"pX0F0AL_yQ8"}],"poem":"천년의 함성이 벽돌마다 각인되어","dress":"편한 운동화·모자·긴 코트"},{"id":"vatican","name_ko":"바티칸 박물관 & 시스티나","name_it":"Musei Vaticani","city":"로마","date":"2026-11-20","intro":"미켈란젤로 최후의 심판·천장화. 오전 8시 예약 슬롯 얼리버드 (조용).","tips":"★★ 온라인 €25 사전 예약, 3주 전 매진 잦음. 11/1 만성절 휴관. 소매·무릎 가리는 옷 필수. 얼리버드 조식 포함 투어 €89-120","hours":"08:00-20:00 (일·11/1 휴관)","admission":"€25 (온라인)","address":"Viale Vaticano, Città del Vaticano","coord":{"lat":41.9065,"lng":12.4536},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Vatican_City_at_Large.jpg/1280px-Vatican_City_at_Large.jpg","music":[{"title":"Miserere","artist":"Zucchero","youtube_id":"pkbLnrgYRp8"}],"poem":"천장에서 신이 손을 뻗어, 인간을 만나는 순간","dress":"어깨 가리는 카디건·긴 바지·성지 예의"},{"id":"trevi","name_ko":"트레비 분수","name_it":"Fontana di Trevi","city":"로마","date":"2026-11-19","intro":"바로크 걸작 분수. 저녁 조명 압권. 동전 던지기 (오른손→왼쪽 어깨 너머 = 다시 로마).","tips":"이른 아침(7시) 또는 저녁(21시 이후) - 낮엔 인산인해","hours":"24h","admission":"무료","address":"Piazza di Trevi","coord":{"lat":41.9009,"lng":12.4833},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Trevi_Fountain%2C_Rome%2C_Italy_2_-_May_2007.jpg/1280px-Trevi_Fountain%2C_Rome%2C_Italy_2_-_May_2007.jpg","music":[{"title":"Roma Nun Fa' La Stupida","artist":"Italian","youtube_id":"9EcjWd-O4jI"}],"poem":"동전 하나로 다시 만나기를 기약하는 도시","dress":"세미포멀 저녁 산책복"},{"id":"pantheon","name_ko":"판테온","name_it":"Pantheon","city":"로마","date":"2026-11-19","intro":"AD 118-125년 하드리아누스 황제. 세계 최고령 지붕 건물. 무료 였으나 2023년부터 €5.","tips":"천장 원형 창(oculus) 하이라이트. 나보나 광장·트레비와 도보 코스","hours":"월-토 09:00-19:00","admission":"€5","address":"Piazza della Rotonda","coord":{"lat":41.8986,"lng":12.4769},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Rome-Pantheon-Interieur1.jpg/1280px-Rome-Pantheon-Interieur1.jpg","music":[{"title":"Nessun Dorma","artist":"Puccini","youtube_id":"cWc7vYjgnTs"}],"poem":"돌로 지은 우주, 그 중앙에 인간이 서다","dress":"클래식 코트"},{"id":"trastevere","name_ko":"트라스테베레 지구","name_it":"Trastevere","city":"로마","date":"2026-11-19","intro":"저녁 로컬 분위기 산책 지구. 자갈길·트라토리아·주점 밀집. 카르보나라·카초에페페 정통집.","tips":"밤에는 4인 함께 이동. 22시 이후 인적 뜸한 골목 회피","hours":"저녁","admission":"무료","address":"Trastevere, Roma","coord":{"lat":41.8896,"lng":12.4691},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Trastevere_by_night.jpg/1280px-Trastevere_by_night.jpg","music":[{"title":"That's Amore","artist":"Dean Martin","youtube_id":"gy2LqAWWXsE"}],"poem":"골목마다 웃음이 흐르는 저녁, 로마의 마음","dress":"저녁 산책 코트+편한 신발"},{"id":"positano","name_ko":"포지타노 (아말피 해안)","name_it":"Positano","city":"포지타노","date":"2026-11-20","intro":"파스텔 절벽 마을. 아말피 코스트 대표. 스피아자 그란데 해변·산타 마리아 아순타 성당(검은 마돈나).","tips":"★★ 60대 4인 강력 권장 옵션: 로마→나폴리 Frecciarossa 1등석(€35) + 나폴리→포지타노 프라이빗 벤(€100) 조합. 짐 이동 스트레스 최소화. 마을 300-400 계단, 케이블카 없음. 짐꾼 서비스 이용. 11월 시즌 오프 대비 → Hotel Savoia (연중 운영) or 소렌토 대안","hours":"—","admission":"무료 (교통 별도)","address":"Positano, SA","coord":{"lat":40.628,"lng":14.4849},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Positano_Amalfi_Coast_Italy.jpg/1280px-Positano_Amalfi_Coast_Italy.jpg","music":[{"title":"Volare","artist":"Modugno","youtube_id":"y0YsGN0BszM"}],"poem":"절벽에 매달린 마을이 바다를 향해 걷는 것 같다","dress":"편한 러닝화(계단 300+)·컬러 원피스·선글라스"},{"id":"amalfi-lemon","name_ko":"아말피 레몬 농장 & 리몬첼로","name_it":"Amalfi Lemon Experience","city":"아말피","date":"2026-11-20","intro":"IGP 인증 아말피 레몬 계단식 밭 산책. 리몬첼로·레몬케이크·마멀레이드 시식. 3시간 반나절.","tips":"★ 11월 신들의 길 트레킹 대체 최적. GetYourGuide '아말피 레몬 그로브 익스피리언스' €65/인. 아말피 마리나 광장 집결","hours":"오전","admission":"€65/인","address":"Amalfi Marina","coord":{"lat":40.634,"lng":14.6027},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Amalfi_Lemons_%2848104108571%29.jpg/1280px-Amalfi_Lemons_%2848104108571%29.jpg","music":[{"title":"'O Sole Mio","artist":"Pavarotti","youtube_id":"8Sy9ZFDpuUE"}],"poem":"레몬향에 실려오는 태양, 아말피의 하루","dress":"편한 트레킹화+얇은 다운"}],"programs":[{"id":"last-supper-tour","name_ko":"밀라노 최후의 만찬 스킵더라인 가이드","cat":"문화·예술","duration":"3시간","price":"€99/인 (4인 €396)","booking":"GetYourGuide/Viator","why":"공식 티켓 매진 시 유일한 확정 입장 방법. 스포르체스코 성 도보 조합","warn":"6-8주 전 예약, 사진 금지","slot":"밀라노 Day 1 오후","image":"https://upload.wikimedia.org/wikipedia/commons/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg"},{"id":"sirmione-spa","name_ko":"시르미오네 아쿠아리아 온천 & 호숫가","cat":"자연·힐링","duration":"반나절","price":"€48/인 (4시간권)","booking":"termesirmione.it","why":"돌로미테 대체 완벽. 37도 노천탕·가르다 호수뷰. 계단 거의 없음. 60대 관절 회복","warn":"수영복·수영모 필수","slot":"밀라노 Day 3 전일","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sirmione_-_panoramio_%2822%29.jpg/1280px-Sirmione_-_panoramio_%2822%29.jpg"},{"id":"gondola-serenade","name_ko":"베네치아 곤돌라 음악 세레나데","cat":"문화·예술","duration":"35분","price":"€59/인 (공유)","booking":"GetYourGuide","why":"60대 4인 인생샷. 4-6인 공유 곤돌라 + 아코디언·테너","warn":"11월 저녁 매우 추움, 담요 필수","slot":"베네치아 Day 4 저녁","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venise_-_Gondoles_sur_le_Grand_Canal.jpg/1280px-Venise_-_Gondoles_sur_le_Grand_Canal.jpg"},{"id":"rialto-cicchetti","name_ko":"리알토 시장 셰프 동행 치케티 투어","cat":"식도락","duration":"4시간","price":"€95/인","booking":"Walks of Italy","why":"장보기+먹으며 배우기. 여성 셰프 가이드","warn":"월요일 어시장 휴무","slot":"베네치아 Day 5 오전","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Venice_-_Rialto_Market_%285544813648%29.jpg/1280px-Venice_-_Rialto_Market_%285544813648%29.jpg"},{"id":"florence-bistecca","name_ko":"피렌체 티본 스테이크 마스터클래스","cat":"식도락","duration":"4시간","price":"€120/인 (와인·전채·디저트 포함)","booking":"GetYourGuide (MasterSteak)","why":"셰프가 그릴 담당, 참가자는 시즈닝만. 키안티 무제한. 저녁 겸용","warn":"채식주의자 부적합","slot":"피렌체 Day 6 저녁","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bistecca_alla_fiorentina.jpg/1280px-Bistecca_alla_fiorentina.jpg"},{"id":"uffizi-private","name_ko":"우피치 미술관 프라이빗 가이드","cat":"문화·예술","duration":"2.5시간","price":"€95/인 (4인 €380)","booking":"Walks of Italy 프라이빗","why":"한국어 가이드 지정 가능. 벤치 앉아 설명. 비너스 앞 인생샷","warn":"화 휴관","slot":"피렌체 Day 7 오전","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Uffizi_Gallery%2C_Florence.jpg/1280px-Uffizi_Gallery%2C_Florence.jpg"},{"id":"accademia-david","name_ko":"아카데미아 다비드 스킵더라인","cat":"문화·예술","duration":"1.5시간","price":"€45/인","booking":"GetYourGuide","why":"짧고 평지 동선. 다비드 5.17m 실물 15분+ 감상","warn":"월 휴관","slot":"피렌체 Day 7 오후","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/%27David%27_by_Michelangelo_Fir_JBU002.jpg/800px-%27David%27_by_Michelangelo_Fir_JBU002.jpg"},{"id":"piazzale-sunset","name_ko":"미켈란젤로 광장 일몰 & 그레고리안 성가","cat":"자연·힐링","duration":"2.5시간","price":"무료 (버스 €1.70)","booking":"불필요","why":"두오모 조망 최고. 12/13번 버스로 오르막 회피. 산 미니아토 성가 17:30 무료","warn":"11월 일몰 16:50","slot":"피렌체 Day 7 오후","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Panorama_of_Florence_from_Piazzale_Michelangelo.jpg/1280px-Panorama_of_Florence_from_Piazzale_Michelangelo.jpg"},{"id":"modena-balsamic","name_ko":"모데나 발사믹 원조 아세타이아 투어","cat":"소도시·로컬","duration":"반나절","price":"€200/4인 (기차 포함)","booking":"acetaialeonardi.it","why":"실내 앉아 25-50년 숙성 발사믹 시음. 100ml €30-80 선물 최적","warn":"일요일 휴무","slot":"피렌체 Day 8","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Aceto_balsamico_tradizionale_di_Modena.jpg/1280px-Aceto_balsamico_tradizionale_di_Modena.jpg"},{"id":"orvieto-day","name_ko":"오르비에토 언덕 마을 당일","cat":"소도시·로컬","duration":"전일 7시간","price":"€120/인 (가이드 데이투어)","booking":"GetYourGuide","why":"로마 테르미니→오르비에토 75분. 후니쿨라+미니버스로 언덕 오르막 회피","warn":"지하동굴 투어는 계단 많음","slot":"로마 Day 9","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Orvieto002.jpg/1280px-Orvieto002.jpg"},{"id":"colosseum-night","name_ko":"콜로세움 야간 지하·아레나 투어","cat":"문화·예술","duration":"1시간 15분","price":"€85-95/인","booking":"CoopCulture (colosseo.it)","why":"폐장 후 조용한 조명. 지하 검투사 대기실. 인파 없음","warn":"지하 계단 40개, 야간 안전 주의","slot":"로마 Day 9 저녁","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg/1280px-Colosseum_in_Rome%2C_Italy_-_April_2007.jpg"},{"id":"vatican-early","name_ko":"바티칸 얼리버드 조식 포함 소그룹","cat":"문화·예술","duration":"3.5시간","price":"€89-120/인","booking":"The Roman Guy / Walks of Italy","why":"07:30 오픈 전 입장 → 시스티나 1시간 조용. 낮 3만명 인파 회피. 조식 컨디션 최상","warn":"소매·무릎 가리는 복장","slot":"로마 Day 10 오전","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Vatican_City_at_Large.jpg/1280px-Vatican_City_at_Large.jpg"},{"id":"rome-pasta","name_ko":"로마 파스타·젤라토 클래스","cat":"식도락","duration":"3시간","price":"€89/인","booking":"GetYourGuide","why":"앞치마 사진 명소. 4인 프라이빗 협상 쉬움. 바티칸 도보권","warn":"밀 알레르기 사전 고지","slot":"로마 Day 10 점심","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Fresh_pasta_making.jpg/1280px-Fresh_pasta_making.jpg"},{"id":"amalfi-lemon-tour","name_ko":"아말피 레몬 농장 & 리몬첼로 시음","cat":"자연·힐링","duration":"3시간","price":"€65/인","booking":"GetYourGuide","why":"신들의 길 하이킹 저강도 대안. 계단식 레몬밭 인생샷","warn":"픽업 미포함, 아말피 마리나 집결","slot":"아말피 Day 11 오전","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Amalfi_Lemons_%2848104108571%29.jpg/1280px-Amalfi_Lemons_%2848104108571%29.jpg"},{"id":"milan-shopper","name_ko":"밀라노 콰드릴라테로 프라이빗 스타일리스트","cat":"쇼핑","duration":"3시간","price":"€450/4인","booking":"Four Seasons Concierge","why":"세라발레와 다른 성격 - 신상·플래그십. VIP 룸 피팅. 카페 브레이크","warn":"일요일 매장 축소","slot":"밀라노 Day 2 오전","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Via_Monte_Napoleone_%28Milano%29.jpg/1280px-Via_Monte_Napoleone_%28Milano%29.jpg"}],"itineraries":{"course_c":{"id":"course_c","name":"코스 C (확정) - 밀라노 in → 로마 out + 아말피 · 이탈리아 처음이신 일행 배려","note":"★ 4명 중 1명이 이탈리아 첫 방문 → 로마·바티칸·아말피 필수 포함. 3명 재방문자에게도 아말피 해안은 새로운 경험 가능","days":[{"date":"2026-11-12","day_label":"Day 1","city":"인천 출발","title":"✈️ 인천 → 밀라노","summary":"22:00 인천 출발 (야간 비행 12시간)","places_ids":[]},{"date":"2026-11-13","day_label":"Day 2","city":"밀라노 도착","title":"🛬 밀라노 도착 · 두오모·갤러리아·저녁","summary":"오전 6시 말펜사 도착 → Malpensa Express 50분 → 호텔 체크인 → 오후 두오모 옥상(엘리베이터) → 갤러리아 → Camparino 아페리티보 → Trattoria Milanese 저녁","places_ids":["duomo-milano","galleria"]},{"date":"2026-11-14","day_label":"Day 3","city":"시르미오네","title":"♨️ 시르미오네 온천 (돌로미테 대체)","summary":"밀라노→Desenzano 열차 30분→시르미오네 셔틀 20분 → Aquaria 온천 4시간 → 스칼리제로 성 산책 → 저녁 밀라노 복귀 or 시르미오네 1박","places_ids":["sirmione"]},{"date":"2026-11-15","day_label":"Day 4","city":"밀라노","title":"🛍️ 세라발레 아웃렛 · 최후의 만찬 · 스칼라","summary":"오전 09:30 Zani Viaggi 셔틀 → 세라발레 4시간 쇼핑 → 17:00 복귀 → 저녁 최후의 만찬 예약 관람 or 스칼라 발레","places_ids":["serravalle","last-supper"]},{"date":"2026-11-16","day_label":"Day 5","city":"밀라노 → 베네치아","title":"🚄 베네치아 이동 · 뭐라노·부라노","summary":"Frecciarossa 2h13m → 산타루치아역 → 바포레토 24시간권 → 뭐라노 유리공예 → 부라노 컬러 마을 → 산 마르코 저녁 야경","places_ids":["san-marco","murano","burano"]},{"date":"2026-11-17","day_label":"Day 6","city":"베네치아 → 피렌체","title":"🚄 피렌체 이동 · 곤돌라 세레나데","summary":"오전 산 마르코 대성당·두칼레 궁전 → 오후 Frecciarossa 2h05m → 피렌체 SMN 도착 → 저녁 곤돌라 세레나데 (베네치아 야간 옵션) or 피렌체 도착","places_ids":["gondola","duomo-firenze","ponte-vecchio"]},{"date":"2026-11-18","day_label":"Day 7","city":"피렌체","title":"🎨 우피치 · 다비드 · 미켈란젤로 광장","summary":"오전 우피치(사전 예약) → 점심 All'Antico Vinaio 파니노 → 오후 아카데미아 다비드 → 미켈란젤로 광장 일몰 & 그레고리안 성가 → 저녁 비스테카 스테이크","places_ids":["uffizi","michelangelo-piazza"]},{"date":"2026-11-19","day_label":"Day 8","city":"피렌체 → 로마","title":"🏛️ 로마 이동 · 콜로세움 · 트레비","summary":"Frecciarossa 1h32m → 테르미니역 → 콜로세움+포로 로마노(사전 예약) → 저녁 트레비 분수·판테온·나보나 광장 도보 코스 → 트라스테베레 저녁","places_ids":["colosseum","trevi","pantheon","trastevere"]},{"date":"2026-11-20","day_label":"Day 9","city":"로마 → 포지타노","title":"🍋 아말피 이동 · 바티칸 (선택) · 포지타노","summary":"오전 바티칸 얼리버드 (선택) → 로마→나폴리 Frecciarossa 1h10m → 나폴리→포지타노 프라이빗 벤 1.5h → 포지타노 도착 → 스피아자 그란데 산책 → 저녁 Chez Black","places_ids":["vatican","positano"]},{"date":"2026-11-21","day_label":"Day 10","city":"포지타노 → 인천","title":"🍋 레몬 농장 · 로마 공항 · 귀국","summary":"오전 아말피 레몬 농장 & 리몬첼로 → 오후 나폴리→로마 → 다빈치 공항 → 22:00 KE928 인천 (11/22 도착)","places_ids":["amalfi-lemon"]}]},"course_a":{"id":"course_a","name":"코스 A (여유형 대안) - 밀라노 in/out · 3인 재방문자에 특화","note":"★ 이탈리아 재방문자 3인에게 이동 부담 최소, 오가지 이상 마지막 날 여유. 첫 방문자에게 로마·바티칸을 못 보여드리는 아쉬움은 있으나 60대 그룹 컨디션 최우선","days":[{"date":"2026-11-12","day_label":"Day 1","city":"인천 출발","title":"✈️ 인천 → 밀라노","summary":"22:00 인천 출발","places_ids":[]},{"date":"2026-11-13","day_label":"Day 2","city":"밀라노 도착","title":"🛬 밀라노 도착·휴식","summary":"오전 6시 말펜사 도착 → Malpensa Express → 호텔 체크인 → 낮잠·휴식 → 오후 두오모·갤러리아 산책 → Camparino 아페리티보","places_ids":["duomo-milano","galleria"]},{"date":"2026-11-14","day_label":"Day 3","city":"시르미오네","title":"♨️ 시르미오네 온천 & 호숫가","summary":"밀라노→시르미오네 → Aquaria 온천 반나절 → 스칼리제로 성 → 호숫가 저녁 → 시르미오네 1박","places_ids":["sirmione"]},{"date":"2026-11-15","day_label":"Day 4","city":"베네치아","title":"🚄 베네치아 도착","summary":"시르미오네→Verona→Venezia Frecciarossa 1h → 산타루치아 → 산 마르코 광장·리알토 → 저녁 오징어 먹물 리소토","places_ids":["san-marco"]},{"date":"2026-11-16","day_label":"Day 5","city":"베네치아","title":"🎨 뭐라노·부라노·곤돌라","summary":"오전 뭐라노 유리공예 → 오후 부라노 컬러 마을 → 저녁 곤돌라 세레나데","places_ids":["murano","burano","gondola"]},{"date":"2026-11-17","day_label":"Day 6","city":"베네치아 → 밀라노","title":"🚄 밀라노 복귀 · 최후의 만찬 · 스칼라","summary":"Frecciarossa 2h13m 밀라노 복귀 → 최후의 만찬 예약 관람 → 저녁 스칼라 발레","places_ids":["last-supper"]},{"date":"2026-11-18","day_label":"Day 7","city":"밀라노","title":"🛍️ 세라발레 아웃렛 종일","summary":"09:30 Zani Viaggi 셔틀 → 세라발레 6시간 여유 쇼핑 → 저녁 나빌리 아페리티보","places_ids":["serravalle"]},{"date":"2026-11-19","day_label":"Day 8","city":"코모 호수","title":"⛵ 코모 호수 벨라조 당일","summary":"밀라노→바렌나 열차 1h → 페리 → 벨라조 산책 → 밀라노 복귀","places_ids":[]},{"date":"2026-11-20","day_label":"Day 9","city":"밀라노","title":"🎁 콰드릴라테로 쇼핑 · 브레라 지구","summary":"오전 콰드릴라테로 명품 (스타일리스트 옵션) → 오후 브레라 미술관·골목 산책 → 저녁 Ratanà 미슐랭 리소토","places_ids":["galleria"]},{"date":"2026-11-21","day_label":"Day 10","city":"밀라노 → 인천","title":"✈️ 귀국","summary":"오전 여유 → 말펜사 공항 → 오후 KE928 인천","places_ids":[]}]}},"restaurants":[{"id":"trattoria-milanese","name":"Trattoria Milanese","city":"밀라노","cuisine":"정통 밀라노 (1933)","address":"Via Santa Marta 11","price":"€40-55/인","menu":["Risotto alla Milanese","Cotoletta","Ossobuco"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Risotto_alla_milanese.jpg/1024px-Risotto_alla_milanese.jpg"},{"id":"ratana","name":"Ratanà","city":"밀라노","cuisine":"모던 롬바르디아 (미슐랭 추천)","address":"Via Gaetano de Castillia 28","price":"€55-75/인","menu":["Risotto Giallo con Ossobuco","전통 디저트"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Risotto_alla_milanese.jpg/1024px-Risotto_alla_milanese.jpg"},{"id":"osteria-testiere","name":"Osteria alle Testiere","city":"베네치아","cuisine":"해산물 (미슐랭 빕구르망)","address":"Castello","price":"€60-90/인","menu":["먹물 리소토","프리토미스토","오징어"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Squid_ink_pasta.jpg/1024px-Squid_ink_pasta.jpg"},{"id":"floria","name":"Caffè Florian","city":"베네치아","cuisine":"1720년 세계 최고령 카페","address":"Piazza San Marco","price":"카푸치노 €12+음악료 €6","menu":["카푸치노","비체린","벨리니"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Cafe_Florian_Venezia.jpg/1024px-Cafe_Florian_Venezia.jpg"},{"id":"sostanza","name":"Trattoria Sostanza","city":"피렌체","cuisine":"1869년 비스테카 원조","address":"Via del Porcellana 25","price":"€40-60/인","menu":["Bistecca alla Fiorentina","버터 치킨"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bistecca_alla_fiorentina.jpg/1280px-Bistecca_alla_fiorentina.jpg"},{"id":"vinaio","name":"All'Antico Vinaio","city":"피렌체","cuisine":"파니노 노포","address":"Via dei Neri 74","price":"€8-12","menu":["La Favolosa 파니노","La Toscana"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Panini_All%27Antico_Vinaio.jpg/1024px-Panini_All%27Antico_Vinaio.jpg"},{"id":"roscioli","name":"Roscioli","city":"로마","cuisine":"카르보나라 미슐랭급","address":"Campo de' Fiori","price":"€60+/인","menu":["Carbonara","Amatriciana","Salumi"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Carbonara.jpg/1024px-Carbonara.jpg"},{"id":"daenzo","name":"Da Enzo al 29","city":"로마","cuisine":"트라스테베레 클래식","address":"Trastevere","price":"€30-45/인","menu":["Cacio e Pepe","Carbonara","Tiramisù"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Cacio_e_pepe.jpg/1024px-Cacio_e_pepe.jpg"},{"id":"pompi","name":"Pompi","city":"로마","cuisine":"원조 티라미수","address":"스페인광장 지점","price":"€5-8","menu":["Original Tiramisù","Strawberry","Pistacchio"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Tiramisu.jpg/1024px-Tiramisu.jpg"},{"id":"giolitti","name":"Giolitti","city":"로마","cuisine":"1900년 젤라토","address":"판테온 근처","price":"€3-5","menu":["Pistacchio","Nocciola","Stracciatella"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Gelato_scoops.jpg/1024px-Gelato_scoops.jpg"},{"id":"chez-black","name":"Chez Black","city":"포지타노","cuisine":"해변 시푸드 (연중 운영)","address":"Spiaggia Grande","price":"€€€","menu":["Vongole 파스타","해산물 그릴"],"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Positano_Amalfi_Coast_Italy.jpg/1280px-Positano_Amalfi_Coast_Italy.jpg"}],"hotels":[{"city":"밀라노","name":"NH Milano Touring","stars":3.5,"price_eur":"€130-180 트윈","area":"Repubblica (중앙역·두오모 중간)","pros":["엘리베이터","조용","조식 뷔페 €18","지하철 M3 3분","한국인 리뷰 우수"],"senior":"★★★★★"},{"city":"밀라노","name":"Hotel Cavour","stars":4,"price_eur":"€140-180 트윈","area":"Montenapoleone 근처","pros":["명품거리 5분","지하철 M3 2분","60대 여성 접근성 최상"],"senior":"★★★★★"},{"city":"밀라노","name":"Hotel Berna","stars":3,"price_eur":"€130-170 트윈","area":"중앙역 3분","pros":["공항·아웃렛 셔틀 최단","4성급 서비스"],"senior":"★★★★★ (아웃렛 여행)"},{"city":"베네치아","name":"Hotel Antico Panada","stars":3,"price_eur":"€180-220","area":"산 마르코 30m","pros":["1889년 역사","뭐라노 유리 조명","조식 포함"],"senior":"★★★★★"},{"city":"베네치아","name":"Locanda Ca' Amadi","stars":3,"price_eur":"€150-200","area":"리알토 3분","pros":["가족 경영","4인 스위트 가능"],"senior":"★★★★"},{"city":"피렌체","name":"Hotel Cimabue","stars":3,"price_eur":"€120-160","area":"SMN역 10분·두오모 15분","pros":["19세기 프레스코 룸","조식 포함","가성비"],"senior":"★★★★★"},{"city":"피렌체","name":"Hotel Croce di Malta","stars":3,"price_eur":"€160-220","area":"SMN역 3분","pros":["옥상 수영장·두오모 뷰","레스토랑"],"senior":"★★★★"},{"city":"로마","name":"Hotel Artemide","stars":4,"price_eur":"€180-250","area":"테르미니 5분","pros":["조식 우수","스파 무료"],"senior":"★★★★★"},{"city":"로마","name":"Hotel Nazionale","stars":4,"price_eur":"€200-280","area":"판테온·트레비 도보권","pros":["구시가 관광 최적"],"senior":"★★★★"},{"city":"포지타노","name":"Hotel Savoia","stars":3,"price_eur":"€100-140","area":"중심가 도보권","pros":["연중 운영 (11월 개방)"],"senior":"★★★"},{"city":"소렌토 (아말피 대안)","name":"Hotel Antiche Mura","stars":4,"price_eur":"€150-200","area":"소렌토 시내","pros":["11월 개방","포지타노 당일치기 편함","이동 부담 감소"],"senior":"★★★★★ (60대 강력 추천)"}],"emergency":[{"label":"유럽 통합 응급","phone":"112","note":"경찰·구급·소방 통합"},{"label":"이탈리아 경찰","phone":"113","note":""},{"label":"이탈리아 구급","phone":"118","note":""},{"label":"주이탈리아 대한민국 대사관 (로마)","phone":"+39 06 802461","note":"영사 긴급: +39 335 175 1751"},{"label":"주밀라노 총영사관","phone":"+39 02 4818 486","note":""},{"label":"대한민국 영사 콜센터 24H","phone":"+82 2 3210 0404","note":"서울, 수신자부담"},{"label":"아시아나항공 이탈리아","phone":"+39 02 6698 6866","note":""},{"label":"대한항공 밀라노","phone":"+39 02 5501 2288","note":""},{"label":"Trip.com 한국어 24H","phone":"—","note":"앱 내 채팅"},{"label":"Trenitalia 문의","phone":"892021","note":"이탈리아 내"},{"label":"밀라노 말펜사 공항","phone":"+39 02 232323","note":""},{"label":"로마 피우미치노 공항","phone":"+39 06 65951","note":""},{"label":"자녀·가족 (긴급 연락)","phone":"입력 필요","note":"각자 입력"}],"phrases":[{"cat":"인사","ko":"안녕하세요 (아침~점심)","it":"Buongiorno","pron":"본조르노"},{"cat":"인사","ko":"안녕하세요 (오후~저녁)","it":"Buonasera","pron":"부오나세라"},{"cat":"인사","ko":"안녕히 가세요","it":"Arrivederci","pron":"아리베데르치"},{"cat":"인사","ko":"감사합니다","it":"Grazie","pron":"그라찌에"},{"cat":"인사","ko":"부탁드립니다","it":"Per favore","pron":"페르 파보레"},{"cat":"인사","ko":"실례합니다","it":"Scusi","pron":"스쿠지"},{"cat":"인사","ko":"네 / 아니오","it":"Sì / No","pron":"씨 / 노"},{"cat":"인사","ko":"영어 하세요?","it":"Parla inglese?","pron":"파를라 인글레제?"},{"cat":"레스토랑","ko":"4인 자리 부탁합니다","it":"Un tavolo per quattro","pron":"운 타볼로 페르 콰트로"},{"cat":"레스토랑","ko":"메뉴 주세요","it":"Il menù, per favore","pron":"일 메누 페르 파보레"},{"cat":"레스토랑","ko":"계산서 주세요","it":"Il conto, per favore","pron":"일 콘토 페르 파보레"},{"cat":"레스토랑","ko":"매운 것 빼주세요","it":"Senza piccante","pron":"센자 피칸테"},{"cat":"레스토랑","ko":"화장실 어디예요?","it":"Dov'è il bagno?","pron":"도베 일 바뇨?"},{"cat":"레스토랑","ko":"맛있어요!","it":"Buonissimo!","pron":"부오니시모!"},{"cat":"쇼핑","ko":"얼마예요?","it":"Quanto costa?","pron":"콴토 코스타?"},{"cat":"쇼핑","ko":"할인 되나요?","it":"C'è uno sconto?","pron":"체 우노 스콘토?"},{"cat":"쇼핑","ko":"입어봐도 돼요?","it":"Posso provarlo?","pron":"포쏘 프로바를로?"},{"cat":"쇼핑","ko":"택스 리펀드 서류 주세요","it":"Il modulo tax free","pron":"일 모둘로 택스 프리"},{"cat":"교통","ko":"OO행 표 한 장","it":"Un biglietto per OO","pron":"운 빌리에또 페르"},{"cat":"교통","ko":"플랫폼 몇 번?","it":"Quale binario?","pron":"콸레 비나리오?"},{"cat":"교통","ko":"택시 좀 불러주세요","it":"Può chiamare un taxi?","pron":"푸오 키아마레 운 탁시?"},{"cat":"응급","ko":"도와주세요!","it":"Aiuto!","pron":"아이우토!"},{"cat":"응급","ko":"의사를 불러주세요","it":"Chiamate un medico","pron":"키아마테 운 메디코"},{"cat":"응급","ko":"소매치기 당했어요","it":"Mi hanno rubato","pron":"미 안노 루바토"},{"cat":"감정","ko":"정말 아름다워요!","it":"Bellissimo!","pron":"벨리시모!"},{"cat":"감정","ko":"환상적이에요!","it":"Meraviglioso!","pron":"메라빌리오조!"},{"cat":"감정","ko":"완벽해요","it":"Perfetto","pron":"페르페또"},{"cat":"감정","ko":"행운을!","it":"Buona fortuna!","pron":"부오나 포르투나!"}],"tts_script":[{"time":"00:00","text":"안녕하세요, 명화·은희·은주·현교 4인방의 이탈리아 여행 대시보드입니다.","kw":"명화·은희·은주·현교"},{"time":"00:08","text":"이번 여행은 11월 12일 목요일 인천 출발, 21일 토요일 귀국의 9박 10일 코스입니다.","kw":"9박 10일"},{"time":"00:16","text":"★ 4명 중 한 분이 이탈리아 첫 방문이시라, 로마와 아말피를 반드시 포함한 밀라노 인, 로마 아웃 코스로 짜셨습니다.","kw":"로마와 아말피"},{"time":"00:26","text":"밀라노, 시르미오네 온천, 베네치아, 피렌체, 로마, 그리고 포지타노까지 이탈리아 종단 여정입니다.","kw":"밀라노"},{"time":"00:36","text":"이 대시보드에는 두 가지 코스가 담겨 있습니다. 확정 코스 C와, 여유형 대안 밀라노 in-out 코스 A입니다.","kw":"두 가지 코스"},{"time":"00:46","text":"첫날, 인천공항에서 오후 10시 출발 야간 비행입니다.","kw":"야간 비행"},{"time":"00:54","text":"둘째 날 새벽, 밀라노 말펜사 공항 도착. 말펜사 익스프레스 열차로 50분, 편도 13.5 유로입니다.","kw":"말펜사 익스프레스"},{"time":"01:04","text":"두오모 대성당은 이탈리아 최대 고딕 성당. 옥상 엘리베이터 20 유로, 65세 이상은 10 유로입니다.","kw":"두오모 대성당"},{"time":"01:14","text":"바로 옆 갤러리아 비토리오 에마누엘레는 세계 최초 아케이드. 프라다 원조 매장이 있습니다.","kw":"갤러리아"},{"time":"01:24","text":"셋째 날은 시르미오네 온천. 돌로미테 트레킹이 11월엔 리프트가 폐쇄되어 불가능하여 대체합니다.","kw":"시르미오네"},{"time":"01:34","text":"2천년 로마 유황온천, 37도 노천탕에서 가르다 호수를 감상합니다.","kw":"가르다 호수"},{"time":"01:44","text":"넷째 날은 세라발레 디자이너 아웃렛. 유럽 최대 300 매장, 30에서 70퍼센트 할인입니다.","kw":"세라발레"},{"time":"01:54","text":"자니 비아지 셔틀 왕복 20 유로, 밀라노 중앙역 오전 9시 30분 출발입니다.","kw":"자니 비아지"},{"time":"02:04","text":"저녁에는 최후의 만찬을 감상합니다. 반드시 6주 전 예약 필수입니다.","kw":"최후의 만찬"},{"time":"02:14","text":"스칼라 극장 11월 7일부터 21일까지 스트라빈스키 발레 프로그램이 진행 중입니다.","kw":"스칼라"},{"time":"02:24","text":"박스석 팔코 2등급 관람 강력 추천. 세미포멀 원피스에 숄이 좋은 드레스코드입니다.","kw":"박스석"},{"time":"02:34","text":"다섯째 날, 프레차로사 열차로 베네치아 이동. 2시간 13분, 25에서 60 유로입니다.","kw":"베네치아"},{"time":"02:44","text":"바포레토 수상버스 24시간권 25 유로로 자유롭게 이동합니다.","kw":"바포레토"},{"time":"02:54","text":"뭐라노 섬 유리공예 견학. 엘레지 공방 시연 5 유로, 유리 만들기 워크숍 55에서 90 유로입니다.","kw":"뭐라노"},{"time":"03:04","text":"부라노 섬 파스텔 컬러 마을, 인스타그램 성지입니다.","kw":"부라노"},{"time":"03:14","text":"저녁 곤돌라 세레나데 인당 59 유로. 아코디언과 테너의 노래를 들으며 대운하를 흐릅니다.","kw":"곤돌라 세레나데"},{"time":"03:24","text":"11월 저녁은 매우 추우니 담요를 지참하세요.","kw":"담요"},{"time":"03:34","text":"여섯째 날, 프레차로사 2시간 5분으로 피렌체 이동입니다.","kw":"피렌체"},{"time":"03:44","text":"우피치 미술관에서 보티첼리 비너스의 탄생과 봄을 감상. 온라인 예약 필수 20 유로입니다.","kw":"우피치"},{"time":"03:54","text":"두오모 돔은 463 계단, 60대에게 무리이니 세례당과 성당 내부만 관람하세요.","kw":"463 계단"},{"time":"04:04","text":"미켈란젤로 광장의 일몰이 피렌체 여행의 백미입니다.","kw":"미켈란젤로 광장"},{"time":"04:14","text":"12번 13번 버스로 오르막을 회피하고 광장까지 직행합니다.","kw":"12번 버스"},{"time":"04:24","text":"산 미니아토 대성당 그레고리안 성가 무료 미사가 오후 5시 30분입니다.","kw":"그레고리안 성가"},{"time":"04:34","text":"저녁 비스테카 알라 피오렌티나 티본 스테이크. 트라토리아 소스탄자가 원조입니다.","kw":"비스테카"},{"time":"04:44","text":"산 로렌초 시장에서 가죽 제품 흥정 20에서 30퍼센트 가능합니다.","kw":"산 로렌초 시장"},{"time":"04:54","text":"여덟째 날, 프레차로사 1시간 32분으로 로마 이동. 가장 저렴합니다.","kw":"로마"},{"time":"05:04","text":"로마 테르미니역은 유럽 소매치기 성지, 짐 관리에 극도로 주의합니다.","kw":"테르미니역"},{"time":"05:14","text":"콜로세움과 포로 로마노 통합권 18 유로. 반드시 온라인 예약합니다.","kw":"콜로세움"},{"time":"05:24","text":"팔라티노 언덕에서 로마 제국의 흔적을 걷습니다.","kw":"팔라티노"},{"time":"05:34","text":"트레비 분수에 동전 던지기. 오른손으로 왼쪽 어깨 너머로 던져야 다시 로마에 옵니다.","kw":"트레비"},{"time":"05:44","text":"판테온, 나보나 광장을 도보로 이어 걷는 로마 산책 코스가 좋습니다.","kw":"판테온"},{"time":"05:54","text":"저녁 트라스테베레에서 카르보나라와 카초 에 페페를 즐깁니다.","kw":"카르보나라"},{"time":"06:04","text":"아홉째 날, 바티칸 얼리버드 조식 포함 소그룹 투어. 시스티나 예배당을 조용히 감상합니다.","kw":"바티칸"},{"time":"06:14","text":"온라인 25 유로, 3주 전 매진되니 즉시 예약합니다.","kw":"25 유로"},{"time":"06:24","text":"소매와 무릎을 가리는 성지 예복이 필요합니다.","kw":"성지 예복"},{"time":"06:34","text":"오후 로마에서 나폴리 프레차로사 1시간 10분 이동합니다.","kw":"나폴리"},{"time":"06:44","text":"나폴리에서 포지타노까지 프라이빗 벤 1시간 30분, 4인 총 100 유로입니다.","kw":"프라이빗 벤"},{"time":"06:54","text":"포지타노는 파스텔 절벽 마을. 계단 300개 이상이니 짐꾼 서비스를 이용합니다.","kw":"포지타노"},{"time":"07:04","text":"11월은 오프시즌이라 많은 호텔이 폐장. 호텔 사보이아가 연중 운영으로 안전합니다.","kw":"호텔 사보이아"},{"time":"07:14","text":"저녁 셰 블랙에서 해변가 시푸드를 즐깁니다.","kw":"셰 블랙"},{"time":"07:24","text":"열째 날 오전, 아말피 레몬 농장과 리몬첼로 시음 3시간 65 유로입니다.","kw":"아말피 레몬"},{"time":"07:34","text":"IGP 인증 아말피 레몬. 계단식 밭에서 인생샷을 찍습니다.","kw":"IGP 인증"},{"time":"07:44","text":"오후 나폴리에서 로마 다빈치 공항으로 이동합니다.","kw":"다빈치 공항"},{"time":"07:54","text":"저녁 10시 대한항공 로마발 인천행. 11월 22일 도착입니다.","kw":"대한항공"},{"time":"08:04","text":"이제 이탈리아 열차 이용 팁입니다.","kw":"열차 이용 팁"},{"time":"08:14","text":"고속열차는 프레차로사와 이탈로 두 회사가 경쟁합니다.","kw":"이탈로"},{"time":"08:24","text":"프레차로사는 국영 트레니탈리아, 최고 시속 300 킬로미터입니다.","kw":"프레차로사"},{"time":"08:34","text":"예약은 한국어 지원되는 트립닷컴이 가장 편리합니다.","kw":"트립닷컴"},{"time":"08:44","text":"90일 전 예약하면 슈퍼 이코노미 최대 70퍼센트 할인입니다.","kw":"슈퍼 이코노미"},{"time":"08:54","text":"4인 마주보기 좌석은 프레차로사 살로티노 옵션이 최상입니다.","kw":"살로티노"},{"time":"09:04","text":"1등석 프리마는 웰컴 스낵과 조용한 좌석으로 60대에 추천합니다.","kw":"프리마"},{"time":"09:14","text":"QR 승차권은 반드시 캡처와 PDF 저장을 함께 하세요.","kw":"QR 승차권"},{"time":"09:24","text":"이번엔 60대 여성분들을 위한 안전 팁입니다.","kw":"60대 안전"},{"time":"09:34","text":"소매치기는 이탈리아 여행 최대 위험. 크로스백은 반드시 앞으로 메세요.","kw":"소매치기"},{"time":"09:44","text":"복대에 여권 사본과 비상 현금 200 유로를 분산 보관합니다.","kw":"복대"},{"time":"09:54","text":"여권 원본은 호텔 금고에, 외출 시엔 사본만 지참합니다.","kw":"여권 사본"},{"time":"10:04","text":"ATM은 반드시 은행 지점 내부나 호텔 로비만 이용합니다.","kw":"ATM"},{"time":"10:14","text":"지하철에서 도와줄까요 접근하는 사람은 100퍼센트 소매치기입니다.","kw":"지하철 조심"},{"time":"10:24","text":"밀라노 두오모 광장의 팔찌 강매, 로마의 서명 요구도 소매치기 미끼입니다.","kw":"팔찌 강매"},{"time":"10:34","text":"밤 8시 이후 이동은 4인 함께, 프리 나우 앱 택시를 이용합니다.","kw":"프리 나우"},{"time":"10:44","text":"이번엔 건강 관리 팁입니다.","kw":"건강 관리"},{"time":"10:54","text":"상비약은 감기약 소화제 진통제 지사제 혈압약 3일치 여유분입니다.","kw":"상비약"},{"time":"11:04","text":"방수 트레킹화 필수. 새 신발은 절대 금지입니다.","kw":"트레킹화"},{"time":"11:14","text":"11월 이탈리아는 최저 5도에서 최고 15도. 3겹 레이어드입니다.","kw":"레이어드"},{"time":"11:24","text":"성당 안은 서늘하니 겉옷을 항상 지참합니다.","kw":"겉옷"},{"time":"11:34","text":"성당 앞 나조네 공공 식수대는 무료이며 물맛이 좋습니다.","kw":"나조네"},{"time":"11:44","text":"화장실은 발견 즉시 이용. 유료 0.5에서 1 유로 잔돈 필수입니다.","kw":"화장실"},{"time":"11:54","text":"여행자보험은 필수. 응급실 이용료가 매우 비쌉니다.","kw":"여행자보험"},{"time":"12:04","text":"이제 화폐와 결제 팁입니다.","kw":"화폐 결제"},{"time":"12:14","text":"환전은 한국에서 100 유로만 소액 준비, 나머지는 현지 ATM입니다.","kw":"환전"},{"time":"12:24","text":"신용카드는 반드시 원화가 아닌 유로 결제를 선택합니다.","kw":"유로 결제"},{"time":"12:34","text":"원화 결제 시 DCC 수수료 3에서 8퍼센트가 추가됩니다.","kw":"DCC 수수료"},{"time":"12:44","text":"팁은 이탈리아에서 필수 아님. 만족 시 잔돈 1-2 유로만 남깁니다.","kw":"팁 없음"},{"time":"12:54","text":"택스 리펀드는 한 매장 175 유로 이상 구매 시 가능합니다.","kw":"택스 리펀드"},{"time":"13:04","text":"공항 세관 도장 후 환급 창구에서 현금 또는 카드로 받습니다.","kw":"세관 도장"},{"time":"13:14","text":"이번엔 간단한 이탈리아어 회화입니다.","kw":"이탈리아어"},{"time":"13:24","text":"본조르노는 아침 인사, 부오나세라는 오후 인사, 그라찌에는 감사합니다입니다.","kw":"본조르노"},{"time":"13:34","text":"레스토랑에서 운 타볼로 페르 콰트로, 4인 자리 부탁합니다.","kw":"콰트로"},{"time":"13:44","text":"일 콘토 페르 파보레, 계산서 주세요입니다.","kw":"콘토"},{"time":"13:54","text":"쇼핑할 땐 콴토 코스타, 얼마예요.","kw":"콴토 코스타"},{"time":"14:04","text":"응급 상황엔 아이우토, 도와주세요. 키아마테 운 메디코, 의사를 불러주세요.","kw":"아이우토"},{"time":"14:14","text":"이번 여행의 예산은 1인당 항공 200만원, 지상비 250만원, 총 450만원입니다.","kw":"450만원"},{"time":"14:24","text":"호텔은 부킹닷컴 무료 취소 옵션으로 예약, 도착 3일 전까지 변경 가능합니다.","kw":"부킹닷컴"},{"time":"14:34","text":"매일 밤 4인이 모여 다음날 일정과 안전 룰을 5분 점검합니다.","kw":"안전 룰"},{"time":"14:44","text":"사진과 영상은 매일 구글 포토에 자동 백업합니다.","kw":"구글 포토"},{"time":"14:54","text":"명화·은희·은주·현교 4인방의 이탈리아 여행이 안전하고 행복한 추억으로 가득하기를 기원합니다.","kw":"안전하고 행복한"},{"time":"15:04","text":"부오나 포르투나! 좋은 여행 되세요!","kw":"부오나 포르투나"}],"checklists":[{"date":"pre","title":"출국 전 준비 (~11/10)","items":["여권 유효기간 6개월+, 이탈리아 무비자 90일 (신여권 or 사본 지참)","항공권 e-ticket 프린트+PDF, 좌석 지정","열차 사전 예약 (Trip.com 4구간: 밀라노→베네치아, 베네치아→피렌체, 피렌체→로마, 로마→나폴리)","호텔 예약 (부킹닷컴 무료 취소 옵션): 밀라노 3박, 베네치아 2박, 피렌체 1박, 로마 2박, 포지타노 1박","미술관·성당 예약: 최후의 만찬(6주 전!), 우피치, 아카데미아, 바티칸, 콜로세움","스칼라 발레 티켓 (teatroallascala.org)","세라발레 아웃렛 셔틀 (zaniviaggi.it)","시르미오네 온천 (termedisirmione.com)","곤돌라 세레나데 (GetYourGuide)","이탈리아 e-SIM (Airalo/Jetpac 20GB 30일 ~3만원)","환전 100 유로 소액, 트래블월렛 카드 발급","여행자보험 (60대 특약, 삼성화재/KB)","상비약 (감기·소화·진통·혈압 3일분·파스·밴드)","방수 트레킹화, 얇은 다운, 트렌치, 스카프, 장갑, 접이 우산 4개","휴대폰 앱 설치: Trip.com, Trenitalia, Free Now, Google Maps, Papago"]},{"date":"2026-11-12","title":"Day 1 · 인천 출발","items":["인천 T1/T2 3시간 전 도착, 대한항공/아시아나 카운터 체크인","복대에 여권 사본·비상금 200유로 착용","기내 수하물: 여권·귀중품·상비약","기내식·수분 유지, 다리 스트레칭"]},{"date":"2026-11-13","title":"Day 2 · 밀라노 도착","items":["오전 6시 말펜사 도착 → Malpensa Express 왕복권 22 유로","호텔 체크인 (Repubblica/Cavour), 짐 정리","오후 두오모 옥상 예약 시간 (엘리베이터), 어깨 가리는 옷","저녁 Trattoria Milanese 예약 확인 (전화 +39 02 8645 1991)","밀라노 3일권 지하철 12 유로 구매"]},{"date":"2026-11-14","title":"Day 3 · 시르미오네 온천","items":["수영복·수영모·플립플랍·목욕가방 지참","밀라노→Desenzano 열차 티켓 (Frecciarossa 40분)","Aquaria 온천 예약 시간 확인 (사전 예약 필수)","스칼리제로 성 산책","저녁 밀라노 복귀 or 시르미오네 1박"]},{"date":"2026-11-15","title":"Day 4 · 아웃렛·최후의 만찬·스칼라","items":["09:30 Milano Centrale Zani Viaggi 셔틀 (사전 예약 필수)","편한 러닝화, 여권 지참 (Tax Free)","최후의 만찬 예약 시간 20분 전 픽업","스칼라 발레 저녁 공연 티켓, 세미포멀 드레스"]},{"date":"2026-11-16","title":"Day 5 · 베네치아 이동·뭐라노·부라노","items":["Frecciarossa 밀라노→베네치아 2h13m","산타루치아역 도착 → 바포레토 72시간권 45 유로","뭐라노 유리공예 예약 확인 (Ellegi 등)","부라노 컬러 마을 인생샷 (12번 바포레토)","저녁 산 마르코 광장 야경"]},{"date":"2026-11-17","title":"Day 6 · 베네치아 → 피렌체","items":["오전 산 마르코 대성당·두칼레 궁전","곤돌라 세레나데 예약 시간 (담요 지참)","Frecciarossa 베네치아→피렌체 2h05m","피렌체 SMN 도착 → 호텔 체크인","두오모·폰테베키오 저녁 산책"]},{"date":"2026-11-18","title":"Day 7 · 피렌체 우피치·미켈란젤로 광장","items":["우피치 미술관 예약 시간 15분 전 도착","점심 All'Antico Vinaio 파니노 (11시 or 17시 대기 회피)","아카데미아 다비드 예약","12/13번 버스로 미켈란젤로 광장 (16:30 도착)","산 미니아토 그레고리안 성가 17:30 무료","저녁 Sostanza 비스테카 (현금만, 예약 필수)"]},{"date":"2026-11-19","title":"Day 8 · 로마 이동·콜로세움·트레비","items":["Frecciarossa 피렌체→로마 1h32m","테르미니역 소매치기 극조심, Leonardo Express X","콜로세움 예약 시간 (편한 운동화)","저녁 트레비 분수·판테온·나보나 광장 도보","트라스테베레 저녁 (4인 함께 이동)"]},{"date":"2026-11-20","title":"Day 9 · 바티칸·포지타노 이동","items":["바티칸 얼리버드 07:30 (소매·무릎 가리는 옷)","로마 테르미니→나폴리 Frecciarossa 1h10m","나폴리→포지타노 프라이빗 벤 (사전 예약, 90-100 유로/그룹)","포지타노 호텔 짐꾼 서비스 요청","저녁 Chez Black (연중 운영)"]},{"date":"2026-11-21","title":"Day 10 · 레몬 농장·귀국","items":["오전 아말피 레몬 농장 & 리몬첼로 시음","오후 포지타노→나폴리→로마 이동","로마 다빈치 공항 3시간 전 도착","공항 세관 Tax Free 도장 → 환급 창구","22:00 KE928 로마 → 인천","11/22 오후 인천 도착, 무사 귀국 축하 💐"]}],"meta":{"title":"충주여고 4인방 이탈리아 기행 🇮🇹","subtitle":"명화 · 은희 · 은주 · 현교 · 2026.11.12 ~ 11.21","start_iso":"2026-11-12","end_iso":"2026-11-21","today_iso":"2026-08-01","note_first_time":"★ 4명 중 한 분이 이탈리아 첫 방문이시라, 로마와 아말피(포지타노)를 반드시 포함하여 코스 C(밀라노 in → 로마 out + 아말피)를 확정 코스로 반영했습니다. 재방문 3인에게도 아말피 해안 경험이 새로울 것입니다. 여유형 밀라노 in-out 코스 A를 대안으로 병기했습니다.","tagline":"9박 10일 · 밀라노에서 시작해 아말피까지 · 60대 여성 4인방의 우아한 이탈리아"}};
+const TODAY = new Date();
+function ymd(d){return d.toISOString().slice(0,10)}
+function dayDiff(a,b){return Math.round((new Date(a)-new Date(b))/86400000)}
+function scrollTo2(s){const el=document.querySelector(s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2200);}
+
+// 배경
+(function(){const p=document.getElementById('flourish');const emojis=['🍷','🎭','🍋','🌹','✨'];for(let i=0;i<8;i++){const e=document.createElement('span');e.textContent=emojis[i%emojis.length];e.style.left=(Math.random()*100)+'vw';e.style.fontSize=(18+Math.random()*14)+'px';e.style.animationDuration=(25+Math.random()*15)+'s,'+(8+Math.random()*6)+'s';e.style.animationDelay=(Math.random()*8)+'s';p.appendChild(e)}for(let i=0;i<12;i++){const s=document.createElement('div');s.className='sparkle';s.style.left=(Math.random()*100)+'vw';s.style.top=(Math.random()*100)+'vh';s.style.animationDelay=(Math.random()*2)+'s';p.appendChild(s)}})();
+
+// D-day
+(function(){const today=ymd(TODAY),start=DATA.meta.start_iso,end=DATA.meta.end_iso;const el=document.getElementById('ddayBadge');let txt='';
+  if(today<start) txt='⏳ D-'+dayDiff(start,today)+' · 출발 준비';
+  else if(today>end) txt='🏠 여행 완료';
+  else{const dn=dayDiff(today,start)+1;txt='🍷 여행 '+dn+'일째 / 10일'}
+  el.textContent=txt;
+})();
+
+// 두 코스
+const cData={course_c:DATA.itineraries.course_c,course_a:DATA.itineraries.course_a};
+document.getElementById('courseCNote').textContent=cData.course_c.note.substring(0,120)+'...';
+document.getElementById('courseANote').textContent=cData.course_a.note.substring(0,120)+'...';
+function showCourse(k){
+  document.querySelectorAll('.course-tab').forEach(t=>t.classList.toggle('active',t.dataset.course===k));
+  const row=document.getElementById('dayRow');
+  row.innerHTML=cData[k].days.map(d=>'<div class="day-card"><span class="day-num">'+d.day_label+'</span>'+
+    '<div class="day-date">'+d.date.slice(5).replace('-','/')+'</div>'+
+    '<div class="day-city">'+d.city+'</div>'+
+    '<div class="day-title">'+d.title+'</div>'+
+    '<div class="day-summary">'+d.summary+'</div></div>').join('');
+}
+showCourse('course_c');
+
+// 여행지 카드
+(function(){
+  const grid=document.getElementById('placesGrid');
+  grid.innerHTML=DATA.places.map(p=>'<div class="place-card"><div class="place-thumb" style="background-image:url(\''+(p.image||'')+'\')"><span class="chip-city">📍 '+p.city+'</span></div>'+
+    '<div class="place-body"><div class="place-name">'+p.name_ko+'</div>'+
+    '<div class="place-it">'+(p.name_it||'')+' · '+p.date.slice(5).replace('-','/')+'</div>'+
+    '<div class="place-intro">'+(p.intro||'')+'</div>'+
+    (p.poem?'<div class="place-poem">🖋 '+p.poem+'</div>':'')+
+    (p.dress?'<div class="place-dress">👗 <strong>드레스코드</strong>: '+p.dress+'</div>':'')+
+    '</div></div>').join('');
+})();
+
+// 옵션 프로그램
+(function(){
+  const grid=document.getElementById('progGrid');
+  grid.innerHTML=DATA.programs.map(p=>'<div class="prog-card"><div class="prog-thumb" style="background-image:url(\''+(p.image||'')+'\')"></div>'+
+    '<div class="prog-body"><div class="prog-cat">'+p.cat+'</div>'+
+    '<div class="prog-name">'+p.name_ko+'</div>'+
+    '<div class="prog-price">💰 '+p.price+' · ⏱️ '+p.duration+'</div>'+
+    '<div class="prog-meta">📅 '+p.slot+' · 예약: '+p.booking+'</div>'+
+    '<div class="prog-why">💡 '+p.why+'</div>'+
+    (p.warn?'<div style="font-size:12px;color:var(--warning);margin-top:6px">⚠️ '+p.warn+'</div>':'')+
+    '</div></div>').join('');
+})();
+
+// 숙소
+(function(){
+  document.getElementById('hotelGrid').innerHTML=DATA.hotels.map(h=>'<div class="hotel-card"><span class="hotel-city">'+h.city+'</span>'+
+    '<div class="hotel-name">'+h.name+' '+'⭐'.repeat(Math.round(h.stars))+'</div>'+
+    '<div style="font-size:12px;color:var(--gold-deep)">📍 '+h.area+'</div>'+
+    '<div class="hotel-price">'+h.price_eur+'</div>'+
+    '<div class="hotel-pros">'+(h.pros||[]).map(x=>'✓ '+x).join('<br/>')+'</div>'+
+    '<div style="margin-top:6px;font-size:12px;color:var(--ink-soft)">👵 60대 적합도: '+h.senior+'</div></div>').join('');
+})();
+
+// 맛집
+(function(){
+  document.getElementById('restGrid').innerHTML=DATA.restaurants.map(r=>'<div class="rest-card"><div class="rest-thumb" style="background-image:url(\''+(r.image||'')+'\')"></div>'+
+    '<div class="rest-body"><span class="rest-city">'+r.city+'</span>'+
+    '<div class="rest-name">'+r.name+'</div>'+
+    '<div class="rest-cuisine">'+r.cuisine+'</div>'+
+    '<div style="font-size:12.5px;color:var(--ink-soft)">📍 '+r.address+' · 💰 '+r.price+'</div>'+
+    '<div class="rest-menu">🍽️ '+(r.menu||[]).join(' · ')+'</div>'+
+    '</div></div>').join('');
+})();
+
+// 날씨
+async function loadWeather(){
+  const cities=[
+    {key:'milano',label:'밀라노',lat:45.4642,lng:9.19},
+    {key:'venezia',label:'베네치아',lat:45.4408,lng:12.3155},
+    {key:'firenze',label:'피렌체',lat:43.7696,lng:11.2558},
+    {key:'roma',label:'로마',lat:41.9028,lng:12.4964},
+    {key:'positano',label:'포지타노',lat:40.628,lng:14.4849},
+  ];
+  const out=[];
+  for(const c of cities){
+    try{
+      const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+c.lat+'&longitude='+c.lng+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=14');
+      const j=await r.json();
+      out.push({...c,data:j.daily});
+    }catch(e){}
+  }
+  function icon(code){if([0].includes(code))return'☀️';if([1,2,3].includes(code))return'⛅';if([45,48].includes(code))return'🌫️';if([51,53,55,61,63,65,80,81,82].includes(code))return'🌧️';if([71,73,75].includes(code))return'❄️';if([95,96,99].includes(code))return'⛈️';return'☁️'}
+  let html='';
+  out.forEach(c=>{
+    if(!c.data) return;
+    html+='<div class="card" style="margin-bottom:16px"><h3 style="color:var(--wine-deep);font-family:var(--font-heading);margin-bottom:10px">📍 '+c.label+'</h3>';
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px">';
+    c.data.time.forEach((t,i)=>{
+      const dt=new Date(t);const wd=['일','월','화','수','목','금','토'][dt.getDay()];
+      html+='<div style="text-align:center;padding:8px 4px;background:var(--paper);border-radius:6px;font-size:12px">'+
+        '<div style="color:var(--ink-soft)">'+wd+' '+(dt.getMonth()+1)+'/'+dt.getDate()+'</div>'+
+        '<div style="font-size:20px;margin:2px 0">'+icon(c.data.weather_code[i])+'</div>'+
+        '<div style="font-weight:700;color:var(--wine)">'+Math.round(c.data.temperature_2m_max[i])+'°/'+Math.round(c.data.temperature_2m_min[i])+'°</div>'+
+        '<div style="color:var(--info);font-size:10.5px">💧'+(c.data.precipitation_probability_max[i]||0)+'%</div></div>';
+    });
+    html+='</div></div>';
+  });
+  document.getElementById('weatherArea').innerHTML=html;
+}
+loadWeather();
+
+// 체크리스트
+function chkKey(d,i){return 'chk_it_'+d+'_'+i}
+(function(){
+  document.getElementById('chkArea').innerHTML=DATA.checklists.map(c=>{
+    let html='<div class="chk-day"><h4>📅 '+c.title+'</h4>';
+    c.items.forEach((item,i)=>{
+      const ck=localStorage.getItem(chkKey(c.date,i))==='1';
+      html+='<div class="chk-item"><input type="checkbox" id="k_'+c.date+'_'+i+'" '+(ck?'checked':'')+' onchange="localStorage.setItem(chkKey(\''+c.date+'\','+i+'),this.checked?1:0)"/><label for="k_'+c.date+'_'+i+'">'+item+'</label></div>';
+    });
+    return html+'</div>';
+  }).join('');
+})();
+
+// 이탈리아어
+(function(){
+  document.getElementById('phraseGrid').innerHTML=DATA.phrases.map(p=>'<div class="phrase-card"><span class="phrase-cat">'+p.cat+'</span>'+
+    '<div class="phrase-ko">'+p.ko+'</div>'+
+    '<div class="phrase-it">'+p.it+'</div>'+
+    '<div class="phrase-pron">🔊 '+p.pron+'</div></div>').join('');
+})();
+
+// 연락처
+(function(){
+  const iconMap={'112':'🚨','113':'👮','118':'🏥','대사관':'🇰🇷','총영사':'🇰🇷','+82':'🇰🇷','아시아나':'✈️','대한항공':'✈️','공항':'✈️','Trip':'🎫','Trenitalia':'🚄'};
+  document.getElementById('emerGrid').innerHTML=DATA.emergency.map(e=>{
+    let ic='☎️';Object.keys(iconMap).forEach(k=>{if(e.phone.includes(k)||e.label.includes(k))ic=iconMap[k]});
+    return '<a class="emer-item" href="tel:'+e.phone.replace(/[^+\d]/g,'')+'"><div class="emer-icon">'+ic+'</div><div><div class="emer-label">'+e.label+'</div><div class="emer-phone">'+e.phone+'</div>'+(e.note?'<div class="emer-note">'+e.note+'</div>':'')+'</div></a>';
+  }).join('');
+})();
+
+// ==== TTS 엔진 ====
+const ttsScript=DATA.tts_script;
+let ttsIdx=0,ttsPlaying=false,ttsPaused=false,ttsTimer=null,ttsUtter=null,ttsVoice=null;
+const synth=window.speechSynthesis;
+function pickVoice(){if(!synth) return null;const v=synth.getVoices();return v.find(x=>x.lang==='ko-KR')||v.find(x=>x.lang.startsWith('ko'))||v[0]}
+if(synth) synth.onvoiceschanged=()=>{ttsVoice=pickVoice()};
+setTimeout(()=>{ttsVoice=pickVoice()},500);
+
+function timeToSec(t){const [m,s]=t.split(':').map(Number);return m*60+s}
+function updateStatus(){
+  const pct=((ttsIdx+1)/ttsScript.length)*100;
+  document.getElementById('ttsProg').style.width=pct+'%';
+  document.getElementById('ttsStatus').textContent=(ttsIdx+1)+'/'+ttsScript.length+' · '+ttsScript[ttsIdx].time;
+}
+function highlightKw(kw){
+  document.querySelectorAll('.kw-active').forEach(el=>{el.classList.remove('kw-active');el.classList.add('kw-done')});
+  // 페이지 전체에서 키워드 텍스트를 포함하는 요소를 찾아 하이라이트
+  const nodes=Array.from(document.querySelectorAll('h1,h2,h3,h4,p,div,span,li,button')).filter(el=>el.children.length===0 && el.textContent && el.textContent.includes(kw));
+  const target=nodes[0];
+  if(target){
+    // 인라인 span으로 감싸기
+    const idx=target.textContent.indexOf(kw);
+    if(idx>=0 && !target.querySelector('.kw-active')){
+      const before=target.textContent.substring(0,idx);
+      const after=target.textContent.substring(idx+kw.length);
+      target.innerHTML=before+'<span class="kw kw-active">'+kw+'</span>'+after;
+      target.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
+}
+function speakCur(){
+  const item=ttsScript[ttsIdx];
+  if(!item) return;
+  highlightKw(item.kw);
+  updateStatus();
+  const u=new SpeechSynthesisUtterance(item.text);
+  if(ttsVoice) u.voice=ttsVoice;
+  u.lang='ko-KR';u.rate=1.05;u.pitch=1.0;
+  ttsUtter=u;synth.cancel();synth.speak(u);
+}
+function scheduleNext(){
+  clearTimeout(ttsTimer);
+  const cur=ttsScript[ttsIdx],nx=ttsScript[ttsIdx+1];
+  if(!nx) return;
+  const gap=(timeToSec(nx.time)-timeToSec(cur.time))*1000;
+  ttsTimer=setTimeout(()=>{
+    if(ttsPlaying && !ttsPaused){ttsIdx++;speakCur();scheduleNext()}
+  },gap);
+}
+function ttsPlay(){
+  if(ttsPaused){synth.resume();ttsPaused=false;scheduleNext();return}
+  if(ttsPlaying) return;
+  ttsPlaying=true;ttsIdx=0;speakCur();scheduleNext();
+  toast('▶ 15분 해설 시작');
+}
+function ttsPause(){if(!ttsPlaying) return;synth.pause();ttsPaused=true;clearTimeout(ttsTimer);toast('⏸ 일시정지')}
+function ttsStop(){synth.cancel();ttsPlaying=false;ttsPaused=false;ttsIdx=0;clearTimeout(ttsTimer);document.querySelectorAll('.kw-active,.kw-done').forEach(el=>{el.classList.remove('kw-active','kw-done')});updateStatus();toast('⏹ 정지')}
+function ttsNext(){clearTimeout(ttsTimer);synth.cancel();ttsIdx=Math.min(ttsIdx+1,ttsScript.length-1);if(ttsPlaying){speakCur();scheduleNext()}else{highlightKw(ttsScript[ttsIdx].kw);updateStatus()}}
+function ttsPrev(){clearTimeout(ttsTimer);synth.cancel();ttsIdx=Math.max(ttsIdx-1,0);if(ttsPlaying){speakCur();scheduleNext()}else{highlightKw(ttsScript[ttsIdx].kw);updateStatus()}}
+updateStatus();
+</script>
+</body>
+</html>
