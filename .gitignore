@@ -1,0 +1,7 @@
+# 자격증명·토큰 파일은 절대 커밋 금지 (2026-08-20 유출 사고 재발 방지)
+*.git-credentials
+.git-credentials
+*credentials*
+.env
+*.pem
+*.key

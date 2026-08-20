@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>구채구 이동 지도 · 9/4~9/5</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/trip-map.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🗺️ 여행 동선 지도<small>백상진·박현교 환갑여행 2026.9.1~9.8</small></div>
+  <nav>
+    <a href="overview.html">✈️ 전체 여정</a>
+    <a href="chongqing.html">🏙️ 충칭</a>
+    <a href="jiuzhaigou.html" class="on">🏞️ 구채구</a>
+    <a href="chengdu.html">🐼 청두</a>
+    <a href="../index.html">← 대시보드</a>
+  </nav>
+</div>
+
+<div class="head">
+  <h1>구채구 九寨沟 · 9/4(금) 밤 ~ 9/5(토)</h1>
+  <p>숙소 <b>Dusk Mountain Villa</b>(구채구 장자진 漳扎镇)에서 출발하는 하루 코스입니다.
+     계곡 안은 <b>관광버스(观光车)</b>로만 이동하고, 걷는 구간은 나무 잔도(栈道)입니다.
+     해발 2,000~3,100m라 <b>천천히·짧게</b> 걷도록 코스를 잡았고, 소화 불가능한 일정은 뺐습니다.</p>
+</div>
+
+<div class="daybar" id="daybar"></div>
+
+<div class="wrap">
+  <div class="mapbox">
+    <div id="map"></div>
+    <div class="ctrl">
+      <button id="btnPlay">▶ 경로 재생</button>
+      <button id="btnReset" class="ghost">↺ 처음부터</button>
+      <button id="btnFit" class="ghost">🔍 전체보기</button>
+      <div class="spd"><span>속도</span>
+        <b data-s="0.6">느리게</b><b data-s="1" class="on">보통</b><b data-s="2">빠르게</b>
+      </div>
+      <label class="tog"><input type="checkbox" id="togFood" checked> 🍜 맛집·찻집 표시</label>
+      <div class="status" id="status"></div>
+      <div class="bar"><i></i></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#2E7D32"></i>도보(잔도)</span>
+      <span><i style="background:#00695C"></i>관광버스</span>
+      <span><i style="background:#EF6C00"></i>택시·전세차</span>
+      <span><i style="background:#6A1B9A"></i>고속열차</span>
+      <span>🏨숙소 💧호수·폭포 🚄기차역 ℹ️참고</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>오늘의 순서</h3>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<div class="note">
+  <b>⚠️ 꼭 확인 — 역에서 구채구까지는 35분이 아니라 2시간입니다.</b>
+  황룡구채역(黄龙九寨站)은 송판현 촨주쓰진에 있고 구채구 입구까지 <b>약 93km · 직통차 2시간 · 51元</b>입니다(2024.8 개통 노선 공식 안내 기준).
+  대시보드에 적힌 "셔틀 35분"은 잘못된 정보라 이 지도에서는 2시간 기준으로 시간표를 다시 짰습니다.
+  <b>9/5 밤 20:33 열차</b>를 타려면 <b>늦어도 17:30에는 구채구를 출발</b>해야 합니다.
+</div>
+<div class="note">
+  <b>일정에서 뺀 것</b> · <b>황룡 풍경구(黄龙)</b>는 역 근처(구채구에서 편도 2시간)라 하루짜리 구채구 일정과 물리적으로 함께 소화할 수 없어 제외했습니다.
+  지도에 회색 핀으로 위치만 표시해 두었습니다. 계곡 맨 안쪽 <b>원시삼림(原始森林)</b>도 왕복 1시간이 더 들어 「선택」으로 뒀습니다.<br>
+  <b>입장료</b>: 성수기 입장권 190元 + 관광버스 90元(1인, 현장/九旅悦行 미니앱). 국가공원 입장권은 아직 미예약 상태이니 <b>출발 전 예약</b> 권장.
+</div>
+
+<div id="card" onclick="this.classList.remove('on')">
+  <div class="in">
+    <div class="hi">기사님께 이 화면을 보여주세요 · 请带我去这里</div>
+    <div class="zh"></div>
+    <div class="ad"></div>
+    <div class="ko"></div>
+    <button>닫기</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/trip-map.js"></script>
+<script>
+var HOTEL = [33.2712, 103.9105];      // 漳扎镇 (구채구 시내) — 대략 위치
+var GATE  = [33.2690, 103.9168];      // 沟口 게이트·유객중심
+var NUO   = [33.1649, 103.9048];      // 诺日朗 (Y자 분기점)
+var STA   = [32.7477, 103.6132];      // 黄龙九寨站
+
+var JZ = {
+  base: 'amap',
+  center: [33.10, 103.86],
+  zoom: 10,
+  courses: [
+    {
+      label: 'Day 4 · 9/4(금) 밤', sub: '역 → 구채구 이동',
+      done: '오늘은 이동만으로 끝납니다. 도착 후 바로 취침.',
+      stops: [
+        { name: '황룡구채역 도착', zh: '黄龙九寨站', addr: '四川省阿坝州松潘县川主寺镇 黄龙九寨站',
+          kind: 'station', time: '18:45경 도착', coord: STA,
+          desc: '성도동역 17:05 출발 → 약 1시간 39분. 2024년 8월 개통한 신설 고속철역이며, 해발 3,000m 부근입니다.',
+          tip: '★ 내리자마자 <b>고산증 대비</b> — 뛰지 말고 천천히. 역 출구 앞에 구채구행 직통차(接驳车) 매표소와 전세차 기사들이 있습니다.',
+          short: '해발 약 3,000m · 고산 시작' },
+        { name: '구채구 시내 숙소 (Dusk Mountain Villa)', zh: '九寨沟 漳扎镇 民宿', addr: '四川省阿坝州九寨沟县漳扎镇',
+          kind: 'hotel', time: '20:45~21:00 도착', stay: '1박', coord: HOTEL,
+          mode: { type: 'shuttle', text: '직통차 2시간 · 93km · 51元 (전세차 약 400~500元)' },
+          via: [[32.8300, 103.6600], [32.9800, 103.7600], [33.1500, 103.8700]],
+          desc: '산길 2시간. 밤이라 창밖은 어둡지만 도로는 잘 포장돼 있습니다.',
+          food: ['🍲 늦은 저녁은 숙소 근처 티베트 식당(藏餐)', '🍵 수유차(酥油茶)·감차(甜茶)로 몸 데우기'],
+          tip: '★ 저녁은 청두동역 환승 때 도시락을 사두는 게 안전합니다(도착이 밤 9시).<br>★ 숙소 위치는 대략 표시입니다 — 체크인 전 트립닷컴 예약서의 정확한 주소를 기사에게 보여주세요.',
+          short: '예약번호 1400828424578509' }
+      ],
+      info: [
+        { name: '황룡 풍경명승구 (이번엔 못 감)', zh: '黄龙风景名胜区', kind: 'info', emoji: '🚫',
+          coord: [32.7806, 103.9282],
+          desc: '역에서는 가깝지만 <b>구채구 숙소에서 편도 2시간</b>. 하루짜리 구채구 일정과 병행이 물리적으로 불가능해 이번 여행에서는 제외했습니다.',
+          tip: '굳이 넣으려면 9/5 아침에 황룡만 보고 구채구를 포기하는 선택뿐입니다. 오채지 절경은 구채구 안에도 있습니다.' },
+        { name: '촨주쓰진 (역 소재지)', zh: '川主寺镇', kind: 'info', emoji: '🏘️', coord: [32.7844, 103.6252],
+          desc: '황룡구채역이 있는 마을. 식당·편의점이 있어 열차 대기 시 요기 가능합니다.' }
+      ],
+      food: []
+    },
+    {
+      label: 'Day 5 · 9/5(토)', sub: '구채구 국가공원 하루',
+      done: '20:33 황룡구채역 → 청두 야간 열차로 이어집니다.',
+      stops: [
+        { name: '숙소 조식 · 출발', zh: '酒店 早餐出发', addr: '四川省阿坝州九寨沟县漳扎镇',
+          kind: 'hotel', time: '07:00', coord: HOTEL,
+          desc: '체크아웃하고 <b>캐리어는 숙소에 맡깁니다</b>(저녁에 찾아서 바로 역으로).',
+          tip: '★ 오늘 아침에 숙소에 <b>17:30 출발 전세차</b>를 미리 부탁해 두세요. 직통차 막차만 믿으면 열차를 놓칠 수 있습니다.<br>물 2병·모자·얇은 바람막이(계곡 안은 서늘)·상비약.' },
+        { name: '구채구 입구 (거우커우 유객중심)', zh: '九寨沟景区 沟口游客中心', addr: '四川省九寨沟县 九寨沟风景区沟口游客中心',
+          kind: 'sight', time: '07:40', stay: '20분', coord: GATE,
+          mode: { type: 'taxi', text: '택시·숙소 셔틀 10분' },
+          desc: '입장권(190元)+관광버스(90元) QR 확인 후 08:00 첫 버스 탑승.',
+          tip: '★ 여권 실명 등록 필수. 미리 <b>九旅悦行</b> 미니앱이나 트립닷컴으로 예약해 두면 줄을 거의 안 섭니다.' },
+        { name: '장해 (창하이)', zh: '长海', kind: 'lake', time: '09:00', stay: '40분', coord: [33.0231, 103.9274],
+          mode: { type: 'shuttle', text: '관광버스 약 50분 (가장 먼 곳부터)' },
+          via: [[33.2008, 103.8991], [33.1856, 103.8927], NUO, [33.1000, 103.9400]],
+          desc: '해발 3,100m, 구채구에서 가장 크고 깊은 호수. <b>버스 종점이라 내리면 바로 전망대</b>라 걷는 부담이 없습니다.',
+          tip: '★ 오늘의 최고 고도. 여기서 숨이 차면 이후 코스는 더 낮으니 괜찮습니다. 절대 뛰지 마세요.' },
+        { name: '오채지 (우차이츠)', zh: '五彩池', kind: 'lake', time: '09:50', stay: '30분', coord: [33.0290, 103.9240],
+          mode: { type: 'walk', text: '도보 10분 · 계단 내리막' },
+          desc: '작지만 물빛이 가장 진한 에메랄드. 구채구 사진의 대표 색.',
+          tip: '계단이 좀 있습니다. 힘들면 장해 정류장에서 버스로 바로 내려가도 됩니다(오채지 정류장 별도).' },
+        { name: '노일랑 폭포 · 환승센터', zh: '诺日朗瀑布 / 诺日朗游客中心', kind: 'sight', time: '11:00', stay: '1시간',
+          coord: NUO, mode: { type: 'shuttle', text: '관광버스 25분' },
+          desc: '폭 270m 계단식 폭포. Y자 계곡의 분기점이자 <b>화장실·식당·의자가 있는 유일한 거점</b>입니다.',
+          food: ['🍱 환승센터 2층 식당(뷔페식·다소 비쌈)', '🥟 미리 사온 도시락·컵라면이 더 편함'],
+          tip: '★ 여기서 점심 + 충분한 휴식(12:00~13:00). 오후 일정은 여기서 다시 출발합니다.' },
+        { name: '경해 (징하이)', zh: '镜海', kind: 'lake', time: '13:20', stay: '20분', coord: [33.1632, 103.8921],
+          mode: { type: 'shuttle', text: '관광버스 10분' },
+          desc: '바람이 없으면 산과 하늘이 그대로 비치는 거울 호수. <b>버스에서 내리지 않고 차창으로 봐도 충분</b>합니다.',
+          tip: '오전이 반영이 더 좋지만, 동선상 오후 통과가 맞습니다.' },
+        { name: '진주탄 폭포', zh: '珍珠滩瀑布', kind: 'sight', time: '13:50', stay: '50분', coord: [33.1685, 103.8850],
+          mode: { type: 'shuttle', text: '관광버스 8분' },
+          desc: '서유기 오프닝 촬영지. 넓은 바위 여울 위를 나무 잔도로 건넙니다.',
+          tip: '★ 잔도 내리막 계단이 있습니다(약 15분). 물보라로 바닥이 미끄러우니 난간 잡고 천천히.' },
+        { name: '오화해 (우화하이)', zh: '五花海', kind: 'lake', time: '15:00', stay: '40분', coord: [33.1606, 103.8789],
+          mode: { type: 'shuttle', text: '관광버스 10분' },
+          desc: '구채구의 얼굴. 물속 고목과 청록·짙푸름이 층층이 갈라지는 호수.',
+          tip: '★ 위쪽 전망대(老虎海 방향)는 계단 100개 이상 — <b>호숫가 잔도에서 보는 것으로 충분</b>합니다.' },
+        { name: '판다해 (슝마오하이)', zh: '熊猫海', kind: 'lake', time: '15:45', stay: '20분', coord: [33.1479, 103.8724],
+          optional: true, mode: { type: 'shuttle', text: '관광버스 8분' },
+          desc: '판다가 물 마시러 왔다는 전설의 호수. 시간·체력이 남을 때만.',
+          tip: '★ 선택 — 여기까지 올라가면 원시삼림(맨 안쪽)이 눈앞이지만 왕복 1시간이 더 듭니다. 오늘은 열차 시간이 있어 권하지 않습니다.' },
+        { name: '서우해 (시니우하이)', zh: '犀牛海', kind: 'lake', time: '16:15', stay: '20분', coord: [33.1856, 103.8927],
+          mode: { type: 'shuttle', text: '관광버스 20분 (하산)' },
+          desc: '계곡에서 두 번째로 큰 호수. 도로변 전망대에서 바로 보입니다.' },
+        { name: '수정군해', zh: '树正群海', kind: 'lake', time: '16:35', stay: '20분', coord: [33.2008, 103.8991],
+          mode: { type: 'shuttle', text: '관광버스 8분' },
+          desc: '계단식 호수 40여 개가 이어지는 마지막 하이라이트. 티베트 마을(树正寨)과 마니차도 여기.',
+          tip: '기념품·야크육포는 여기 마을에서. 이후 바로 출구입니다.' },
+        { name: '구채구 출구', zh: '沟口 出口', kind: 'sight', time: '17:00', coord: GATE,
+          mode: { type: 'shuttle', text: '관광버스 15분' },
+          desc: '오늘 계곡 안에서만 약 9시간. 수고하셨습니다.' },
+        { name: '숙소에서 짐 찾기', zh: '酒店取行李', addr: '四川省阿坝州九寨沟县漳扎镇',
+          kind: 'hotel', time: '17:15', stay: '15분', coord: HOTEL,
+          mode: { type: 'taxi', text: '택시 10분' },
+          food: ['🍲 시간 없으면 포장(打包)으로 야크고기 만두·티베트 빵'],
+          tip: '★ 저녁은 역에서 먹거나 열차 안에서. 여기서 지체하면 열차가 위험합니다.' },
+        { name: '황룡구채역 · 20:33 청두행', zh: '黄龙九寨站', addr: '四川省阿坝州松潘县川主寺镇 黄龙九寨站',
+          kind: 'station', time: '17:30 출발 → 19:30 도착', coord: STA,
+          mode: { type: 'shuttle', text: '전세차·직통차 2시간 · 93km' },
+          via: [[33.1500, 103.8700], [32.9800, 103.7600], [32.8300, 103.6600]],
+          desc: '20:33 출발 → 성도동역 심야 도착. 도착 후 택시로 청두 숙소(문수원)까지 약 30분.',
+          tip: '★ 1시간 전 도착 기준입니다. 산길이라 지연 여지를 반드시 두세요.' }
+      ],
+      food: [
+        { name: '장자진 티베트 식당가', zh: '漳扎镇 藏家餐厅', addr: '四川省九寨沟县漳扎镇', kind: 'food',
+          coord: [33.2700, 103.9080],
+          desc: '야크고기 훠궈·야크 갈비·티베트 빵. 숙소 주변에 모여 있습니다. 향신료가 세지 않아 한국인 입에 잘 맞는 편.' },
+        { name: '수유차·감차 찻집', zh: '藏茶馆 (酥油茶·甜茶)', addr: '四川省九寨沟县漳扎镇', kind: 'tea',
+          coord: [33.2725, 103.9120],
+          desc: '고산에서 몸을 데우는 데 좋은 버터차·달콤한 우유차. 고산증 완화에도 도움이 됩니다.' }
+      ],
+      info: [
+        { name: '원시삼림 (이번엔 생략)', zh: '原始森林', kind: 'info', emoji: '🌲', coord: [33.0676, 103.8599],
+          desc: '계곡 맨 안쪽 해발 3,000m 원시림. 왕복 1시간이 추가로 들어 <b>야간 열차가 있는 오늘은 무리</b>입니다.' }
+      ]
+    }
+  ]
+};
+var TM = new TripMap(JZ);
+</script>
+</body>
+</html>

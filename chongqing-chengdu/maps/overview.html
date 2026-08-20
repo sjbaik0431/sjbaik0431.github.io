@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>전체 여정 지도 · 인천→충칭→구채구→청두→인천</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/trip-map.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🗺️ 여행 동선 지도<small>백상진·박현교 환갑여행 2026.9.1~9.8</small></div>
+  <nav>
+    <a href="overview.html" class="on">✈️ 전체 여정</a>
+    <a href="chongqing.html">🏙️ 충칭</a>
+    <a href="jiuzhaigou.html">🏞️ 구채구</a>
+    <a href="chengdu.html">🐼 청두</a>
+    <a href="../index.html">← 대시보드</a>
+  </nav>
+</div>
+
+<div class="head">
+  <h1>전체 여정 · 7박 8일 (2026.9.1~9.8)</h1>
+  <p>인천 → 충칭(3박) → 구채구(1박) → 청두(2박) → 인천으로 돌아오는 큰 흐름입니다.
+     비행 2회, 고속열차 3구간, 산악 직통차 왕복 1회. 각 구간의 <b>이동수단·소요시간</b>을 핀에서 확인하세요.
+     도시별 상세 동선은 위 메뉴의 <b>충칭 / 구채구 / 청두</b> 지도에 있습니다.</p>
+</div>
+
+<div class="daybar" id="daybar"></div>
+
+<div class="wrap">
+  <div class="mapbox">
+    <div id="map"></div>
+    <div class="ctrl">
+      <button id="btnPlay">▶ 여정 재생</button>
+      <button id="btnReset" class="ghost">↺ 처음부터</button>
+      <button id="btnFit" class="ghost">🔍 전체보기</button>
+      <div class="spd"><span>속도</span>
+        <b data-s="0.6">느리게</b><b data-s="1" class="on">보통</b><b data-s="2">빠르게</b>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="bar"><i></i></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#C0392B"></i>항공(아시아나 비즈니스)</span>
+      <span><i style="background:#6A1B9A"></i>고속열차</span>
+      <span><i style="background:#00695C"></i>산악 직통차</span>
+      <span><i style="background:#EF6C00"></i>택시</span>
+      <span><i style="background:#455A64"></i>차량 픽업·드롭</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>여정 순서</h3>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<div class="note">
+  <b>이동 총정리</b> ·
+  ✈️ OZ353 인천22:00→충칭01:15(4h15m) · 🚄 사평패14:35→성도동(1h10m) · 🚄 성도동17:05→황룡구채18:44(1h39m) ·
+  🚐 황룡구채역↔구채구 <b>93km 2시간</b>(51元) · 🚄 황룡구채20:33→성도동(심야) · ✈️ OZ324 청두00:30→인천05:25(3h55m).
+  항공권·호텔 3건·기차 3구간은 <b>모두 예약 확정</b>이며, 미예약은 <b>구채구 국가공원 입장권</b>과 <b>판다기지 티켓</b> 두 가지입니다.
+</div>
+
+<div id="card" onclick="this.classList.remove('on')">
+  <div class="in">
+    <div class="hi">기사님께 이 화면을 보여주세요 · 请带我去这里</div>
+    <div class="zh"></div>
+    <div class="ad"></div>
+    <div class="ko"></div>
+    <button>닫기</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/trip-map.js"></script>
+<script>
+var ICN = [37.4602, 126.4407], CKG = [29.7267, 106.6520], CQ = [29.5601, 106.5734],
+    SPB = [29.5572, 106.4556], CDD = [30.6312, 104.1389], HLJZ = [32.7477, 103.6132],
+    JZG = [33.2712, 103.9105], CD = [30.6770, 104.0662], TFU = [30.3036, 104.4457];
+
+var S = {
+  icn_out: { name: '인천공항 T2 출발', zh: '仁川国际机场 T2', kind: 'airport', time: '9/1(화) 22:00', coord: ICN,
+    desc: 'OZ353 아시아나항공 비즈니스(Class I) · 예약번호 EQ3MJ9 · 무료수하물 각 2PC(32kg×2).',
+    tip: '★ 출발 3일 전까지 부부 나란히 좌석 지정 + 환갑 여행 특별 요청 등록(1588-8000).' },
+  ckg: { name: '충칭 장베이국제공항 T3A', zh: '重庆江北国际机场 T3A', addr: '重庆江北国际机场 T3A航站楼',
+    kind: 'airport', time: '9/2(수) 01:15 도착', coord: CKG,
+    mode: { type: 'flight', text: '비행 4시간 15분 · 약 2,100km', curve: 0.16 },
+    desc: '새벽 도착. 사전 배정 기사 픽업 예약 완료(1400827950165757).',
+    tip: '입국카드·지문 등록에 시간이 걸립니다. 게이트 통과는 02:00경으로 잡으세요.' },
+  cq: { name: '충칭 시내 · 3박', zh: '重庆 解放碑·洪崖洞', addr: '重庆市渝中区临江路60号 假日四季酒店',
+    kind: 'city', time: '9/2~9/4', stay: '3박', coord: CQ,
+    mode: { type: 'car', text: '픽업 차량 40분 · 27km' },
+    desc: '홍야동·해방비·자기구·리쯔바·임시정부청사·양쯔강 로프웨이.',
+    tip: '👉 상세 동선은 상단 메뉴 <b>「🏙️ 충칭」</b> 지도에서.' },
+  spb: { name: '충칭 사평패역', zh: '重庆 沙坪坝站', addr: '重庆市沙坪坝区 沙坪坝火车站',
+    kind: 'station', time: '9/4(금) 14:35 출발', coord: SPB,
+    mode: { type: 'taxi', text: '택시 35분 · 약 45元' },
+    desc: '삼협광장 지하역. 여권으로 개찰합니다(예약번호 1400829054259184).' },
+  cdd_go: { name: '성도동역 (환승)', zh: '成都东站', addr: '成都东站',
+    kind: 'station', time: '9/4 15:50 도착 → 17:05 환승', coord: CDD,
+    mode: { type: 'train', text: '고속열차 약 1시간 10분' },
+    desc: '같은 역 안에서 황룡구채행으로 환승. 약 1시간 15분 여유가 있어 저녁 도시락을 사기 좋습니다.',
+    tip: '★ 구채구 도착이 밤 9시라 여기서 먹을 것을 반드시 챙기세요.' },
+  hljz_go: { name: '황룡구채역', zh: '黄龙九寨站', addr: '四川省阿坝州松潘县川主寺镇 黄龙九寨站',
+    kind: 'station', time: '9/4 18:44 도착', coord: HLJZ,
+    mode: { type: 'train', text: '고속열차 1시간 39분 (2024.8 개통)' },
+    desc: '해발 약 3,000m의 신설 고속철역. 여기서 구채구까지가 아직 93km 남았습니다.',
+    tip: '★ 고산 지대 — 내려서 뛰지 말고 천천히 움직이세요.' },
+  jzg: { name: '구채구 · 1박', zh: '九寨沟 漳扎镇', addr: '四川省阿坝州九寨沟县漳扎镇',
+    kind: 'city', time: '9/4 21:00 도착', stay: '1박', coord: JZG,
+    mode: { type: 'shuttle', text: '직통차 2시간 · 93km · 51元' },
+    via: [[32.8300, 103.6600], [32.9800, 103.7600], [33.1500, 103.8700]],
+    desc: '9/5 하루 종일 구채구 국가공원 트레킹 후, 그날 밤 20:33 열차로 청두 복귀.',
+    tip: '👉 상세 동선은 상단 메뉴 <b>「🏞️ 구채구」</b> 지도에서. 셔틀은 35분이 아니라 <b>2시간</b>입니다.' },
+  cd: { name: '청두 시내 · 2박', zh: '成都 文殊院', addr: '成都市青羊区人民中路三段22号 索菲斯锦苑宾馆',
+    kind: 'city', time: '9/5 심야 ~ 9/7', stay: '2박', coord: CD,
+    mode: { type: 'train', text: '직통차 2h + 고속열차 → 성도동역 심야 → 택시 30분' },
+    via: [HLJZ, CDD],
+    desc: '판다 기지·학화찻집·변검 공연·무후사·금리·콴자이샹즈·타이쿠리.',
+    tip: '👉 상세 동선은 상단 메뉴 <b>「🐼 청두」</b> 지도에서.' },
+  tfu: { name: '톈푸국제공항 T1', zh: '成都天府国际机场 T1', addr: '成都天府国际机场 T1航站楼',
+    kind: 'airport', time: '9/7(월) 21:15 도착', coord: TFU,
+    mode: { type: 'car', text: '드롭 차량 60분 · 약 55km' },
+    desc: '시내에서 55km. 기사 픽업 예약 완료.',
+    tip: '★ 비즈니스 티켓 → 스타얼라이언스 계열 CIP 라운지에서 3시간 대기.' },
+  icn_in: { name: '인천공항 T2 도착', zh: '仁川国际机场 T2', kind: 'airport', time: '9/8(화) 05:25', coord: ICN,
+    mode: { type: 'flight', text: 'OZ324 · 비행 3시간 55분', curve: -0.16 },
+    desc: '무사히 귀국 💕 7박 8일, 두 분 정말 수고 많으셨습니다.' }
+};
+
+var OV = {
+  base: 'osm',
+  center: [33.5, 115.5],
+  zoom: 5,
+  courses: [
+    { label: '전체 여정', sub: '8일 · 왕복 전체',
+      done: '도시별 상세 동선은 상단 메뉴에서 확인하세요.',
+      stops: [S.icn_out, S.ckg, S.cq, S.spb, S.cdd_go, S.hljz_go, S.jzg, S.cd, S.tfu, S.icn_in] },
+    { label: '가는 길', sub: '9/1~9/4 · 인천→구채구',
+      done: '여기까지가 여정의 절반입니다.',
+      stops: [S.icn_out, S.ckg, S.cq, S.spb, S.cdd_go, S.hljz_go, S.jzg] },
+    { label: '오는 길', sub: '9/5~9/8 · 구채구→인천',
+      done: '집으로 가는 길입니다.',
+      stops: [S.jzg, S.cd, S.tfu, S.icn_in] }
+  ]
+};
+var TM = new TripMap(OV);
+</script>
+</body>
+</html>
