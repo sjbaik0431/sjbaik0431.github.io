@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#B22222"/>
+<title>백상진·박현교 부부 환갑 여행 🏮 충칭·청두·구채구</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏮%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Myeongjo:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red-primary:#B22222; --red-deep:#8B1A1A; --red-cinnabar:#E34234;
+  --gold:#D4A017; --gold-antique:#9C7A2E; --gold-light:#F5E6B3;
+  --bamboo:#4A7C59; --bamboo-light:#6B9F7A;
+  --ink:#1A1614; --ink-soft:#3E332E;
+  --cream:#FAF6F0; --paper:#F5EFE3; --gray-warm:#E8DFD1;
+  --panda-black:#1A1A1A; --panda-white:#FAFAFA;
+  --success:#5B8C5A; --warning:#D89614; --info:#4A7A94; --error:#B84040;
+  --shadow-soft:0 4px 12px rgba(139,26,26,.08);
+  --shadow-card:0 8px 24px rgba(139,26,26,.12);
+  --shadow-pop:0 12px 32px rgba(178,34,34,.18);
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
+  --font-heading:'Noto Serif KR','Noto Serif SC',serif;
+  --font-body:'Noto Sans KR','Noto Sans SC',sans-serif;
+  --font-poem:'Nanum Myeongjo','Noto Serif KR',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--ink);line-height:1.75;min-height:100vh;overflow-x:hidden;font-size:16px}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+a{color:var(--red-primary);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:641px){.container{padding:0 24px}}
+@media(min-width:1025px){.container{padding:0 32px}}
+
+/* ==== 홍등 배경 ==== */
+.lanterns{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.lantern{position:absolute;top:-40px;font-size:24px;opacity:.4;animation:lanternSway 8s ease-in-out infinite,fallSlow 30s linear infinite;will-change:transform}
+@keyframes lanternSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes fallSlow{0%{top:-40px}100%{top:110vh}}
+
+/* ==== HERO ==== */
+.hero{position:relative;background:linear-gradient(180deg,#FAF6F0 0%,#F5EFE3 60%,#F5E6B3 100%);padding:80px 0 60px;text-align:center;overflow:hidden;z-index:1;border-bottom:3px solid var(--gold)}
+.hero::before{content:"🏮";position:absolute;top:20px;left:8%;font-size:56px;opacity:.6;animation:lanternSway 5s ease-in-out infinite}
+.hero::after{content:"🐼";position:absolute;top:40px;right:10%;font-size:44px;opacity:.8;animation:lanternSway 6s ease-in-out infinite reverse}
+.hero .celebrate{display:inline-block;padding:6px 20px;background:var(--red-primary);color:#fff;border-radius:999px;font-size:14px;letter-spacing:.1em;margin-bottom:16px;font-weight:600}
+.hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,5vw,44px);color:var(--red-deep);line-height:1.3;margin-bottom:12px;letter-spacing:-.01em}
+.hero .subtitle{font-family:var(--font-poem);font-size:clamp(17px,2.4vw,22px);color:var(--ink-soft);margin:8px 0 20px;font-style:italic}
+.hero .dday{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:rgba(255,255,255,.9);border:2px solid var(--gold);border-radius:999px;box-shadow:var(--shadow-soft);font-weight:700;color:var(--red-primary);font-size:17px}
+.hero .info{margin-top:14px;font-size:14px;color:var(--ink-soft);font-family:var(--font-poem)}
+
+/* ==== NAV ==== */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(250,246,240,.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--gold);box-shadow:0 2px 12px rgba(139,26,26,.08)}
+.navbar-inner{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.navbar-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:10px 16px;border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;border:1.5px solid var(--gray-warm);transition:all .2s;min-height:44px;white-space:nowrap;font-family:var(--font-body)}
+.nav-btn:hover{background:var(--paper);border-color:var(--gold);transform:translateY(-1px)}
+.nav-btn.active{background:var(--red-primary);color:#fff;border-color:var(--red-primary)}
+.nav-btn .badge-dot{display:inline-block;width:8px;height:8px;background:var(--red-primary);border-radius:50%;margin-left:4px;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+
+/* ==== SECTION ==== */
+.section{padding:48px 0;position:relative;z-index:1}
+.section h2{font-family:var(--font-heading);font-size:clamp(24px,3.5vw,30px);font-weight:700;color:var(--red-deep);margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);padding-left:14px}
+.section .lead{font-family:var(--font-poem);font-size:17px;color:var(--ink-soft);margin-bottom:24px;font-style:italic}
+
+/* ==== CARDS ==== */
+.card{background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--red-primary);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow-card);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-pop)}
+
+/* ==== ALERT BANNER ==== */
+.alert-banner{margin:20px 0;padding:18px 22px;background:linear-gradient(135deg,#FFF9F0 0%,#F5E6B3 100%);border:1.5px solid var(--gold);border-left:5px solid var(--red-primary);border-radius:var(--r-md);box-shadow:var(--shadow-soft)}
+.alert-banner h3{display:flex;align-items:center;gap:8px;font-size:17px;margin-bottom:10px;color:var(--red-deep);font-family:var(--font-heading);font-weight:700}
+.alert-banner ul{list-style:none;font-size:15px;color:var(--ink-soft)}
+.alert-banner li{padding:6px 0;display:flex;gap:8px;align-items:start;line-height:1.6}
+.alert-banner li::before{content:"🏮";flex-shrink:0}
+.alert-empty{color:var(--success)}
+.alert-empty::before{content:"✅"}
+
+/* ==== PROGRESS ==== */
+.progress-wrap{margin:12px 0 28px;padding:22px 24px;background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%);border:1px solid var(--gold);border-radius:var(--r-lg);box-shadow:var(--shadow-soft)}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.progress-top strong{font-size:18px;color:var(--red-deep);font-family:var(--font-heading);font-weight:700}
+.progress-pct{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:24px}
+.progress-bar{height:12px;background:#fff;border:1px solid var(--gold);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red-primary),var(--gold));border-radius:999px;transition:width .8s}
+.progress-meta{margin-top:10px;font-size:15px;color:var(--ink-soft);font-family:var(--font-poem)}
+
+/* ==== TIMELINE ==== */
+.timeline-hscroll{display:flex;gap:14px;overflow-x:auto;padding:8px 4px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.timeline-hscroll::-webkit-scrollbar{height:6px}
+.timeline-hscroll::-webkit-scrollbar-track{background:var(--paper);border-radius:3px}
+.timeline-hscroll::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.day-card{flex:0 0 280px;scroll-snap-align:start;padding:16px;background:#fff;border:1.5px solid var(--gray-warm);border-radius:var(--r-md);cursor:pointer;transition:all .3s;position:relative}
+.day-card:hover{background:var(--paper);border-color:var(--red-primary)}
+.day-card.today{background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%);border:2px solid var(--red-primary);box-shadow:var(--shadow-pop)}
+.day-card.past{opacity:.55;background:var(--gray-warm)}
+.day-card .day-num{display:inline-block;padding:4px 12px;background:var(--red-primary);color:#fff;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:8px;letter-spacing:.05em}
+.day-card.today .day-num{background:var(--gold);color:var(--ink);animation:pulse 1.6s infinite}
+.day-card .day-date{font-weight:700;color:var(--red-deep);font-size:15px;margin-bottom:2px;font-family:var(--font-heading)}
+.day-card .day-city{font-size:14px;color:var(--bamboo);font-weight:700;margin-bottom:4px}
+.day-card .day-title{font-size:15px;line-height:1.5;color:var(--ink);margin-bottom:6px;font-weight:500}
+
+/* ==== PLACE CARD GRID ==== */
+.daysec{margin-bottom:44px}
+.daysec-head{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px dashed var(--gold)}
+.daysec-date{font-family:var(--font-heading);font-weight:700;color:var(--red-primary);font-size:20px}
+.daysec-title{font-size:18px;font-weight:600;color:var(--ink)}
+.daysec-weather{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:var(--paper);border-radius:999px;font-size:13px;color:var(--ink-soft);font-weight:600}
+.place-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.place-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);overflow:hidden;cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.place-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-pop);border-color:var(--red-primary)}
+.place-thumb{aspect-ratio:16/10;background:var(--paper) center/cover no-repeat;position:relative}
+.place-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4))}
+.place-thumb .chip-city{position:absolute;top:10px;left:10px;z-index:2;padding:4px 12px;background:rgba(178,34,34,.9);color:#fff;border-radius:8px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)}
+.place-thumb .chip-photos{position:absolute;top:10px;right:10px;z-index:2;padding:4px 10px;background:rgba(0,0,0,.55);color:#fff;border-radius:8px;font-size:11.5px;font-weight:700;backdrop-filter:blur(4px)}
+.modal-gallery{display:flex;gap:8px;padding:12px 26px 0;overflow-x:auto}
+.modal-gallery img{width:88px;height:66px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;flex:none}
+.modal-gallery img.active{border-color:var(--red-primary)}
+.place-body{padding:16px;flex:1;display:flex;flex-direction:column}
+.place-name{font-size:16px;font-weight:700;color:var(--red-deep);margin-bottom:2px;line-height:1.4;font-family:var(--font-heading)}
+.place-zh{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--gold-antique);margin-bottom:8px}
+.place-intro{font-size:14px;color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+.place-actions{display:flex;gap:6px;flex-wrap:wrap}
+.mini-chip{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;background:var(--paper);color:var(--ink-soft);border-radius:8px;font-size:12px;font-weight:600}
+
+/* ==== MODAL ==== */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,22,20,.7);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px}
+.modal-overlay.open{display:flex;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:var(--r-xl);max-width:720px;width:100%;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;animation:slideUp .3s;border-top:5px solid var(--red-primary)}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:sticky;top:12px;margin-left:auto;margin-right:12px;z-index:10;width:40px;height:40px;background:#fff;border-radius:50%;font-size:22px;box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;color:var(--red-primary);float:right;top:12px;border:1px solid var(--gray-warm);font-weight:700}
+.modal-hero{aspect-ratio:16/9;background:var(--paper) center/cover no-repeat;border-radius:var(--r-xl) var(--r-xl) 0 0}
+.modal-body{padding:26px}
+.modal-body h2{font-size:26px;margin-bottom:4px;font-family:var(--font-heading);color:var(--red-deep);font-weight:700}
+.modal-body .m-en{font-family:'Noto Serif SC',serif;color:var(--gold-antique);margin-bottom:14px;font-size:15px}
+.modal-tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 0 18px;border-bottom:2px solid var(--paper);margin-bottom:18px;scrollbar-width:none}
+.modal-tabs::-webkit-scrollbar{display:none}
+.m-tab{padding:9px 16px;border-radius:8px;background:var(--paper);font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap;cursor:pointer;font-family:var(--font-body)}
+.m-tab.active{background:var(--red-primary);color:#fff}
+.m-panel{display:none}
+.m-panel.active{display:block;animation:fadeIn .2s}
+.m-panel p,.m-panel li{font-size:15px;line-height:1.8;color:var(--ink)}
+.m-panel h4{color:var(--red-primary);margin:14px 0 8px;font-size:16px;display:flex;gap:6px;align-items:center;font-family:var(--font-heading);font-weight:700}
+.m-panel ul{padding-left:20px;margin:6px 0}
+.info-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px dashed var(--paper);font-size:15px}
+.info-row:last-child{border:none}
+.info-row strong{min-width:90px;color:var(--red-primary);font-weight:700}
+.warn{padding:12px 14px;background:#FFF4E6;border-left:4px solid var(--warning);border-radius:8px;font-size:14px;color:var(--ink);margin:10px 0;line-height:1.6}
+
+/* ==== VOUCHER ==== */
+.voucher-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.voucher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.voucher{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:18px;position:relative;overflow:hidden;padding-left:22px}
+.voucher::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red-primary)}
+.voucher[data-status="not_booked"]::before,.voucher[data-status="todo"]::before{background:var(--warning)}
+.voucher[data-status="recommended"]::before{background:var(--bamboo)}
+.voucher[data-cat="flight"]::before{background:var(--info)}
+.voucher-cat{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:8px;letter-spacing:.06em;background:var(--paper);color:var(--red-primary)}
+.voucher-label{font-weight:700;color:var(--red-deep);margin-bottom:6px;font-size:15px;font-family:var(--font-heading)}
+.voucher-when{font-family:'Noto Serif KR',serif;font-weight:600;color:var(--gold-antique);font-size:14px;margin-bottom:6px}
+.voucher-note{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.voucher-status{position:absolute;top:14px;right:14px;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.voucher-status.booked{background:var(--success);color:#fff}
+.voucher-status.recommended{background:var(--bamboo);color:#fff}
+.voucher-status.not_booked{background:var(--warning);color:#fff}
+.voucher-status.onsite{background:var(--info);color:#fff}
+.voucher-status.todo{background:var(--gray-warm);color:var(--ink)}
+
+/* ==== HOTELS ==== */
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.hotel-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:20px;position:relative}
+.hotel-card.selected{border:3px solid var(--red-primary);background:linear-gradient(135deg,#FFF9F0 0%,#FAF6F0 100%)}
+.hotel-card .sel-badge{position:absolute;top:-12px;right:14px;background:var(--red-primary);color:#fff;padding:5px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em}
+.hotel-photo{width:100%;height:150px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:10px;background:var(--paper)}
+.wcell .wsrc{font-size:10px;color:#B89BA5;margin-top:2px}
+.hotel-name{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--red-deep);margin-bottom:4px}
+.hotel-brand{font-size:12px;color:var(--gold-antique);margin-bottom:8px}
+.hotel-price{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:20px;margin:8px 0}
+.hotel-pros{list-style:none;padding:0;margin:8px 0;font-size:13px;color:var(--ink-soft)}
+.hotel-pros li{padding:3px 0;display:flex;gap:6px}
+.hotel-pros li::before{content:"✓";color:var(--success);font-weight:700}
+
+/* ==== WEATHER ==== */
+.weather-city-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.wtab{padding:8px 14px;background:var(--paper);border-radius:8px;font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer;font-family:var(--font-body)}
+.wtab.active{background:var(--red-primary);color:#fff}
+.weather-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.wcell{padding:14px 10px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);text-align:center}
+.wcell.today{background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%);border:1.5px solid var(--red-primary)}
+.wcell .wday{font-size:12px;color:var(--ink-soft);font-weight:700}
+.wcell .wdate{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;color:var(--red-deep);margin:2px 0}
+.wcell .wicon{font-size:28px;margin:6px 0}
+.wcell .wtemp{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;color:var(--red-primary)}
+.wcell .wlow{font-size:12px;color:var(--ink-soft)}
+.wcell .wprecip{font-size:11px;color:var(--info);margin-top:2px}
+
+/* ==== MUSIC ==== */
+.music-item{display:flex;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);margin-bottom:10px;cursor:pointer;transition:all .2s}
+.music-item:hover{background:var(--paper);transform:translateX(4px);border-color:var(--red-primary)}
+.music-item.playing{background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%);border-color:var(--red-primary)}
+.music-play{width:40px;height:40px;border-radius:50%;background:var(--red-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.music-item.playing .music-play{animation:bounce .8s infinite}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.music-meta{flex:1;min-width:0}
+.music-title{font-weight:700;font-size:15px;color:var(--red-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-heading)}
+.music-sub{font-size:13px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#musicPlayer{position:fixed;bottom:0;left:0;right:0;z-index:90;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .3s;padding:14px 18px;display:flex;gap:14px;align-items:center;border-top:3px solid var(--red-primary)}
+#musicPlayer.show{transform:translateY(0)}
+#musicPlayer .mp-meta{flex:1;min-width:0}
+#musicPlayer .mp-title{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--red-deep)}
+#musicPlayer .mp-close{font-size:24px;color:var(--red-primary);padding:4px 10px;font-weight:700}
+#ytFrame{width:100%;aspect-ratio:16/9;max-width:320px;background:#000}
+
+/* ==== CHECKLIST ==== */
+.chk-day{margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--gold);border-radius:var(--r-md)}
+.chk-day h4{font-size:17px;color:var(--red-deep);margin-bottom:10px;display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:700}
+.chk-day h4 .chk-count{font-size:12px;padding:3px 10px;background:var(--paper);border-radius:8px;color:var(--red-primary);font-weight:700}
+.chk-item{display:flex;gap:12px;padding:8px 0;align-items:flex-start;cursor:pointer;user-select:none}
+.chk-item input{flex-shrink:0;width:22px;height:22px;margin-top:2px;accent-color:var(--red-primary);cursor:pointer}
+.chk-item label{flex:1;font-size:15px;line-height:1.65;cursor:pointer}
+.chk-item input:checked + label{text-decoration:line-through;color:var(--ink-soft);opacity:.7}
+
+/* ==== JOURNAL ==== */
+.journal-form{padding:18px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);margin-bottom:18px}
+.storage-status{padding:10px 14px;background:var(--paper);border-radius:8px;font-size:13px;color:var(--ink-soft);margin-bottom:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.storage-status strong{color:var(--red-primary);font-weight:700}
+.storage-help{margin-top:10px;padding:10px 12px;background:#FFF9F0;border-left:3px solid var(--gold);font-size:13px;color:var(--ink-soft);border-radius:4px;line-height:1.6}
+.journal-form textarea{width:100%;min-height:100px;padding:14px;border:1.5px solid var(--gray-warm);border-radius:var(--r-sm);font-family:inherit;font-size:15px;color:var(--ink);background:var(--cream);resize:vertical}
+.journal-form textarea:focus{outline:none;border-color:var(--red-primary)}
+.journal-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 20px;border-radius:8px;font-weight:700;min-height:48px;font-size:15px;transition:all .2s;font-family:var(--font-body)}
+.btn-primary{background:var(--red-primary);color:#fff;box-shadow:var(--shadow-pop)}
+.btn-primary:hover{background:var(--red-deep);transform:translateY(-2px)}
+.btn-ghost{background:var(--paper);color:var(--ink);border:1px solid var(--gray-warm)}
+.btn-ghost:hover{background:var(--gray-warm)}
+.btn-danger{background:#fff;color:var(--error);border:1.5px solid var(--error)}
+.journal-list .entry{padding:14px 16px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);margin-bottom:10px}
+.journal-list .entry-meta{font-size:12px;color:var(--gold-antique);margin-bottom:6px;font-family:'Noto Serif KR',serif}
+.journal-list .entry-text{font-size:15px;line-height:1.7;white-space:pre-wrap}
+.journal-list audio{width:100%;margin-top:8px}
+
+/* ==== GALLERY ==== */
+.gallery-upload{padding:22px;background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%);border-radius:var(--r-md);text-align:center;border:2px dashed var(--red-primary);margin-bottom:18px;cursor:pointer;display:block}
+.gallery-upload p{font-size:15px;color:var(--ink);margin:4px 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.gallery-item{aspect-ratio:1;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img,.gallery-item video{width:100%;height:100%;object-fit:cover}
+.gallery-item .g-del{position:absolute;top:4px;right:4px;background:rgba(255,255,255,.95);width:28px;height:28px;border-radius:50%;font-size:14px;color:var(--error);display:flex;align-items:center;justify-content:center;font-weight:700}
+
+/* ==== EMERGENCY ==== */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.emer-item{display:flex;gap:12px;align-items:center;padding:14px 16px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);transition:transform .2s}
+.emer-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);border-color:var(--red-primary)}
+.emer-icon{width:44px;height:44px;background:linear-gradient(135deg,#F5E6B3,#FAF6F0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.emer-info{flex:1;min-width:0}
+.emer-label{font-size:14px;font-weight:700;color:var(--red-deep);margin-bottom:2px}
+.emer-phone{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:16px}
+.emer-note{font-size:12px;color:var(--ink-soft);margin-top:2px}
+
+/* ==== TOAST ==== */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:15px;z-index:2000;opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--error)}
+
+/* ==== FOOTER ==== */
+.footer{padding:56px 0 120px;text-align:center;background:linear-gradient(135deg,#B22222 0%,#8B1A1A 100%);color:#F5E6B3}
+.footer p{font-family:var(--font-poem);font-size:20px;line-height:1.9;font-style:italic}
+.footer .from{margin-top:14px;font-size:16px;color:#F5E6B3;opacity:.9}
+
+/* ==== UTIL ==== */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:4px 12px;background:var(--gold);color:var(--ink);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:.05em}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.lantern{display:none}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="lanterns" id="lanterns" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="container">
+    <span class="celebrate">🏮 환갑을 축하드립니다</span>
+    <h1>백상진 · 박현교 부부의 중국 서남부 기행</h1>
+    <p class="subtitle">충칭 · 청두 · 구채구 6박 8일 · 2026년 9월 1일 ~ 8일</p>
+    <div class="dday" id="ddayBadge">⏳</div>
+    <div class="info">아시아나 EQ3MJ9 · 홍등 아래 마시는 차 한 잔의 여유</div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <button class="nav-btn" onclick="scrollTo2('#alerts')">🔔 알림<span class="badge-dot" id="navDot" style="display:none"></span></button>
+    <button class="nav-btn" onclick="scrollTo2('#progress')">📍 진행현황</button>
+    <button class="nav-btn" onclick="scrollTo2('#timeline')">🗓️ 전체 일정</button>
+    <button class="nav-btn" onclick="scrollTo2('#today')">🌅 오늘</button>
+    <button class="nav-btn" onclick="scrollTo2('#places')">🏛️ 여행지</button>
+    <button class="nav-btn" onclick="scrollTo2('#business')">✈️ 비즈니스</button>
+    <button class="nav-btn" onclick="scrollTo2('#hotels')">🏨 숙소</button>
+    <button class="nav-btn" onclick="scrollTo2('#train')">🚄 고속열차</button>
+    <button class="nav-btn" onclick="scrollTo2('#vouchers')">🎫 예약</button>
+    <button class="nav-btn" onclick="scrollTo2('#weather')">☀️ 날씨</button>
+    <button class="nav-btn" onclick="scrollTo2('#checklist')">✅ 체크리스트</button>
+    <button class="nav-btn" onclick="scrollTo2('#music')">🎵 음악</button>
+    <button class="nav-btn" onclick="scrollTo2('#journal')">📔 기록</button>
+    <button class="nav-btn" onclick="scrollTo2('#gallery')">📸 앨범</button>
+    <button class="nav-btn" onclick="scrollTo2('#emergency')">☎️ 연락처</button>
+  </div>
+</nav>
+
+<main>
+  <!-- 알림 -->
+  <section id="alerts" class="section" style="padding-top:28px">
+    <div class="container">
+      <h2>🔔 내일·오늘 알림</h2>
+      <div class="lead">전날 자동 점검 + 오늘 챙길 것</div>
+      <div id="alertArea"></div>
+    </div>
+  </section>
+
+  <!-- 진행현황 -->
+  <section id="progress" class="section" style="padding-top:0">
+    <div class="container">
+      <h2>📍 여행 진행 현황</h2>
+      <div class="lead">발자국이 쌓여가는 8일</div>
+      <div class="progress-wrap">
+        <div class="progress-top"><strong id="progLabel">Day X / 8</strong><span class="progress-pct" id="progPct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+        <div class="progress-meta" id="progMeta">여행이 시작되면 이 곳에 발자국이 쌓입니다</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 타임라인 -->
+  <section id="timeline" class="section">
+    <div class="container">
+      <h2>🗓️ 전체 일정</h2>
+      <div class="lead">카드를 눌러 해당 날짜로 이동</div>
+      <div class="timeline-hscroll" id="timelineScroll"></div>
+    </div>
+  </section>
+
+  <!-- 오늘 -->
+  <section id="today" class="section">
+    <div class="container">
+      <h2>🌅 오늘의 여정</h2>
+      <div class="lead" id="todayLead">오늘은...</div>
+      <div id="todayContent"></div>
+    </div>
+  </section>
+
+  <!-- 여행지 -->
+  <section id="places" class="section">
+    <div class="container">
+      <h2>🏛️ 날짜별 여행지</h2>
+      <div class="lead">카드를 누르면 역사·꿀팁·맛집·음악 상세 정보</div>
+      <div id="placesArea"></div>
+    </div>
+  </section>
+
+  <!-- 비즈니스 클래스 꿀팁 -->
+  <section id="business" class="section" style="background:linear-gradient(135deg,#F5EFE3 0%,#F5E6B3 100%)">
+    <div class="container">
+      <h2>✈️ 비즈니스 클래스 필수 활용 꿀팁</h2>
+      <div class="lead" id="bizLead">환갑 부부에게 딱 맞는 프리미엄 혜택 · 심야 편이라 특히 유용</div>
+      <div id="bizArea"></div>
+    </div>
+  </section>
+
+  <!-- 숙소 -->
+  <section id="hotels" class="section" style="background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%)">
+    <div class="container">
+      <h2>🏨 숙소 · 예약 확정</h2>
+      <div class="lead">3개 숙소 전부 예약 확정(Confirmed) · Trip.com</div>
+      <div id="hotelInfo" style="padding:16px 20px;background:#fff;border-radius:14px;border-left:4px solid #B22222;margin-bottom:20px;font-size:14px;line-height:1.7">
+        <strong style="color:#B22222">✅ 예약 확정 내역:</strong> 충칭 Holiday Four Seasons Hotel 3박 240,147원 + 구채구 Dusk Mountain Villa 1박 93,606원 + 청두 Sofis Jinyuan Hotel 2박 153,768원 = <strong>총 487,521원</strong>. 리워드 포인트 4,781점(132,199원 상당)은 향후 국내 이비스·머큐어·노보텔에서 사용.
+      </div>
+      <h3 style="font-family:'Noto Serif KR',serif;color:#8B1A1A;margin-bottom:12px;font-size:18px">🏯 충칭 (3박)</h3>
+      <div class="hotel-grid" id="hotelsChongqing"></div>
+      <h3 style="font-family:'Noto Serif KR',serif;color:#8B1A1A;margin:24px 0 12px;font-size:18px">🏞️ 구채구 (1박)</h3>
+      <div class="hotel-grid" id="hotelsJiuzhaigou"></div>
+      <h3 style="font-family:'Noto Serif KR',serif;color:#8B1A1A;margin:24px 0 12px;font-size:18px">🐼 청두 (2박)</h3>
+      <div class="hotel-grid" id="hotelsChengdu"></div>
+    </div>
+  </section>
+
+  <!-- 고속열차 -->
+  <section id="train" class="section">
+    <div class="container">
+      <h2>🚄 충칭 → 청두 → 구채구 고속열차 3구간 (예약 확정)</h2>
+      <div class="lead">기차표 3건 모두 예약 완료 · 여권만으로 자동 개찰</div>
+      <div class="card" style="margin-bottom:16px">
+        <h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;font-size:18px;margin-bottom:12px">✅ 예약 확정 3구간</h3>
+        <table style="width:100%;font-size:14.5px;border-collapse:collapse;line-height:1.7">
+          <thead><tr style="border-bottom:2px solid #D4A017;background:#FAF6F0">
+            <th style="padding:10px;text-align:left">구간</th><th style="padding:10px">날짜·출발</th><th style="padding:10px">2인 금액</th><th style="padding:10px">예약번호</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px dashed #E8DFD1"><td style="padding:10px;font-weight:700;color:#B22222">충칭 사평패(沙坪坝) → 청두동(成都东)</td><td style="padding:10px;text-align:center">9/4(금) 14:35</td><td style="padding:10px;text-align:center;font-weight:700">117,740원</td><td style="padding:10px;text-align:center;font-size:12.5px">1400829054259184</td></tr>
+            <tr style="border-bottom:1px dashed #E8DFD1"><td style="padding:10px;font-weight:700;color:#B22222">청두동(成都东) → 황룡구채(黄龙九寨)</td><td style="padding:10px;text-align:center">9/4(금) 17:05</td><td style="padding:10px;text-align:center;font-weight:700">108,950원</td><td style="padding:10px;text-align:center;font-size:12.5px">1400829054254511</td></tr>
+            <tr><td style="padding:10px;font-weight:700;color:#B22222">황룡구채(黄龙九寨) → 청두동(成都东)</td><td style="padding:10px;text-align:center">9/5(토) 20:33</td><td style="padding:10px;text-align:center;font-weight:700">108,450원</td><td style="padding:10px;text-align:center;font-size:12.5px">1400829054298753</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px;font-size:14px;color:#3E332E"><strong>3구간 총액: 약 335,140원</strong> · 청두동↔황룡구채 구간은 2024.8.30 개통한 신노선으로 최단 1시간39분 소요 (기존 버스로는 8~10시간)</p>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;font-size:18px;margin-bottom:8px">🎫 승차 안내</h3>
+        <ol style="padding-left:22px;font-size:14.5px;line-height:1.9">
+          <li>승객 정보 <strong>여권 영문표기 그대로</strong> 예약됨 (BAIK SANG JIN / PARK HYUN KYO)</li>
+          <li>당일 역에서 <strong>여권만 개찰구에 스캔</strong> → 통과 (종이표 발권 불필요)</li>
+          <li>청두동역에서 두 열차 사이 약 2시간30분 환승 시간 - 역내 식당가에서 요기 가능</li>
+          <li>황룡구채역 도착 후 구채구 시내까지 셔틀버스 약 35분(51元), 황룡 경치구까지는 약 35분(28元) — 방향이 다르므로 매표소에서 목적지 정확히 확인</li>
+          <li>고속열차 앱/12306 알림으로 지연·플랫폼 변경 여부 출발 전 재확인 권장</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;font-size:18px;margin-bottom:8px">🚉 9/4 당일 이동 흐름</h3>
+        <div style="font-family:'Noto Serif KR',serif;line-height:2;font-size:14.5px;color:#3E332E;background:#FAF6F0;padding:14px;border-radius:8px;border-left:3px solid #D4A017">
+          12:00경 충칭 호텔 체크아웃 → 택시/디디로 <strong>사평패역(沙坪坝站)</strong> 이동<br/>
+          <strong style="color:#B22222">14:35 사평패 출발 → 청두동역 도착</strong><br/>
+          청두동역 환승 대합실에서 저녁 요기 (약 2시간30분 여유)<br/>
+          <strong style="color:#B22222">17:05 청두동 출발 → 저녁 황룡구채역 도착 (최단 1h39m)</strong><br/>
+          셔틀버스(약 35분) → 구채구 시내 Dusk Mountain Villa 체크인
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 예약 -->
+  <section id="vouchers" class="section" style="background:linear-gradient(135deg,#FAF6F0 0%,#F5E6B3 100%)">
+    <div class="container">
+      <h2>🎫 예약 & 준비 모음</h2>
+      <div class="lead" id="voucherSummary">항공·숙소·열차·액티비티·준비 한 곳에</div>
+      <div class="voucher-filter" id="voucherFilter">
+        <button class="wtab active" data-vf="all">전체</button>
+        <button class="wtab" data-vf="flight">✈️ 항공</button>
+        <button class="wtab" data-vf="hotel">🏨 숙소</button>
+        <button class="wtab" data-vf="train">🚄 열차</button>
+        <button class="wtab" data-vf="activity">🎢 액티비티</button>
+        <button class="wtab" data-vf="prep">📋 사전준비</button>
+        <button class="wtab" data-vf="not_booked">⚠️ 미예약</button>
+      </div>
+      <div class="voucher-grid" id="voucherGrid"></div>
+    </div>
+  </section>
+
+  <!-- 날씨 -->
+  <section id="weather" class="section">
+    <div class="container">
+      <h2>☀️ 여행 8일 날씨 (실시간)</h2>
+      <div class="lead">Open-Meteo API · 충칭/청두/구채구 실시간 예보</div>
+      <div class="weather-city-tabs" id="weatherTabs"></div>
+      <div class="weather-row" id="weatherRow"><div style="padding:20px;grid-column:1/-1;text-align:center;color:#B89BA5">☁️ 날씨 불러오는 중…</div></div>
+    </div>
+  </section>
+
+  <!-- 체크리스트 -->
+  <section id="checklist" class="section" style="background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%)">
+    <div class="container">
+      <h2>✅ 날짜별 체크리스트</h2>
+      <div class="lead">체크 자동 저장 · 이 기기에만 보관됨</div>
+      <div id="chkArea"></div>
+    </div>
+  </section>
+
+  <!-- 음악 -->
+  <section id="music" class="section">
+    <div class="container">
+      <h2>🎵 여행지 음악</h2>
+      <div class="lead">▶ 눌러 재생 · 각 여행지에 어울리는 곡</div>
+      <div id="musicList"></div>
+    </div>
+  </section>
+
+  <!-- 기록 -->
+  <section id="journal" class="section" style="background:linear-gradient(135deg,#FAF6F0 0%,#F5E6B3 100%)">
+    <div class="container">
+      <h2>📔 여행 일기</h2>
+      <div class="lead">글로도, 음성으로도 · 환갑의 하루하루</div>
+      <div class="journal-form">
+        <div id="journalStatus" class="storage-status">📦 불러오는 중…</div>
+        <textarea id="journalText" placeholder="오늘의 이야기를 여기에 적어주세요..."></textarea>
+        <div class="journal-actions">
+          <button class="btn btn-primary" onclick="saveJournal()">💗 저장</button>
+          <button class="btn btn-ghost" id="recBtn" onclick="toggleRec()">🎙️ 음성녹음 시작</button>
+          <button class="btn btn-ghost" onclick="exportJournal()">💌 텍스트 내보내기</button>
+          <button class="btn btn-ghost" onclick="backupAll()">📦 전체 백업(.json)</button>
+          <label class="btn btn-ghost" style="cursor:pointer;margin:0">📥 백업 복원<input type="file" accept=".json" style="display:none" onchange="restoreBackup(event)"/></label>
+        </div>
+        <div class="storage-help">💡 기록은 이 기기에만 저장됩니다. 안전을 위해 가끔 <strong>전체 백업</strong>을 받아두세요.</div>
+      </div>
+      <div id="journalList" class="journal-list"></div>
+    </div>
+  </section>
+
+  <!-- 갤러리 -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>📸 사진·동영상 아카이브</h2>
+      <div class="lead">환갑 여행의 순간들 (이 기기 저장)</div>
+      <div id="galleryStatus" class="storage-status">📦 불러오는 중…</div>
+      <label class="gallery-upload" for="galUp">
+        <div style="font-size:44px">📷</div>
+        <p><strong>사진/동영상 업로드</strong></p>
+        <p style="font-size:13px;color:#3E332E">탭해서 카메라로 찍거나 앨범에서 선택</p>
+        <input type="file" id="galUp" accept="image/*,video/*" multiple style="display:none" onchange="handleUpload(event)"/>
+      </label>
+      <div class="storage-help">💡 일기 섹션의 <strong>전체 백업</strong> 버튼으로 사진까지 함께 백업 가능합니다.</div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- 긴급 연락처 -->
+  <section id="emergency" class="section" style="background:linear-gradient(135deg,#F5E6B3 0%,#FAF6F0 100%)">
+    <div class="container">
+      <h2>☎️ 중요 연락처</h2>
+      <div class="lead">긴급 · 대사관 · 예약 업체</div>
+      <div class="emer-grid" id="emerGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>백년해로(百年偕老) · 백상진 · 박현교 부부 환갑을 진심으로 축하드립니다 🏮</p>
+    <p class="from">가족 일동 올림 💐</p>
+  </div>
+</footer>
+
+<div id="musicPlayer">
+  <div id="ytFrame"></div>
+  <div class="mp-meta"><div class="mp-title" id="mpTitle">—</div><div id="mpSub" style="font-size:12px;color:#7A5C68"></div></div>
+  <button class="mp-close" onclick="stopMusic()">✕</button>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalInner">
+    <button class="modal-close" onclick="closeModal()" aria-label="닫기">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {"places":[{"id":"hongyadong","name_ko":"홍야동(홍애동) 야경","name_zh":"洪崖洞","city":"충칭","date":"2026-09-02","intro":"양쯔강 절벽에 11층으로 쌓은 조각루(吊脚楼) 야경 명소. 미야자키 하야오 '센과 치히로' 감성. 세계적 SNS 명소.","history":"옛 파유(巴渝) 시대 사찰·수문 자리에 2006년 리뉴얼 오픈. 2018년부터 야경 폭발적 인기.","korea_connection":"한국인 필수 코스. KBS '걸어서 세계속으로', 유튜브 채널 다수 특집.","tips":"★ 60대 팁: 11층부터 각 층 엘리베이터 있음. 최상층 진입 후 엘리베이터 하강 추천. 야경 조명 18:30~23:00. 저녁 7시 이전 진입.  건너편 千厮门大桥에서 전경 촬영 필수. '인플루언서 스냅 사기' 접근 무시.","recent_info":"2025-2026 야간 조명 부분 리뉴얼. 성수기 QR 예약제. 첸쓰먼(千厮门)대교 위 포토스팟.","address":"重庆市渝中区嘉滨路88号","phone":"+86 23-6303-9999","website":"https://www.hongyadong.com","nearby_food":["Liuyishou 훠궈 洪崖洞店","4층 소면·산라펀 골목","홍야동 5·7층 전통 찻집"],"fun_things":["첸쓰먼대교 야경 촬영","11층 옥상 전망대","양강 유람선 승선"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/6/64/202308_Hongya_Cave_at_night_from_Qiansimen_Bridge.jpg","https://upload.wikimedia.org/wikipedia/commons/9/91/Hongya_Cave_31435-Chongqing_%2844664174001%29.jpg"],"coordinates":{"lat":29.5687,"lng":106.5806},"music":[{"title":"One Summer's Day","artist":"히사이시 조 (센과 치히로)","youtube_id":"TK1Ij_-jr7M"},{"title":"重庆森林 (California Dreamin')","artist":"The Mamas & the Papas","youtube_id":"N-aK6JnyFmk"}]},{"id":"jiefangbei","name_ko":"해방비 (인민해방기념비)","name_zh":"解放碑","city":"충칭","date":"2026-09-02","intro":"1947년 항일전쟁 승리 기념비. 충칭 도심 랜드마크·CBD 쇼핑거리 중심. 27.5m 오벨리스크 주변 명품·백화점·전통 노포.","history":"1946년 착공, 1947년 완공. 중일전쟁 승리 및 신중국 성립 기념.","korea_connection":"충칭 여행 유튜브 필수 방문. 해방비 근처 숙소가 정답.","tips":"평평한 보행자거리, 어르신 산책 최적. 팔일로 소식가(八一路好吃街) 골목에서 담백 딤섬·산라펀. 아침·저녁 시원.","recent_info":"2025 광장 바닥 리뉴얼. IFS·WFC 초고층 스카이라운지 야경.","address":"重庆市渝中区民权路","phone":"—","website":"—","nearby_food":["小滨楼(꿀꽈배기)","刘一手 훠궈","De Zhuang 훠궈"],"fun_things":["IFS 옥상 야경","팔일로 소식가 골목","백화점 쇼핑"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/3/31/Jiefangbei_%28People%27s_Liberation_Monument%29.jpg","https://upload.wikimedia.org/wikipedia/commons/f/fd/Jiefangbei_CBD_31341-Chongqing_%2832476721438%29.jpg"],"coordinates":{"lat":29.5551,"lng":106.5779},"music":[{"title":"老重庆 Old Chongqing","artist":"陈粒","youtube_id":"8JXBSJC1PIA"}]},{"id":"ciqikou","name_ko":"자기구 옛마을","name_zh":"磁器口古镇","city":"충칭","date":"2026-09-03","intro":"송나라(998년) 이래 1천 년 역사의 옛 항구·도자기·차문화 마을. 자링강변 언덕에 명·청대 목조건물·찻집·도자기 공방.","history":"송대 龍隱鎭 시작, 청대 도자기·소금 무역 번영. '작은 충칭'.","korea_connection":"한국 여행 블로그 필수 코스. 도자기 기념품 인기.","tips":"★ 60대 팁: 언덕·돌계단 있으니 아침 9~11시 시원할 때 방문. 도자기 공방·전통 찻집 실내 휴식. 陳麻花(천마화) 꽈배기 노포.","recent_info":"2025 강변 산책로 리뉴얼. 주말 극심 혼잡, 평일 오전 강력 추천.","address":"重庆市沙坪坝区磁器口正街","phone":"—","website":"—","nearby_food":["陳麻花(천마화) 꽈배기","毛血旺(마오쉬에왕) 발상지","宝轮寺 素斋(담백 사찰음식)"],"fun_things":["도자기 공방 체험","자링강변 산책","전통 찻집 다도"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/a/a5/Ciqikou18.JPG"],"coordinates":{"lat":29.5936,"lng":106.4497},"music":[{"title":"琵琶語","artist":"林海","youtube_id":"5aczkYK4t-o"}]},{"id":"cableway","name_ko":"양쯔강 로프웨이","name_zh":"长江索道","city":"충칭","date":"2026-09-04","intro":"1987년 개통, 1166m 양쯔강 횡단 케이블카. 편도 4분. '충칭의 하늘 버스'. CBS '세계에서 가장 특별한 대중교통'.","history":"출근용 → 2005년 관광 명소화. 2024년 티켓 30元으로 인상.","korea_connection":"영화 <중경삼림> 감성, 한국인 필수 인증샷.","tips":"★ 60대 팁: 탑승 4분 무리 없음. 야경 명소. 성수기 대기 30~60분 → 오전 8시대·저녁 21시 이후. 위챗 '长江索道' 예약 가능.","recent_info":"2025 티켓 30元(편도)/50元(왕복) 확정.","address":"重庆市渝中区新华路151号 (북측)","phone":"+86 23-6382-2323","website":"—","nearby_food":["南山泉水鸡","南滨路 강변 식당가"],"fun_things":["편도 이용 후 남빈로 산책","야경 사진","케이블카 창가 촬영"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/e/ed/Chongqing_Changjiang_Cableway.jpg"],"coordinates":{"lat":29.558,"lng":106.585},"music":[{"title":"California Dreamin'","artist":"The Mamas & the Papas","youtube_id":"N-aK6JnyFmk"}]},{"id":"three-gorges-museum","name_ko":"충칭 중국 삼협박물관","name_zh":"重庆中国三峡博物馆","city":"충칭","date":"2026-09-03","intro":"인민광장·인민대회당 맞은편 국가 1급 박물관. 삼협댐 수몰 이전 유물, 파유 문화, 항일 전시. 실내 에어컨 완비.","history":"1951년 서남박물원 → 2005년 현 위치 재개관. 삼협댐 유물 대규모 이전.","korea_connection":"60대 여행자 실내 코스 추천.","tips":"★ 60대 팁: 무료·실내·엘리베이터 완비. 더운 오후 휴식 겸 관람 최적. 60세 이상 여권만 있으면 사전 예약 불필요.","recent_info":"2025 파유청동기관 재개장. 60세 이상 여권 지참 시 현장 입장 가능.","address":"重庆市渝中区人民路236号","phone":"+86 23-6367-9066","website":"http://www.3gmuseum.cn","nearby_food":["인민대회당 지하 캔틴","上清寺 노포"],"fun_things":["파유 청동기관","삼협 수몰 이전 유물","항일 배도 역사관"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/7/71/Chongqing_montage_2019.png"],"coordinates":{"lat":29.5591,"lng":106.551},"music":[{"title":"长江之歌","artist":"Traditional","youtube_id":"vNqjaCbGY1s"}]},{"id":"eling-park","name_ko":"엘링공원 & 량장각","name_zh":"鹅岭公园 & 瞰勝樓","city":"충칭","date":"2026-09-03","intro":"충칭 도심 최고봉(379m) 공원. 량장각에서 양쯔·자링강 합류 360° 파노라마. 노을·야경 뷰포인트.","history":"청말 부호 李耀庭 별장 → 1958년 시민공원.","korea_connection":"드라마 '從你的全世界路過' 촬영지.","tips":"★ 60대 팁: 지하철역에서 완만한 오르막 5~10분. 량장각 1층 전망대까지만 올라도 파노라마 감상. 일몰 1시간 전(18:00) 도착.","recent_info":"2025 량장각 야간 조명·엘리베이터 개보수.","address":"重庆市渝中区鹅岭正街176号","phone":"—","website":"—","nearby_food":["鹅岭二厂 문화창의공원 카페거리"],"fun_things":["량장각 파노라마","二厂 문창 카페","노을·야경"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/6/67/Chongqing_Nightscape.jpg"],"coordinates":{"lat":29.5497,"lng":106.5395},"music":[{"title":"從你的全世界路過 OST","artist":"許巍","youtube_id":"L9r-NxuYszg"}]},{"id":"two-rivers-cruise","name_ko":"양강 야간 유람선","name_zh":"两江夜游","city":"충칭","date":"2026-09-04","intro":"차오톈먼(朝天門) 출항. 양쯔·자링강 합류 45~60분 순환. 홍야동·해방비·천사문대교·라이완리 야경.","history":"1997년 시작, 2010년대 야경 폭발적 인기.","korea_connection":"한국 여행 예능·유튜브 단골.","tips":"★ 60대 팁 최고! 배 위 좌석·에어컨, 도보 없이 야경 감상. Trip.com/위챗 예약. 상갑판 좌석 좋음. 19:30~21:30 인기.","recent_info":"2025 신규 대형 크루즈 '重庆号' 취항. Trip.com/클룩 QR 예매.","address":"重庆市渝中区朝天门码头","phone":"+86 23-6373-8368","website":"—","nearby_food":["洪崖洞 4·11층 훠궈"],"fun_things":["상갑판 야경","야간 라이트쇼","기념사진"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/4/48/The_night_view_of_Chaotianmen_bridge_acoross_Yangtze_river_in_Chongqing.jpg"],"coordinates":{"lat":29.5709,"lng":106.5865},"music":[{"title":"山城重庆","artist":"传统","youtube_id":"Q1lIwtBSMDs"}]},{"id":"liziba","name_ko":"리쯔바 건물관통 모노레일","name_zh":"李子坝轻轨站","city":"충칭","date":"2026-09-04","intro":"2호선 모노레일이 19층 아파트 6~8층을 관통. 세계적 명물 8D 도시 상징. 역 옆 전망 데크.","history":"2005년 개통, 건물과 동시 설계.","korea_connection":"유튜브 3개 채널 공통 추천, 한국 관광객 필수.","tips":"★ 60대 팁: 역 위 전망 데크에서 5분마다 열차 통과. 벤치·그늘. 5분 인증샷 후 이동.","recent_info":"2025 관광 전망 데크 확장, 안내판 한국어.","address":"重庆市渝中区李子坝正街39号","phone":"—","website":"—","nearby_food":["역 근처 카페·편의점"],"fun_things":["열차 통과 촬영","전망 데크"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Liziba_Station.jpg/1024px-Liziba_Station.jpg"],"coordinates":{"lat":29.5658,"lng":106.5341},"music":[{"title":"重庆","artist":"阿YueYue","youtube_id":"sSm8dQXjhOo"}]},{"id":"korea-provisional","name_ko":"대한민국 임시정부 청사(충칭)","name_zh":"大韩民国临时政府","city":"충칭","date":"2026-09-03","intro":"1940년대 김구 선생과 임시정부가 활동했던 역사 유적. 한국인 여행객 필수 방문지. 3층 규모, 관람 1~1.5시간.","history":"1938~1945 임시정부의 마지막 청사. 광복 직전 활동. 2000년대 한중 공동 복원.","korea_connection":"★★★ 한국 여행자에게 정서적 의미 최대. KBS 걸세 특집 부각.","tips":"★ 60대 팁: 계단 있음, 천천히. 관람 1~1.5시간. 한국어 안내판 있음. 오전 방문 권장.","recent_info":"2025 상설 전시 리뉴얼.","address":"重庆市渝中区七星岗莲花池38号","phone":"+86 23-6382-0026","website":"—","nearby_food":["七星岗 인근 훠궈 노포"],"fun_things":["김구 선생 집무실","광복 직전 문서","3층 옥상 조망"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/9/98/Flag_of_the_Provisional_Government_of_the_Republic_of_Korea.svg"],"coordinates":{"lat":29.5545,"lng":106.5636},"music":[{"title":"아리랑","artist":"Sumi Jo","youtube_id":"2Zg6S_sJk5Y"}]},{"id":"dafen-panda","name_ko":"다펀 자이언트 판다 번육기지","name_zh":"成都大熊猫繁育研究基地","city":"청두","date":"2026-09-06","intro":"★ 청두 최고 하이라이트. 세계 최대 자이언트 판다 보호·연구 시설. 아기 판다 유치원(月亮产房), 성체 판다관, 붉은팬더.","history":"1987년 설립. 야생 판다 6마리로 시작해 200마리+ 사육. 세계 판다 외교 중심.","korea_connection":"한국인 청두 여행 1순위. tvN 예능 다수.","tips":"★ 60대 팁 필수: ①활동 골든타임 오전 8:30~10:30 필수(오후 낮잠). ②부지 방대 → 전동 관광차 30元 필수 이용. ③WeChat '熊猫基地' 14일 전 사전 예약 필수. ④60세 이상 여권 무료 입장(2026 정책).","recent_info":"2025 신관 개장. 오전 회차 매진 잦음. 아기 판다 유치원 최고 인기. 2024년 기준 사육 판다 230마리 돌파, 아시아 최대 규모. 유튜브·SNS에서 '아기판다 우유병' 영상으로 세계적 인지도.","address":"四川省成都市成华区外北熊猫大道1375号","phone":"+86 28-8351-0033","website":"https://www.panda.org.cn","nearby_food":["기지 내 판다 카페","기지 정문 판다 기념품샵"],"fun_things":["아기 판다 유치원","붉은팬더 산책로","판다 사진 인생샷","판다 라떼"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/2/22/Chengdu-pandas-d12.jpg","https://upload.wikimedia.org/wikipedia/commons/1/1b/Baby_Pandas.JPG","https://upload.wikimedia.org/wikipedia/commons/8/8c/Giant_Panda_at_Chengdu_Panda_Base.jpg"],"coordinates":{"lat":30.7333,"lng":104.15},"music":[{"title":"Clair de Lune","artist":"Debussy","youtube_id":"CvFH_6DNRCY"},{"title":"River Flows in You","artist":"Yiruma","youtube_id":"7maJOI3QMu0"}]},{"id":"wuhou-shrine","name_ko":"무후사 (제갈량 사당)","name_zh":"武侯祠","city":"청두","date":"2026-09-05","intro":"삼국지 유비·제갈량을 함께 모신 유일한 군신 합사 사당. 한국인 사랑 필수 성지. 1.5~2시간이면 충분. 옆이 금리거리.","history":"223년 유비 사망 후 건립. 명대 소열묘와 무후사 통합. 삼국지 유적 최고봉.","korea_connection":"★★★ 삼국지 세대 60대에게 감동적. 한국 예능 다수.","tips":"★ 60대 팁: 그늘·벤치 많음. 오후 3~4시 방문 → 금리거리 야경 자연 연결. 60세 이상 여권 무료.","recent_info":"2025 삼의묘 리뉴얼.","address":"四川省成都市武侯区武侯祠大街231号","phone":"+86 28-8555-2397","website":"http://www.wuhouci.net.cn","nearby_food":["금리거리 노점","무후사 앞 훠궈","금리 딴딴미엔"],"fun_things":["유비묘·제갈량 조각","삼국지 벽화","금리거리 연결"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/f/fc/Sanyi_Temple%2C_Wuhou_Shrine_-_Chengdu%2C_China_-_DSC05407.jpg"],"coordinates":{"lat":30.647,"lng":104.0489},"music":[{"title":"삼국지 OST","artist":"KOEI","youtube_id":"HGZBkYqdFFo"}]},{"id":"jinli","name_ko":"금리 고거리","name_zh":"锦里古街","city":"청두","date":"2026-09-05","intro":"무후사 바로 옆 촉나라 시대 고풍 거리. 홍등이 켜지는 저녁이 백미. 사천 간식·기념품·차 시음.","history":"당송대 금리거리 → 명·청 복원 → 2004년 관광지 재개장.","korea_connection":"tvN·MBC 예능 촬영지. 한국인 야경 필수.","tips":"★ 60대 팁: 해질녘~저녁 방문(홍등 18:30~). 짧고 평지. 안순랑교(安顺廊桥) 도보 15분.","recent_info":"2025 야간 라이트쇼 확장.","address":"四川省成都市武侯区武侯祠大街231号 (무후사 동쪽)","phone":"—","website":"—","nearby_food":["삼대포(三大炮) 찹쌀떡","단단면","산라펀"],"fun_things":["홍등 야경","촉수 그림자놀이","기념품 쇼핑"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/2/27/Jinli_Street_-_Chengdu%2C_China_-_DSC05396.jpg"],"coordinates":{"lat":30.6475,"lng":104.051},"music":[{"title":"국악 청성곡","artist":"Traditional","youtube_id":"yGDW1P0BqoI"}]},{"id":"kuanzhai","name_ko":"관자샹즈 (넓고 좁은 골목)","name_zh":"宽窄巷子","city":"청두","date":"2026-09-05","intro":"청·명 시대 사합원 골목을 정비한 인기 관광 거리. 관항·자이항·징항 3개 골목. 차관·서점·간식.","history":"청 강희제 때 만주 팔기병 주둔지. 2008년 복원.","korea_connection":"tvN '꽃보다 청춘' 유사 골목 촬영.","tips":"★ 60대 팁: 평지·그늘. 관항 노천 찻집에서 재스민차 완벽. 오전 or 초저녁 방문이 덜 혼잡.","recent_info":"2025 신규 부티크 팝업 확대.","address":"四川省成都市青羊区长顺上街金河路口","phone":"—","website":"—","nearby_food":["딴호아완(蛋烘糕) 계란빵","냉면","화이꾸어(火锅串)"],"fun_things":["노천 찻집 개완차","골목 사진","기념품 쇼핑"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/d/d9/Wide_Alley_-_%E5%AE%BD%E5%B7%B7%E5%AD%90_-_January_2019%2C_Chengdu%2C_Sichuan.jpg"],"coordinates":{"lat":30.6733,"lng":104.0568},"music":[{"title":"高山流水","artist":"고금 연주","youtube_id":"5aczkYK4t-o"}]},{"id":"renmin-park","name_ko":"인민공원 학화찻집","name_zh":"人民公园 鹤鸣茶社","city":"청두","date":"2026-09-06","intro":"★★★ 1923년 개업 청두 최고령 노천 찻집. 대나무 의자·개완차·마작·귀청소(采耳) 체험. 로컬 어르신 문화 정수. 60대 필수 코스!","history":"1923년 개업, 100년 역사. 청두 사람들의 마당방.","korea_connection":"청두 여행 유튜브 필수. 한국 어른들의 감성.","tips":"★ 60대 팁: 차 20~40元 종일 리필. 귀청소 40~80元. 마작·서예·학춤 아저씨 구경. 흐린 오후 3시경 정취 최고.","recent_info":"2025 100주년 기념 리뉴얼.","address":"四川省成都市青羊区少城路12号 人民公园内","phone":"+86 28-8613-6003","website":"—","nearby_food":["공원 내 담백 국수","관자샹즈(도보 10분)"],"fun_things":["개완차 & 마작 관람","采耳 귀청소 체험","어깨안마 50元","연 날리기"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/3/30/Ear-cleaning%2C_teahouse_in_Peoples_Park_-_Chengdu%2C_China_-_DSC05368.jpg"],"coordinates":{"lat":30.6667,"lng":104.0625},"music":[{"title":"산조 아쟁","artist":"국악","youtube_id":"iP6XpLQM2Cs"}]},{"id":"dufu-caotang","name_ko":"두보초당","name_zh":"杜甫草堂","city":"청두","date":"2026-09-07","intro":"시성 두보가 4년간 거주하며 240여 편을 지은 초가집. 정원·연못·대나무 숲의 조용한 힐링 코스.","history":"759~763년 두보 거주. 명대 재건, 청대 확장.","korea_connection":"한시·서예 문화 좋아하는 60대에 완벽. KBS 걸세 강조.","tips":"★ 60대 팁: 그늘·벤치. 1.5~2시간 여유. 관자샹즈 택시 10분 or 지하철 4호선 草堂北路역. 60세 무료.","recent_info":"2025 다시관 개관.","address":"四川省成都市青羊区青华路37号","phone":"+86 28-8731-9258","website":"http://www.cn.dufucaotang.com","nearby_food":["초당 내 다관","浣花溪 인근 사찰 음식"],"fun_things":["두보 초가집","대나무 숲","연못 정원 산책"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/e/eb/Du_Fu.jpg"],"coordinates":{"lat":30.6631,"lng":104.0271},"music":[{"title":"平沙落雁","artist":"고금 독주","youtube_id":"5aczkYK4t-o"}]},{"id":"jinsha-museum","name_ko":"금사 유적지 박물관","name_zh":"金沙遗址博物馆","city":"청두","date":"2026-09-07","intro":"3천 년 전 고촉국 유적. 태양신조(太阳神鸟) 금박 발굴. 완전 실내·에어컨. 우천·더위 대비 최적.","history":"2001년 발굴. 고촉국 문명 결정적 증거.","korea_connection":"실내 관람 좋아하는 어른 코스.","tips":"★ 60대 팁: 완전 실내·에어컨·엘리베이터. 오후 흐린 날 대안 최상. 월요일 휴관.","recent_info":"2025 신관 확장.","address":"四川省成都市青羊区金沙遗址路2号","phone":"+86 28-8730-3522","website":"http://www.jinshasitemuseum.com","nearby_food":["박물관 내 카페","금사 유적 인근 국수"],"fun_things":["태양신조 원본","금박 유물","실내 정원"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/d/d6/Golden_Artifacts_in_Jinsha_Site_Museum.JPG"],"coordinates":{"lat":30.6811,"lng":104.0158},"music":[{"title":"Only Time","artist":"Enya","youtube_id":"nzeoQT3Z9XA"}]},{"id":"shufeng-opera","name_ko":"촉풍아운 변검 공연","name_zh":"蜀风雅韵","city":"청두","date":"2026-09-06","intro":"쓰촨 오페라 전문 극장. 변검(变脸)·토화(불뿜기)·손인형·차 서비스 포함 80분. 청두 야간 필수 문화.","history":"1993년 설립. 사천 오페라 정통 계승.","korea_connection":"한국 관광객 청두 저녁 코스 1순위.","tips":"★ 60대 팁: 차·간식 포함, 좌석 편안. VIP석(180元) 앞줄이 변검 최고. Trip.com/Klook 사전 예약.","recent_info":"2025 매일 20:00 정기 공연. 변검은 배우가 순간적으로 얼굴 가면을 바꾸는 쓰촨 전통 기예(国家级 무형문화재)로, 카메라로 아무리 가까이서 찍어도 바뀌는 순간을 잡기 어려울 만큼 빠름. 토화(吐火·불뿜기)와 함께 공연 후반 하이라이트.","address":"四川省成都市青羊区琴台路23号 文化公园内","phone":"+86 28-8776-4813","website":"—","nearby_food":["琴台路 사천 요리 노포"],"fun_things":["변검 순간 인증샷","토화 공연","차·간식"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/7/7c/Sichuan_Opera_in_Chengdu.jpg"],"coordinates":{"lat":30.6675,"lng":104.0517},"music":[{"title":"川剧变脸","artist":"传统","youtube_id":"HGZBkYqdFFo"}]},{"id":"chunxi-taikoo","name_ko":"춘시로 & 타이쿠리","name_zh":"春熙路 & 太古里","city":"청두","date":"2026-09-07","intro":"청두 최대 쇼핑·미식 거리. IFS 백화점 옥상 3D 판다 조형물 SNS 명소. 저녁 야경.","history":"1924년 형성. 청두 최고 상업지.","korea_connection":"한국인 필수 쇼핑 & 인증샷.","tips":"★ 60대 팁: 저녁 식사 후 산책 최적. 지하철 2·3호선 春熙路역 직결. IFS 지하 스타벅스 리저브 편안.","recent_info":"2025 럭셔리 존 확대.","address":"四川省成都市锦江区春熙路","phone":"—","website":"—","nearby_food":["롱차오슈어(龙抄手)","陈麻婆豆腐 원조","하이디라오"],"fun_things":["IFS 3D 판다","타이쿠리 명품 쇼핑","춘시로 야경"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/a/a3/Taikoo_Li_Chengdu_skyline.jpg"],"coordinates":{"lat":30.6572,"lng":104.081},"music":[{"title":"稻香","artist":"周杰倫","youtube_id":"sSc0K79wLuo"}]},{"id":"anshun-bridge","name_ko":"안순랑교 야경","name_zh":"安顺廊桥","city":"청두","date":"2026-09-07","intro":"홍쟁강 위 청대 양식 목조 회랑 다리. 해질녘·야간 조명이 청두 야경 대표 컷.","history":"명대 건립, 청·현대 복원.","korea_connection":"청두 SNS 인생샷.","tips":"★ 60대 팁: 18:30~21:00 야경 최고. 다리 위 산책 5분. 합강정공원(合江亭) 연계.","recent_info":"2025 야간 조명 리뉴얼.","address":"四川省成都市锦江区滨江东路","phone":"—","website":"—","nearby_food":["춘시로·타이쿠리(도보 15분)"],"fun_things":["다리 위 촬영","합강정공원 산책","야경 사진"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/f/fe/Anshun_Bridge_Chengdu.jpg","https://upload.wikimedia.org/wikipedia/commons/e/e9/Anshun_Bridge_at_night.jpg"],"coordinates":{"lat":30.6547,"lng":104.087},"music":[{"title":"Time to Say Goodbye","artist":"Andrea Bocelli","youtube_id":"NmbYRXvBM94"}]},{"id":"jiuzhaigou-valley","name_ko":"구채구 국가공원 (우화해·오채지·낙일랑폭포)","name_zh":"九寨沟国家级自然保护区","city":"구채구","date":"2026-09-05","intro":"★★ 이번 여행 최고 하이라이트. 티베트족 아홉 마을이 있어 '구채구(九寨沟)'. 원시림 속 108개 호수가 에메랄드·코발트빛으로 빛나는 세계자연유산(1992년 유네스코 등재).","history":"1978년 자연보호구 지정, 1992년 유네스코 세계자연유산·1997년 생물권보전지역 등재. 2017년 규모 7.0 지진으로 일부 폐쇄 후 2019년 부분 재개장, 2021년 전면 재개장.","korea_connection":"한국인에게는 '중국 3대 절경' 중 하나로 알려져 있으며, 청두-구채구 고속철도 개통(2024.8) 이후 접근성이 크게 좋아져 방문객이 급증.","tips":"★ 60대 팁: ①고도 2000~3300m, 무리한 급경사 트레킹 대신 셔틀버스+전동카트 적극 활용. ②물 자주 마시고 천천히 이동(고산 적응). ③핵심 3곳만 본다면 우화해(五花海)·오채지(五彩池)·낙일랑폭포(诺日朗瀑布) 우선. ④입장권+셔틀버스권 별도 구매, 성수기 QR 사전예약 필수. ⑤가을(9~10월) 단풍철이라 호수 색과 단풍이 어우러진 최고 시즌이나 혼잡도도 높음.","recent_info":"청두동역↔황룡구채역 고속철도 2024.8.30 개통, 최단 1시간39분(기존 버스 8~10시간 대비 대폭 단축). 역에서 구채구 시내까지 셔틀버스 약 35분(51元).","address":"四川省阿坝藏族羌族自治州九寨沟县漳扎镇","phone":"+86 837 773 9753","website":"https://www.jiuzhai.com","nearby_food":["티베트식 야크고기 훠궈","쑤유차(酥油茶·버터차)","짜파(糌粑) 티베트 전통 보리떡"],"fun_things":["오채지 물빛 사진","낙일랑폭포 무지개","티베트 전통 복장 대여 촬영","장해(长海) 산책"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/d/dc/%E4%B9%9D%E5%AF%A8%E6%BA%9D-%E4%BA%94%E8%8A%B1%E6%B5%B7_Jiuzhaigou_Five_Flower_Lake_1.jpg","https://upload.wikimedia.org/wikipedia/commons/7/7d/Five_color_pond_Jiuzhaigou.jpg","https://upload.wikimedia.org/wikipedia/commons/4/41/Long_Lake_Jiuzhaigou.jpg","https://upload.wikimedia.org/wikipedia/commons/a/a7/Rhinoceros_Lake%2C_Jiuzhaigou_Valley.jpg"],"coordinates":{"lat":33.2588,"lng":103.9192},"music":[{"title":"La Fete Sauvage","artist":"Vangelis","youtube_id":"5qap5aO4i9A"},{"title":"Song from a Secret Garden","artist":"Secret Garden","youtube_id":"kj3zSy4gPnU"}]},{"id":"huanglong","name_ko":"황룡 풍경명승구 (오채지·황룡동)","name_zh":"黄龙风景名胜区","city":"구채구","date":"2026-09-05","intro":"해발 3000~3900m 설산 아래 3400여 개의 황금빛 계단식 석회화 연못(钙化池)이 용의 비늘처럼 펼쳐지는 절경. 구채구와 함께 1992년 유네스코 세계자연유산 등재.","history":"고대부터 도교 성지. 산 능선을 따라 흐르는 물이 만든 노란빛 석회화 지형이 마치 황금 용이 누워있는 모습이라 '황룡(黄龙)'.","korea_connection":"구채구와 묶어 '구채·황룡' 패키지로 소개되는 경우가 많으나, 실제로는 별도 입장권·별도 하루 코스가 필요한 인접 관광지.","tips":"★★ 고산병 주의: 해발 3000m 이상이라 호흡 곤란·두통 가능. 무리하지 말고 케이블카(索道) 이용해 정상부터 내려오는 코스 추천. 구채구와 같은 날 방문은 체력적으로 부담이 크므로, 이번 여행은 시간 관계상 구채구 위주로 두고 황룡은 다음 방문 시 별도 하루로 계획하는 것을 권장.","recent_info":"황룡구채역에서 황룡 경치구까지 셔틀버스 약 35분(28元). 9월은 단풍과 만년설이 함께 보이는 시즌.","address":"四川省阿坝藏族羌族自治州松潘县黄龙风景名胜区","phone":"+86 837 722 3211","website":"—","nearby_food":["송판 현지 티베트 요리","역 주변 편의점·간이식당"],"fun_things":["오채지 케이블카 하산 코스","설산 배경 인증샷","황룡동 도교 사원"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/1/18/Water-of-Five-colored-Pond_Huanglong_Sichuan_China.jpg","https://upload.wikimedia.org/wikipedia/commons/0/0c/Huanglong_Sichuan_China_Multicolored-ponds-02.jpg","https://upload.wikimedia.org/wikipedia/commons/6/68/1_huanglong_pools_aerial_2011.jpg"],"coordinates":{"lat":32.75,"lng":103.8167},"music":[{"title":"Watermark","artist":"Enya","youtube_id":"hmU1PPWaLcA"}]}],"restaurants":[{"id":"xiaotiane","name_ko":"샤오톈어 훠궈","name_zh":"小天鹅火锅","city":"충칭","cuisine":"원앙훠궈","address":"重庆市渝中区较场口日月光中心","price_cny":"1인 120-180元","specialty":["원앙탕","毛肚(양깃머리)","鸭血(오리혈)","嫩牛肉"],"image":"https://upload.wikimedia.org/wikipedia/commons/4/41/Homemade_Hotpot.jpg","spicy":"원앙탕으로 조절","seniors":"1982년 창업 원앙훠궈 최초 발명. 番茄锅+微辣 조합 어르신 최적. 위챗 예약 권장."},{"id":"liuyishou","name_ko":"리우이서우 훠궈 (홍야동점)","name_zh":"刘一手火锅 洪崖洞店","city":"충칭","cuisine":"원앙훠궈","address":"重庆市渝中区仓白路46号","price_cny":"1인 100-150元","specialty":["원앙탕","毛肚","현자 튀김고기","冰粉 디저트"],"image":"https://upload.wikimedia.org/wikipedia/commons/b/be/Hotpot.jpg","spicy":"조절 가능","seniors":"홍야동 야경 바로 옆. 영어 메뉴판·QR 주문. '微辣' 또는 '不辣' 요청."},{"id":"xiaobinlou","name_ko":"샤오빈러우 (전통 딤섬·산라펀)","name_zh":"小滨楼 (八一路店)","city":"충칭","cuisine":"충칭 딤섬","address":"重庆市渝中区八一路好吃街","price_cny":"1인 30-50元","specialty":["蜜麻花(꿀꽈배기)","酸辣粉","小笼包","山城汤圆"],"image":"https://upload.wikimedia.org/wikipedia/commons/6/6c/Xiao_long_bao_closeup_in_Shanghai.jpg","spicy":"약함~중간","seniors":"60년 전통 노포. 담백 딤섬 어르신 아침 최적. 산라펀 '不辣' 가능."},{"id":"taoranju","name_ko":"타오란쥐 (담백 가정식)","name_zh":"陶然居 南滨路店","city":"충칭","cuisine":"충칭 가정식","address":"重庆市南岸区南滨路77号","price_cny":"1인 80-120元","specialty":["宫保鸡丁","回锅肉","开水白菜(고급 담백 배추수프)","红烧狮子头"],"image":"https://upload.wikimedia.org/wikipedia/commons/1/12/Kung_Pao_Chicken_-_Keung_Kee_Restaurant%2C_Montreal_%286650429089%29.jpg","spicy":"중간, 조절 가능","seniors":"강변 뷰 대형 정통 식당. 담백 배추수프·완자 등 매운맛 절충 풍부."},{"id":"chen-mapo","name_ko":"천 마파두부 (원조)","name_zh":"陈麻婆豆腐","city":"청두","cuisine":"쓰촨 요리","address":"본점: 四川省成都市青羊区西玉龙街197号","price_cny":"1인 40-60元","specialty":["마파두부","回锅肉","宫保鸡丁","夫妻肺片"],"image":"https://upload.wikimedia.org/wikipedia/commons/8/86/Mapo_doufu_by_Chen_Mapo_Restaurant_in_Chengdu_Sichuan%EF%BC%88%E9%99%B3%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90%E5%BA%97%E3%81%AE%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90%EF%BC%89.JPG","spicy":"매움, '不要太辣' 요청","seniors":"1862년 창업 원조. 마파두부 필수. 밥과 함께."},{"id":"shu-jiuxiang","name_ko":"슈지우샹 훠궈 (촉구향)","name_zh":"蜀九香火锅","city":"청두","cuisine":"정통 쓰촨 훠궈","address":"四川省成都市锦江区人民南路二段18号","price_cny":"1인 150-200元","specialty":["원앙탕","毛肚","야채 모듬","冰粉"],"image":"https://upload.wikimedia.org/wikipedia/commons/4/41/Homemade_Hotpot.jpg","spicy":"원앙탕 조절","seniors":"청두 현지인 프리미엄 훠궈. 원앙탕 필수."},{"id":"long-chaoshou","name_ko":"롱차오슈어 (용조수 완탕)","name_zh":"龙抄手 春熙路总店","city":"청두","cuisine":"쓰촨 간식·완탕","address":"四川省成都市锦江区春熙路南段68号","price_cny":"1인 40-80元","specialty":["원탕 완탕(담백)","红油抄手(매움)","쓰촨 간식 세트","担担面"],"image":"https://upload.wikimedia.org/wikipedia/commons/d/d9/Wonton_Soup_at_Wo_Hop.jpg","spicy":"원탕 담백/红油 매움","seniors":"2층 세트 50元/인 최소 → 20여종 간식 소량 코스. 60대 맛보기 완벽."},{"id":"xiaolongkan","name_ko":"샤오룽칸 라오훠궈","name_zh":"小龙坎老火锅","city":"청두","cuisine":"충칭식 훠궈","address":"타이쿠리점: 四川省成都市锦江区中纱帽街36号玉沙广场2F","price_cny":"1인 91-120元","specialty":["원앙탕","汤圆","우육편","黄喉"],"image":"https://upload.wikimedia.org/wikipedia/commons/b/be/Hotpot.jpg","spicy":"원앙탕 조절","seniors":"타이쿠리점 관광객 친화, 영어 메뉴."},{"id":"panda-cafe","name_ko":"판다 카페","name_zh":"熊猫主题咖啡","city":"청두","cuisine":"카페·베이커리","address":"판다기지 정문·타이쿠리 다수","price_cny":"라떼 30-45元, 판다빵 25-35元","specialty":["판다 라떼","판다 카스텔라","판다 마카롱"],"image":"https://upload.wikimedia.org/wikipedia/commons/0/06/Latte_art.jpg","spicy":"무매운","seniors":"판다 인증샷 카페. 손녀 선물."},{"id":"jiuzhaigou-tibetan","name_ko":"구채구 티베트 전통 식당 (야크고기 훠궈)","name_zh":"九寨沟藏餐","city":"구채구","cuisine":"티베트 전통식","address":"구채구 漳扎镇 일대","price_cny":"1인 60-100元","specialty":["야크고기 훠궈","쑤유차(버터차)","짜파(보리떡)","티베트 밀크티"],"image":"https://upload.wikimedia.org/wikipedia/commons/7/7d/Five_color_pond_Jiuzhaigou.jpg","spicy":"순한 편, 조절 가능","seniors":"고산지대라 기름지고 따뜻한 요리 위주. 야크고기는 담백해 부담 적음. 고산병 예방 위해 과식 자제 권장."}],"itinerary":[{"date":"2026-09-01","day_num":1,"day_label":"Day 1","city":"인천 출발","title":"✈️ 인천 → 충칭","summary":"OZ353 인천 T2 22:00 → 충칭 T3A (다음날 새벽 01:15+1) · 아시아나항공 4h15m · 무료수하물 각 2PC","places_ids":[]},{"date":"2026-09-02","day_num":2,"day_label":"Day 2","city":"충칭 도착","title":"🛬 새벽 도착 · 첫날 여유","summary":"02:05 충칭 장베이공항 T3A 도착(사전 배정 기사 픽업) → 홍애동/해방비 숙소 체크인 → 늦잠 → 오후 삼협박물관(실내 시원) → 저녁 홍야동 야경 + 원앙 훠궈(小天鹅)","places_ids":["hongyadong","jiefangbei","three-gorges-museum"]},{"date":"2026-09-03","day_num":3,"day_label":"Day 3","city":"충칭","title":"🏯 자기구·임시정부 · 리쯔바·로프웨이 · 야경 유람선","summary":"충칭 마지막 온전한 하루 — 오전 자기구 옛마을(도자기·차·꽈배기) → 대한민국 임시정부 청사 → 점심 후 호텔 낮잠 → 오후 리쯔바 건물관통 모노레일 인증샷 + 양쯔강 로프웨이 편도 → 저녁 엘링공원 노을 · 량장각 야경 → 19:30 양강 야간 유람선 → 홍야동 야경 마무리(체력에 따라 일부 코스 생략 가능)","places_ids":["ciqikou","korea-provisional","liziba","cableway","eling-park","two-rivers-cruise"]},{"date":"2026-09-04","day_num":4,"day_label":"Day 4","city":"충칭 → 구채구","title":"🚄 충칭 체크아웃 · 청두 경유 · 구채구 이동","summary":"오전 해방비 주변 마지막 산책 후 체크아웃 → 충칭 사평패역(沙坪坝站) 14:35 고속열차 → 성도동역(成都东站) 도착, 역내 환승·저녁 요기 → 17:05 성도동역발 황룡구채행 열차 탑승(개통 2024.8, 최단 1시간39분) → 저녁 황룡구채역 도착 → 셔틀버스(약 35분·51元)로 구채구 시내 이동 → Dusk Mountain Villa 체크인 · 첫 구채구의 밤","places_ids":[]},{"date":"2026-09-05","day_num":5,"day_label":"Day 5","city":"구채구 → 청두","title":"🏞️ 구채구 국가공원 하루 · 심야 청두 복귀","summary":"이른 아침 구채구 국가공원 입구行 셔틀 → 우화해·오채지·낙일랑폭포·장해 등 하루 종일 트레킹(고도 2000~3300m, 물 충분히·천천히 이동) → 오후 늦게 하산, 저녁식사 → 황룡구채역 이동 → 20:33 황룡구채역발 청두행 열차 탑승 → 성도동역 도착(심야) → Sofis Jinyuan Hotel 체크인","places_ids":["jiuzhaigou-valley","huanglong"]},{"date":"2026-09-06","day_num":6,"day_label":"Day 6","city":"청두","title":"🐼 판다 기지 · 학화찻집 · 변검","summary":"★★ 조식 후 07:00 출발 → 다펀 판다 기지 첫 회 08:00 입장(오전 판다 활동!) → 점심 판다 카페 → 오후 인민공원 학화찻집(개완차·마작 관람·귀청소) → 저녁 촉풍아운 변검 공연 20:00","places_ids":["dafen-panda","renmin-park","shufeng-opera"]},{"date":"2026-09-07","day_num":7,"day_label":"Day 7","city":"청두 → 인천","title":"🛫 무후사·진리·두보초당 · 심야 공항 이동","summary":"오전 두보초당(조용한 시인의 정원) → 무후사(제갈량 사당) + 금리 고거리 점심·산책 → 오후 금사박물관(실내·에어컨) → 저녁 콴자이샹즈·춘시로·타이쿠리(천 마파두부) → 안순랑교 야경 → 19:30 호텔 체크아웃 → 사전 배정 기사 픽업으로 21:00 톈푸공항 T1 도착(체력에 따라 콴자이샹즈는 생략 가능)","places_ids":["dufu-caotang","wuhou-shrine","jinli","jinsha-museum","kuanzhai","chunxi-taikoo","anshun-bridge"]},{"date":"2026-09-08","day_num":8,"day_label":"Day 8","city":"인천 도착","title":"🏠 인천 도착","summary":"OZ324 청두 T1 00:30 → 인천 T2 05:25 · 아시아나항공 3h55m · 무사히 귀국 💕","places_ids":[]}],"reservations":[{"category":"flight","label":"OZ353 인천 → 충칭","when":"9/1(화) 22:00 → 9/2(수) 01:15+1","status":"booked","note":"★ 비즈니스 클래스 (Class I) · 아시아나 · EQ3MJ9 · BAIK 9882491921268 / PARK 9882491921269 · T2→T3 · 무료수하물 각 2PC(32kg×2) · 4h15m"},{"category":"flight","label":"OZ324 청두 → 인천","when":"9/8(화) 00:30 → 05:25","status":"booked","note":"★ 비즈니스 클래스 (Class I) · 아시아나 · EQ3MJ9 · 3h55m · T1→T2 · 무료수하물 각 2PC(32kg×2) · ★ 21:00까지 공항 도착"},{"category":"hotel","label":"✅ 충칭 Holiday Four Seasons Hotel (제팡베이·홍야동) 3박","when":"9/1~9/4 체크아웃 · 3박","status":"booked","note":"예약 확정(Confirmed) · 240,147원 · 예약번호 1400828000581831 · Trip.com"},{"category":"hotel","label":"✅ 구채구 Dusk Mountain Villa 1박","when":"9/4~9/5 체크아웃 · 1박","status":"booked","note":"예약 확정(Confirmed) · 93,606원 · 예약번호 1400828424578509 · Trip.com"},{"category":"hotel","label":"✅ 청두 Sofis Jinyuan Hotel 2박","when":"9/5~9/7 체크아웃 · 2박","status":"booked","note":"예약 확정(Confirmed) · 153,768원 · 예약번호 1400828000602298 · Trip.com"},{"category":"train","label":"✅ 충칭 사평패(沙坪坝) → 청두동(成都东) 고속열차","when":"9/4(금) 14:35 출발","status":"booked","note":"예약 완료(Reservation Submitted) · 117,740원(2인) · 예약번호 1400829054259184 · 여권 스캔 개찰"},{"category":"train","label":"✅ 청두동(成都东) → 황룡구채(黄龙九寨) 고속열차","when":"9/4(금) 17:05 출발","status":"booked","note":"예약 완료(Reservation Submitted) · 108,950원(2인) · 예약번호 1400829054254511 · 2024.8 개통 노선, 최단 1시간39분"},{"category":"train","label":"✅ 황룡구채(黄龙九寨) → 청두동(成都东) 고속열차","when":"9/5(토) 20:33 출발","status":"booked","note":"예약 완료(Reservation Submitted) · 108,450원(2인) · 예약번호 1400829054298753 · 심야 청두 도착"},{"category":"activity","label":"🌟 구채구 국가공원 입장권 (Trip.com/현장)","when":"9/5(토)","status":"not_booked","note":"성수기 QR 사전예약 권장. 입장권+셔틀버스권 별도"},{"category":"prep","label":"eSIM/데이터 로밍 구매 완료","when":"9/1 이후","status":"booked","note":"전세계(77개국) 5G/4G eSIM · 19,335원 · 예약번호 1400828564990354"},{"category":"prep","label":"해외여행보험 가입 완료 (카카오페이손해보험)","when":"9/1~9/8","status":"booked","note":"고급형 · 62,552원 · 예약번호 1400800513278531 (AXA 기존 가입건은 취소·대체됨)"},{"category":"prep","label":"✈️ 아시아나 비즈니스 - 좌석 지정·특별 요청","when":"~8/28 (출발 3일 전까지)","status":"todo","note":"★ 아시아나 홈페이지/앱 로그인 → 예약번호 EQ3MJ9 → ①부부 나란히 좌석 지정 ②환갑 여행 특별 요청 등록 ③스페셜 밀 신청 (필요시). 콜센터 1588-8000"},{"category":"prep","label":"✈️ 청두 톈푸공항 T1 라운지 사전 확인","when":"~8/31","status":"todo","note":"★★ 9/7 21:00 도착 후 00:30 이륙까지 3.5시간 대기 → 비즈니스 티켓으로 이용 가능한 CIP 라운지(Air China, Star Alliance 파트너) 위치·운영시간 확인. 심야 이동의 최대 활용 포인트. 공항 픽업은 기사 배정 완료(예약번호 1400827950165757)"},{"category":"activity","label":"🌟 다펀 판다 기지 (Trip.com 예약 or WeChat)","when":"9/6(일) 08:00 첫 회","status":"not_booked","note":"★★ Trip.com에서 'Chengdu Research Base of Giant Panda Breeding' 검색해 사전 예약 가능. 또는 WeChat 미니프로그램 '熊猫基地'. 60세 이상 여권 무료. 셔틀 30元 별도. 14일 전 예약 필수"},{"category":"activity","label":"🌟 촉풍아운 변검 공연 (Trip.com)","when":"9/6(일) 20:00","status":"not_booked","note":"★ Trip.com/Klook 사전 예약 필수. VIP석 180元 (앞줄 변검 최고 시야), 일반 150元. Trip.com에서 'Sichuan Opera Face Changing Show' 검색"},{"category":"activity","label":"🌟 양강 야간 유람선 (Trip.com)","when":"9/3(목) 19:30~","status":"not_booked","note":"★ Trip.com에서 '重庆两江夜游 Two Rivers Cruise' 예약. 일반 68元, 상갑판 108~148元. QR로 승선"},{"category":"activity","label":"양쯔강 로프웨이","when":"9/3(목) 오후","status":"onsite","note":"현장 발권 or 위챗 '长江索道'. 편도 30元, 왕복 50元. Trip.com도 가능하지만 현장이 더 편함"},{"category":"prep","label":"⭐⭐ Trip.com 앱 설치 & 회원가입 (최우선)","when":"~8/25 (여행 1주 전까지)","status":"todo","note":"★★★ 이번 여행 핵심 앱! 열차·유람선·변검·판다기지·현지 투어 모두 여기서 예약. 한국어 완벽, 한국 신용카드 결제 OK. 회원가입 후 프로필에 여권명 영문 표기(BAIK SANG JIN, PARK HYUN KYO) 정확히 등록"},{"category":"prep","label":"Alipay(支付宝) 앱 · 국제판 · 여권 실명인증","when":"~8/31","status":"todo","note":"국제 신용카드 등록 (Visa/Master/JCB). 지하철·편의점·훠궈집 QR 결제. 2024년 이후 Tour Pass 없이 바로 사용 가능"},{"category":"prep","label":"DiDi(滴滴) 앱 설치","when":"~8/31","status":"todo","note":"한국카드 등록. 심야 공항 이동 필수 (충칭 새벽 도착·청두 심야 출발). Trip.com 앱에서도 DiDi 예약 가능"},{"category":"prep","label":"WeChat(微信) 앱 · 판다기지 미니프로그램","when":"~8/31","status":"todo","note":"판다기지 예약 미니프로그램 '熊猫基地' 접근 (Trip.com 매진 시 백업)"},{"category":"prep","label":"중국 e-SIM (Airalo/Jetpac)","when":"~8/31","status":"todo","note":"5GB 약 15,000원. Trip.com·알리페이·디디 필수 데이터"},{"category":"prep","label":"Accor 리워드 포인트 4,781 활용 계획","when":"~향후 1년","status":"todo","note":"💡 132,199원 할인 사용 가능. Gold 유효 2026/09/30까지. 이번 여행 후 국내 이비스·머큐어·노보텔에서 사용"},{"category":"prep","label":"상비약·환갑 소품","when":"~8/31","status":"todo","note":"매실환·정로환·소화제·감기약·혈압약·안대·목베개·소형 우산·양산·자외선차단제·비상 현금 300~500元"}],"checklists":[{"date":"2026-09-01","items":["★★ Trip.com 앱에서 최종 예약 확인 (열차·유람선·변검·판다)","★ 인천 T2 19:00 도착 → 아시아나 비즈니스 카운터 체크인 → Fast Track 보안 → 아시아나 라운지 4F (뷔페 저녁·샤워 가능)","부부 나란히 좌석 사전 지정 확인 (2-2-2 배열의 창가/통로 커플)","기내 스페셜 밀 사전 신청 확인 (담백식·저염 원할 시)","여권 (유효기간 6개월+), 국제운전면허증(선택), 아시아나 e-ticket 프린트","모바일 앱 최종 확인: Trip.com, Alipay(국제판), DiDi, WeChat, 파파고","중국 e-SIM QR 프린트 또는 로밍 신청 확인","인천 T2 3시간 전 도착 (19:00), 아시아나 카운터 체크인","1인당 무료수하물 2PC 확인, 노트북·상비약·전자기기 기내 반입","현금 300~500元 소액권 환전 (전통시장·노점 대비)","신용카드 해외사용 알림 설정 (신한·삼성·현대 앱)"]},{"date":"2026-09-02","items":["★ 사전 배정 기사(Driver Arranged) 픽업 확인 - 예약번호 1400827950165284, 입국장에서 이름 피켓 확인","02:05 충칭 T3A 도착 → 수하물 수취 → 기사 미팅 포인트로 이동","홍애동/해방비 숙소(Holiday Four Seasons Hotel) 도착 → 체크인 및 늦잠","오후 삼협박물관 (무료·실내·에어컨) 방문. 여권 지참","저녁 홍야동 야경 - 18:30 이전 진입, '인플루언서 스냅 사기' 무시","저녁 원앙 훠궈 (小天鹅 or 刘一手 홍애동점) - '微辣' 요청","수분 보충·매실환·정로환 상비 (매운 음식 대비)"]},{"date":"2026-09-03","items":["★ 충칭에서 보내는 마지막 온전한 하루 - 아침 컨디션 보며 코스 조정","오전 자기구(磁器口) 방문 - 지하철 1호선 磁器口역. 9~11시 시원할 때","陳麻花 꽈배기 시식·소량 구매 (귀국 선물용)","대한민국 임시정부 청사 방문 - 여권 지참, 관람 1.5시간","점심 후 호텔 낮잠 (한낮 폭염 피하기)","오후 리쯔바 역 5분 인증샷(2호선 李子坝) + 양쯔강 로프웨이 편도(30元)","저녁 엘링공원 량장각 - 18:00 도착, 노을 감상","19:30 양강 야간 유람선 승선 - Trip.com 사전 예약, 상갑판 좌석","홍야동 야경 재방문으로 마무리 · 陶然居 담백 가정식 (매운맛 절충)","★★ 내일 열차 이동 대비 짐 정리 (체크아웃 후 바로 역 이동)"]},{"date":"2026-09-04","items":["★★ 오늘은 충칭→청두→구채구 이동일 - 기차표 2건 미리 캡처/출력","오전 체크아웃 전 해방비 주변 마지막 산책·기념품 구매","12시경 체크아웃 → 택시/디디로 충칭 사평패역(沙坪坝站) 이동","14:35 사평패 → 청두동 고속열차 탑승 (예약번호 1400829054259184)","청두동역 도착 → 환승 대합실에서 간단히 요기 (역내 식당가)","17:05 청두동 → 황룡구채 고속열차 탑승 (예약번호 1400829054254511, 최단 1h39m)","저녁 황룡구채역 도착 → 셔틀버스(약 35분·51元)로 구채구 시내 이동","Dusk Mountain Villa 체크인 (예약번호 1400828424578509) → 고산지대 첫날은 무리한 활동 자제, 충분한 휴식"]},{"date":"2026-09-05","items":["★★★ 구채구 국가공원 - 이번 여행 최고 하이라이트!","이른 아침 조식 후 구채구 국가공원 입구行 셔틀 이동","입장권+셔틀버스권 확인 (전날 예약 못했다면 매표소에서 구매)","우화해(五花海)·오채지(五彩池)·낙일랑폭포(诺日朗瀑布)·장해(长海) 위주로 관람","고산지대(2000~3300m) - 물 자주 마시고 무리한 급경사 트레킹 대신 셔틀버스 활용","오후 늦게 하산 → 저녁식사 (야크고기 훠궈 등 현지식)","황룡구채역 이동 (역까지 셔틀 시간 여유있게 확인)","20:33 황룡구채 → 청두동 고속열차 탑승 (예약번호 1400829054298753)","심야 청두동역 도착 → Sofis Jinyuan Hotel 체크인 (예약번호 1400828000602298)"]},{"date":"2026-09-06","items":["★★★ 판다기지 최우선! 조식 07:00 → 07:30 지하철 3호선 熊猫大道 → B출구 → 셔틀버스","08:00 첫 회 입장 (60세 이상 여권 무료)","셔틀 관광차 30元 필수 이용","아기 판다 유치원(月亮产房) 필수 관람","점심 판다 카페 (판다 라떼 인증)","오후 인민공원 학화찻집 - 반나절 여유 (개완차·마작·귀청소 40~80元 체험)","저녁 촉풍아운 변검 공연 20:00 - VIP석 앞줄 (사전 예약 확인)"]},{"date":"2026-09-07","items":["★ 여행 마지막 날 - 짐 정리 먼저 해두고 가볍게 이동","오전 두보초당 (60세 무료) - 대나무 숲 산책","무후사(60세 무료) + 금리 고거리 점심·산책","오후 금사박물관 (실내·에어컨, 60세 무료)","저녁 콴자이샹즈·춘시로·타이쿠리 - IFS 3D 판다 인증샷 (체력에 따라 콴자이샹즈 생략 가능)","저녁 천 마파두부 원조점 (매운맛 조절 요청)","안순랑교 야경 (해질녘 18:30~)","★★ 19:30 호텔 체크아웃 - 짐 완전 정리","★ 사전 배정 기사(Driver Arranged) 픽업 - 예약번호 1400827950165757, 21:00까지 톈푸공항 T1 도착","★★ 톈푸공항 T1 도착 후 아시아나 파트너 CIP 라운지 위치 확인 → 저녁식사·샤워·휴식 (심야 3.5시간 대기 편안하게)","21:00 T1 도착 → OZ324 체크인","GST/증치세 환급 - 공항 Tax Refund 창구"]},{"date":"2026-09-08","items":["00:30 OZ324 이륙","05:25 인천 T2 도착 → 입국 심사 → 짐 찾기","집 도착 확인 연락 · 여행 사진·일기 백업 💕"]}],"emergency":[{"label":"중국 긴급 통합(경찰)","phone":"110","note":"경찰"},{"label":"중국 긴급(구급)","phone":"120","note":"구급"},{"label":"중국 긴급(소방)","phone":"119","note":"소방"},{"label":"주중국 대한민국 대사관 (베이징)","phone":"+86 10 8531 0700","note":"영사 긴급: +86 186 1173 0089"},{"label":"주충칭 총영사관","phone":"+86 23 6373 8007","note":"충칭 지역 담당"},{"label":"주청두 총영사관","phone":"+86 28 8616 5800","note":"청두 지역 담당"},{"label":"대한민국 영사 콜센터 24H","phone":"+82 2 3210 0404","note":"서울, 수신자부담 가능"},{"label":"12306 철도 고객센터","phone":"+86 10 95105105","note":"영어 지원 일부"},{"label":"아시아나항공 중국지사","phone":"400 650 8000","note":"OZ353/OZ324 문의"},{"label":"Trip.com 한국어 24H","phone":"—","note":"앱 내 채팅 한국어 응대"},{"label":"충칭 강북국제공항 T3","phone":"+86 23 6715 2337","note":"9/2 도착"},{"label":"청두 톈푸공항 T1","phone":"+86 28 8520 5555","note":"9/8 출발"},{"label":"다펀 판다 기지","phone":"+86 28 8351 0033","note":"판다 예약 문의"},{"label":"촉풍아운 변검극장","phone":"+86 28 8776 4813","note":"공연 예약"},{"label":"重庆医科大学附属第一医院","phone":"+86 23 8901 1114","note":"충칭 대형병원"},{"label":"华西医院 (청두)","phone":"+86 28 8542 2286","note":"청두 대형병원 (쓰촨대 부속)"}],"hotels":{"chongqing":[{"name":"Holiday Four Seasons Hotel (제팡베이·홍야동)","brand":"독립 4성","stars":4,"nights":3,"total_price_krw":240147,"pros":["★ 예약 확정 · 제팡베이/홍야동 도보권","환갑 부부 3박 실투숙 호텔","예약번호 1400828000581831"],"cons":[],"recommend_for":"확정 예약","book_at":"Trip.com (예약완료)","image":"https://ak-d.tripcdn.com/images/0201012000r7cfd9uB7BA_Z_1280_853_R50_Q90.jpg"}],"jiuzhaigou":[{"name":"Jiuzhaigou · Dusk Mountain Villa","brand":"독립 부티크","stars":4,"nights":1,"total_price_krw":93606,"pros":["★ 예약 확정 · 구채구 시내","고산지대 여유로운 산장형 숙소","예약번호 1400828424578509"],"cons":[],"recommend_for":"확정 예약","book_at":"Trip.com (예약완료)","image":"https://ak-d.tripcdn.com/images/0202z12000octawrs6CF1_Z_1280_853_R50_Q90.jpg"}],"chengdu":[{"name":"Sofis Jinyuan Hotel","brand":"독립 4성","stars":4,"nights":2,"total_price_krw":153768,"pros":["★ 예약 확정 · 청두 시내","구채구발 심야 도착에 맞춘 체크인 가능","예약번호 1400828000602298"],"cons":[],"recommend_for":"확정 예약","book_at":"Trip.com (예약완료)","image":"https://ak-d.tripcdn.com/images/02069120008410d519CDC_Z_1280_853_R50_Q90.jpg"}]},"meta":{"title":"백상진 · 박현교 부부 환갑 여행 🏮 충칭·청두·구채구 6박 8일","subtitle":"2026. 9. 1 ~ 9. 8 · 아시아나 EQ3MJ9","start_iso":"2026-09-01","end_iso":"2026-09-08","today_iso":"2026-08-01","anniversary":"환갑 축하드립니다 · 백년해로 💐","reservation_no":"EQ3MJ9","accor_status":"Gold (2026/09/30까지) · Explorer 만료 · Points 4,781 (132,199원 상당)","hotel_strategy":"예약 확정: 충칭 Holiday Four Seasons Hotel(제팡베이·홍야동) 3박 240,147원 + 구채구 Dusk Mountain Villa 1박 93,606원 + 청두 Sofis Jinyuan Hotel 2박 153,768원 = 총 487,521원 (Trip.com 예약)","trip_com_first":true,"booking_strategy":"항공·숙소 3건·열차 3구간 모두 예약 확정(Confirmed/Reservation Submitted). 구채구·황룡 입장권만 현지/Trip.com 추가 예약 필요"},"hotels_selected":{"chongqing":{"name":"Holiday Four Seasons Hotel (제팡베이·홍야동)","price_krw_total":240147,"nights":3,"dates":"9/1~9/4 체크아웃","book_at":"예약 확정 · Trip.com (No.1400828000581831)","location":"제팡베이·홍야동 도보권","rating":null},"jiuzhaigou":{"name":"Jiuzhaigou · Dusk Mountain Villa","price_krw_total":93606,"nights":1,"dates":"9/4~9/5 체크아웃","book_at":"예약 확정 · Trip.com (No.1400828424578509)","location":"구채구 시내","rating":null},"chengdu":{"name":"Sofis Jinyuan Hotel","price_krw_total":153768,"nights":2,"dates":"9/5~9/7 체크아웃","book_at":"예약 확정 · Trip.com (No.1400828000602298)","location":"청두 시내","rating":null},"total_krw":487521,"note":"3개 숙소 전부 예약 확정(Confirmed) · '예약' 탭에서 예약번호로 확인 가능 · 6박 총 487,521원"},"business_perks":{"title":"✈️ 비즈니스 클래스 필수 활용 꿀팁","subtitle":"환갑 부부에게 딱 맞는 프리미엄 혜택 - 새벽 도착·심야 출발이라 라운지·우선 서비스가 특히 유용","categories":[{"name":"🛃 인천 T2 출발 (9/1 저녁)","items":[{"perk":"우선 체크인 카운터","desc":"아시아나 F/J 클래스 전용 카운터. 이코노미 대기줄과 별개. 여유롭게 짐 부치기"},{"perk":"패스트 트랙 (Fast Track) 보안·출입국","desc":"J석 승객 전용 레인. 대기 5-10분 축소. 탑승권에 표기됨"},{"perk":"⭐ 아시아나 라운지 (T2 4F 서편/동편)","desc":"22:00 출발 3시간 전(19:00~) 여유 있게 이용. 뷔페·바·샤워시설. 60대 부부 저녁식사 겸 대기 최적"},{"perk":"프리미엄 탑승 (Priority Boarding)","desc":"이코노미 앞서 탑승, 좌석 정리 여유"}]},{"name":"🛫 기내 서비스 (OZ353 인천→충칭 4h15m)","items":[{"perk":"⭐ 풀 플랫 or 스마티움 시트","desc":"OZ353 기종별 확인(A330/A350). 좌우 독립 좌석, 리클라이닝, 발판, 침구·베개 제공. 4시간 비행이지만 편안"},{"perk":"웰컴 드링크·정찬 코스","desc":"이륙 후 웰컴 샴페인/무알콜 → 애피타이저·메인·디저트 코스. 사전 스페셜 밀 신청 가능 (당뇨식·저염식·베지테리언 등)"},{"perk":"어메니티 키트","desc":"수면 안대·귀마개·양치용품·스킨케어 세트. 환갑 여행 기념 소품으로도 좋음"},{"perk":"슬리퍼·이불","desc":"기내에서 갈아신는 슬리퍼, 두꺼운 이불. 4시간 짧지만 심야편이라 활용 가치 큼"}]},{"name":"🛬 충칭 도착 (9/2 새벽 01:15)","items":[{"perk":"⭐ 우선 하기 (Priority Deplaning)","desc":"비즈니스 승객 먼저 내림. 입국심사 대기 최소화"},{"perk":"⭐ 우선 수하물 (Priority Baggage)","desc":"짐 태그에 'PRIORITY' 표시 → 가장 먼저 컨베이어에 도착. 새벽 시간 대기 축소로 큰 이득"},{"perk":"공항 CIP 라운지 (샤워)","desc":"⚠️ 새벽 도착이라 사용 불필요. 바로 택시·디디로 시내 이동 권장"}]},{"name":"🍜 여행 중 프리미엄 활용","items":[{"perk":"⭐ 스타얼라이언스 Gold 없이도 아시아나 라운지 이용","desc":"당일 J석 탑승권만 있으면 인천·충칭·청두 아시아나·스타얼라이언스 파트너 라운지 이용 가능. 청두 공항의 파트너 라운지 사전 확인"},{"perk":"⭐ 청두 톈푸공항 T1 라운지 (9/7 심야 3시간 대기 필수 활용!)","desc":"★★ 9/7 21:00 공항 도착 → 00:30 이륙까지 3.5시간 대기. 톈푸공항 T1의 아시아나 파트너 라운지 (에어차이나 CA VIP 라운지 등)에서 저녁 식사·샤워·휴식. 심야 대기가 편안해짐! 비즈니스 티켓 필수 활용 포인트"},{"perk":"수하물 여유","desc":"이코노미 2PC(23kg×2)가 아니라 비즈니스 2PC(32kg×2) → 각 9kg씩 더 실을 수 있음. 청두 쇼핑·기념품·판다굿즈·차·쓰촨 특산품 여유롭게"}]},{"name":"🎁 환갑 특별 요청 (사전 아시아나 문의)","items":[{"perk":"⭐ 케이크·와인·특별 안내","desc":"아시아나 홈페이지 or 콜센터(1588-8000)에 '환갑 여행' 사전 등록 요청. 승무원 축하 인사·간이 케이크 서비스 받을 수 있음 (요청 가능성 있음)"},{"perk":"부부 나란히 좌석 사전 지정","desc":"홈페이지·앱에서 좌석 미리 선택. 비즈니스는 통상 1-2-1 or 2-2-2 배열. 부부는 나란히 2석 선택 필수"},{"perk":"기내식 사전 특별식 신청","desc":"출발 24시간 전까지 요청. 매운맛 절충·저염식·과일 위주 등 선택 가능"}]}]}};
+const TODAY = new Date();
+const DEBUG_DATE = localStorage.getItem('DEBUG_DATE');
+if(DEBUG_DATE) TODAY.setTime(new Date(DEBUG_DATE).getTime());
+function ymd(d){return d.toISOString().slice(0,10)}
+function dayDiff(a,b){return Math.round((new Date(a)-new Date(b))/86400000)}
+function scrollTo2(s){const el=document.querySelector(s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// 홍등 배경
+(function(){const p=document.getElementById('lanterns');const emojis=['🏮','🐼','🎋','🍵'];for(let i=0;i<10;i++){const e=document.createElement('div');e.className='lantern';e.textContent=emojis[i%emojis.length];e.style.left=(Math.random()*100)+'vw';e.style.fontSize=(20+Math.random()*16)+'px';e.style.animationDuration=(20+Math.random()*20)+'s,'+(4+Math.random()*4)+'s';e.style.animationDelay=(Math.random()*8)+'s';p.appendChild(e)}})();
+
+// D-day
+(function(){const today=ymd(TODAY);const start=DATA.meta.start_iso;const end=DATA.meta.end_iso;const el=document.getElementById('ddayBadge');let txt='';
+  if(today<start){txt='⏳ D-'+dayDiff(start,today)+' · 출발 준비 중';}
+  else if(today>end){txt='🏠 여행 완료! · 무사 귀국을 축하드립니다';}
+  else{const dn=dayDiff(today,start)+1;txt='🏮 여행 '+dn+'일째 / 8일';}
+  el.textContent=txt;
+})();
+
+// 타임라인
+(function(){
+  const today=ymd(TODAY);
+  const box=document.getElementById('timelineScroll');
+  DATA.itinerary.forEach(d=>{
+    let cls='day-card';
+    if(d.date<today) cls+=' past';
+    else if(d.date===today) cls+=' today';
+    const el=document.createElement('div');
+    el.className=cls;
+    el.innerHTML='<span class="day-num">'+d.day_label+'</span>'+
+      '<div class="day-date">'+d.date.slice(5).replace('-','/')+'</div>'+
+      '<div class="day-city">'+d.city+'</div>'+
+      '<div class="day-title">'+d.title+'</div>';
+    el.onclick=()=>{scrollTo2('#day-'+d.date);};
+    box.appendChild(el);
+  });
+  setTimeout(()=>{const t=box.querySelector('.today');if(t)t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})},300);
+})();
+
+// 오늘
+(function(){
+  const today=ymd(TODAY);
+  const d=DATA.itinerary.find(x=>x.date===today);
+  const lead=document.getElementById('todayLead');
+  const box=document.getElementById('todayContent');
+  if(!d){
+    if(today<DATA.meta.start_iso){
+      lead.textContent='✈️ 출발 전 · D-'+dayDiff(DATA.meta.start_iso,today);
+      box.innerHTML='<div class="card"><h3 style="color:#8B1A1A;font-family:\'Noto Serif KR\',serif;margin-bottom:10px">🏮 출발 카운트다운</h3><p>D-'+dayDiff(DATA.meta.start_iso,today)+' · 인천 → 충칭 (OZ353, 9/1 22:00)</p><p style="margin-top:8px;color:#7A5C68">이 곳에서 사전 준비 체크리스트를 확인해주세요.</p></div>';
+    }else{
+      lead.textContent='🏠 여행 완료';
+      box.innerHTML='<div class="card"><h3>무사히 돌아오셨습니다 💐</h3><p>일기와 사진은 이 대시보드에서 언제든 다시 볼 수 있습니다.</p></div>';
+    }
+    return;
+  }
+  lead.textContent='오늘 · '+d.city+' · '+d.title;
+  const placeIds=d.places_ids||[];
+  const places=placeIds.map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+  let html='<div class="card" style="margin-bottom:16px"><p style="font-size:15px;line-height:1.8">'+d.summary+'</p></div>';
+  if(places.length){html+='<div class="place-grid">';places.forEach(p=>{html+=placeCardHTML(p);});html+='</div>';}
+  box.innerHTML=html;
+  box.querySelectorAll('.place-card').forEach(el=>{el.onclick=()=>openPlace(el.dataset.id)});
+})();
+
+// 여행지 카드
+function placeCardHTML(p){
+  const img=p.image_urls&&p.image_urls[0]?p.image_urls[0]:'';
+  const nImg=p.image_urls?p.image_urls.length:0;
+  return '<div class="place-card" data-id="'+p.id+'">'+
+    '<div class="place-thumb" style="background-image:url(\''+img+'\')"><span class="chip-city">📍 '+p.city+'</span>'+(nImg>1?'<span class="chip-photos">📷 '+nImg+'</span>':'')+'</div>'+
+    '<div class="place-body">'+
+      '<div class="place-name">'+p.name_ko+'</div>'+
+      '<div class="place-zh">'+(p.name_zh||'')+'</div>'+
+      '<div class="place-intro">'+(p.intro||'')+'</div>'+
+      '<div class="place-actions"><span class="mini-chip">📅 '+p.date.slice(5).replace('-','/')+'</span>'+
+      (p.music&&p.music.length?'<span class="mini-chip">🎵 '+p.music.length+'</span>':'')+
+      '<span class="mini-chip">👆 상세 열기</span></div>'+
+    '</div></div>';
+}
+(function(){
+  const today=ymd(TODAY);
+  const area=document.getElementById('placesArea');
+  let html='';
+  DATA.itinerary.forEach(d=>{
+    const places=(d.places_ids||[]).map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+    if(!places.length) return;
+    html+='<div class="daysec" id="day-'+d.date+'">';
+    html+='<div class="daysec-head">';
+    html+='<span class="daysec-date">'+d.date.slice(5).replace('-','/')+'</span>';
+    html+='<span class="daysec-title">'+d.title+'</span>';
+    html+='<span class="daysec-weather" data-city="'+d.city+'" data-date="'+d.date+'">⛅</span>';
+    if(d.date===today) html+='<span class="badge">TODAY</span>';
+    html+='</div><div class="place-grid">';
+    places.forEach(p=>{html+=placeCardHTML(p)});
+    html+='</div></div>';
+  });
+  area.innerHTML=html;
+  area.querySelectorAll('.place-card').forEach(el=>{el.onclick=()=>openPlace(el.dataset.id)});
+})();
+
+// 모달
+function openPlace(id){
+  const p=DATA.places.find(x=>x.id===id);
+  if(!p) return;
+  const imgs=(p.image_urls&&p.image_urls.length)?p.image_urls:[''];
+  let html='<div class="modal-hero" id="modalHero" style="background-image:url(\''+imgs[0]+'\')"></div>';
+  if(imgs.length>1){
+    html+='<div class="modal-gallery">'+imgs.map((u,i)=>'<img src="'+u+'" class="'+(i===0?'active':'')+'" onclick="document.getElementById(\'modalHero\').style.backgroundImage=\'url(\\\''+u+'\\\')\';this.parentElement.querySelectorAll(\'img\').forEach(x=>x.classList.remove(\'active\'));this.classList.add(\'active\')"/>').join('')+'</div>';
+  }
+  html+='<div class="modal-body">';
+  html+='<h2>'+p.name_ko+'</h2><div class="m-en">'+(p.name_zh||'')+' · '+p.city+' · '+p.date.slice(5).replace('-','/')+'</div>';
+  html+='<div class="modal-tabs">';
+  ['소개','역사','한국과','꿀팁','맛집','음악','정보'].forEach((t,i)=>{
+    html+='<button class="m-tab'+(i===0?' active':'')+'" data-t="'+i+'">'+t+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="m-panel active" data-p="0">';
+  html+='<p>'+(p.intro||'')+'</p>';
+  if(p.recent_info){html+='<h4>📰 최근 정보</h4><p>'+p.recent_info+'</p>';}
+  if(p.fun_things&&p.fun_things.length){html+='<h4>✨ 소소한 즐길거리</h4><ul>';p.fun_things.forEach(f=>html+='<li>'+f+'</li>');html+='</ul>';}
+  html+='</div>';
+  html+='<div class="m-panel" data-p="1"><p>'+(p.history||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="2"><p>'+(p.korea_connection||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="3"><div class="warn">👴👵 60대 부부 배려 팁</div><p>'+(p.tips||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="4">';
+  if(p.nearby_food&&p.nearby_food.length){html+='<h4>🍽️ 주변 맛집</h4><ul>';p.nearby_food.forEach(f=>html+='<li>'+f+'</li>');html+='</ul>';}
+  else html+='<p>—</p>';
+  html+='</div>';
+  html+='<div class="m-panel" data-p="5">';
+  if(p.music&&p.music.length){p.music.forEach(m=>{html+='<div class="music-item" onclick="playMusic(\''+m.youtube_id+'\',\''+(m.title||'').replace(/\'/g,'&#39;')+'\',\''+(m.artist||'').replace(/\'/g,'&#39;')+'\')"><div class="music-play">▶</div><div class="music-meta"><div class="music-title">'+m.title+'</div><div class="music-sub">'+(m.artist||'')+'</div></div></div>'});}
+  else html+='<p>—</p>';
+  html+='</div>';
+  html+='<div class="m-panel" data-p="6">';
+  html+='<div class="info-row"><strong>📍 주소</strong><span>'+(p.address||'—')+'</span></div>';
+  html+='<div class="info-row"><strong>☎️ 전화</strong><span>'+(p.phone?'<a href="tel:'+p.phone.replace(/[^+\d]/g,'')+'">'+p.phone+'</a>':'—')+'</span></div>';
+  html+='<div class="info-row"><strong>🌐 웹사이트</strong><span>'+(p.website&&p.website!=='—'?'<a href="'+p.website+'" target="_blank" rel="noopener">바로가기 ↗</a>':'—')+'</span></div>';
+  if(p.coordinates){html+='<div class="info-row"><strong>🗺️ 지도</strong><span><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+p.coordinates.lat+','+p.coordinates.lng+'">Google Maps ↗</a></span></div>';}
+  html+='</div>';
+  html+='</div>';
+  document.getElementById('modalContent').innerHTML=html;
+  const mc=document.getElementById('modalContent');
+  mc.querySelectorAll('.m-tab').forEach(t=>{
+    t.onclick=()=>{
+      mc.querySelectorAll('.m-tab').forEach(x=>x.classList.remove('active'));
+      mc.querySelectorAll('.m-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      mc.querySelector('.m-panel[data-p="'+t.dataset.t+'"]').classList.add('active');
+    };
+  });
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+
+// 음악
+function playMusic(id,title,artist){
+  document.getElementById('ytFrame').innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+  document.getElementById('mpTitle').textContent=title;
+  document.getElementById('mpSub').textContent=artist||'';
+  document.getElementById('musicPlayer').classList.add('show');
+}
+function stopMusic(){document.getElementById('musicPlayer').classList.remove('show');document.getElementById('ytFrame').innerHTML=''}
+(function(){
+  const box=document.getElementById('musicList');
+  let html='';
+  DATA.itinerary.forEach(d=>{
+    const places=(d.places_ids||[]).map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+    const musics=[];
+    places.forEach(p=>(p.music||[]).forEach(m=>musics.push({...m,place:p.name_ko})));
+    if(!musics.length) return;
+    html+='<div class="card" style="margin-bottom:16px"><h3 style="font-family:\'Noto Serif KR\',serif;color:#8B1A1A;font-size:17px;margin-bottom:12px">🎶 '+d.date.slice(5).replace('-','/')+' · '+d.city+'</h3>';
+    musics.forEach(m=>{
+      html+='<div class="music-item" onclick="playMusic(\''+m.youtube_id+'\',\''+(m.title||'').replace(/\'/g,'&#39;')+'\',\''+(m.artist||'').replace(/\'/g,'&#39;')+'\')">';
+      html+='<div class="music-play">▶</div>';
+      html+='<div class="music-meta"><div class="music-title">'+m.title+'</div><div class="music-sub">'+(m.artist||'')+' · '+m.place+'</div></div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  box.innerHTML=html;
+})();
+
+// 숙소
+(function(){
+  const hs=DATA.hotels;
+  function renderHotels(list,elId){
+    const el=document.getElementById(elId);
+    if(!el||!list) return;
+    el.innerHTML=list.map((h,i)=>{
+      return '<div class="hotel-card selected">'+
+        '<span class="sel-badge">✓ 예약확정</span>'+
+        (h.image?'<img class="hotel-photo" src="'+h.image+'" alt="'+h.name+'" loading="lazy">':'')+
+        '<div class="hotel-name">'+h.name+'</div>'+
+        '<div class="hotel-brand">'+h.brand+' · '+'⭐'.repeat(h.stars)+'</div>'+
+        '<div class="hotel-price">'+h.nights+'박 '+h.total_price_krw.toLocaleString()+'원</div>'+
+        '<ul class="hotel-pros">'+(h.pros||[]).map(p=>'<li>'+p+'</li>').join('')+'</ul>'+
+        '<div style="margin-top:8px;font-size:12px;color:#7A5C68">💡 '+h.book_at+'</div>'+
+      '</div>';
+    }).join('');
+  }
+  renderHotels(hs.chongqing,'hotelsChongqing');
+  renderHotels(hs.jiuzhaigou,'hotelsJiuzhaigou');
+  renderHotels(hs.chengdu,'hotelsChengdu');
+})();
+
+// 비즈니스 클래스 꿀팁
+(function(){
+  const bp=DATA.business_perks;
+  if(!bp) return;
+  const area=document.getElementById('bizArea');
+  document.getElementById('bizLead').textContent=bp.subtitle;
+  let html='';
+  bp.categories.forEach(cat=>{
+    html+='<div class="card" style="margin-bottom:16px;border-left-color:#D4A017">';
+    html+='<h3 style="font-family:\'Noto Serif KR\',serif;color:#8B1A1A;font-size:18px;margin-bottom:12px;border-bottom:1px dashed #D4A017;padding-bottom:8px">'+cat.name+'</h3>';
+    cat.items.forEach(it=>{
+      html+='<div style="padding:10px 0;border-bottom:1px dotted #E8DFD1"><div style="font-weight:700;color:#B22222;margin-bottom:4px;font-size:15px">'+it.perk+'</div><div style="font-size:14px;color:#3E332E;line-height:1.65">'+it.desc+'</div></div>';
+    });
+    html+='</div>';
+  });
+  area.innerHTML=html;
+})();
+
+// 바우처
+(function(){
+  const grid=document.getElementById('voucherGrid');
+  const catLabel={flight:'✈️ 항공',hotel:'🏨 숙소',train:'🚄 열차',activity:'🎢 액티비티',prep:'📋 사전준비'};
+  const statLabel={booked:'예약완료',recommended:'추천예약',not_booked:'미예약',onsite:'현장구매',todo:'준비'};
+  function render(filter){
+    let list=DATA.reservations;
+    if(filter==='not_booked') list=list.filter(r=>r.status==='not_booked');
+    else if(filter!=='all') list=list.filter(r=>r.category===filter);
+    grid.innerHTML=list.map(r=>'<div class="voucher" data-cat="'+r.category+'" data-status="'+r.status+'">'+
+      '<span class="voucher-status '+r.status+'">'+(statLabel[r.status]||r.status)+'</span>'+
+      '<div class="voucher-cat">'+(catLabel[r.category]||r.category)+'</div>'+
+      '<div class="voucher-label">'+r.label+'</div>'+
+      '<div class="voucher-when">🕒 '+r.when+'</div>'+
+      (r.note?'<div class="voucher-note">'+r.note+'</div>':'')+
+    '</div>').join('');
+  }
+  document.querySelectorAll('#voucherFilter .wtab').forEach(b=>{
+    b.onclick=()=>{document.querySelectorAll('#voucherFilter .wtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.vf);}
+  });
+  render('all');
+  const cnt={booked:0,not_booked:0,recommended:0,onsite:0,todo:0};DATA.reservations.forEach(r=>cnt[r.status]=(cnt[r.status]||0)+1);
+  document.getElementById('voucherSummary').textContent='전체 '+DATA.reservations.length+'건 · 확정 '+(cnt.booked+cnt.recommended)+' · 미예약 '+cnt.not_booked+' · 준비 '+cnt.todo;
+})();
+
+// 날씨 — 실제 여행일(9/1~9/8) 기준. 실시간 예보가 그 날짜를 못 덮으면 평년 평균으로 대체.
+const CITY_COORDS = [
+  {key:'chongqing',label:'충칭',lat:29.5630,lng:106.5516,match:['충칭']},
+  {key:'chengdu',label:'청두',lat:30.6598,lng:104.0633,match:['청두','청두 → 인천']},
+  {key:'jiuzhaigou',label:'구채구',lat:33.2588,lng:103.9192,match:['구채구']},
+];
+const TRIP_START='2026-09-01', TRIP_END='2026-09-08';
+// 평년(9월 초) 평균 — weather-and-climate.com / travelchinaguide.com 등 기후 자료 기반
+const CLIMATE_AVG = {
+  chongqing:{code:61,high:28,low:21,precip:40},
+  chengdu:{code:61,high:27,low:20,precip:38},
+  jiuzhaigou:{code:80,high:19,low:10,precip:55},
+};
+function wxIcon(code){if([0].includes(code))return'☀️';if([1,2,3].includes(code))return'⛅';if([45,48].includes(code))return'🌫️';if([51,53,55,61,63,65].includes(code))return'🌧️';if([71,73,75,77,85,86].includes(code))return'❄️';if([80,81,82].includes(code))return'🌦️';if([95,96,99].includes(code))return'⛈️';return'☁️'}
+function tripDates(){
+  const out=[];
+  const start=new Date(TRIP_START+'T00:00:00');
+  const end=new Date(TRIP_END+'T00:00:00');
+  for(let dt=new Date(start);dt<=end;dt.setDate(dt.getDate()+1)){
+    out.push(ymd(new Date(dt)));
+  }
+  return out;
+}
+function mergeDays(cityKey,apiDaily){
+  const avg=CLIMATE_AVG[cityKey];
+  return tripDates().map(ds=>{
+    const idx=apiDaily?apiDaily.time.indexOf(ds):-1;
+    if(idx>=0 && apiDaily.temperature_2m_max[idx]!=null){
+      return {date:ds,code:apiDaily.weather_code[idx],high:apiDaily.temperature_2m_max[idx],low:apiDaily.temperature_2m_min[idx],precip:apiDaily.precipitation_probability_max[idx]??0,live:true};
+    }
+    return {date:ds,code:avg.code,high:avg.high,low:avg.low,precip:avg.precip,live:false};
+  });
+}
+async function loadWeather(){
+  const tabs=document.getElementById('weatherTabs');
+  tabs.innerHTML=CITY_COORDS.map((c,i)=>'<button class="wtab'+(i===0?' active':'')+'" data-w="'+c.key+'">'+c.label+'</button>').join('');
+  const dataByCity={};
+  for(const c of CITY_COORDS){
+    try{
+      const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+c.lat+'&longitude='+c.lng+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&start_date='+TRIP_START+'&end_date='+TRIP_END,{signal:AbortSignal.timeout(6000)});
+      const j=await r.json();
+      dataByCity[c.key]=mergeDays(c.key,j.daily);
+    }catch(e){console.error(e);dataByCity[c.key]=mergeDays(c.key,null);}
+  }
+  function renderCity(key){
+    const days=dataByCity[key];
+    const row=document.getElementById('weatherRow');
+    if(!days){row.innerHTML='<div style="padding:20px;grid-column:1/-1;text-align:center;color:#B89BA5">날씨 불러오기 실패</div>';return}
+    const today=ymd(TODAY);
+    let html='';
+    days.forEach(d=>{
+      const isToday=d.date===today;
+      const dt=new Date(d.date+'T00:00:00');
+      const wd=['일','월','화','수','목','금','토'][dt.getDay()];
+      html+='<div class="wcell'+(isToday?' today':'')+'">'+
+        '<div class="wday">'+wd+'요일</div>'+
+        '<div class="wdate">'+(dt.getMonth()+1)+'/'+dt.getDate()+'</div>'+
+        '<div class="wicon">'+wxIcon(d.code)+'</div>'+
+        '<div class="wtemp">'+Math.round(d.high)+'°</div>'+
+        '<div class="wlow">↓'+Math.round(d.low)+'°</div>'+
+        '<div class="wprecip">💧'+Math.round(d.precip)+'%</div>'+
+        '<div class="wsrc">'+(d.live?'실시간 예보':'평년 평균')+'</div>'+
+      '</div>';
+    });
+    row.innerHTML=html;
+  }
+  tabs.querySelectorAll('.wtab').forEach(b=>{
+    b.onclick=()=>{tabs.querySelectorAll('.wtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCity(b.dataset.w);};
+  });
+  renderCity(CITY_COORDS[0].key);
+  document.querySelectorAll('.daysec-weather').forEach(el=>{
+    const city=el.dataset.city, date=el.dataset.date;
+    let match=CITY_COORDS[0];
+    if(city.includes('구채구'))match=CITY_COORDS[2];
+    else if(city.includes('청두')||city.includes('인천'))match=CITY_COORDS[1];
+    const days=dataByCity[match.key];
+    if(!days) return;
+    const d=days.find(x=>x.date===date);
+    if(!d) return;
+    el.textContent=wxIcon(d.code)+' '+Math.round(d.high)+'°/'+Math.round(d.low)+'°';
+  });
+}
+loadWeather();
+
+// 체크리스트 + 알림
+function chkKey(date,idx){return 'chk_cn_'+date+'_'+idx}
+(function(){
+  const box=document.getElementById('chkArea');
+  let html='';
+  DATA.checklists.forEach(c=>{
+    let done=0;c.items.forEach((_,i)=>{if(localStorage.getItem(chkKey(c.date,i))==='1')done++;});
+    html+='<div class="chk-day" id="chk-'+c.date+'"><h4>📅 '+c.date.slice(5).replace('-','/')+'<span class="chk-count">'+done+'/'+c.items.length+'</span></h4>';
+    c.items.forEach((item,i)=>{
+      const checked=localStorage.getItem(chkKey(c.date,i))==='1';
+      html+='<div class="chk-item"><input type="checkbox" id="chk_'+c.date+'_'+i+'" '+(checked?'checked':'')+' onchange="toggleChk(\''+c.date+'\','+i+',this.checked)"/><label for="chk_'+c.date+'_'+i+'">'+item+'</label></div>';
+    });
+    html+='</div>';
+  });
+  box.innerHTML=html;
+})();
+function toggleChk(date,i,v){localStorage.setItem(chkKey(date,i),v?'1':'0');
+  const c=DATA.checklists.find(x=>x.date===date);
+  let done=0;c.items.forEach((_,j)=>{if(localStorage.getItem(chkKey(date,j))==='1')done++;});
+  const el=document.querySelector('#chk-'+date+' .chk-count');if(el)el.textContent=done+'/'+c.items.length;
+  renderAlerts();
+}
+
+function renderAlerts(){
+  const today=ymd(TODAY);
+  const tomorrow=ymd(new Date(TODAY.getTime()+86400000));
+  const alerts=[];
+  DATA.reservations.filter(r=>r.status==='not_booked').forEach(r=>{
+    alerts.push({level:'critical',icon:'⚠️',msg:'[미예약] '+r.label+' · '+r.note.substring(0,80)});
+  });
+  const tIt=DATA.itinerary.find(x=>x.date===tomorrow);
+  if(tIt){alerts.push({level:'info',icon:'📅',msg:'내일('+tomorrow.slice(5).replace('-','/')+') · '+tIt.title});}
+  const tChk=DATA.checklists.find(x=>x.date===tomorrow);
+  if(tChk){
+    const undone=tChk.items.filter((_,i)=>localStorage.getItem(chkKey(tomorrow,i))!=='1');
+    if(undone.length){alerts.push({level:'warning',icon:'📝',msg:'내일 체크 '+undone.length+'건: '+undone.slice(0,2).join(' / ')+(undone.length>2?' 외':'')});}
+  }
+  const tC=DATA.checklists.find(x=>x.date===today);
+  if(tC){
+    const undone=tC.items.filter((_,i)=>localStorage.getItem(chkKey(today,i))!=='1');
+    if(undone.length){alerts.push({level:'warning',icon:'✅',msg:'오늘 남은 체크 '+undone.length+'건'});}
+  }
+  const flightReminders=[
+    {date:'2026-09-01',msg:'OZ353 인천 T2 22:00 탑승 · 3시간 전(19:00) 도착'},
+    {date:'2026-09-04',msg:'충칭 사평패역 → 청두동역 14:35 → 청두동역 → 황룡구채역 17:05, 기차 2건 연속 이동'},
+    {date:'2026-09-05',msg:'황룡구채역 → 청두동역 20:33 · 심야 청두 도착 · 여권 스캔 개찰'},
+    {date:'2026-09-07',msg:'★★ 톈푸공항 T1 이동 · 21:00까지 도착 필수 (기사 배정 완료)'},
+    {date:'2026-09-08',msg:'OZ324 청두 T1 00:30 이륙 · 인천 05:25 도착'}
+  ];
+  flightReminders.forEach(f=>{if(f.date===today||f.date===tomorrow){alerts.push({level:'info',icon:'✈️',msg:(f.date===today?'[오늘]':'[내일]')+' '+f.msg})}});
+  const criticalAlerts={
+    '2026-09-02':'★ 새벽 도착: 사전 배정 기사 픽업(예약번호 1400827950165284) 미팅 포인트 확인',
+    '2026-09-04':'★★ 오늘 충칭→청두→구채구 이동일 · 기차 2건(14:35, 17:05) · 짐 정리 · 여권·티켓 확인',
+    '2026-09-05':'★ 구채구 관광 후 20:33 황룡구채역 열차로 청두 심야 복귀 · 시간 여유있게 하산',
+    '2026-09-06':'★ 판다기지 07:00 출발 · 08:00 첫 회 입장 · 여권 지참(60세 무료)',
+    '2026-09-07':'★★ 심야 공항 이동 · 19:30 체크아웃 · 21:00 T1 도착 (기사 배정 완료)'
+  };
+  Object.entries(criticalAlerts).forEach(([d,m])=>{if(d===today||d===tomorrow){alerts.push({level:'critical',icon:'🏮',msg:(d===today?'[오늘]':'[내일]')+' '+m})}});
+
+  const box=document.getElementById('alertArea');
+  if(!alerts.length){
+    box.innerHTML='<div class="alert-banner alert-empty"><h3 class="alert-empty">✅ 특별한 알림이 없습니다. 편안한 여행 되세요 🏮</h3></div>';
+    document.getElementById('navDot').style.display='none';
+    return;
+  }
+  alerts.sort((a,b)=>{const r={critical:0,warning:1,info:2};return r[a.level]-r[b.level]});
+  box.innerHTML='<div class="alert-banner"><h3>알림 '+alerts.length+'건</h3><ul>'+alerts.map(a=>'<li>'+a.icon+' '+a.msg+'</li>').join('')+'</ul></div>';
+  document.getElementById('navDot').style.display='inline-block';
+}
+renderAlerts();
+
+// 진행현황
+(function(){
+  const today=ymd(TODAY);
+  const start=DATA.meta.start_iso,end=DATA.meta.end_iso;
+  let dn=0,pct=0,meta='';
+  if(today<start){dn=0;pct=0;meta='출발 D-'+dayDiff(start,today)+' · 준비 중';}
+  else if(today>end){dn=8;pct=100;meta='여행 완료! 무사히 돌아오셨습니다';}
+  else{dn=dayDiff(today,start)+1;pct=Math.round(dn/8*100);
+    const totalChk=DATA.checklists.reduce((s,c)=>s+c.items.length,0);
+    let doneChk=0;DATA.checklists.forEach(c=>c.items.forEach((_,i)=>{if(localStorage.getItem(chkKey(c.date,i))==='1')doneChk++;}));
+    meta='체크리스트 '+doneChk+'/'+totalChk+' 완료 · '+dn+'일째';
+  }
+  document.getElementById('progLabel').textContent='Day '+dn+' / 8';
+  document.getElementById('progPct').textContent=pct+'%';
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progMeta').textContent=meta;
+})();
+
+// 일기 (IndexedDB)
+const J_STORE='journal';
+let mediaRec=null,recChunks=[];
+function openJournalDB(){return new Promise((res,rej)=>{const r=indexedDB.open('cn_trip_data',2);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('journal'))db.createObjectStore('journal',{keyPath:'id',autoIncrement:true});if(!db.objectStoreNames.contains('media'))db.createObjectStore('media',{keyPath:'id',autoIncrement:true});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);})}
+async function jAdd(entry){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readwrite');const s=t.objectStore(J_STORE);const req=s.add(entry);req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error);})}
+async function jAll(){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readonly');const s=t.objectStore(J_STORE);const req=s.getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>rej(req.error);})}
+async function jDel(id){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readwrite');const s=t.objectStore(J_STORE);const req=s.delete(id);req.onsuccess=()=>res();req.onerror=()=>rej(req.error);})}
+function toast(msg,type){const el=document.createElement('div');el.className='toast '+(type||'');el.textContent=msg;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2400);}
+async function refreshStorageStatus(){
+  const arr=await jAll();const lastTs=arr.length?Math.max(...arr.map(e=>e.ts)):null;
+  let usage='';if(navigator.storage&&navigator.storage.estimate){try{const est=await navigator.storage.estimate();const mb=(est.usage/1024/1024).toFixed(1);usage=' · 💾 '+mb+'MB';}catch(_){}}
+  const last=lastTs?new Date(lastTs).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'없음';
+  document.getElementById('journalStatus').innerHTML='📔 일기 <strong>'+arr.length+'개</strong> · 마지막 저장 <strong>'+last+'</strong>'+usage;
+  const gItems=await dbAll();document.getElementById('galleryStatus').innerHTML='📸 사진/영상 <strong>'+gItems.length+'개</strong> 보관 중'+usage;
+}
+async function ensurePersistent(){if(navigator.storage&&navigator.storage.persist){try{const isPer=await navigator.storage.persisted();if(!isPer) await navigator.storage.persist();}catch(_){}}}
+async function saveJournal(){
+  const t=document.getElementById('journalText').value.trim();if(!t){toast('내용을 적어주세요','error');return;}
+  try{await jAdd({ts:Date.now(),text:t,audio:null});document.getElementById('journalText').value='';await renderJournal();await refreshStorageStatus();toast('💗 저장 완료','success');}
+  catch(e){toast('저장 실패: '+e.message,'error');console.error(e);}
+}
+async function renderJournal(){
+  const arr=await jAll();const box=document.getElementById('journalList');
+  if(!arr.length){box.innerHTML='<p style="text-align:center;color:#B89BA5;padding:20px">아직 기록이 없습니다. 첫 하루를 남겨보세요.</p>';return;}
+  arr.sort((a,b)=>b.ts-a.ts);box.innerHTML='';
+  arr.forEach(e=>{
+    const d=new Date(e.ts).toLocaleString('ko-KR');
+    const div=document.createElement('div');div.className='entry';
+    div.innerHTML='<div class="entry-meta">'+d+' <button data-id="'+e.id+'" class="j-del" style="float:right;color:#B84040;font-weight:700;background:none;border:none;cursor:pointer">✕</button></div><div class="entry-text">'+(e.text||'(음성)').replace(/</g,'&lt;')+'</div>';
+    if(e.audio){const audio=document.createElement('audio');audio.controls=true;audio.src=URL.createObjectURL(e.audio);audio.style.width='100%';audio.style.marginTop='6px';div.appendChild(audio);}
+    div.querySelector('.j-del').onclick=async ()=>{if(!confirm('삭제할까요?'))return;await jDel(e.id);await renderJournal();await refreshStorageStatus();toast('삭제됨');};
+    box.appendChild(div);
+  });
+}
+async function toggleRec(){
+  const btn=document.getElementById('recBtn');
+  if(mediaRec&&mediaRec.state==='recording'){mediaRec.stop();return;}
+  try{
+    const s=await navigator.mediaDevices.getUserMedia({audio:true});recChunks=[];mediaRec=new MediaRecorder(s);
+    mediaRec.ondataavailable=ev=>recChunks.push(ev.data);
+    mediaRec.onstop=async ()=>{
+      const blob=new Blob(recChunks,{type:'audio/webm'});const t=document.getElementById('journalText').value.trim();
+      try{await jAdd({ts:Date.now(),text:t,audio:blob});document.getElementById('journalText').value='';await renderJournal();await refreshStorageStatus();toast('🎙️ 저장 ('+(blob.size/1024).toFixed(0)+'KB)','success');}
+      catch(e){toast('녹음 실패: '+e.message,'error');}
+      s.getTracks().forEach(t=>t.stop());btn.textContent='🎙️ 음성녹음 시작';btn.classList.remove('btn-danger');btn.classList.add('btn-ghost');
+    };
+    mediaRec.start();btn.textContent='⏹️ 중지 저장';btn.classList.add('btn-danger');btn.classList.remove('btn-ghost');
+  }catch(e){toast('마이크 권한: '+e.message,'error');}
+}
+async function exportJournal(){
+  const arr=await jAll();let txt='백상진·박현교 부부 환갑 여행 일기 🏮\\n\\n';
+  arr.slice().sort((a,b)=>a.ts-b.ts).forEach(e=>{txt+='[ '+new Date(e.ts).toLocaleString('ko-KR')+' ]\\n'+(e.text||'(음성)')+'\\n\\n';});
+  const b=new Blob([txt],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='china_journal_'+new Date().toISOString().slice(0,10)+'.txt';a.click();toast('💌 내보내기 완료','success');
+}
+async function blobToBase64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(blob);});}
+async function backupAll(){
+  toast('📦 백업 준비...');const journals=await jAll();const media=await dbAll();
+  const journalsExp=[];for(const j of journals){const o={id:j.id,ts:j.ts,text:j.text||''};if(j.audio)o.audio=await blobToBase64(j.audio);journalsExp.push(o);}
+  const mediaExp=[];for(const m of media){mediaExp.push({id:m.id,ts:m.ts,meta:m.meta,blob:await blobToBase64(m.blob)});}
+  const chk={};Object.keys(localStorage).filter(k=>k.startsWith('chk_cn_')).forEach(k=>{chk[k]=localStorage.getItem(k);});
+  const dump={app:'CN-Trip-BSJ-PHK',version:1,exportedAt:Date.now(),journals:journalsExp,media:mediaExp,checklist:chk};
+  const blob=new Blob([JSON.stringify(dump)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='china_backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();toast('📦 백업 완료 ('+(blob.size/1024).toFixed(0)+'KB)','success');
+}
+async function base64ToBlob(b64){const r=await fetch(b64);return await r.blob();}
+async function restoreBackup(ev){
+  const f=ev.target.files[0];if(!f)return;
+  if(!confirm('백업 복원할까요? 기존과 합쳐집니다.'))return;
+  try{
+    const txt=await f.text();const data=JSON.parse(txt);
+    if(data.app!=='CN-Trip-BSJ-PHK')throw new Error('백업 파일 형식이 아닙니다');
+    let n=0;for(const j of (data.journals||[])){const o={ts:j.ts,text:j.text||''};if(j.audio)o.audio=await base64ToBlob(j.audio);await jAdd(o);n++;}
+    let m=0;for(const it of (data.media||[])){await dbAdd(await base64ToBlob(it.blob),it.meta||{});m++;}
+    if(data.checklist)Object.entries(data.checklist).forEach(([k,v])=>localStorage.setItem(k,v));
+    await renderJournal();await renderGallery();await refreshStorageStatus();
+    toast('✅ 복원: 일기 '+n+', 사진 '+m,'success');ev.target.value='';
+  }catch(e){toast('복원 실패: '+e.message,'error');}
+}
+
+// 갤러리 (IndexedDB)
+async function dbAdd(blob,meta){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction('media','readwrite');const s=t.objectStore('media');const req=s.add({blob,meta,ts:Date.now()});req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error);})}
+async function dbAll(){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction('media','readonly');const s=t.objectStore('media');const req=s.getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>rej(req.error);})}
+async function dbDel(id){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction('media','readwrite');const s=t.objectStore('media');const req=s.delete(id);req.onsuccess=()=>res();req.onerror=()=>rej(req.error);})}
+async function handleUpload(ev){
+  const files=ev.target.files;if(!files||!files.length)return;let ok=0,fail=0;
+  for(const f of files){try{await dbAdd(f,{name:f.name,type:f.type,size:f.size});ok++;}catch(e){fail++;console.error(e);}}
+  ev.target.value='';await renderGallery();await refreshStorageStatus();
+  toast('📸 '+ok+'개 저장'+(fail?' / '+fail+'실패':''),fail?'error':'success');
+}
+async function renderGallery(){
+  const box=document.getElementById('galleryGrid');const items=await dbAll();
+  if(!items.length){box.innerHTML='<p style="text-align:center;color:#B89BA5;padding:20px;grid-column:1/-1">아직 사진이 없습니다 📸</p>';return}
+  box.innerHTML='';items.sort((a,b)=>b.ts-a.ts).forEach(it=>{
+    const url=URL.createObjectURL(it.blob);const div=document.createElement('div');div.className='gallery-item';
+    const isVid=(it.meta&&it.meta.type||'').startsWith('video');
+    div.innerHTML=(isVid?'<video src="'+url+'" playsinline muted></video>':'<img loading="lazy" src="'+url+'"/>')+'<button class="g-del" onclick="event.stopPropagation();delMedia('+it.id+')">✕</button>';
+    div.onclick=()=>{if(isVid){const v=div.querySelector('video');v.controls=true;v.play();}else{window.open(url,'_blank');}};
+    box.appendChild(div);
+  });
+}
+async function delMedia(id){if(!confirm('삭제할까요?'))return;await dbDel(id);await renderGallery();await refreshStorageStatus();}
+
+(async ()=>{await ensurePersistent();await renderJournal();await renderGallery();await refreshStorageStatus();})();
+
+// 긴급 연락처
+(function(){
+  const box=document.getElementById('emerGrid');
+  const iconMap={'110':'🚨','120':'🏥','119':'🚒','대사관':'🇰🇷','총영사':'🇰🇷','+82':'🇰🇷','병원':'🏥','아시아나':'✈️','공항':'✈️','판다':'🐼','변검':'🎭','Trip':'🎫','12306':'🚄'};
+  box.innerHTML=DATA.emergency.map(e=>{
+    let ic='☎️';Object.keys(iconMap).forEach(k=>{if(e.phone.includes(k)||e.label.includes(k))ic=iconMap[k]});
+    return '<a class="emer-item" href="tel:'+e.phone.replace(/[^+\d*]/g,'')+'"><div class="emer-icon">'+ic+'</div><div class="emer-info"><div class="emer-label">'+e.label+'</div><div class="emer-phone">'+e.phone+'</div>'+(e.note?'<div class="emer-note">'+e.note+'</div>':'')+'</div></a>';
+  }).join('');
+})();
+
+const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.1});
+document.querySelectorAll('.section').forEach(s=>{s.classList.add('reveal');io.observe(s)});
+
+(function(){const m=location.search.match(/debug=(\d{4}-\d{2}-\d{2})/);if(m){localStorage.setItem('DEBUG_DATE',m[1]);location.reload();}})();
+</script>
+</body>
+</html>
