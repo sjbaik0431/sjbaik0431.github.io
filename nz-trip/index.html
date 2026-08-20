@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#FFEDF3"/>
+<title>민지 · 근철 · 포니의 뉴질랜드 10박 12일 💕</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💗%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Gaegu:wght@400;700&family=Nanum+Pen+Script&family=Quicksand:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink-primary:#FF8FB1;--pink-secondary:#FFB6C9;--pink-accent:#FF5C8A;
+  --pink-blush:#FFD9E4;--pink-mist:#FFEDF3;--pink-pony:#FFC4D6;
+  --white:#FFFFFF;--cream:#FFFAFB;--gray-light:#F7F2F4;
+  --text-primary:#3D2A35;--text-secondary:#7A5C68;--text-muted:#B89BA5;
+  --success:#86C5A8;--warning:#F7C46C;--info:#9DBEDB;--error:#E57A8E;
+  --grad-pink-soft:linear-gradient(135deg,#FFEDF3 0%,#FFD9E4 100%);
+  --grad-pink-warm:linear-gradient(135deg,#FFB6C9 0%,#FF8FB1 100%);
+  --grad-pony:linear-gradient(135deg,#FFC4D6 0%,#FFEDF3 100%);
+  --grad-hero:linear-gradient(180deg,#FFFFFF 0%,#FFEDF3 60%,#FFD9E4 100%);
+  --shadow-soft:0 4px 16px rgba(255,143,177,.12);
+  --shadow-card:0 8px 24px rgba(255,143,177,.15);
+  --shadow-pop:0 12px 32px rgba(255,92,138,.25);
+  --r-sm:12px;--r-md:18px;--r-lg:24px;--r-xl:32px;--r-pill:999px;
+  --font-heading:'Gowun Dodum','Apple SD Gothic Neo',sans-serif;
+  --font-display:'Gaegu',cursive;
+  --font-script:'Nanum Pen Script',cursive;
+  --font-body:'Gowun Dodum','Apple SD Gothic Neo',sans-serif;
+  --font-en:'Quicksand',sans-serif;
+  --font-serif:'DM Serif Display',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--text-primary);line-height:1.7;min-height:100vh;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+a{color:var(--pink-accent);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:641px){.container{padding:0 24px}}
+@media(min-width:1025px){.container{padding:0 32px}}
+
+/* ==== 벚꽃잎 배경 ==== */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.petal{position:absolute;top:-30px;font-size:20px;opacity:.6;animation:fall linear infinite;will-change:transform}
+@keyframes fall{0%{transform:translateY(-10vh) translateX(0) rotate(0);opacity:0}10%{opacity:.7}100%{transform:translateY(110vh) translateX(60px) rotate(360deg);opacity:0}}
+
+/* ==== HERO ==== */
+.hero{position:relative;background:var(--grad-hero);padding:100px 0 60px;text-align:center;overflow:hidden;z-index:1}
+.hero::before{content:"🌸";position:absolute;top:20px;left:10%;font-size:48px;opacity:.5;animation:floaty 6s ease-in-out infinite}
+.hero::after{content:"💗";position:absolute;top:60px;right:15%;font-size:36px;opacity:.6;animation:floaty 7s ease-in-out infinite reverse}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-15px) rotate(5deg)}}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,6vw,56px);color:var(--text-primary);line-height:1.2;margin-bottom:12px}
+.hero .heart{color:var(--pink-accent)}
+.hero .subtitle{font-family:var(--font-script);font-size:clamp(20px,3vw,28px);color:var(--text-secondary);margin:8px 0 20px}
+.hero .dday{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;background:rgba(255,255,255,.9);border-radius:999px;box-shadow:var(--shadow-soft);font-weight:700;color:var(--pink-accent);font-size:17px;backdrop-filter:blur(8px)}
+.hero .pony-chip{display:inline-flex;gap:6px;align-items:center;margin-top:12px;padding:6px 14px;background:var(--pink-pony);border-radius:999px;font-size:13px;color:var(--text-primary);font-family:var(--font-script);font-size:17px}
+
+/* ==== NAV ==== */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--pink-mist);box-shadow:0 2px 12px rgba(255,143,177,.08)}
+.navbar-inner{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.navbar-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:999px;background:var(--pink-mist);color:var(--text-primary);font-size:13px;font-weight:600;border:1px solid transparent;transition:all .2s;min-height:40px;white-space:nowrap}
+.nav-btn:hover{background:var(--pink-blush);transform:translateY(-1px)}
+.nav-btn.active{background:var(--pink-primary);color:#fff;box-shadow:0 4px 12px rgba(255,143,177,.4)}
+.nav-btn .badge-dot{display:inline-block;width:8px;height:8px;background:var(--error);border-radius:50%;margin-left:4px;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+
+/* ==== SECTION ==== */
+.section{padding:48px 0;position:relative;z-index:1}
+.section h2{font-family:var(--font-heading);font-size:clamp(24px,4vw,32px);font-weight:700;color:var(--text-primary);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.section .lead{font-family:var(--font-script);font-size:18px;color:var(--text-secondary);margin-bottom:24px}
+
+/* ==== CARDS ==== */
+.card{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border:1.5px solid var(--pink-blush);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow-card);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-3px) scale(1.005);box-shadow:0 16px 40px rgba(255,143,177,.22)}
+
+/* ==== ALERT BANNER ==== */
+.alert-banner{margin:20px 0;padding:16px 20px;background:linear-gradient(135deg,#FFF4F7 0%,#FFE6ED 100%);border:1.5px solid var(--pink-blush);border-left:4px solid var(--error);border-radius:var(--r-md);box-shadow:var(--shadow-soft)}
+.alert-banner h3{display:flex;align-items:center;gap:8px;font-size:16px;margin-bottom:8px;color:var(--error)}
+.alert-banner ul{list-style:none;font-size:14px;color:var(--text-secondary)}
+.alert-banner li{padding:4px 0;display:flex;gap:6px;align-items:start}
+.alert-banner li::before{content:"🔔";flex-shrink:0}
+.alert-empty{color:var(--success)}
+.alert-empty::before{content:"✅"}
+
+/* ==== PROGRESS ==== */
+.progress-wrap{margin:12px 0 28px;padding:18px 20px;background:var(--grad-pony);border-radius:var(--r-lg);box-shadow:var(--shadow-soft)}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-top strong{font-size:17px;color:var(--text-primary)}
+.progress-pct{font-family:var(--font-en);font-weight:700;color:var(--pink-accent);font-size:20px}
+.progress-bar{height:10px;background:rgba(255,255,255,.6);border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.progress-fill{height:100%;background:var(--grad-pink-warm);border-radius:999px;transition:width .8s}
+.progress-meta{margin-top:6px;font-size:13px;color:var(--text-secondary);font-family:var(--font-script);font-size:16px}
+
+/* ==== TIMELINE HORIZONTAL ==== */
+.timeline-wrap{position:relative}
+.timeline-hscroll{display:flex;gap:12px;overflow-x:auto;padding:8px 4px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.timeline-hscroll::-webkit-scrollbar{height:6px}
+.timeline-hscroll::-webkit-scrollbar-track{background:var(--pink-mist);border-radius:3px}
+.timeline-hscroll::-webkit-scrollbar-thumb{background:var(--pink-secondary);border-radius:3px}
+.day-card{flex:0 0 260px;scroll-snap-align:start;padding:16px;background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md);cursor:pointer;transition:all .3s;position:relative}
+.day-card:hover{background:var(--pink-mist);border-color:var(--pink-primary)}
+.day-card.today{background:var(--grad-pink-soft);border:2px solid var(--pink-accent);box-shadow:var(--shadow-pop)}
+.day-card.past{opacity:.55;background:var(--gray-light)}
+.day-card.future{opacity:.95}
+.day-card .day-num{display:inline-block;padding:3px 10px;background:var(--pink-primary);color:#fff;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:6px}
+.day-card.today .day-num{background:var(--pink-accent);animation:pulse 1.6s infinite}
+.day-card .day-date{font-weight:700;color:var(--text-primary);font-size:14px;margin-bottom:2px}
+.day-card .day-city{font-size:13px;color:var(--pink-accent);font-weight:700;margin-bottom:4px}
+.day-card .day-title{font-size:14px;line-height:1.45;color:var(--text-primary);margin-bottom:6px}
+.day-card .day-tag{display:inline-block;padding:2px 8px;font-size:11px;background:var(--pink-mist);color:var(--text-secondary);border-radius:999px}
+.day-card.today .day-tag{background:var(--pink-accent);color:#fff}
+
+/* ==== PLACE CARD GRID ==== */
+.daysec{margin-bottom:40px}
+.daysec-head{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.daysec-date{font-family:var(--font-en);font-weight:700;color:var(--pink-accent);font-size:18px}
+.daysec-title{font-size:18px;font-weight:700;color:var(--text-primary)}
+.daysec-weather{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--pink-mist);border-radius:999px;font-size:12px;color:var(--text-secondary);font-weight:600}
+.place-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.place-card{background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md);overflow:hidden;cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.place-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-pop);border-color:var(--pink-primary)}
+.place-thumb{aspect-ratio:16/10;background:var(--pink-mist) center/cover no-repeat;position:relative}
+.place-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.25))}
+.place-thumb .chip-city{position:absolute;top:8px;left:8px;z-index:2;padding:3px 10px;background:rgba(255,255,255,.95);border-radius:999px;font-size:11px;font-weight:700;color:var(--pink-accent);backdrop-filter:blur(4px)}
+.place-body{padding:14px;flex:1;display:flex;flex-direction:column}
+.place-name{font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:4px;line-height:1.35}
+.place-en{font-family:var(--font-en);font-size:12px;color:var(--text-muted);margin-bottom:6px}
+.place-intro{font-size:13px;color:var(--text-secondary);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px;flex:1}
+.place-actions{display:flex;gap:6px;flex-wrap:wrap}
+.mini-chip{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;background:var(--pink-mist);color:var(--text-secondary);border-radius:999px;font-size:11px;font-weight:600}
+
+/* ==== MODAL ==== */
+.modal-overlay{position:fixed;inset:0;background:rgba(61,42,53,.6);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px}
+.modal-overlay.open{display:flex;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:var(--r-xl);max-width:720px;width:100%;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3);position:relative;animation:slideUp .3s}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:sticky;top:12px;margin-left:auto;margin-right:12px;z-index:10;width:36px;height:36px;background:#fff;border-radius:50%;font-size:20px;box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;color:var(--text-primary);float:right;top:12px}
+.modal-hero{aspect-ratio:16/9;background:var(--pink-mist) center/cover no-repeat;border-radius:var(--r-xl) var(--r-xl) 0 0}
+.modal-body{padding:24px}
+.modal-body h2{font-size:24px;margin-bottom:4px}
+.modal-body .m-en{font-family:var(--font-en);color:var(--text-muted);margin-bottom:12px}
+.modal-tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 0 16px;border-bottom:1px solid var(--pink-mist);margin-bottom:16px;scrollbar-width:none}
+.modal-tabs::-webkit-scrollbar{display:none}
+.m-tab{padding:8px 14px;border-radius:999px;background:var(--pink-mist);font-size:13px;font-weight:600;color:var(--text-secondary);white-space:nowrap;cursor:pointer}
+.m-tab.active{background:var(--pink-primary);color:#fff}
+.m-panel{display:none}
+.m-panel.active{display:block;animation:fadeIn .2s}
+.m-panel p,.m-panel li{font-size:14.5px;line-height:1.75;color:var(--text-primary)}
+.m-panel h4{color:var(--pink-accent);margin:10px 0 6px;font-size:15px;display:flex;gap:6px;align-items:center}
+.m-panel ul{padding-left:18px;margin:4px 0}
+.info-row{display:flex;gap:8px;padding:8px 0;border-bottom:1px dashed var(--pink-mist);font-size:14px}
+.info-row:last-child{border:none}
+.info-row strong{min-width:80px;color:var(--pink-accent);font-weight:700}
+.yt-embed{position:relative;aspect-ratio:16/9;background:#000;border-radius:var(--r-md);overflow:hidden;margin-bottom:12px}
+.yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ==== VOUCHER ==== */
+.voucher-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.voucher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.voucher{background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md);padding:16px;position:relative;overflow:hidden}
+.voucher::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--pink-primary)}
+.voucher[data-status="not_booked"]::before{background:var(--error)}
+.voucher[data-cat="flight"]::before{background:var(--info)}
+.voucher[data-cat="hotel"]::before{background:var(--pink-primary)}
+.voucher[data-cat="vehicle"]::before{background:var(--warning)}
+.voucher[data-cat="activity"]::before{background:var(--pink-accent)}
+.voucher-cat{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.voucher[data-cat="flight"] .voucher-cat{background:var(--info);color:#fff}
+.voucher[data-cat="hotel"] .voucher-cat{background:var(--pink-primary);color:#fff}
+.voucher[data-cat="vehicle"] .voucher-cat{background:var(--warning);color:#fff}
+.voucher[data-cat="activity"] .voucher-cat{background:var(--pink-accent);color:#fff}
+.voucher-label{font-weight:700;color:var(--text-primary);margin-bottom:4px}
+.voucher-when{font-family:var(--font-en);font-weight:600;color:var(--pink-accent);font-size:13px;margin-bottom:4px}
+.voucher-note{font-size:12.5px;color:var(--text-secondary);line-height:1.5}
+.voucher-status{position:absolute;top:12px;right:12px;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:700}
+.voucher-status.booked{background:var(--success);color:#fff}
+.voucher-status.not_booked{background:var(--error);color:#fff;animation:pulse 1.8s infinite}
+
+/* ==== WEATHER ==== */
+.weather-city-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.wtab{padding:6px 12px;background:var(--pink-mist);border-radius:999px;font-size:12px;font-weight:600;color:var(--text-secondary);cursor:pointer}
+.wtab.active{background:var(--pink-primary);color:#fff}
+.weather-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.wcell{padding:12px 8px;background:#fff;border:1px solid var(--pink-blush);border-radius:var(--r-sm);text-align:center}
+.wcell.today{background:var(--grad-pink-soft);border:1.5px solid var(--pink-accent)}
+.wcell .wday{font-size:11px;color:var(--text-secondary);font-weight:700}
+.wcell .wdate{font-family:var(--font-en);font-weight:600;font-size:13px;color:var(--text-primary);margin:2px 0}
+.wcell .wicon{font-size:24px;margin:4px 0}
+.wcell .wtemp{font-family:var(--font-en);font-weight:700;font-size:14px;color:var(--pink-accent)}
+.wcell .wlow{font-size:11px;color:var(--text-muted)}
+.wcell .wprecip{font-size:10.5px;color:var(--info);margin-top:2px}
+
+/* ==== PLAYLIST ==== */
+.music-item{display:flex;gap:10px;align-items:center;padding:10px 12px;background:#fff;border:1px solid var(--pink-blush);border-radius:var(--r-md);margin-bottom:8px;cursor:pointer;transition:all .2s}
+.music-item:hover{background:var(--pink-mist);transform:translateX(4px)}
+.music-item.playing{background:var(--grad-pink-soft);border-color:var(--pink-accent)}
+.music-play{width:36px;height:36px;border-radius:50%;background:var(--pink-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.music-item.playing .music-play{animation:bounce .8s infinite}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.music-meta{flex:1;min-width:0}
+.music-title{font-weight:700;font-size:14px;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-sub{font-size:12px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#musicPlayer{position:fixed;bottom:0;left:0;right:0;z-index:90;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .3s;padding:12px 16px;display:flex;gap:12px;align-items:center;border-top:2px solid var(--pink-primary)}
+#musicPlayer.show{transform:translateY(0)}
+#musicPlayer .mp-meta{flex:1;min-width:0}
+#musicPlayer .mp-title{font-weight:700;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#musicPlayer .mp-close{font-size:22px;color:var(--text-secondary);padding:4px 8px}
+#ytFrame{width:100%;aspect-ratio:16/9;max-width:320px;background:#000}
+
+/* ==== CHECKLIST ==== */
+.chk-day{margin-bottom:18px;padding:14px 16px;background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md)}
+.chk-day h4{font-size:15px;color:var(--pink-accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.chk-day h4 .chk-count{font-size:11px;padding:2px 8px;background:var(--pink-mist);border-radius:999px;color:var(--text-secondary);font-weight:700}
+.chk-item{display:flex;gap:10px;padding:6px 0;align-items:flex-start;cursor:pointer;user-select:none}
+.chk-item input{flex-shrink:0;width:20px;height:20px;margin-top:2px;accent-color:var(--pink-primary);cursor:pointer}
+.chk-item label{flex:1;font-size:14px;line-height:1.55;cursor:pointer}
+.chk-item input:checked + label{text-decoration:line-through;color:var(--text-muted)}
+
+/* ==== JOURNAL ==== */
+.journal-form{padding:16px;background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md);margin-bottom:16px}
+.journal-form textarea{width:100%;min-height:90px;padding:12px;border:1.5px solid var(--pink-blush);border-radius:var(--r-sm);font-family:inherit;font-size:14px;color:var(--text-primary);background:var(--cream);resize:vertical}
+.journal-form textarea:focus{outline:none;border-color:var(--pink-primary)}
+.journal-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;font-weight:700;min-height:42px;font-size:14px;transition:all .2s}
+.btn-primary{background:var(--pink-primary);color:#fff;box-shadow:var(--shadow-pop)}
+.btn-primary:hover{background:var(--pink-accent);transform:translateY(-2px)}
+.btn-ghost{background:var(--pink-mist);color:var(--text-primary)}
+.btn-ghost:hover{background:var(--pink-blush)}
+.btn-danger{background:#fff;color:var(--error);border:1.5px solid var(--error)}
+.journal-list .entry{padding:12px 14px;background:#fff;border:1px solid var(--pink-blush);border-radius:var(--r-sm);margin-bottom:8px}
+.journal-list .entry-meta{font-size:11px;color:var(--text-muted);margin-bottom:4px;font-family:var(--font-en)}
+.journal-list .entry-text{font-size:14px;line-height:1.6;white-space:pre-wrap}
+.journal-list audio{width:100%;margin-top:6px}
+
+/* ==== GALLERY ==== */
+.gallery-upload{padding:18px;background:var(--grad-pony);border-radius:var(--r-md);text-align:center;border:2px dashed var(--pink-primary);margin-bottom:16px;cursor:pointer}
+.gallery-upload p{font-size:14px;color:var(--text-primary);margin:4px 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.gallery-item{aspect-ratio:1;background:#fff;border:1px solid var(--pink-blush);border-radius:var(--r-sm);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img,.gallery-item video{width:100%;height:100%;object-fit:cover}
+.gallery-item .g-del{position:absolute;top:4px;right:4px;background:rgba(255,255,255,.9);width:26px;height:26px;border-radius:50%;font-size:14px;color:var(--error);display:flex;align-items:center;justify-content:center;font-weight:700}
+
+/* ==== EMERGENCY ==== */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.emer-item{display:flex;gap:10px;align-items:center;padding:12px 14px;background:#fff;border:1.5px solid var(--pink-blush);border-radius:var(--r-md);transition:transform .2s}
+.emer-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+.emer-icon{width:40px;height:40px;background:var(--grad-pink-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.emer-info{flex:1;min-width:0}
+.emer-label{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.emer-phone{font-family:var(--font-en);font-weight:700;color:var(--pink-accent);font-size:15px}
+.emer-note{font-size:11px;color:var(--text-secondary);margin-top:2px}
+
+/* ==== FOOTER ==== */
+.footer{padding:48px 0 120px;text-align:center;background:var(--grad-pony)}
+.footer p{font-family:var(--font-script);font-size:20px;color:var(--text-primary);line-height:1.8}
+.footer .from{margin-top:10px;font-size:15px;color:var(--text-secondary)}
+
+/* ==== UTIL ==== */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 10px;background:var(--pink-accent);color:#fff;border-radius:999px;font-size:11px;font-weight:700}
+.warn{padding:10px 12px;background:#FFF4F7;border-left:3px solid var(--error);border-radius:8px;font-size:13px;color:var(--text-primary);margin:8px 0}
+.spacer{height:24px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+.storage-status{padding:8px 12px;background:var(--pink-mist);border-radius:8px;font-size:12.5px;color:var(--text-secondary);margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.storage-status strong{color:var(--pink-accent);font-weight:700}
+.storage-help{margin-top:8px;padding:8px 10px;background:#FFFAFB;border-left:3px solid var(--pink-secondary);font-size:12px;color:var(--text-secondary);border-radius:4px;line-height:1.5}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text-primary);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;z-index:2000;opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.3);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--error)}
+@media(prefers-reduced-motion:reduce){.petal{display:none}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="container">
+    <h1>민지 · 근철 · <span class="heart">포니</span>의 뉴질랜드</h1>
+    <p class="subtitle">10박 12일 · 2026.4.24 ~ 5.5 💕</p>
+    <div class="dday" id="ddayBadge">⏳</div>
+    <div class="pony-chip">🐾 포니는 지금 16주차, 엄마랑 함께 뉴질랜드 여행 중 💗</div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <button class="nav-btn" onclick="scrollTo2('#alerts')">🔔 알림<span class="badge-dot" id="navDot" style="display:none"></span></button>
+    <button class="nav-btn" onclick="scrollTo2('#progress')">📍 진행현황</button>
+    <button class="nav-btn" onclick="scrollTo2('#timeline')">🗓️ 전체 일정</button>
+    <button class="nav-btn" onclick="scrollTo2('#today')">🌸 오늘</button>
+    <button class="nav-btn" onclick="scrollTo2('#places')">🏔️ 여행지</button>
+    <button class="nav-btn" onclick="scrollTo2('#weather')">☀️ 날씨</button>
+    <button class="nav-btn" onclick="scrollTo2('#vouchers')">🎫 바우처</button>
+    <button class="nav-btn" onclick="scrollTo2('#checklist')">✅ 체크리스트</button>
+    <button class="nav-btn" onclick="scrollTo2('#music')">🎵 음악</button>
+    <button class="nav-btn" onclick="scrollTo2('#journal')">📔 기록</button>
+    <button class="nav-btn" onclick="scrollTo2('#gallery')">📸 앨범</button>
+    <button class="nav-btn" onclick="scrollTo2('#emergency')">☎️ 연락처</button>
+  </div>
+</nav>
+
+<main>
+  <!-- 알림 -->
+  <section id="alerts" class="section" style="padding-top:24px">
+    <div class="container">
+      <h2>🔔 내일/오늘 알림 점검</h2>
+      <div class="lead">전날 자동 점검 + 오늘 꼭 챙길 것을 한곳에 모았어 💕</div>
+      <div id="alertArea"></div>
+    </div>
+  </section>
+
+  <!-- 진행현황 -->
+  <section id="progress" class="section" style="padding-top:0">
+    <div class="container">
+      <h2>📍 여행 진행 현황</h2>
+      <div class="lead">지금까지 함께한 발자국 🐾</div>
+      <div class="progress-wrap">
+        <div class="progress-top"><strong id="progLabel">Day X / 12</strong><span class="progress-pct" id="progPct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+        <div class="progress-meta" id="progMeta">여행이 시작되면 여기에 포니와의 발자국이 쌓여요 💗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 타임라인 -->
+  <section id="timeline" class="section">
+    <div class="container">
+      <h2>🗓️ 전체 일정 타임라인</h2>
+      <div class="lead">카드를 누르면 그날의 일정으로 콕 이동해 🐾</div>
+      <div class="timeline-hscroll" id="timelineScroll"></div>
+    </div>
+  </section>
+
+  <!-- 오늘 -->
+  <section id="today" class="section">
+    <div class="container">
+      <h2>🌸 오늘의 여행</h2>
+      <div class="lead" id="todayLead">오늘은...</div>
+      <div id="todayContent"></div>
+    </div>
+  </section>
+
+  <!-- 여행지 -->
+  <section id="places" class="section">
+    <div class="container">
+      <h2>🏔️ 날짜별 여행지 카드</h2>
+      <div class="lead">카드를 누르면 역사·꿀팁·맛집·음악까지 다 볼 수 있어요 💗</div>
+      <div id="placesArea"></div>
+    </div>
+  </section>
+
+  <!-- 바우처 -->
+  <section id="vouchers" class="section" style="background:var(--grad-pink-soft)">
+    <div class="container">
+      <h2>🎫 바우처 & 예약 모음</h2>
+      <div class="lead">항공·숙소·차량·액티비티 한 곳에 💕 <strong id="voucherSummary"></strong></div>
+      <div class="voucher-filter" id="voucherFilter">
+        <button class="wtab active" data-vf="all">전체</button>
+        <button class="wtab" data-vf="flight">✈️ 항공</button>
+        <button class="wtab" data-vf="hotel">🏨 숙소</button>
+        <button class="wtab" data-vf="vehicle">🚐 캠핑카</button>
+        <button class="wtab" data-vf="activity">🎢 액티비티</button>
+        <button class="wtab" data-vf="not_booked">⚠️ 미예약</button>
+      </div>
+      <div class="voucher-grid" id="voucherGrid"></div>
+    </div>
+  </section>
+
+  <!-- 날씨 -->
+  <section id="weather" class="section">
+    <div class="container">
+      <h2>☀️ 11일치 도시별 날씨 (Live API)</h2>
+      <div class="lead">Open-Meteo 실시간 예보 · 도시별 선택 가능 🌈</div>
+      <div class="weather-city-tabs" id="weatherTabs"></div>
+      <div class="weather-row" id="weatherRow"><div style="padding:20px;grid-column:1/-1;text-align:center;color:var(--text-muted)">☁️ 날씨 데이터 불러오는 중...</div></div>
+    </div>
+  </section>
+
+  <!-- 체크리스트 -->
+  <section id="checklist" class="section" style="background:var(--grad-pony)">
+    <div class="container">
+      <h2>✅ 날짜별 체크리스트</h2>
+      <div class="lead">체크하면 자동 저장 💕 (기기에만 저장됨)</div>
+      <div id="chkArea"></div>
+    </div>
+  </section>
+
+  <!-- 음악 -->
+  <section id="music" class="section">
+    <div class="container">
+      <h2>🎵 여행지 플레이리스트</h2>
+      <div class="lead">각 여행지에 어울리는 음악 · ▶ 누르면 바로 재생</div>
+      <div id="musicList"></div>
+    </div>
+  </section>
+
+  <!-- 기록 -->
+  <section id="journal" class="section" style="background:var(--grad-pink-soft)">
+    <div class="container">
+      <h2>📔 여행 기록 · 일기</h2>
+      <div class="lead">글로도, 음성으로도. 포니를 위해 남겨두자 🐾</div>
+      <div class="journal-form">
+        <div id="journalStatus" class="storage-status">📦 불러오는 중…</div>
+        <textarea id="journalText" placeholder="오늘의 이야기를 여기에 적어볼까? (민지✏️ 근철✏️)"></textarea>
+        <div class="journal-actions">
+          <button class="btn btn-primary" onclick="saveJournal()">💗 저장</button>
+          <button class="btn btn-ghost" id="recBtn" onclick="toggleRec()">🎙️ 음성녹음 시작</button>
+          <button class="btn btn-ghost" onclick="exportJournal()">💌 텍스트 내보내기(.txt)</button>
+          <button class="btn btn-ghost" onclick="backupAll()">📦 전체 백업(.json)</button>
+          <label class="btn btn-ghost" style="cursor:pointer;margin:0">📥 백업 복원<input type="file" accept=".json" style="display:none" onchange="restoreBackup(event)"/></label>
+        </div>
+        <div class="storage-help">💡 기록은 이 기기에만 저장돼요. 안전을 위해 가끔 <strong>전체 백업</strong>을 받아두면 좋아요!</div>
+      </div>
+      <div id="journalList" class="journal-list"></div>
+    </div>
+  </section>
+
+  <!-- 갤러리 -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>📸 사진 · 동영상 아카이브</h2>
+      <div class="lead">사진은 기기에만 저장돼요 💗 (안전)</div>
+      <div id="galleryStatus" class="storage-status">📦 불러오는 중…</div>
+      <label class="gallery-upload" for="galUp">
+        <div style="font-size:40px">📷</div>
+        <p><strong>사진/동영상 업로드</strong></p>
+        <p style="font-size:12px;color:var(--text-secondary)">탭해서 카메라로 찍거나 앨범에서 선택</p>
+        <input type="file" id="galUp" accept="image/*,video/*" multiple style="display:none" onchange="handleUpload(event)"/>
+      </label>
+      <div class="storage-help">💡 사진은 이 기기에만 저장돼요. 위 일기 섹션의 <strong>전체 백업</strong> 버튼으로 사진 메타데이터까지 함께 백업할 수 있어요.</div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- 긴급 연락처 -->
+  <section id="emergency" class="section" style="background:var(--grad-pony)">
+    <div class="container">
+      <h2>☎️ 중요 연락처 · 긴급 안내</h2>
+      <div class="lead">걱정 마, 엄마 아빠가 다 적어뒀어 💗</div>
+      <div class="emer-grid" id="emerGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>사랑하는 우리 딸 민지, 든든한 사위 근철이,<br/>그리고 작고 소중한 포니야 💌</p>
+    <p class="from">— 조심히 다녀오렴, 엄마 아빠가 💕</p>
+  </div>
+</footer>
+
+<!-- 음악 플레이어 -->
+<div id="musicPlayer">
+  <div id="ytFrame"></div>
+  <div class="mp-meta"><div class="mp-title" id="mpTitle">—</div><div id="mpSub" style="font-size:11px;color:var(--text-muted)"></div></div>
+  <button class="mp-close" onclick="stopMusic()">✕</button>
+</div>
+
+<!-- 모달 -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalInner">
+    <button class="modal-close" onclick="closeModal()" aria-label="닫기">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {"places":[{"id":"riverside-market","name_ko":"리버사이드 마켓","name_en":"Riverside Market","city":"크라이스트처치","date":"2026-04-25","intro":"에이번 강변 크라이스트처치 최대 실내 푸드 마켓. 현지 농부·베이커리·카페 30여 매장이 모인 도시의 미식 중심지.","history":"2011 대지진 이후 도심 재건 프로젝트의 상징. 2019년 9월 개장.","korea_connection":"한국 블로거들의 '크라이스트처치 필수 코스'. Dimitri's Greek Food의 수블라키, Grizzly Baked Goods 빵이 인기.","tips":"민지는 디카페인 핫초코와 갓 구운 빵, 오전 10-11시 한적. 2층 좌석이 임산부에게 편함.","recent_info":"2025년 정상 영업. 매주 토요일 아침 라이브 음악.","address":"96 Oxford Terrace, Christchurch Central City","phone":"+64 3 421 1414","website":"https://riverside.nz","nearby_food":["Dimitri's Greek Food","Grizzly Baked Goods","Little High Eatery"],"fun_things":["에이번 강변 산책","옥상 정원 전망","주말 농산물 직판"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Christchurch_Central_City_2019.jpg/1280px-Christchurch_Central_City_2019.jpg"],"coordinates":{"lat":-43.5304,"lng":172.6362},"music":[{"title":"Weather With You","artist":"Crowded House","youtube_id":"Jp-Tia0Y74o"},{"title":"여행","artist":"볼빨간사춘기","youtube_id":"VRzFTrUuMZ4"}]},{"id":"christchurch-botanic-gardens","name_ko":"크라이스트처치 보타닉 가든","name_en":"Christchurch Botanic Gardens","city":"크라이스트처치","date":"2026-04-25","intro":"1863년 조성된 21헥타르 식물원. 에이번 강이 흐르는 도심의 녹지로 '가든 시티'의 상징.","history":"1863년 영국 왕세자 에드워드 결혼 기념 떡갈나무 식재로 시작. 빅토리아 영국식 정원 + 뉴질랜드 자생식물.","korea_connection":"한국 신혼여행객 인기. 4월 말 단풍 절정 인생샷 명소.","tips":"임산부 민지는 평지 Riverside Walk 추천. 휠체어·유모차 동선 좋음. 따뜻한 외투 필수. 무료 입장/주차.","recent_info":"매일 7시-일몰 무료 개방. Visitor Centre 9-17시.","address":"Rolleston Avenue, Christchurch Central City","phone":"+64 3 941 7590","website":"https://ccc.govt.nz/parks-and-gardens/christchurch-botanic-gardens","nearby_food":["Ilex Café","Curator's House","Canterbury Museum Café"],"fun_things":["펀팅 온 더 에이번","장미 정원","공작새"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Christchurch_Botanic_Gardens_01.jpg/1280px-Christchurch_Botanic_Gardens_01.jpg"],"coordinates":{"lat":-43.5309,"lng":172.6207},"music":[{"title":"Clair de Lune","artist":"Debussy","youtube_id":"CvFH_6DNRCY"},{"title":"봄날","artist":"BTS","youtube_id":"xEeFrLSkMm8"}]},{"id":"victoria-square","name_ko":"빅토리아 스퀘어","name_en":"Victoria Square","city":"크라이스트처치","date":"2026-04-25","intro":"빅토리아 여왕 동상·캡틴 쿡 동상·분수대·마오리 Poupou 조각이 어우러진 도심 광장.","history":"1897년 빅토리아 여왕 즉위 60주년 기념 명명. 대지진 후 2014년 재개장.","korea_connection":"리버사이드 마켓과 도보 3분, 한국인 여행객 단골 코스.","tips":"벤치가 많아 민지 잠깐 쉬기 좋음. 오후 2-4시가 평화로움.","recent_info":"2025년 정상 개방. 가을 정원 운치.","address":"Victoria Square, Christchurch","phone":"+64 3 941 8999","website":"https://ccc.govt.nz","nearby_food":["OGB Café","Riverside Market","Town Tonic"],"fun_things":["펀팅 출발지","Poupou 감상","분수 사진"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Victoria_Square%2C_Christchurch%2C_New_Zealand.jpg/1280px-Victoria_Square%2C_Christchurch%2C_New_Zealand.jpg"],"coordinates":{"lat":-43.529,"lng":172.6358},"music":[{"title":"Pokarekare Ana","artist":"Hayley Westenra","youtube_id":"Lhf3LFu_NPo"},{"title":"오랜 날 오랜 밤","artist":"AKMU","youtube_id":"OBNyFPcVL08"}]},{"id":"north-south-holiday-park","name_ko":"노스 사우스 홀리데이 파크 🏨","name_en":"North South Holiday Park","city":"크라이스트처치","date":"2026-04-25","intro":"크라이스트처치 북쪽 4성급 홀리데이 파크. 첫날 숙소(31번 사이트). 체크인 14시 / 체크아웃 10시.","history":"1990년대부터 운영된 독립 4성급 파크.","korea_connection":"한국 캠퍼밴 여행객 단골 첫날 숙소.","tips":"체크인 14시, 슈퍼마켓 차로 5분. 민지 위해 캐빈/모텔 유닛 권장, 야간 따뜻한 히터 확인.","recent_info":"2025년 정상 운영, 가을 시즌 예약 필수.","address":"530 Sawyers Arms Road, Harewood, Christchurch","phone":"+64 3 359 5993","website":"https://northsouth.co.nz","nearby_food":["Northern Crown Restaurant","Bush Inn Centre 푸드코트","Harewood Coffee"],"fun_things":["Antarctic Centre","Willowbank Wildlife Reserve"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Christchurch_suburb_panorama.jpg/1280px-Christchurch_suburb_panorama.jpg"],"coordinates":{"lat":-43.4856,"lng":172.5589},"music":[{"title":"Home","artist":"Edward Sharpe","youtube_id":"FTQbiNvZqaY"},{"title":"밤편지","artist":"아이유","youtube_id":"BzYnNdJhZQw"}]},{"id":"castle-hill","name_ko":"캐슬힐 🏔️","name_en":"Castle Hill","city":"테카포 가는 길","date":"2026-04-26","intro":"거대 석회암 바위가 성벽처럼 흩어진 자연 보호구역. '나니아 연대기' 촬영지.","history":"3천만 년 전 해저 석회암 카르스트 지형. 마오리어 'Kura Tāwhiti'(먼 보물). 1995년 보호구역 지정.","korea_connection":"'나니아 연대기' 성지순례. SNS 인생샷 명소.","tips":"임산부 민지는 주차장 근처 평지만, 바위 클라이밍은 근철만! 강풍/영하 대비 패딩 필수. 무료 입장.","recent_info":"2025년 자유 입장. 보호구역 낙서·드론 금지.","address":"State Highway 73, Castle Hill","phone":"+64 3 595 1444","website":"https://doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/castle-hill-conservation-area","nearby_food":["Flock Hill Lodge","Springfield Store","Sheffield Pie Shop"],"fun_things":["볼더링","사진 촬영","알프스 조망"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Castle_Hill%2C_New_Zealand.jpg/1280px-Castle_Hill%2C_New_Zealand.jpg"],"coordinates":{"lat":-43.2167,"lng":171.7167},"music":[{"title":"The Lion, the Witch and the Wardrobe OST","artist":"Harry Gregson-Williams","youtube_id":"YgFmYJP-ssE"},{"title":"여행","artist":"이한철","youtube_id":"CelN-XwZyYY"}]},{"id":"fairlie-bakehouse","name_ko":"페얼리 베이크하우스 🥧","name_en":"Fairlie Bakehouse","city":"페얼리","date":"2026-04-26","intro":"'뉴질랜드 최고 미트파이' 수상 전설의 파이 가게. 살몬&베이컨/포크벨리 시그니처.","history":"1990년대 후반부터 가족 경영으로 키위 파이 명맥 계승.","korea_connection":"한국 블로거 '남섬 필수 코스'. #페얼리베이크하우스 인스타 태그 다수.","tips":"민지는 잘 익힌 포크벨리/비프 파이 권장(생연어 X). 오후 2시 후 매진 빈번, 10:30 권장.","recent_info":"2025년 6-16:30. 카드 결제 가능.","address":"74 Main Street, Fairlie","phone":"+64 3 685 8526","website":"https://fairliebakehouse.co.nz","nearby_food":["Old Library Café","Three Creeks Restaurant","Eat Deli"],"fun_things":["페얼리 골동품","Mackenzie Country 풍경"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Fairlie_New_Zealand.jpg/1280px-Fairlie_New_Zealand.jpg"],"coordinates":{"lat":-44.1027,"lng":170.8294},"music":[{"title":"Banana Pancakes","artist":"Jack Johnson","youtube_id":"OkyrIRyrRdY"},{"title":"오늘 같은 날엔","artist":"박경","youtube_id":"DtVBCG6ThDk"}]},{"id":"lake-tekapo","name_ko":"테카포 호수 & 선한 목자의 교회 ⛪","name_en":"Lake Tekapo & Church of the Good Shepherd","city":"테카포","date":"2026-04-26","intro":"빙하수 터키석빛 호수 + 1935년 돌교회. 세계 최대 다크 스카이 보호구역.","history":"교회는 매켄지 개척자 기리며 1935년 건립. 제단 뒤 창으로 호수·산이 보이게 설계. 2012년 세계 최초 Gold-tier Dark Sky 보호구역.","korea_connection":"남섬 TOP 3 한국인 명소. 한국 항공사 광고 등장.","tips":"민지는 평지 Footbridge Walk. 4월 밤 0-5도, 담요 필수. 교회 내부는 결혼식/예배 제외 주중 9-17시 무료. Tekapo Springs 임산부 풀 별도 문의.","recent_info":"2025년 교회 내부 주중 9-17시 개방. 외부 사진 24시간.","address":"Pioneer Drive, Lake Tekapo","phone":"+64 3 685 8389","website":"https://churchofthegoodshepherd.org.nz","nearby_food":["Greedy Cow Café","Kohan Japanese","Mackenzies Cafe"],"fun_things":["Mt John Observatory 별 관측","가을 단풍","양치기 개 동상"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Church_of_the_Good_Shepherd_-_Lake_Tekapo.jpg/1280px-Church_of_the_Good_Shepherd_-_Lake_Tekapo.jpg"],"coordinates":{"lat":-44.0049,"lng":170.4773},"music":[{"title":"A Sky Full of Stars","artist":"Coldplay","youtube_id":"VPRjCeoBqrI"},{"title":"별 보러 가자","artist":"적재","youtube_id":"lk-RHfqr7C4"}]},{"id":"greedy-cow-cafe","name_ko":"더 그리디 카우 카페 ☕","name_en":"The Greedy Cow Café","city":"테카포","date":"2026-04-26","intro":"테카포 인기 브런치 카페. 두툼한 팬케이크, 에그 베네딕트, 머핀.","history":"2010년경 오픈, 테카포 마을 카페 문화 중심.","korea_connection":"한국인 테카포 아침 1순위. 가성비·양 후한 에그 베네딕트 인기.","tips":"민지는 스크램블드/프렌치토스트+핫초코. 홀랜다이즈 살균 확인. 9-10시 한적. 디카페인 가능.","recent_info":"2025년 8-15시. 4월 가을 한산.","address":"Main Road, Lake Tekapo","phone":"+64 3 680 6899","website":"https://www.facebook.com/greedycowcafe","nearby_food":["Kohan Japanese","Run 76 Cafe","Reflections"],"fun_things":["식후 호숫가 산책","Tekapo Springs"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Lake_Tekapo_township.jpg/1280px-Lake_Tekapo_township.jpg"],"coordinates":{"lat":-44.0046,"lng":170.4779},"music":[{"title":"Better Together","artist":"Jack Johnson","youtube_id":"u57d4_b_YgI"},{"title":"아침이 좋아","artist":"옥상달빛","youtube_id":"qBUVzpGxJ7E"}]},{"id":"lakes-edge-holiday-park","name_ko":"레이크스 엣지 홀리데이 파크 🏨","name_en":"Lakes Edge Holiday Park","city":"테카포","date":"2026-04-26","intro":"테카포 호수 바로 옆 4성급 홀리데이 파크. 호수·마운트 존 전망 압권. ⚠️ 현장결제 NZD 80 (신용카드 2% 추가).","history":"1980년대부터 운영, 2010년대 대폭 리노베이션.","korea_connection":"한국 캠퍼밴 여행객 테카포 숙소 1순위.","tips":"민지 위해 Lakeview Studio/Self-contained Cabin 추천. 히터 확인. 호수뷰 이른 예약 필수.","recent_info":"2025년 정상 운영, 4월 비수기 예약 여유.","address":"2 Lakeside Drive, Lake Tekapo","phone":"+64 3 680 6825","website":"https://laketekapo-accommodation.co.nz","nearby_food":["Greedy Cow","Mackenzies Cafe","Kohan Japanese"],"fun_things":["호숫가 별 관측","새벽 호수 산책","자전거 트레일"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lake_Tekapo_panorama.jpg/1280px-Lake_Tekapo_panorama.jpg"],"coordinates":{"lat":-44.0023,"lng":170.4814},"music":[{"title":"Holocene","artist":"Bon Iver","youtube_id":"TWcyIpul8OE"},{"title":"잘 자요 우리","artist":"스탠딩 에그","youtube_id":"g9YpUjC9_Vc"}]},{"id":"mint-folk-co","name_ko":"민트 포크 앤 코 ☕","name_en":"Mint Folk & Co","city":"트위젤","date":"2026-04-27","intro":"트위젤 부티크 카페. 정교한 라떼아트+브런치. 마운트쿡 가는 길목.","history":"2010년대 후반 오픈, 빈티지 Folk 컨셉.","korea_connection":"한국 여행자 '마운트쿡 가는 길 필수' 카페.","tips":"민지는 디카페인 라떼/차이라떼+아보카도 토스트. 9-10시 한산.","recent_info":"2025년 8-15시. 일요일 휴무 가능 확인.","address":"6 Market Place, Twizel","phone":"+64 3 435 0966","website":"https://www.facebook.com/mintfolkco","nearby_food":["Poppies Cafe","Shawty's Cafe","High Country Salmon"],"fun_things":["트위젤 마을","라벤더·연어 농장"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Twizel_New_Zealand.jpg/1280px-Twizel_New_Zealand.jpg"],"coordinates":{"lat":-44.2603,"lng":170.1014},"music":[{"title":"Coffee","artist":"Beabadoobee","youtube_id":"I1fSAr7HXAw"},{"title":"커피","artist":"10cm","youtube_id":"4GMNH8MLCRA"}]},{"id":"mt-cook-aoraki","name_ko":"마운트쿡(아오라키) - 화이트 호스 힐 🏔️","name_en":"Mt Cook / Aoraki","city":"마운트쿡","date":"2026-04-27","intro":"뉴질랜드 최고봉 아오라키(3,724m) 발치 DOC 캠프그라운드. 후커 밸리 트랙 출발점.","history":"마오리어 '구름을 뚫는 자'. 힐러리 경 에베레스트 전 훈련지. 1990년 유네스코 세계유산.","korea_connection":"한국 트레커 '뉴질랜드 트레킹 정석' 후커 밸리.","tips":"민지는 첫 출렁다리까지만(30분), 근철 단독 완주. 4월 영하 대비 풀장비. 캠프그라운드 1박 NZD 15. The Hermitage 라운지 핫초코 추천.","recent_info":"2025년 정상 개방. 폭설 시 DOC 확인 필수.","address":"Hooker Valley Road, Mount Cook National Park","phone":"+64 3 435 1186","website":"https://doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park","nearby_food":["Hermitage Hotel","Old Mountaineers' Cafe","Chamois Bar"],"fun_things":["후커 밸리 일부 산책","Tasman Glacier 전망대","DOC 비지터센터"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Aoraki_Mount_Cook.jpg/1280px-Aoraki_Mount_Cook.jpg"],"coordinates":{"lat":-43.727,"lng":170.0964},"music":[{"title":"The Promise","artist":"Secret Garden","youtube_id":"JDCsFr9oVbg"},{"title":"산책","artist":"유재하","youtube_id":"PqKtyHZbQHU"}]},{"id":"lake-pukaki","name_ko":"푸카키 호수 & 연어 🐟","name_en":"Lake Pukaki & High Country Salmon","city":"마운트쿡 가는 길","date":"2026-04-27","intro":"터키석빛 빙하 호수 + 마운트쿡 정면 절경. 한국인 '연어회 성지'.","history":"빙하기 형성 빙하 호수, rock flour로 푸른빛. 마오리어 '머리의 시작'.","korea_connection":"한국 미식가 성지. 연어 1kg NZD 50-60, 즉석 회 떠줌.","tips":"민지는 생연어회 X, 훈제/구운 연어만. Peter's Lookout 평탄 산책 OK. 강풍 대비.","recent_info":"2025년 High Country Salmon 9-18시. 주변 도로 일부 공사.","address":"Lake Pukaki, SH8, Twizel (High Country Salmon: 7475 SH8)","phone":"+64 3 435 0085","website":"https://highcountrysalmon.co.nz","nearby_food":["High Country Salmon","Mt Cook Alpine Salmon","Pukaki Visitor Centre Café"],"fun_things":["Peter's Lookout","연어 농장","마운트쿡 배경샷"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Lake_Pukaki_and_Aoraki_Mount_Cook.jpg/1280px-Lake_Pukaki_and_Aoraki_Mount_Cook.jpg"],"coordinates":{"lat":-44.1833,"lng":170.15},"music":[{"title":"River Flows in You","artist":"Yiruma","youtube_id":"7maJOI3QMu0"},{"title":"푸른 바다의 전설 OST","artist":"린","youtube_id":"bphLwvEcD9I"}]},{"id":"omarama-top10","name_ko":"오마라마 탑 10 홀리데이 파크 🏨","name_en":"Omarama Top 10 Holiday Park","city":"오마라마","date":"2026-04-27","intro":"오마라마 대표 Top 10 체인 홀리데이 파크. 캐빈·모텔·캠퍼밴 사이트.","history":"Top 10은 NZ 50여 지점 메이저 체인. 1990년대 운영.","korea_connection":"한국 캠퍼밴 여행객 마운트쿡-와나카 중간 숙박지.","tips":"민지는 En-suite Cabin/모텔 유닛. 4월 밤 영하 대비. Hot Tubs Omarama 차 5분.","recent_info":"2025년 정상 운영. 4월 비수기 20-30% 저렴.","address":"1 Ostler Road, Omarama","phone":"+64 3 438 9875","website":"https://omarama.top10.co.nz","nearby_food":["Wrinkly Rams(양털쇼)","Loan Star Bar","Oasis Cafe"],"fun_things":["Hot Tubs Omarama","Clay Cliffs","글라이더(근철)"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Omarama_panorama.jpg/1280px-Omarama_panorama.jpg"],"coordinates":{"lat":-44.4869,"lng":169.9694},"music":[{"title":"Stay","artist":"Rihanna","youtube_id":"JF8BRvqGCNs"},{"title":"잠 못 드는 밤","artist":"김건모","youtube_id":"iD8pl8YxROQ"}]},{"id":"hot-tubs-omarama","name_ko":"핫 텁스 오마라마 ♨️ ⚠️ 미예약","name_en":"Hot Tubs Omarama","city":"오마라마","date":"2026-04-27","intro":"프라이빗 야외 우드파이어 핫텁. 별·알프스 감상. ⚠️ 아직 예약 안됨 - 급히 예약 필요!","history":"2008 가족 사업, 뉴질랜드 대표 웰니스.","korea_connection":"한국 신혼/커플 인생샷 명소.","tips":"⚠️ 임산부 일반 38-40도 NO! 36도 이하로 조절 가능 여부 사전 문의 필수. 의사 상담 후. 근철 단독 또는 발만 담그기. NZD 95-120/1.5시간.","recent_info":"2025년 정상 운영. 사전 예약 필수.","address":"29 Omarama Avenue, Omarama","phone":"+64 3 438 9703","website":"https://hottubsomarama.co.nz","nearby_food":["Wrinkly Rams","Loan Star","Oasis Cafe"],"fun_things":["일몰 핫텁","Clay Cliffs","마사지 옵션"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Omarama_landscape.jpg/1280px-Omarama_landscape.jpg"],"coordinates":{"lat":-44.4878,"lng":169.9721},"music":[{"title":"Bloom","artist":"The Paper Kites","youtube_id":"XKfgdkcIUxw"},{"title":"취중진담","artist":"김동률","youtube_id":"jhWBQXtzheQ"}]},{"id":"lake-wanaka-tree","name_ko":"와나카 호수 & #ThatWanakaTree 🌳","name_en":"Lake Wanaka","city":"와나카","date":"2026-04-28","intro":"인스타그램 #ThatWanakaTree로 유명한 외로운 버드나무. 호수 위 상징.","history":"1930년대 울타리 나무가 수위 상승으로 수중. 90년 생명력.","korea_connection":"한국인 와나카 필수 인생샷.","tips":"민지는 일몰(17:30)이 편함. 평탄 산책로. 주차장 도보 5분. 4월 단풍 환상.","recent_info":"2025년 자유 접근. 나무 접촉·드론 금지.","address":"Wanaka Lakefront, Roys Bay","phone":"+64 3 443 1233","website":"https://lakewanaka.co.nz","nearby_food":["Relishes Café","Big Fig","Kai Whakapai"],"fun_things":["호숫가 자전거","Mt Iron Trail(민지 무리X)","라벤더 팜"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/That_Wanaka_Tree.jpg/1280px-That_Wanaka_Tree.jpg"],"coordinates":{"lat":-44.6981,"lng":169.1294},"music":[{"title":"Lost in Japan","artist":"Shawn Mendes","youtube_id":"FYH8DsU2WCk"},{"title":"그날의 너","artist":"유다빈밴드","youtube_id":"wnoeS7Tj2YE"}]},{"id":"wanaka-lavender-farm","name_ko":"와나카 라벤더 팜 🌷","name_en":"Wanaka Lavender Farm","city":"와나카","date":"2026-04-28","intro":"가족 운영 라벤더 농장. 라벤더 아이스크림·알파카 체험.","history":"2009년 설립. 1만 5천 그루 라벤더 12-2월 절정.","korea_connection":"한국 가족·커플 인기. 라벤더 아이스크림·레모네이드.","tips":"민지는 라벤더 향만 즐기기(에센셜오일 직접X). 4월엔 꽃 없지만 카페·동물은 운영. 입장 NZD 10.","recent_info":"2025년 4월 꽃 시즌 아님, 카페/동물 운영.","address":"36 Morris Road, Cardrona Valley, Wanaka","phone":"+64 3 443 6359","website":"https://wanakalavenderfarm.com","nearby_food":["Lavender Cafe","Cardrona Hotel","Relishes Café"],"fun_things":["알파카·양","라벤더 아이스크림","비누 워크숍"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Lavender_field_New_Zealand.jpg/1280px-Lavender_field_New_Zealand.jpg"],"coordinates":{"lat":-44.7333,"lng":169.1833},"music":[{"title":"Lavender's Blue","artist":"Cinderella OST","youtube_id":"GTRtVJUiUYg"},{"title":"라벤더","artist":"이무진","youtube_id":"k6jqx9kZgPM"}]},{"id":"relishes-cafe","name_ko":"릴리쉬스 카페 🍽️","name_en":"Relishes Café","city":"와나카","date":"2026-04-28","intro":"와나카 호수 앞 30년 부티크 카페. 호수뷰 브런치.","history":"1990년대 초 오픈, Slow Food 철학.","korea_connection":"한국 신혼객 와나카 식사 1순위.","tips":"민지는 잘 익힌 살몬/비프. 호수뷰 예약 필수. 디카페인 가능.","recent_info":"2025년 정상 영업. 메인 NZD 30-45.","address":"1/99 Ardmore Street, Wanaka","phone":"+64 3 443 9018","website":"https://relishescafe.co.nz","nearby_food":["Big Fig","Francesca's Italian","Kai Whakapai"],"fun_things":["호숫가 산책","Cinema Paradiso"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Wanaka_lakefront.jpg/1280px-Wanaka_lakefront.jpg"],"coordinates":{"lat":-44.6989,"lng":169.1419},"music":[{"title":"La Vie en Rose","artist":"Édith Piaf","youtube_id":"kFzViYkZAz4"},{"title":"예뻐서 그래","artist":"잔나비","youtube_id":"4LIQch4Egqo"}]},{"id":"sangas-pies","name_ko":"상가스 파이스 🥧","name_en":"Sanga's Pies","city":"와나카","date":"2026-04-28","intro":"와나카 인기 미트파이. 가성비 좋은 점심.","history":"2010년대 중반 오픈, 가족 경영.","korea_connection":"한국 여행 블로거 와나카 파이 추천.","tips":"민지는 잘 익힌 비프/치킨. 매운 메뉴 X. 11시 또는 13:30 추천.","recent_info":"2025년 7-16시. 오후 매진 가능.","address":"Pembroke Mall, 41 Helwick Street, Wanaka","phone":"+64 21 0240 5512","website":"https://www.facebook.com/SangasPies","nearby_food":["Federal Diner","Kai Whakapai","Soulfood Wanaka"],"fun_things":["식후 호숫가","토이 앤 트랜스포트 박물관"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Wanaka_town_centre.jpg/1280px-Wanaka_town_centre.jpg"],"coordinates":{"lat":-44.7,"lng":169.1428},"music":[{"title":"Sunday Best","artist":"Surfaces","youtube_id":"P5_GljoIMIA"},{"title":"Cheese","artist":"수란","youtube_id":"q-tu0tpjoRY"}]},{"id":"jones-family-fruit-stall","name_ko":"존스 패밀리 프루트 스톨 🍎","name_en":"Jones Family Fruit Stall","city":"크롬웰","date":"2026-04-28","intro":"가족 운영 과수원 직판. 갓 수확 사과·배 + Real Fruit Ice Cream.","history":"1960년대부터 4대째 운영. 센트럴 오타고 고당도 과일.","korea_connection":"한국인 '뉴질랜드 사과 인생 맛'. 4월 사과·배 시즌.","tips":"민지는 신선 사과·배·주스 강추(태아 비타민 최고!). Real Fruit Ice Cream 명물. 무료 주차.","recent_info":"2025년 정상 영업. 9-17:30. 4월 가을 사과·배 시즌.","address":"16 Sandflat Road, Cromwell","phone":"+64 3 445 1992","website":"https://jonesfamilyfruitstall.co.nz","nearby_food":["Mrs Jones Fruit Stall","Cromwell Heritage Precinct","Wooing Tree Cellar"],"fun_things":["Real Fruit Ice Cream","와인 드라이브","Bannockburn Sluicings"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Central_Otago_orchards.jpg/1280px-Central_Otago_orchards.jpg"],"coordinates":{"lat":-45.0294,"lng":169.1928},"music":[{"title":"Here Comes the Sun","artist":"The Beatles","youtube_id":"KQetemT1sWc"},{"title":"사과","artist":"윤하","youtube_id":"ZkUW1H_iOWs"}]},{"id":"queenstown-top-10-4-28","name_ko":"퀸스타운 탑 10 홀리데이 파크 🏨","name_en":"Queenstown Top 10 Holiday Park","city":"퀸스타운","date":"2026-04-28","intro":"퀸스타운 시내 도보 10분 홀리데이 파크. 2박 숙소(4/28, 4/29).","history":"1980년대부터 운영. Qualmark Enviro-Gold 인증.","korea_connection":"한국 캠퍼밴 여행객 베이스캠프.","tips":"민지는 모텔 유닛(전용 욕실) 강추. 공용 주방에서 한식 직접 조리 가능.","recent_info":"2025년 모텔 NZD 200-280, 캠퍼밴 NZD 70-90.","address":"54 Robins Road, Queenstown","phone":"+64 3 442 9447","website":"https://www.qtop10.co.nz","nearby_food":["Bespoke Kitchen","Yonder Queenstown","Fergburger"],"fun_things":["호스슈 크릭 산책","BBQ","공용 라운지"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Queenstown_New_Zealand_panorama.jpg/1280px-Queenstown_New_Zealand_panorama.jpg"],"coordinates":{"lat":-45.0289,"lng":168.6628},"music":[{"title":"Home","artist":"Edward Sharpe","youtube_id":"Lnlxmg-EsrE"}]},{"id":"onsen-hot-pools","name_ko":"온센 핫풀 ♨️ (8:45 AM 예약)","name_en":"Onsen Hot Pools","city":"퀸스타운","date":"2026-04-29","intro":"샷오버 협곡 절벽 프라이빗 노천 온센. 개별 시더 욕조 360도 산악 전망.","history":"1990년대 후반 Day 부부가 NZ에 일본 온천 문화 접목.","korea_connection":"한국 신혼/태교 후기 매우 많음. 퀸스타운 인생 온천.","tips":"⚠️⚠️ 민지는 36-37.5도 미온수! 20분 이내, 도착시 '4개월 임신' 반드시 고지, 직원이 사전 미지근 세팅. 찬물 조절 버튼 있음. Mocktail 요청 가능.","recent_info":"2024 말 1h NZD 99-115, 임산부 Cool Tub 옵션. 2025 Eco Spa 오픈. 2-4주 전 예약 필수.","address":"160 Arthurs Point Rd, Arthurs Point, Queenstown","phone":"+64 3 442 5707","website":"https://www.onsen.co.nz","nearby_food":["Gantleys Restaurant","Boat Shed Cafe","Arthurs Point Pub"],"fun_things":["천장 개폐","Shotover Jet 구경","가운 사진","허브티"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Shotover_River_Canyon_Queenstown.jpg/1280px-Shotover_River_Canyon_Queenstown.jpg"],"coordinates":{"lat":-44.9847,"lng":168.7325},"music":[{"title":"Weightless","artist":"Marconi Union","youtube_id":"UfcAVejslrU"},{"title":"River Flows in You","artist":"Yiruma","youtube_id":"7maJOI3QMu0"}]},{"id":"bonnie-jean","name_ko":"보니 진 레스토랑 🍽️","name_en":"Bonnie Jean Restaurant","city":"글레노키","date":"2026-04-29","intro":"글레노키 중심 비스트로. 와카티푸 호수·산 뷰.","history":"옛 마을회관 부지 개조. 스코틀랜드 정착민 여성 이름.","korea_connection":"KBS '걸어서 세계속으로' 뉴질랜드 편 등장.","tips":"민지는 저온살균/익힘 정도 확인. 양고기/연어 그릴 추천. 11:30 도착.","recent_info":"2025년 메인 NZD 28-42, 4월말 사슴/호박 메뉴.","address":"Mull Street, Glenorchy","phone":"+64 3 409 0008","website":"https://www.bonniejean.co.nz","nearby_food":["Glenorchy Cafe","Glenorchy Hotel","Mrs Woolly's"],"fun_things":["호숫가 산책","Mrs Woolly's 쇼핑","영화 세트 분위기"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Glenorchy%2C_New_Zealand.jpg/1280px-Glenorchy%2C_New_Zealand.jpg"],"coordinates":{"lat":-44.8505,"lng":168.3833},"music":[{"title":"Concerning Hobbits (LOTR)","artist":"Howard Shore","youtube_id":"GTSPjkqgQHo"}]},{"id":"real-fruit-icecream-glenorchy","name_ko":"리얼 프룻 아이스크림 글레노키 🍦","name_en":"Real Fruit Ice Cream Glenorchy","city":"글레노키","date":"2026-04-29","intro":"냉동 생과일+바닐라 아이스크림을 즉석 갈아 만드는 NZ 명물.","history":"1980 센트럴 오타고 과수원 농가 디저트에서 기원.","korea_connection":"tvN '꽃보다 청춘 뉴질랜드'에 유사 장면. 한국 여행 TOP3 디저트.","tips":"민지에게 좋음(생과일+우유). 사이즈 크니 나눠 먹기. 베리 믹스 인기. 천천히.","recent_info":"2025년 스몰 NZD 9-10, 라지 13. 4-10월 단축(10-16).","address":"Mull Street, Glenorchy","phone":"+64 3 409 0801","website":"https://www.glenorchyinfocentre.co.nz","nearby_food":["Mrs Woolly's","Glenorchy Cafe","Bonnie Jean"],"fun_things":["호숫가 잔디 아이스크림","오리 사진","부두 산책"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Real_fruit_ice_cream_New_Zealand.jpg/1024px-Real_fruit_ice_cream_New_Zealand.jpg"],"coordinates":{"lat":-44.8501,"lng":168.3838},"music":[{"title":"Banana Pancakes","artist":"Jack Johnson","youtube_id":"OkyrIRyrRdY"}]},{"id":"glenorchy-animal-experience","name_ko":"글레노키 애니멀 익스피리언스 🐑","name_en":"Glenorchy Animal Experience","city":"글레노키","date":"2026-04-29","intro":"알파카·양·말 교감 농장. 산·호수 배경 인생샷.","history":"와카티푸 양 목장 전통, 2010년대 가족 농장.","korea_connection":"tvN '꽃보다 할배 - 뉴질랜드' 알파카 장면! KBS 1박2일도 유사 농장 등장.","tips":"민지 안전/즐거움 액티비티. 접촉 후 손세정(톡소포자충). 임신 양 접촉 피하기. 오전 10-11시 활발.","recent_info":"2025년 성인 NZD 35, 1시간 투어. 인스타 DM·홈페이지 예약.","address":"Priory Road, Glenorchy","phone":"+64 21 222 4587","website":"https://www.glenorchyanimalexperience.com","nearby_food":["Mrs Woolly's","Glenorchy Cafe","Bonnie Jean"],"fun_things":["알파카 셀카","양 우유병 먹이","산악 배경"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Alpacas_New_Zealand.jpg/1280px-Alpacas_New_Zealand.jpg"],"coordinates":{"lat":-44.8556,"lng":168.3919},"music":[{"title":"Here Comes the Sun","artist":"The Beatles","youtube_id":"KQetemT1sWc"}]},{"id":"glenorchy-wharf-shed","name_ko":"글레노키 증기선 창고(빨간 창고) 📸","name_en":"Glenorchy Restored Steamship Depot","city":"글레노키","date":"2026-04-29","intro":"와카티푸 호숫가 빨간 목조 창고. 1900년대 증기선 화물 보관소 복원.","history":"1912년경 SS Earnslaw 양털 운반. 지역 신탁 2010년대 복원.","korea_connection":"한국 인스타·블로그 인생샷. '꽃보다 청춘'·'배틀트립' 등장.","tips":"민지 최적! 평지+사진. 오후 3-5시 황금빛. 바람 차가움 대비.","recent_info":"무료 24시간. 2024 보강 완료.","address":"Glenorchy Wharf, Oban Street, Glenorchy","phone":"+64 3 409 2049","website":"https://www.glenorchyinfocentre.co.nz","nearby_food":["Glenorchy Cafe","Bonnie Jean","Mrs Woolly's"],"fun_things":["빨간벽 인생샷","부두 기둥","피크닉","물수제비"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Glenorchy_Wharf_Shed.jpg/1280px-Glenorchy_Wharf_Shed.jpg"],"coordinates":{"lat":-44.8489,"lng":168.3828},"music":[{"title":"May It Be","artist":"Enya","youtube_id":"tWW5OBLZsj0"}]},{"id":"hotel-st-moritz","name_ko":"호텔 세인트 모리츠 퀸스타운 - MGallery 🏨","name_en":"Hotel St Moritz Queenstown - MGallery","city":"퀸스타운","date":"2026-04-30","intro":"Accor MGallery 4성급 부티크 호텔. 알프스풍 샬레 디자인. 2박 숙소. ⚠️ 현장결제 NZD 296.65.","history":"스위스 생모리츠에서 명칭 유래. 2000년대 초 개관, 2018 MGallery 편입.","korea_connection":"한국 신혼/태교 인기. 조식/어메니티 한국인 입맛 호평.","tips":"체크인시 '임산부 동반' 고지→저층·조용한 방·미니바 알코올 제거. 호수뷰 업그레이드 정중 요청. Lombardi 레스토랑.","recent_info":"2024 리노베이션. 2025 1박 NZD 350-600. 임산부 무료 셔틀.","address":"10-18 Brunswick Street, Queenstown","phone":"+64 3 442 4990","website":"https://all.accor.com/hotel/8847/index.en.shtml","nearby_food":["Lombardi(호텔)","Bespoke Kitchen","Public Kitchen & Bar"],"fun_things":["발코니 아침 차","도서관","임산부 마사지"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Queenstown_New_Zealand_panorama.jpg/1280px-Queenstown_New_Zealand_panorama.jpg"],"coordinates":{"lat":-45.0337,"lng":168.6553},"music":[{"title":"Sunday Morning","artist":"Maroon 5","youtube_id":"CuI2lr9Z_lE"}]},{"id":"deer-park-heights","name_ko":"디어 파크 하이츠 🦌","name_en":"Deer Park Heights","city":"퀸스타운","date":"2026-04-30","intro":"켈빈 하이츠 반도 사유지 공원. 사슴·라마·양 자유 방목. LOTR 촬영지.","history":"1970 사슴 농장. LOTR 두 개의 탑(2002) 로한 난민 행렬.","korea_connection":"한국 LOTR 팬 성지. KBS '걸어서', tvN '꽃보다 청춘' 유사 배경.","tips":"민지 안전 - 차에서 안 내려도 OK. 먹이 주기 시 창 살짝만. 비포장 길 멀미 주의.","recent_info":"2025년 일부 셀프 드라이브 투어만. i-SITE에서 운영 확인 필수.","address":"Peninsula Road, Kelvin Heights, Queenstown","phone":"+64 3 442 4100","website":"https://www.queenstownnz.co.nz","nearby_food":["Wakatipu Grill","Pier Cafe","Bespoke Kitchen"],"fun_things":["사슴 사진","켈빈 하이츠 호수뷰","영화 장면 비교"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Kelvin_Heights_Queenstown.jpg/1280px-Kelvin_Heights_Queenstown.jpg"],"coordinates":{"lat":-45.0556,"lng":168.7},"music":[{"title":"The Riders of Rohan","artist":"Howard Shore","youtube_id":"2k4lDcqoQqA"}]},{"id":"arrowtown","name_ko":"애로우타운 🍁 (한인·중국 광부 역사)","name_en":"Arrowtown","city":"애로우타운","date":"2026-04-30","intro":"1862 골드러시 19세기 광산 마을. 중국인 정착지 + 단풍 거리.","history":"1862 잭 텍스 애로우 강 금 발견. 1865~ 광동 중국 광부. 1881 인두세. 2002 헬렌 클락 총리 공식 사과.","korea_connection":"★ KBS 1박2일 시즌4 뉴질랜드 특집(2019) 방문! 꽃보다 청춘-뉴질랜드 촬영. 한인 가이드 단골.","tips":"민지 최적 - 평지 산책, 카페 풍부. Buckingham Street부터 끝까지 도보 15분. 가을 노란 포플러 절경.","recent_info":"4월 마지막 주 Arrowtown Autumn Festival! 2026 4/22-26. 중국인 정착지 무료, 박물관 NZD 12.","address":"Buckingham Street, Arrowtown","phone":"+64 3 442 1824","website":"https://www.arrowtown.com","nearby_food":["Provisions of Arrowtown","The Chop Shop","Slow Cuts","Patagonia Chocolates"],"fun_things":["단풍 거리","중국 돌집 내부","Lakes District Museum 사금","옛 우체국"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Arrowtown_Buckingham_Street.jpg/1280px-Arrowtown_Buckingham_Street.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Arrowtown_Chinese_Settlement.jpg/1280px-Arrowtown_Chinese_Settlement.jpg"],"coordinates":{"lat":-44.9389,"lng":168.8306},"music":[{"title":"Now We Are Free","artist":"Hans Zimmer & Lisa Gerrard","youtube_id":"pX0F0AL_yQ8"},{"title":"아리랑","artist":"Sumi Jo","youtube_id":"2Zg6S_sJk5Y"}]},{"id":"provisions-of-arrowtown","name_ko":"프로비전스 오브 애로우타운 🥐","name_en":"Provisions of Arrowtown","city":"애로우타운","date":"2026-04-30","intro":"1860 광부 오두막 개조 정원 카페. 수제 잼·스콘 명소.","history":"1860-70 광부 코티지 → 2000대 카페 개조. 벽돌 굴뚝 보존.","korea_connection":"꽃보다 청춘 유사 정원 카페 장면. 인스타 #애로우타운정원카페.","tips":"민지는 디카페인+Sticky Date Pudding 추천. 4월 실내석. 11시 한적.","recent_info":"2025 브런치 NZD 22-28, 스콘세트 14. 가을 사과·배 메뉴.","address":"65 Buckingham Street, Arrowtown","phone":"+64 3 442 0714","website":"https://www.provisionsofarrowtown.com","nearby_food":["The Chop Shop","Patagonia Chocolates","Slow Cuts"],"fun_things":["사과나무 사진","수제 잼 구매","돌담 인증샷"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Arrowtown_Buckingham_Street.jpg/1280px-Arrowtown_Buckingham_Street.jpg"],"coordinates":{"lat":-44.9395,"lng":168.8311},"music":[{"title":"La Vie en Rose","artist":"Édith Piaf","youtube_id":"kFzViYkZAz4"}]},{"id":"ground-control-coffee","name_ko":"그라운드 컨트롤 커피 로스터스 ☕","name_en":"Ground Control Coffee Roasters","city":"퀸스타운","date":"2026-04-30","intro":"퀸스타운/애로우타운 스페셜티 커피. 싱글 오리진 직접 로스팅.","history":"2010 후반 퀸스타운 시작. 보위 'Space Oddity'에서 이름.","korea_connection":"한국 커피 매니아 인스타 후기. 한국 바리스타 일한 시기 있음.","tips":"민지 디카페인 플랫화이트/핫초코/차이라떼. 테이크아웃 산책 추천.","recent_info":"2025 플랫화이트 NZD 5.5-6. 원두 250g NZD 22.","address":"51 Beach Street, Queenstown","phone":"+64 3 442 6622","website":"https://www.groundcontrol.co.nz","nearby_food":["Bespoke Kitchen","Vudu Cafe","Yonder Queenstown"],"fun_things":["원두 기념품","라떼 아트","호숫가 테이크아웃"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Queenstown_New_Zealand_panorama.jpg/1280px-Queenstown_New_Zealand_panorama.jpg"],"coordinates":{"lat":-45.0312,"lng":168.6588},"music":[{"title":"Space Oddity","artist":"David Bowie","youtube_id":"iYYRH4apXDo"}]},{"id":"cookie-time","name_ko":"쿠키타임 퀸스타운 🍪","name_en":"Cookie Time Queenstown","city":"퀸스타운","date":"2026-04-30","intro":"NZ 국민 쿠키 Cookie Time 플래그십. 갓 구운 따뜻 쿠키·셰이크. 해피아워 18-19시!","history":"1983 크라이스트처치 Mayston 형제 창업. 퀸스타운 매장 2010 오픈.","korea_connection":"★ 꽃보다 청춘·1박2일 뉴질랜드 편 방영! 한국인 필수 코스.","tips":"해피아워 18-19시 NZD 1.50 쿠키! 민지 적당량 초코쿠키 OK. 빨간 쿠키맨 필수 사진!","recent_info":"2025 해피아워 Warm Cookie NZD 1.50, Shake 12. 한정판 Kiwi Pavlova.","address":"18 Camp Street, Queenstown","phone":"+64 3 442 2891","website":"https://www.cookietime.co.nz","nearby_food":["Fergburger","Patagonia Chocolates","Mrs Ferg Gelateria"],"fun_things":["쿠키맨 사진","DIY 쿠키박스","포니 선물용 쿠키","한정판 머그"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Queenstown_New_Zealand_panorama.jpg/1280px-Queenstown_New_Zealand_panorama.jpg"],"coordinates":{"lat":-45.0319,"lng":168.6614},"music":[{"title":"Sugar","artist":"Maroon 5","youtube_id":"09R8_2nJtjg"},{"title":"Cookie Jar","artist":"Gym Class Heroes","youtube_id":"rwcMFW2QM9w"}]},{"id":"fergburger","name_ko":"퍼그버거 🍔","name_en":"Fergburger","city":"퀸스타운","date":"2026-05-01","intro":"'세계 베스트 버거 TOP 10' 전설의 수제버거. 줄 서는 글로벌 명소.","history":"2001 작은 부스 시작. CNN, Lonely Planet 선정.","korea_connection":"★ KBS 1박2일 + 꽃보다 청춘 모두 방영! 한국인 1순위.","tips":"민지는 Well Done 필수. Ferg Deluxe/Sweet Bambi 인기. ★ Fergburger 앱 온라인 주문으로 줄 안 서기! 11시/17시 한적.","recent_info":"2024 NZD 14-22. 2025 모바일 앱. Fergbaker·Mrs Ferg Gelateria 자매점.","address":"42 Shotover Street, Queenstown","phone":"+64 3 441 1232","website":"https://www.fergburger.com","nearby_food":["Fergbaker","Mrs Ferg Gelateria","Cookie Time"],"fun_things":["간판 인증샷","호숫가 피크닉","Fergbaker 파이"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Fergburger_Queenstown.jpg/1024px-Fergburger_Queenstown.jpg"],"coordinates":{"lat":-45.0316,"lng":168.6606},"music":[{"title":"Hungry Like the Wolf","artist":"Duran Duran","youtube_id":"oZv2oioRNBM"}]},{"id":"skyline-queenstown","name_ko":"스카이라인 퀸스타운 🚠","name_en":"Skyline Queenstown","city":"퀸스타운","date":"2026-05-01","intro":"남반구 최고 가파른 곤돌라 + 산악 루지. 봅스 피크 정상 360도 파노라마.","history":"1967 NZ 최초 곤돌라. 1985 루지 추가. 2024 신규 캐빈 교체.","korea_connection":"★ tvN '꽃보다 청춘 - 뉴질랜드' 메인 에피소드! KBS 1박2일.","tips":"⚠️ 민지는 루지 절대 금지! 곤돌라만 타고 전망대·카페. 근철만 루지 5회권 NZD 60. Stratosfare 뷔페 임산부에게 좋음. 일몰(17시) 추천.","recent_info":"2024 신규 곤돌라. 2025 왕복 NZD 60, 곤돌라+루지5 NZD 95. 온라인 10% 할인.","address":"Brecon Street, Queenstown","phone":"+64 3 441 0101","website":"https://www.skyline.co.nz/queenstown","nearby_food":["Stratosfare(정상 뷔페)","Market Kitchen","Fergburger"],"fun_things":["정상 뷰","별 관측 투어","마오리 공연","근철 루지 영상"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Queenstown_view_from_Skyline.jpg/1280px-Queenstown_view_from_Skyline.jpg"],"coordinates":{"lat":-45.0289,"lng":168.6553},"music":[{"title":"On Top of the World","artist":"Imagine Dragons","youtube_id":"w5tWYmIOWGk"}]},{"id":"queenstown-bay-beach","name_ko":"퀸스타운 베이 비치 🌊","name_en":"Queenstown Bay Beach","city":"퀸스타운","date":"2026-05-01","intro":"시내 앞 와카티푸 자갈 해변. TSS Earnslaw 증기선 배경 인생샷.","history":"마오리 전설 거인 Matau 호수. 19세기 골드러시 보트 정박지.","korea_connection":"꽃보다 청춘·1박2일 단골 배경. 한국인 산책 1순위.","tips":"민지 최고 - 평지+벤치+햇볕. 4월 말 바람 차가움. TSS Earnslaw 시간(10,12,14,16,18시) 사진. 발 담그기 X.","recent_info":"무료. 2025 산책로 데크 보강.","address":"Marine Parade, Queenstown","phone":"+64 3 442 4100","website":"https://www.queenstownnz.co.nz","nearby_food":["Public Kitchen & Bar","Pier Restaurant","Patagonia Chocolates"],"fun_things":["오리 먹이","TSS Earnslaw 사진","잔디 피크닉","포니 영상 편지"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Queenstown_Bay.jpg/1280px-Queenstown_Bay.jpg"],"coordinates":{"lat":-45.0345,"lng":168.6561},"music":[{"title":"Bay","artist":"Yiruma","youtube_id":"i7HnqPDH7Pk"},{"title":"Better Together","artist":"Jack Johnson","youtube_id":"u57d4_b_YgI"}]},{"id":"aj-hackett-bungy","name_ko":"AJ 해켓 번지점프 🪢","name_en":"AJ Hackett Bungy - Kawarau Bridge","city":"퀸스타운","date":"2026-05-01","intro":"1988 세계 최초 상업 번지점프 발상지. 43m 카와라우 강 협곡.","history":"1988.11.12 AJ Hackett·Henry van Asch 최초 상업 번지. 1880 다리.","korea_connection":"★ 1박2일 뉴질랜드 특집 명장면! 꽃보다 청춘.","tips":"⚠️⚠️ 민지 절대 금지! 근철 점프만. 민지는 견학 데크 무료(영상 촬영). 체중 35-127kg 건강 양호. 사전 예약 필수. 'I did it' 티셔츠.","recent_info":"2025 카와라우 번지 NZD 255, 사진+영상 70. 무료 견학.","address":"State Highway 6, Gibbston, RD 1, Queenstown","phone":"+64 3 450 1300","website":"https://www.bungy.co.nz","nearby_food":["Gibbston Valley Winery(무알코올 포도주스)","Kinross Cottages","Peregrine Wines"],"fun_things":["근철 점프·민지 영상","Gibbston 와인 밸리","Argonath 근처"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Kawarau_Bridge_Bungy.jpg/1280px-Kawarau_Bridge_Bungy.jpg"],"coordinates":{"lat":-45.0247,"lng":168.8903},"music":[{"title":"Free Fallin'","artist":"Tom Petty","youtube_id":"1lWJXDG2i0A"},{"title":"Jump","artist":"Van Halen","youtube_id":"SwYN7mTi6HM"}]},{"id":"i-love-kimchi","name_ko":"I Love Kimchi Korean Restaurant 🇰🇷","name_en":"I Love Kimchi Korean Restaurant","city":"퀸스타운","date":"2026-05-01","intro":"퀸스타운 한국 식당. 김치찌개·된장찌개·삼겹살·비빔밥. 향수병 특효약!","history":"2010 후반 한인 부부 가족 운영. 퀸스타운 한인 사랑방.","korea_connection":"한국 그 자체. 사장님·직원 한국어. 워홀러·교민 단골.","tips":"민지 영양식 최고 - 미역국·된장찌개·돌솥비빔밥(달걀 완전익힘). 매운 건 약하게. 보리차·식혜 무료. 18-19시 저녁.","recent_info":"2025 메인 NZD 22-32. 도시락 추가. 설·추석 특별 메뉴.","address":"Shop 9, O'Connells Pavilion, 30 Camp Street, Queenstown","phone":"+64 3 441 8881","website":"구글맵 'I Love Kimchi Queenstown'","nearby_food":["Cookie Time","Fergburger","Patagonia Chocolates"],"fun_things":["포니 한식 영양","사장님과 한국어","한국 식재료 구매"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Queenstown_New_Zealand_panorama.jpg/1280px-Queenstown_New_Zealand_panorama.jpg"],"coordinates":{"lat":-45.0322,"lng":168.6618},"music":[{"title":"Home","artist":"Roy Kim","youtube_id":"Ny5kE0eOhsk"},{"title":"이상하게 좋아","artist":"윤하","youtube_id":"lZHYf7Wke6w"}]},{"id":"pullman-auckland","name_ko":"풀만 오클랜드 호텔 앤 아파트먼트 🏨","name_en":"Pullman Auckland Hotel & Apartments","city":"오클랜드","date":"2026-05-02","intro":"Accor Pullman 5성급. 오클랜드 CBD 최상단, 앨버트 파크 옆. 3박 숙소(5/2~5/4). ⚠️ 현장결제 NZD 414.80.","history":"Accor 럭셔리 브랜드. 오클랜드 다운타운 랜드마크.","korea_connection":"한국인 오클랜드 5성급 1순위. 한국 OTA 할인율 좋음.","tips":"체크인시 'pregnant guest' 알리면 조용한 층·엘리베이터 근처. 아파트먼트룸이 간단 조리 가능, 입덧에 편함. 사우나/스팀 피하기, 실내 수영장 OK.","recent_info":"2025 로비·객실 리노. 2026 1박 NZD 280-380. 24H 룸서비스.","address":"Cnr Princes Street & Waterloo Quadrant, Auckland CBD","phone":"+64 9 353 1000","website":"https://www.pullmanauckland.co.nz","nearby_food":["Tapestry Dining(호텔 27층)","Federal Delicatessen","Amano"],"fun_things":["앨버트 파크","오클랜드 아트 갤러리","25층 인피니티풀"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Auckland_CBD_skyline.jpg/1280px-Auckland_CBD_skyline.jpg"],"coordinates":{"lat":-36.8506,"lng":174.7689},"music":[{"title":"Pure Shores","artist":"All Saints","youtube_id":"MIThlCkNJSE"}]},{"id":"odd-saint","name_ko":"오드 세인트 ☕","name_en":"Odd Saint","city":"오클랜드","date":"2026-05-02","intro":"오클랜드 CBD 핫 브런치. 인더스트리얼+우드톤 트렌디.","history":"2018 오픈. Odd 메뉴+Saint 컨셉.","korea_connection":"한국 여행 블로그·#오클랜드브런치 단골.","tips":"민지 추천: 디카페인 플랫화이트, 트러플 머쉬룸 토스트, 그래놀라. 날달걀 X. 8시 또는 11시 후.","recent_info":"2025 비건/임산부 메뉴. 브런치 NZD 22-28.","address":"25 Drake Street, Freemans Bay, Auckland","phone":"+64 9 376 3320","website":"https://www.oddsaint.co.nz","nearby_food":["Williams Eatery","Major Sprout","Bestie"],"fun_things":["Victoria Park","Wynyard Quarter","Ponsonby Road"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Flat_white_coffee.jpg/1024px-Flat_white_coffee.jpg"],"coordinates":{"lat":-36.8489,"lng":174.7572},"music":[{"title":"Banana Pancakes","artist":"Jack Johnson","youtube_id":"OkyrIRyrRdc"}]},{"id":"chancery-square","name_ko":"챈서리 스퀘어 🏛️","name_en":"Chancery Square","city":"오클랜드","date":"2026-05-02","intro":"CBD 부티크 쇼핑/다이닝 광장. 유럽풍 피아자 분위기.","history":"1990 초 CBD 재개발. 유럽 piazza 영감.","korea_connection":"한국 가이드북 산책 코스. 한식당 'Han'·'Hansik' 도보 10분.","tips":"민지 평지 워킹. Espresso Workshop 디카페인. 토요일 오후 라이브 가끔.","recent_info":"2025 리노. Chancery Lane Bistro 2025말 오픈.","address":"Chancery Square, O'Connell Street, Auckland CBD","phone":"N/A","website":"https://www.heartofthecity.co.nz","nearby_food":["Espresso Workshop","Gusto at the Grand","The Grove"],"fun_things":["High Street 빈티지","St Patrick's Cathedral","Vulcan Lane"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/High_Street_Auckland.jpg/1024px-High_Street_Auckland.jpg"],"coordinates":{"lat":-36.8479,"lng":174.7679},"music":[{"title":"La Vie en Rose","artist":"Édith Piaf","youtube_id":"kFzViYkZAz4"}]},{"id":"bestie-cafe","name_ko":"베스티 카페 🥞","name_en":"Bestie Cafe","city":"오클랜드","date":"2026-05-03","intro":"오클랜드 베스트 브런치. St Kevin's Arcade, 마이어스 파크 뷰. 중동/지중해 크리에이티브 브런치.","history":"Plum Cafe 자매. 2015경 K Road 오픈. Federal St 지점 추가.","korea_connection":"한국 인플루언서 브이로그 자주 등장. Turkish Eggs 인스타.","tips":"민지 추천: 슈크슈카(완전익힘 요청), 그래놀라, 후무스 플래터. 8시 오픈 직후. 워크인만.","recent_info":"2025 Best Cafe Auckland 메트로 어워드 후보. 2026 임산부 옵션.","address":"St Kevin's Arcade, 183 Karangahape Road, Auckland","phone":"+64 9 974 1414","website":"https://www.bestiecafe.co.nz","nearby_food":["Coco's Cantina","Hello Beasty","Pici"],"fun_things":["Myers Park 마오리 조각","K Road 빈티지","St Kevin's Arcade"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Turkish_eggs.jpg/1024px-Turkish_eggs.jpg"],"coordinates":{"lat":-36.8589,"lng":174.7619},"music":[{"title":"Sunday Best","artist":"Surfaces","youtube_id":"97x7XIqUS0E"}]},{"id":"sky-tower","name_ko":"스카이타워 🗼","name_en":"Sky Tower","city":"오클랜드","date":"2026-05-03","intro":"남반구 최고 자립 건축(328m). 51층 전망대+60층 스카이덱. 오클랜드 랜드마크.","history":"1997 완공 30개월 공사 NZD 7,500만. SkyCity 콤플렉스.","korea_connection":"한국 필수 코스. '꽃보다 청춘' 뉴질랜드 편. 한국어 팸플릿.","tips":"⚠️ 민지는 전망대만! SkyJump/SkyWalk 절대 금지. Glass Floor는 OK. 일몰 30분 전(17:00경). 360 Dining 회전 레스토랑 예약시 입장료 면제.","recent_info":"2025 LED 라이트쇼 업그레이드. 2026 성인 NZD 35. KLOOK 15-20% 할인.","address":"Victoria Street West & Federal Street, Auckland CBD","phone":"+64 9 363 6000","website":"https://www.skycityauckland.co.nz/sky-tower","nearby_food":["Sugar Club(53층)","Depot Eatery","Federal Delicatessen 24H"],"fun_things":["Glass Floor","LED 라이트쇼","기념품 샵"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sky_Tower_Auckland_2010.jpg/800px-Sky_Tower_Auckland_2010.jpg"],"coordinates":{"lat":-36.8485,"lng":174.7625},"music":[{"title":"Top of the World","artist":"Carpenters","youtube_id":"nSSAYDIRXCw"},{"title":"Sky Full of Stars","artist":"Coldplay","youtube_id":"VPRjCeoBqrI"}]},{"id":"commercial-bay","name_ko":"커머셜 베이 🛍️","name_en":"Commercial Bay","city":"오클랜드","date":"2026-05-03","intro":"워터프론트 프리미엄 쇼핑 100+ 매장·30+ 레스토랑. Harbour Eats 푸드코트.","history":"2020 오픈. 페리 터미널 직결. NZD 10억+ 재개발.","korea_connection":"한국인 시내 쇼핑 1순위. Karen Walker·WORLD NZ 디자이너.","tips":"민지 좋음 - 평지+에스컬레이터. Harbour Eats 넓고 다양. 일요일 10시 오픈. GST 환급 확인.","recent_info":"2025 5주년 luxury wing 확장. 2026 NZ 디자이너 팝업.","address":"7 Queen Street, Auckland CBD","phone":"+64 9 304 0700","website":"https://www.commercialbay.co.nz","nearby_food":["Ahi(Harbour Eats)","Kingi(Britomart)","Hello Beasty"],"fun_things":["Britomart 외관","데번포트 페리(왕복 30분)","Queen's Wharf"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Auckland_Britomart.jpg/1280px-Auckland_Britomart.jpg"],"coordinates":{"lat":-36.8443,"lng":174.7672},"music":[{"title":"Pure Shores","artist":"All Saints","youtube_id":"MIThlCkNJSE"}]},{"id":"westfield-newmarket","name_ko":"웨스트필드 뉴마켓 🥾 어그 쇼핑","name_en":"Westfield Newmarket","city":"오클랜드","date":"2026-05-03","intro":"NZ 최대 쇼핑몰 230+ 매장. ★ 어그(UGG) 부츠 쇼핑 성지. David Jones 백화점.","history":"1970 277 Newmarket → 2019 NZD 7.9억 리뉴얼. Scentre Group.","korea_connection":"★ 한국 어그 쇼핑 성지! 정품 50-60% 가격, GST 환급. Mecca/Sephora K-뷰티.","tips":"민지 사이즈+0.5 추천(부종). 포니 베이비 어그 첫 선물! David Jones G층 임산부/유아 용품. 영수증·여권 환급 필수.","recent_info":"2025 Level 3 Dining Quarter 17개. 2026 K-뷰티 팝업.","address":"277 Broadway, Newmarket, Auckland","phone":"+64 9 978 5050","website":"https://www.westfield.co.nz/newmarket","nearby_food":["Major Tom","Teed Street Larder","Augustus Bistro"],"fun_things":["Teed Street 부티크","Olympic Pool","Newmarket Train"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Westfield_Newmarket.jpg/1280px-Westfield_Newmarket.jpg"],"coordinates":{"lat":-36.8702,"lng":174.7773},"music":[{"title":"Material Girl","artist":"Madonna","youtube_id":"6p-lDYPR2P8"}]},{"id":"hobbiton","name_ko":"호비튼 영화 세트장 🧙","name_en":"Hobbiton Movie Set","city":"Matamata","date":"2026-05-04","intro":"LOTR/호빗 샤이어 실제 세트. 44개 호빗 굴, Bag End, Green Dragon Inn. 일정 08:00 숙소 미팅.","history":"1998 피터 잭슨 항공 정찰로 알렉산더 농장 발견. 2011 호빗 영구 세트 재건설. 2012 일반 개방.","korea_connection":"★ 절대 성지! 한국어 오디오 가이드(2023~). MBC·tvN 다수 방영.","tips":"민지 매우 추천 - 평지 2km 1.5-2h. 굴 입구 낮음 주의. Green Dragon Inn 무알콜 진저비어! 5월 단풍 가장 예쁨. 오전 9-10시 첫 투어. NZD 120, 당일 매진 주의. 사전 예약 필수.","recent_info":"2025 Second Breakfast Tour NZD 230. 2026 호빗 15주년 이벤트. Hobbit Pie 한정.","address":"501 Buckland Road, Hinuera, Matamata","phone":"+64 7 888 1505","website":"https://www.hobbitontours.com","nearby_food":["Shire's Rest Cafe","Redoubt Bar","Workman's Cafe"],"fun_things":["Green Dragon 진저비어","Bag End 단체샷","호빗 가든","One Ring 반지","포니 인사"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Hobbiton_Movie_Set%2C_Matamata%2C_New_Zealand.jpg/1280px-Hobbiton_Movie_Set%2C_Matamata%2C_New_Zealand.jpg"],"coordinates":{"lat":-37.8722,"lng":175.6831},"music":[{"title":"Concerning Hobbits (LOTR)","artist":"Howard Shore","youtube_id":"C1TpZldQGnk"},{"title":"The Shire","artist":"LOTR Soundtrack","youtube_id":"HGZBkYqdFFo"}]},{"id":"waitomo","name_ko":"와이토모 반딧불 동굴 ✨","name_en":"Waitomo Glowworm Caves","city":"Waitomo","date":"2026-05-04","intro":"수천 마리 글로웜(Arachnocampa luminosa) 별빛 천장. 3천만 년 석회암 동굴 보트 투어. 11시 시작.","history":"1887 마오리 추장 Tane Tinorau·Fred Mace 탐험. 1889 개방 130년.","korea_connection":"한국 북섬 필수 코스. KBS·tvN 다수. 한국어 팸플릿.","tips":"⚠️ 메인 보트 투어 OK. 블랙워터 래프팅/튜빙/어드벤처 케이브 절대 금지! 동굴 16도 자켓. 사진 금지. 보트 승하차 미끄럼 주의.","recent_info":"2025 비지터 센터 리뉴. 2026 Family-Friendly 투어. 성인 NZD 65.","address":"39 Waitomo Village Road, Waitomo Caves","phone":"+64 7 878 8228","website":"https://www.waitomo.com","nearby_food":["Huhu Cafe","Waitomo Homestead","The Roadhouse"],"fun_things":["Ruakuri Cave(휠체어 OK)","Waitomo Walkway","포니 반딧불 모빌"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Waitomo_Glowworm_Caves.jpg/1280px-Waitomo_Glowworm_Caves.jpg"],"coordinates":{"lat":-38.2614,"lng":175.1042},"music":[{"title":"Only Time","artist":"Enya","youtube_id":"nzeoQT3Z9XA"},{"title":"May It Be (LOTR)","artist":"Enya","youtube_id":"tEx-tBCM0Xw"}]},{"id":"occidental","name_ko":"디 옥시덴탈 (벨기에 홍합) 🦪","name_en":"The Occidental Belgian Beer Cafe","city":"오클랜드","date":"2026-05-04","intro":"1870 빅토리아 건물 정통 벨기에 비어 카페. NZ 그린립 홍합+감자튀김.","history":"1870 Occidental Hotel 건물. 2001 벨기에 리뉴얼. Vulcan Lane 역사 골목.","korea_connection":"한국 미식가 NZ 홍합 단골.","tips":"⚠️ 민지는 완전 익힌 홍합만(입 활짝 벌어진 것). 알코올 소스 X → Tomato Provençale/Garlic Cream. 무알콜 Stella 0.0. 투어 후 19-20시 저녁. 주말 예약.","recent_info":"2025 임산부/비건. 2026 5월 NZ Mussel Festival 한정! 1kg+frites NZD 38.","address":"6-8 Vulcan Lane, Auckland CBD","phone":"+64 9 300 6226","website":"https://www.occidentalbar.co.nz","nearby_food":["Vulcan Lane 펍","Britomart Country Club","Cassia(인디안)"],"fun_things":["Vulcan Lane 빅토리아","High Street 빈티지","Britomart 야간"],"image_urls":["https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Vulcan_Lane_Auckland.jpg/1024px-Vulcan_Lane_Auckland.jpg"],"coordinates":{"lat":-36.8467,"lng":174.7672},"music":[{"title":"La Mer","artist":"Charles Trenet","youtube_id":"y8PrNnDlJOY"}]}],"itinerary":[{"date":"2026-04-24","day_num":1,"day_label":"Day 1","city":"오클랜드 도착","title":"인천 출발","summary":"KE411 인천 18:00 → 오클랜드 08:35","places_ids":[]},{"date":"2026-04-25","day_num":2,"day_label":"Day 2","city":"오클랜드 → 크라이스트처치","title":"🛬 크라이스트처치 도착 · 캠퍼밴 픽업 · 도심 탐방","summary":"NZ539 오클랜드 12:00 → 크라이스트처치 13:25 · 캠핑카 픽업 · North South Holiday Park","places_ids":["riverside-market","christchurch-botanic-gardens","victoria-square","north-south-holiday-park"]},{"date":"2026-04-26","day_num":3,"day_label":"Day 3","city":"테카포","title":"🏔️ 캐슬힐 · 페얼리 파이 · 테카포 호수","summary":"Woolworths Northlands(마트) → 캐슬힐 → Fairlie Bakehouse → 테카포 호수 & 피쉬앤칩스 → Lakes Edge Holiday Park → The Greedy Cow Café","places_ids":["castle-hill","fairlie-bakehouse","lake-tekapo","greedy-cow-cafe","lakes-edge-holiday-park"]},{"date":"2026-04-27","day_num":4,"day_label":"Day 4","city":"마운트쿡·오마라마","title":"🏔️ 아오라키 & 푸카키 연어","summary":"Mint Folk → 마운트쿡(화이트 호스 힐) → 푸카키 호수 & 연어 → Four Square Mackenzie → Omarama Top 10 → Hot Tubs Omarama","places_ids":["mint-folk-co","mt-cook-aoraki","lake-pukaki","omarama-top10","hot-tubs-omarama"]},{"date":"2026-04-28","day_num":5,"day_label":"Day 5","city":"와나카 → 퀸스타운","title":"🌳 #ThatWanakaTree · 라벤더 팜","summary":"와나카 호수 → 와나카 라벤더 팜 → New World Wanaka → Relishes Café → Sanga's Pies → Jones Family Fruit Stall → Queenstown Top 10","places_ids":["lake-wanaka-tree","wanaka-lavender-farm","relishes-cafe","sangas-pies","jones-family-fruit-stall","queenstown-top-10-4-28"]},{"date":"2026-04-29","day_num":6,"day_label":"Day 6","city":"퀸스타운·글레노키","title":"♨️ 온센핫풀 · 글레노키 빨간 창고","summary":"온센핫풀(8:45) → Bonnie Jean → Real Fruit Ice Cream → Glenorchy Animal Experience → 글레노키 증기선 창고 → Queenstown Top 10","places_ids":["onsen-hot-pools","bonnie-jean","real-fruit-icecream-glenorchy","glenorchy-animal-experience","glenorchy-wharf-shed"]},{"date":"2026-04-30","day_num":7,"day_label":"Day 7","city":"퀸스타운·애로우타운","title":"🍁 애로우타운 단풍 · 쿠키타임 해피아워","summary":"St Moritz 짐 맡기기 → Deer Park Heights → 애로우타운 → Provisions 브런치 → Ground Control → 캠핑카 반납(공항) → 퀸스타운 시내 → 쿠키타임(18-19시 해피아워)","places_ids":["hotel-st-moritz","deer-park-heights","arrowtown","provisions-of-arrowtown","ground-control-coffee","cookie-time"]},{"date":"2026-05-01","day_num":8,"day_label":"Day 8","city":"퀸스타운","title":"🍔 퍼그버거 · 스카이라인 · 번지점프","summary":"Fergburger → Skyline 곤돌라/루지 → 퀸스타운 베이 비치 → 시내관광 → AJ Hackett Bungy → I Love Kimchi","places_ids":["fergburger","skyline-queenstown","queenstown-bay-beach","aj-hackett-bungy","i-love-kimchi"]},{"date":"2026-05-02","day_num":9,"day_label":"Day 9","city":"퀸스타운 → 오클랜드","title":"✈️ 오클랜드 이동 · 워터프론트","summary":"odd saint 브런치 → 퀸스타운 시내관광 → 퀸스타운 공항(13시까지) → NZ634(15:05→16:55) → Sky Drive/슈퍼셔틀 → 풀만 오클랜드 → 챈서리 스퀘어","places_ids":["odd-saint","pullman-auckland","chancery-square"]},{"date":"2026-05-03","day_num":10,"day_label":"Day 10","city":"오클랜드","title":"🗼 스카이타워 · 어그 쇼핑","summary":"Bestie Cafe → Sky Tower → Commercial Bay → Westfield Newmarket(어그)","places_ids":["bestie-cafe","sky-tower","commercial-bay","westfield-newmarket"]},{"date":"2026-05-04","day_num":11,"day_label":"Day 11","city":"호비튼·와이토모","title":"🧙 호비튼 & 반딧불 동굴","summary":"08:00 숙소 미팅 → 와이토모 이동(2.5h) → 11:00 와이토모 투어(1h) → 12:00 호비튼 이동 → 13:00 호빗튼 카페 식사 → 14:30 호비튼 투어(2.5h) → 17:00 오클랜드 복귀 → 19:00 The Occidental 홍합","places_ids":["waitomo","hobbiton","occidental"]},{"date":"2026-05-05","day_num":12,"day_label":"Day 12","city":"오클랜드 → 인천","title":"🛫 귀국","summary":"Sky Drive/슈퍼셔틀 → 오클랜드 공항(08:30까지) → KE412(11:05 → 인천 20:20)","places_ids":[]}],"reservations":[{"category":"flight","label":"KE411 인천 → 오클랜드","when":"4/24 18:00 → 4/25 08:35","status":"booked","note":"대한항공"},{"category":"flight","label":"NZ539 오클랜드 → 크라이스트처치","when":"4/25 12:00 → 13:25","status":"booked","note":"에어뉴질랜드 국내선"},{"category":"flight","label":"NZ634 퀸스타운 → 오클랜드","when":"5/2 15:05 → 16:55","status":"booked","note":"에어뉴질랜드 국내선"},{"category":"flight","label":"KE412 오클랜드 → 인천","when":"5/5 11:05 → 20:20","status":"booked","note":"대한항공, 오전 08:30까지 공항 도착"},{"category":"hotel","label":"North South Holiday Park (크라이스트처치)","when":"4/25 체크인 14:00 / 4/26 체크아웃 10:00 · 1박 · Site 31","status":"booked","note":"사이트 31번 지정"},{"category":"hotel","label":"Lakes Edge Holiday Park (테카포)","when":"4/26 · 1박","status":"booked","note":"⚠️ 현장결제 NZD 80 (신용카드 2% 추가)"},{"category":"hotel","label":"Omarama Top 10 Holiday Park","when":"4/27 · 1박","status":"booked","note":""},{"category":"hotel","label":"Queenstown Top 10 Holiday Park","when":"4/28, 4/29 · 2박","status":"booked","note":""},{"category":"hotel","label":"Hotel St Moritz Queenstown - MGallery","when":"4/30, 5/1 · 2박","status":"booked","note":"⚠️ 현장결제 NZD 296.65"},{"category":"hotel","label":"Pullman Auckland Hotel & Apartments","when":"5/2, 5/3, 5/4 · 3박","status":"booked","note":"⚠️ 현장결제 NZD 414.80"},{"category":"vehicle","label":"캠핑카 픽업 (크라이스트처치 공항 국내선 1·2번 게이트 밖)","when":"4/25 13:25 도착 후 픽업","status":"booked","note":"여권·국제면허증·한국면허증 지참. 748 NZD 현장 추가 결제 필요"},{"category":"vehicle","label":"캠핑카 반납 (퀸스타운 공항)","when":"4/30","status":"booked","note":"반납 후 공항 paperplus에서 Bee 카드 구입 (퀸즈타운 시내 버스 1번 Fernhill행)"},{"category":"activity","label":"온센 핫풀 프라이빗 배스","when":"4/29 08:45 AM","status":"booked","note":"⚠️ 임산부 수온 36-37.5도 사전 요청 필수"},{"category":"activity","label":"Hot Tubs Omarama","when":"4/27","status":"not_booked","note":"⚠️ 아직 예약 안 함! 임산부 입욕 가능 여부 확인 후 예약"},{"category":"activity","label":"호비튼 & 와이토모 반딧불 동굴 투어","when":"5/4 08:00 숙소 미팅","status":"booked","note":"숙소→와이토모(2.5h)→11시 와이토모(1h)→12시 호비튼→13시 카페→14:30 호비튼(2.5h)→17시 오클랜드 이동→19시 도착"}],"checklists":[{"date":"2026-04-25","items":["체크아웃 공항 짐 정리: 여권·국제면허증·한국면허증·카드","국내선 NZ539 게이트 확인 (오클랜드 공항)","크라이스트처치 공항 도착 후 캠핑카 픽업(국내선 1·2번 게이트 밖)","캠핑카 인수 점검: 연료 · 물탱크 · 가스 · 전기 · 침구","Woolworths/Countdown 장보기(생수·과일·간단 조식)","숙소 체크인 14시 이후(North South Site 31)"]},{"date":"2026-04-26","items":["숙소 체크아웃 10시 전","마트 Woolworths Northlands 필요 물품 구매","캐슬힐 방문 - 민지는 평지만, 근철 바위 구경","페얼리 베이크하우스 오전 10:30 전 도착 (핫템 매진 방지)","테카포 Lakes Edge Holiday Park 현장결제 NZD 80 준비 (현금/카드 2% 추가)","밤 별 관측 준비 (담요·핫초코·따뜻한 옷)"]},{"date":"2026-04-27","items":["Hot Tubs Omarama 예약 확인/예약 (임산부 수온 문의)","Mint Folk 브런치 (디카페인 선택)","마운트쿡 DOC 비지터센터 트랙 상태 확인","푸카키 High Country Salmon 방문 (훈제 연어 구매)","Omarama Top 10 체크인"]},{"date":"2026-04-28","items":["와나카 #ThatWanakaTree 일몰 17:30 전 도착","라벤더 팜 입장 NZD 10 준비","Relishes Café 저녁 예약 재확인 (호수뷰 요청)","Jones Family Fruit Stall 신선 과일 구매","퀸스타운 Top 10 체크인 (모텔 유닛 확인)"]},{"date":"2026-04-29","items":["온센핫풀 08:45 출발 시간 준수","★ 온센 프런트에 '임신 4개월' 고지 필수 (36-37.5도 미온수 세팅)","글레노키 이동(퀸스타운→차 45분)","Bonnie Jean 11:30 도착 (임산부 메뉴 확인)","빨간 창고 오후 3-5시 황금빛 사진"]},{"date":"2026-04-30","items":["★ Hotel St Moritz 체크인 시 '임산부 동반' 고지 - 조용한 층·미니바 알코올 제거","현장결제 NZD 296.65 준비 (2박)","★ 캠핑카 반납 퀸스타운 공항 (연료 만땅·청소)","공항 paperplus에서 Bee 카드 구입","Deer Park Heights 운영 여부 i-SITE 확인","애로우타운 단풍 거리 도보 산책 (Autumn Festival 직후)","쿠키타임 18-19시 해피아워 맞춰 방문 (NZD 1.50 쿠키)"]},{"date":"2026-05-01","items":["Fergburger 앱으로 사전 주문(줄 스킵)","⚠️ Skyline 루지: 근철만 탑승. 민지는 곤돌라+전망대·카페","⚠️ AJ Hackett Bungy: 근철 단독 점프. 민지는 견학 데크(무료)에서 영상 촬영","I Love Kimchi 저녁 예약(향수병 치유)"]},{"date":"2026-05-02","items":["Hotel St Moritz 체크아웃 10시 전","odd saint 브런치 (8시 오픈 직후)","퀸스타운 공항 13시까지 (NZ634 15:05)","오클랜드 도착 16:55 - SuperShuttle 추천 (도어투도어, 민지 편함)","★ Pullman 체크인 'pregnant guest' 고지 - 저층·엘리베이터 근처","현장결제 NZD 414.80 준비 (3박)"]},{"date":"2026-05-03","items":["Bestie Cafe 8시 오픈 직후 도착 (대기 회피)","Sky Tower 일몰 30분 전(17:00경) 입장","⚠️ SkyJump/SkyWalk 절대 금지 (민지)","Commercial Bay Harbour Eats 푸드코트","Westfield Newmarket - UGG 본인 사이즈+0.5 (부종), 포니 베이비 어그 선물"]},{"date":"2026-05-04","items":["08:00 숙소 미팅 - 호비튼·와이토모 투어 집합","★ Green Dragon Inn 무알콜 진저비어 (임산부 OK)","⚠️ 블랙워터 래프팅/튜빙 절대 금지 - 메인 보트 투어만","동굴 16도 대비 가벼운 자켓","19:00 The Occidental 저녁 예약 (완전 익힌 홍합 + 무알콜 옵션)"]},{"date":"2026-05-05","items":["Pullman 체크아웃","SuperShuttle 사전 예약 (오전)","오클랜드 공항 08:30까지 도착","GST 환급 (공항 Tax Refund 창구)","KE412 11:05 탑승","집 도착 확인 연락 ♡"]}],"emergency":[{"label":"뉴질랜드 긴급 (경찰·소방·구급)","phone":"111","note":"경찰(Police)·소방(Fire)·구급(Ambulance) 통합"},{"label":"주 뉴질랜드 대한민국 대사관 (웰링턴)","phone":"+64 4 473 9073","note":"영사 긴급: +64 27 4533 868"},{"label":"주 오클랜드 분관","phone":"+64 9 379 0818","note":"주말·긴급: +64 27 527 1115"},{"label":"대한민국 영사 콜센터 (24H)","phone":"+82 2 3210 0404","note":"서울 직통, 수신자 부담 가능"},{"label":"Healthline (NZ 24H 건강 상담)","phone":"0800 611 116","note":"영어, 임산부 상담 가능"},{"label":"관광객 긴급 (*555 교통)","phone":"*555","note":"도로 사고·비긴급 시 휴대폰 무료"},{"label":"Hotel St Moritz Queenstown","phone":"+64 3 442 4990","note":"MGallery, 4/30-5/2"},{"label":"Pullman Auckland","phone":"+64 9 353 1000","note":"5/2-5/5"},{"label":"온센 핫풀 (Onsen)","phone":"+64 3 442 5707","note":"4/29 08:45 예약, 임산부 온도 조정"},{"label":"Hobbiton 투어","phone":"+64 7 888 1505","note":"5/4"},{"label":"Waitomo Caves","phone":"+64 7 878 8228","note":"5/4"},{"label":"AJ Hackett Bungy","phone":"+64 3 450 1300","note":"5/1"},{"label":"Skyline Queenstown","phone":"+64 3 441 0101","note":"5/1"},{"label":"Hot Tubs Omarama (미예약)","phone":"+64 3 438 9703","note":"★ 예약 필요"}],"meta":{"title":"민지 · 근철 · 포니의 뉴질랜드 10박 12일 💕","subtitle":"2026. 4. 24 ~ 5. 5","today_iso":"2026-04-25","start_iso":"2026-04-24","end_iso":"2026-05-05","pony_weeks":16}};
+const TODAY = new Date();  // 시스템 시간 기반. 2026-04-25 테스트 시 localStorage DEBUG_DATE 사용 가능
+const DEBUG_DATE = localStorage.getItem('DEBUG_DATE');
+if(DEBUG_DATE) TODAY.setTime(new Date(DEBUG_DATE).getTime());
+function ymd(d){return d.toISOString().slice(0,10)}
+function dayDiff(a,b){return Math.round((new Date(a)-new Date(b))/86400000)}
+function scrollTo2(s){const el=document.querySelector(s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// ==== 벚꽃잎 ====
+(function(){const p=document.getElementById('petals');const emojis=['🌸','💗','🌷','✨','💕'];for(let i=0;i<14;i++){const e=document.createElement('div');e.className='petal';e.textContent=emojis[i%emojis.length];e.style.left=(Math.random()*100)+'vw';e.style.fontSize=(14+Math.random()*14)+'px';e.style.animationDuration=(12+Math.random()*18)+'s';e.style.animationDelay=(Math.random()*8)+'s';p.appendChild(e)}})();
+
+// ==== D-day ====
+(function(){const today=ymd(TODAY);const start=DATA.meta.start_iso;const end=DATA.meta.end_iso;const el=document.getElementById('ddayBadge');let txt='';
+  if(today<start){txt='⏳ D-'+dayDiff(start,today)+' · 여행 출발 준비 중';}
+  else if(today>end){txt='🏠 여행 완료! · 집에 잘 도착했니? 💕';}
+  else{const dn=dayDiff(today,start)+1;txt='🐾 여행 '+dn+'일째 / 12일';}
+  el.textContent=txt;
+})();
+
+// ==== 타임라인 ====
+(function(){
+  const today=ymd(TODAY);
+  const box=document.getElementById('timelineScroll');
+  DATA.itinerary.forEach(d=>{
+    let cls='day-card';
+    if(d.date<today) cls+=' past';
+    else if(d.date===today) cls+=' today';
+    else cls+=' future';
+    const weatherTag=['오늘','내일'][dayDiff(d.date,today)]||'';
+    const el=document.createElement('div');
+    el.className=cls;
+    el.innerHTML='<span class="day-num">'+d.day_label+'</span>'+
+      '<div class="day-date">'+d.date.slice(5).replace('-','/')+'</div>'+
+      '<div class="day-city">'+d.city+'</div>'+
+      '<div class="day-title">'+d.title+'</div>'+
+      (weatherTag?'<span class="day-tag">'+weatherTag+'</span>':'');
+    el.onclick=()=>{scrollTo2('#day-'+d.date);};
+    box.appendChild(el);
+  });
+  // 오늘 카드 중앙으로
+  setTimeout(()=>{const t=box.querySelector('.today');if(t)t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})},300);
+})();
+
+// ==== 오늘 ====
+(function(){
+  const today=ymd(TODAY);
+  const d=DATA.itinerary.find(x=>x.date===today);
+  const lead=document.getElementById('todayLead');
+  const box=document.getElementById('todayContent');
+  if(!d){
+    if(today<DATA.meta.start_iso){
+      lead.textContent='✈️ 아직 여행이 시작되지 않았어요. 출발 준비를 도와드릴게요!';
+      box.innerHTML='<div class="card" style="background:var(--grad-pink-soft)"><h3 style="font-size:18px;margin-bottom:8px">출발 카운트다운 ⏳</h3><p>D-'+dayDiff(DATA.meta.start_iso,today)+' · 인천 → 오클랜드 (KE411, 18:00)</p></div>';
+    }else{
+      lead.textContent='🏠 여행이 무사히 마무리됐어요 💕';
+      box.innerHTML='<div class="card" style="background:var(--grad-pony)"><h3 style="font-size:18px">집에 도착했니?</h3><p>사진·음성·글 기록을 다시 꺼내 보며 추억을 곱씹어 보자 💗</p></div>';
+    }
+    return;
+  }
+  lead.textContent='오늘은 '+d.city+' · '+d.title;
+  const placeIds=d.places_ids||[];
+  const places=placeIds.map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+  let html='<div class="card" style="background:var(--grad-pink-soft);margin-bottom:16px"><p style="font-size:15px">'+d.summary+'</p></div>';
+  if(places.length){html+='<div class="place-grid">';places.forEach(p=>{html+=placeCardHTML(p);});html+='</div>';}
+  box.innerHTML=html;
+  box.querySelectorAll('.place-card').forEach(el=>{
+    el.onclick=()=>openPlace(el.dataset.id);
+  });
+})();
+
+// ==== 여행지 카드 ====
+function placeCardHTML(p){
+  const img=p.image_urls&&p.image_urls[0]?p.image_urls[0]:'';
+  return '<div class="place-card" data-id="'+p.id+'">'+
+    '<div class="place-thumb" style="background-image:url(\''+img+'\')"><span class="chip-city">📍 '+p.city+'</span></div>'+
+    '<div class="place-body">'+
+      '<div class="place-name">'+p.name_ko+'</div>'+
+      '<div class="place-en">'+(p.name_en||'')+'</div>'+
+      '<div class="place-intro">'+(p.intro||'')+'</div>'+
+      '<div class="place-actions"><span class="mini-chip">📅 '+p.date.slice(5).replace('-','/')+'</span>'+
+      (p.music&&p.music.length?'<span class="mini-chip">🎵 '+p.music.length+'곡</span>':'')+
+      '<span class="mini-chip">👆 탭하여 열기</span></div>'+
+    '</div></div>';
+}
+
+(function(){
+  const today=ymd(TODAY);
+  const area=document.getElementById('placesArea');
+  let html='';
+  DATA.itinerary.forEach(d=>{
+    const places=(d.places_ids||[]).map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+    if(!places.length) return;
+    html+='<div class="daysec" id="day-'+d.date+'">';
+    html+='<div class="daysec-head">';
+    html+='<span class="daysec-date">'+d.date.slice(5).replace('-','/')+'</span>';
+    html+='<span class="daysec-title">'+d.title+'</span>';
+    html+='<span class="daysec-weather" data-city="'+d.city+'" data-date="'+d.date+'">⛅</span>';
+    if(d.date===today) html+='<span class="badge">TODAY</span>';
+    html+='</div><div class="place-grid">';
+    places.forEach(p=>{html+=placeCardHTML(p)});
+    html+='</div></div>';
+  });
+  area.innerHTML=html;
+  area.querySelectorAll('.place-card').forEach(el=>{el.onclick=()=>openPlace(el.dataset.id)});
+})();
+
+// ==== 모달 ====
+function openPlace(id){
+  const p=DATA.places.find(x=>x.id===id);
+  if(!p) return;
+  const img=p.image_urls&&p.image_urls[0]?p.image_urls[0]:'';
+  let html='<div class="modal-hero" style="background-image:url(\''+img+'\')"></div>';
+  html+='<div class="modal-body">';
+  html+='<h2>'+p.name_ko+'</h2><div class="m-en">'+(p.name_en||'')+' · '+p.city+' · '+p.date.slice(5).replace('-','/')+'</div>';
+  html+='<div class="modal-tabs">';
+  ['소개','역사/의미','한국과 인연','꿀팁','맛집','음악','정보'].forEach((t,i)=>{
+    html+='<button class="m-tab'+(i===0?' active':'')+'" data-t="'+i+'">'+t+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="m-panel active" data-p="0">';
+  html+='<p>'+(p.intro||'')+'</p>';
+  if(p.recent_info){html+='<h4>📰 최근 정보</h4><p>'+p.recent_info+'</p>';}
+  if(p.fun_things&&p.fun_things.length){html+='<h4>✨ 소소한 즐길거리</h4><ul>';p.fun_things.forEach(f=>html+='<li>'+f+'</li>');html+='</ul>';}
+  html+='</div>';
+  html+='<div class="m-panel" data-p="1"><p>'+(p.history||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="2"><p>'+(p.korea_connection||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="3"><div class="warn">👩‍🦰 임산부 민지를 위한 배려</div><p>'+(p.tips||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="4">';
+  if(p.nearby_food&&p.nearby_food.length){html+='<h4>🍽️ 주변 맛집</h4><ul>';p.nearby_food.forEach(f=>html+='<li>'+f+'</li>');html+='</ul>';}
+  else html+='<p>—</p>';
+  html+='</div>';
+  html+='<div class="m-panel" data-p="5">';
+  if(p.music&&p.music.length){p.music.forEach(m=>{html+='<div class="music-item" onclick="playMusic(\''+m.youtube_id+'\',\''+(m.title||'').replace(/\'/g,'&#39;')+'\',\''+(m.artist||'').replace(/\'/g,'&#39;')+'\')"><div class="music-play">▶</div><div class="music-meta"><div class="music-title">'+m.title+'</div><div class="music-sub">'+(m.artist||'')+'</div></div></div>'});}
+  else html+='<p>—</p>';
+  html+='</div>';
+  html+='<div class="m-panel" data-p="6">';
+  html+='<div class="info-row"><strong>📍 주소</strong><span>'+(p.address||'—')+'</span></div>';
+  html+='<div class="info-row"><strong>☎️ 전화</strong><span>'+(p.phone?'<a href="tel:'+p.phone.replace(/[^+\d]/g,'')+'">'+p.phone+'</a>':'—')+'</span></div>';
+  html+='<div class="info-row"><strong>🌐 웹사이트</strong><span>'+(p.website?'<a href="'+p.website+'" target="_blank" rel="noopener">바로가기 ↗</a>':'—')+'</span></div>';
+  if(p.coordinates){html+='<div class="info-row"><strong>🗺️ 지도</strong><span><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+p.coordinates.lat+','+p.coordinates.lng+'">Google Maps ↗</a></span></div>';}
+  html+='</div>';
+  html+='</div>';
+  document.getElementById('modalContent').innerHTML=html;
+  const mc=document.getElementById('modalContent');
+  mc.querySelectorAll('.m-tab').forEach(t=>{
+    t.onclick=()=>{
+      mc.querySelectorAll('.m-tab').forEach(x=>x.classList.remove('active'));
+      mc.querySelectorAll('.m-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      mc.querySelector('.m-panel[data-p="'+t.dataset.t+'"]').classList.add('active');
+    };
+  });
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+
+// ==== 음악 ====
+function playMusic(id,title,artist){
+  document.getElementById('ytFrame').innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+  document.getElementById('mpTitle').textContent=title;
+  document.getElementById('mpSub').textContent=artist||'';
+  document.getElementById('musicPlayer').classList.add('show');
+}
+function stopMusic(){document.getElementById('musicPlayer').classList.remove('show');document.getElementById('ytFrame').innerHTML=''}
+// 전체 음악 리스트
+(function(){
+  const box=document.getElementById('musicList');
+  let html='';
+  DATA.itinerary.forEach(d=>{
+    const places=(d.places_ids||[]).map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+    const musics=[];
+    places.forEach(p=>(p.music||[]).forEach(m=>musics.push({...m,place:p.name_ko})));
+    if(!musics.length) return;
+    html+='<div class="card" style="margin-bottom:16px"><h3 style="font-size:16px;margin-bottom:10px">🎶 '+d.date.slice(5).replace('-','/')+' · '+d.city+'</h3>';
+    musics.forEach(m=>{
+      html+='<div class="music-item" onclick="playMusic(\''+m.youtube_id+'\',\''+(m.title||'').replace(/\'/g,'&#39;')+'\',\''+(m.artist||'').replace(/\'/g,'&#39;')+'\')">';
+      html+='<div class="music-play">▶</div>';
+      html+='<div class="music-meta"><div class="music-title">'+m.title+'</div><div class="music-sub">'+(m.artist||'')+' · '+m.place+'</div></div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  box.innerHTML=html;
+})();
+
+// ==== 바우처 ====
+(function(){
+  const grid=document.getElementById('voucherGrid');
+  const catLabel={flight:'✈️ 항공',hotel:'🏨 숙소',vehicle:'🚐 차량',activity:'🎢 액티비티'};
+  function render(filter){
+    let list=DATA.reservations;
+    if(filter==='not_booked') list=list.filter(r=>r.status==='not_booked');
+    else if(filter!=='all') list=list.filter(r=>r.category===filter);
+    grid.innerHTML=list.map(r=>'<div class="voucher" data-cat="'+r.category+'" data-status="'+r.status+'">'+
+      '<span class="voucher-status '+r.status+'">'+(r.status==='booked'?'예약완료':'⚠️ 미예약')+'</span>'+
+      '<div class="voucher-cat">'+catLabel[r.category]+'</div>'+
+      '<div class="voucher-label">'+r.label+'</div>'+
+      '<div class="voucher-when">🕒 '+r.when+'</div>'+
+      (r.note?'<div class="voucher-note">'+r.note+'</div>':'')+
+    '</div>').join('');
+  }
+  document.querySelectorAll('#voucherFilter .wtab').forEach(b=>{
+    b.onclick=()=>{document.querySelectorAll('#voucherFilter .wtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.vf);}
+  });
+  render('all');
+  const cnt={booked:0,not_booked:0};DATA.reservations.forEach(r=>cnt[r.status]++);
+  document.getElementById('voucherSummary').textContent='전체 '+DATA.reservations.length+'건 · 예약 '+cnt.booked+' · 미예약 '+cnt.not_booked;
+})();
+
+// ==== 날씨 (Open-Meteo) ====
+const CITY_COORDS = [
+  {key:'christchurch',label:'크라이스트처치',lat:-43.53,lng:172.63,match:['크라이스트처치','테카포','페얼리','오마라마','마운트쿡']},
+  {key:'tekapo',label:'테카포·마운트쿡',lat:-44.00,lng:170.48,match:['테카포','마운트쿡','트위젤','오마라마']},
+  {key:'queenstown',label:'퀸스타운·와나카',lat:-45.03,lng:168.66,match:['퀸스타운','와나카','애로우타운','글레노키','크롬웰']},
+  {key:'auckland',label:'오클랜드',lat:-36.85,lng:174.76,match:['오클랜드','Matamata','Waitomo']}
+];
+function wxIcon(code){if([0].includes(code))return'☀️';if([1,2,3].includes(code))return'⛅';if([45,48].includes(code))return'🌫️';if([51,53,55,61,63,65].includes(code))return'🌧️';if([71,73,75,77,85,86].includes(code))return'❄️';if([80,81,82].includes(code))return'🌦️';if([95,96,99].includes(code))return'⛈️';return'☁️'}
+async function loadWeather(){
+  const tabs=document.getElementById('weatherTabs');
+  tabs.innerHTML=CITY_COORDS.map((c,i)=>'<button class="wtab'+(i===0?' active':'')+'" data-w="'+c.key+'">'+c.label+'</button>').join('');
+  const dataByCity={};
+  for(const c of CITY_COORDS){
+    try{
+      const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+c.lat+'&longitude='+c.lng+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=14');
+      const j=await r.json();
+      dataByCity[c.key]=j.daily;
+    }catch(e){console.error(e);}
+  }
+  function renderCity(key){
+    const d=dataByCity[key];
+    const row=document.getElementById('weatherRow');
+    if(!d){row.innerHTML='<div style="padding:20px;grid-column:1/-1;text-align:center;color:var(--text-muted)">날씨 불러오기 실패</div>';return}
+    const today=ymd(TODAY);
+    let html='';
+    d.time.forEach((t,i)=>{
+      const isToday=t===today;
+      const dt=new Date(t);
+      const wd=['일','월','화','수','목','금','토'][dt.getDay()];
+      html+='<div class="wcell'+(isToday?' today':'')+'">'+
+        '<div class="wday">'+wd+'요일</div>'+
+        '<div class="wdate">'+(dt.getMonth()+1)+'/'+dt.getDate()+'</div>'+
+        '<div class="wicon">'+wxIcon(d.weather_code[i])+'</div>'+
+        '<div class="wtemp">'+Math.round(d.temperature_2m_max[i])+'°</div>'+
+        '<div class="wlow">↓'+Math.round(d.temperature_2m_min[i])+'°</div>'+
+        '<div class="wprecip">💧'+(d.precipitation_probability_max[i]??0)+'%</div>'+
+      '</div>';
+    });
+    row.innerHTML=html;
+  }
+  tabs.querySelectorAll('.wtab').forEach(b=>{
+    b.onclick=()=>{tabs.querySelectorAll('.wtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCity(b.dataset.w);};
+  });
+  renderCity(CITY_COORDS[0].key);
+  // 각 day section weather
+  document.querySelectorAll('.daysec-weather').forEach(el=>{
+    const city=el.dataset.city, date=el.dataset.date;
+    const match=CITY_COORDS.find(c=>c.match.some(m=>city.includes(m)))||CITY_COORDS[0];
+    const d=dataByCity[match.key];
+    if(!d) return;
+    const idx=d.time.indexOf(date);
+    if(idx<0) return;
+    el.textContent=wxIcon(d.weather_code[idx])+' '+Math.round(d.temperature_2m_max[idx])+'°/'+Math.round(d.temperature_2m_min[idx])+'°';
+  });
+}
+loadWeather();
+
+// ==== 체크리스트 + 알림 ====
+function chkKey(date,idx){return 'chk_'+date+'_'+idx}
+(function(){
+  const box=document.getElementById('chkArea');
+  let html='';
+  DATA.checklists.forEach(c=>{
+    let done=0;c.items.forEach((_,i)=>{if(localStorage.getItem(chkKey(c.date,i))==='1')done++;});
+    html+='<div class="chk-day" id="chk-'+c.date+'"><h4>📅 '+c.date.slice(5).replace('-','/')+'<span class="chk-count">'+done+'/'+c.items.length+'</span></h4>';
+    c.items.forEach((item,i)=>{
+      const checked=localStorage.getItem(chkKey(c.date,i))==='1';
+      html+='<div class="chk-item"><input type="checkbox" id="chk_'+c.date+'_'+i+'" '+(checked?'checked':'')+' onchange="toggleChk(\''+c.date+'\','+i+',this.checked)"/><label for="chk_'+c.date+'_'+i+'">'+item+'</label></div>';
+    });
+    html+='</div>';
+  });
+  box.innerHTML=html;
+})();
+function toggleChk(date,i,v){localStorage.setItem(chkKey(date,i),v?'1':'0');
+  // Update count
+  const c=DATA.checklists.find(x=>x.date===date);
+  let done=0;c.items.forEach((_,j)=>{if(localStorage.getItem(chkKey(date,j))==='1')done++;});
+  const el=document.querySelector('#chk-'+date+' .chk-count');if(el)el.textContent=done+'/'+c.items.length;
+  // refresh alerts
+  renderAlerts();
+}
+
+// 알림 엔진: 오늘/내일 점검 + 미예약 + 미완료 체크
+function renderAlerts(){
+  const today=ymd(TODAY);
+  const tomorrow=ymd(new Date(TODAY.getTime()+86400000));
+  const alerts=[];
+  // 1. 미예약 바우처
+  DATA.reservations.filter(r=>r.status==='not_booked').forEach(r=>{
+    alerts.push({level:'critical',icon:'⚠️',msg:'[미예약] '+r.label+' · '+r.note});
+  });
+  // 2. 내일 일정
+  const tIt=DATA.itinerary.find(x=>x.date===tomorrow);
+  if(tIt){
+    alerts.push({level:'info',icon:'📅',msg:'내일('+tomorrow.slice(5).replace('-','/')+') · '+tIt.title});
+  }
+  // 3. 내일 체크리스트 미완료 미리보기
+  const tChk=DATA.checklists.find(x=>x.date===tomorrow);
+  if(tChk){
+    const undone=tChk.items.filter((_,i)=>localStorage.getItem(chkKey(tomorrow,i))!=='1');
+    if(undone.length){
+      alerts.push({level:'warning',icon:'📝',msg:'내일 체크리스트 '+undone.length+'건 미완료 — 지금 미리 점검하기: '+undone.slice(0,2).join(' / ')+(undone.length>2?' 외':'')});
+    }
+  }
+  // 4. 오늘 미완료
+  const tC=DATA.checklists.find(x=>x.date===today);
+  if(tC){
+    const undone=tC.items.filter((_,i)=>localStorage.getItem(chkKey(today,i))!=='1');
+    if(undone.length){
+      alerts.push({level:'warning',icon:'✅',msg:'오늘 남은 체크 '+undone.length+'건'});
+    }
+  }
+  // 5. 항공편 리마인드
+  const flightReminders=[
+    {date:'2026-04-24',msg:'KE411 탑승 · 인천 18:00 / 여권·e-Ticket·무료 수하물 확인'},
+    {date:'2026-04-25',msg:'NZ539 국내선 환승 · 오클랜드 → 크라이스트처치 12:00'},
+    {date:'2026-05-02',msg:'NZ634 · 퀸스타운 공항 13시까지 도착'},
+    {date:'2026-05-05',msg:'KE412 · 오클랜드 공항 08:30까지'}
+  ];
+  flightReminders.forEach(f=>{if(f.date===today||f.date===tomorrow){alerts.push({level:'info',icon:'✈️',msg:(f.date===today?'[오늘]':'[내일]')+' '+f.msg})}});
+  // 6. 임산부 특별 주의 (내일 체크)
+  const pregnancyAlerts={
+    '2026-04-27':'⚠️ Hot Tubs Omarama는 임산부 고온탕 X — 36도 이하 확인 필수',
+    '2026-04-29':'⚠️ 온센핫풀: 체크인 시 "임신 4개월" 꼭 고지 (수온 조절)',
+    '2026-05-01':'⚠️ 민지: Skyline 루지 X, AJ Hackett 번지 X (근철만 체험)',
+    '2026-05-04':'⚠️ 와이토모 블랙워터 래프팅 X, 메인 보트 투어만'
+  };
+  Object.entries(pregnancyAlerts).forEach(([d,m])=>{if(d===today||d===tomorrow){alerts.push({level:'critical',icon:'🤰',msg:(d===today?'[오늘]':'[내일]')+' '+m})}});
+
+  const box=document.getElementById('alertArea');
+  if(!alerts.length){
+    box.innerHTML='<div class="alert-banner alert-empty"><h3 class="alert-empty">✅ 특별한 알림이 없어요. 편안한 여행 되세요 💗</h3></div>';
+    document.getElementById('navDot').style.display='none';
+    return;
+  }
+  alerts.sort((a,b)=>{const r={critical:0,warning:1,info:2};return r[a.level]-r[b.level]});
+  box.innerHTML='<div class="alert-banner"><h3>알림 '+alerts.length+'건</h3><ul>'+alerts.map(a=>'<li>'+a.icon+' '+a.msg+'</li>').join('')+'</ul></div>';
+  document.getElementById('navDot').style.display='inline-block';
+}
+renderAlerts();
+
+// ==== 진행현황 ====
+(function(){
+  const today=ymd(TODAY);
+  const start=DATA.meta.start_iso,end=DATA.meta.end_iso;
+  let dn=0,pct=0,meta='';
+  if(today<start){dn=0;pct=0;meta='출발 D-'+dayDiff(start,today)+' · 설레는 마음으로 준비 중 💕';}
+  else if(today>end){dn=12;pct=100;meta='여행 완료! 건강하게 돌아와서 기뻐요 💗';}
+  else{dn=dayDiff(today,start)+1;pct=Math.round(dn/12*100);
+    const totalChk=DATA.checklists.reduce((s,c)=>s+c.items.length,0);
+    let doneChk=0;DATA.checklists.forEach(c=>c.items.forEach((_,i)=>{if(localStorage.getItem(chkKey(c.date,i))==='1')doneChk++;}));
+    meta='체크리스트 '+doneChk+'/'+totalChk+' 완료 🐾 포니와 함께 '+dn+'일째 걷고 있어요';
+  }
+  document.getElementById('progLabel').textContent='Day '+dn+' / 12';
+  document.getElementById('progPct').textContent=pct+'%';
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progMeta').textContent=meta;
+})();
+
+// ==== 일기 (IndexedDB로 이전 + 자동 백업) ====
+const J_STORE = 'journal';
+let mediaRec=null,recChunks=[];
+
+function openJournalDB(){return new Promise((res,rej)=>{
+  const r=indexedDB.open('nz_data',2);
+  r.onupgradeneeded=(e)=>{
+    const db=r.result;
+    if(!db.objectStoreNames.contains('journal')) db.createObjectStore('journal',{keyPath:'id',autoIncrement:true});
+    if(!db.objectStoreNames.contains('media')) db.createObjectStore('media',{keyPath:'id',autoIncrement:true});
+  };
+  r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);
+})}
+async function jAdd(entry){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readwrite');const s=t.objectStore(J_STORE);const req=s.add(entry);req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error);})}
+async function jAll(){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readonly');const s=t.objectStore(J_STORE);const req=s.getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>rej(req.error);})}
+async function jDel(id){const db=await openJournalDB();return new Promise((res,rej)=>{const t=db.transaction(J_STORE,'readwrite');const s=t.objectStore(J_STORE);const req=s.delete(id);req.onsuccess=()=>res();req.onerror=()=>rej(req.error);})}
+
+function toast(msg,type){
+  const el=document.createElement('div');el.className='toast '+(type||'');el.textContent=msg;
+  document.body.appendChild(el);
+  requestAnimationFrame(()=>el.classList.add('show'));
+  setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2400);
+}
+
+// localStorage → IndexedDB 마이그레이션 (구버전 데이터 이전)
+async function migrateOldJournal(){
+  try{
+    const old=JSON.parse(localStorage.getItem('journal_entries')||'[]');
+    if(!old.length) return 0;
+    for(const e of old){
+      // audio가 dataURL이면 Blob으로 변환
+      let audioBlob=null;
+      if(e.audio&&typeof e.audio==='string'&&e.audio.startsWith('data:')){
+        try{const r=await fetch(e.audio);audioBlob=await r.blob();}catch(_){}
+      }
+      await jAdd({ts:e.ts||Date.now(),text:e.text||'',audio:audioBlob});
+    }
+    localStorage.removeItem('journal_entries');
+    return old.length;
+  }catch(e){console.warn('migrate fail',e);return 0;}
+}
+
+async function refreshStorageStatus(){
+  const arr=await jAll();
+  const lastTs=arr.length?Math.max(...arr.map(e=>e.ts)):null;
+  let usage='';
+  if(navigator.storage&&navigator.storage.estimate){
+    try{const est=await navigator.storage.estimate();const mb=(est.usage/1024/1024).toFixed(1);usage=' · 💾 '+mb+'MB 사용';}catch(_){}
+  }
+  const last=lastTs?new Date(lastTs).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'없음';
+  document.getElementById('journalStatus').innerHTML='📔 일기 <strong>'+arr.length+'개</strong> · 마지막 저장 <strong>'+last+'</strong>'+usage;
+  // gallery status
+  const gItems=await dbAll();
+  document.getElementById('galleryStatus').innerHTML='📸 사진/영상 <strong>'+gItems.length+'개</strong> 보관 중'+usage;
+}
+
+async function ensurePersistent(){
+  if(navigator.storage&&navigator.storage.persist){
+    try{
+      const isPer=await navigator.storage.persisted();
+      if(!isPer) await navigator.storage.persist();
+    }catch(_){}
+  }
+}
+
+async function saveJournal(){
+  const t=document.getElementById('journalText').value.trim();
+  if(!t){toast('내용을 적어주세요 💗','error');return;}
+  try{
+    await jAdd({ts:Date.now(),text:t,audio:null});
+    document.getElementById('journalText').value='';
+    await renderJournal();
+    await refreshStorageStatus();
+    toast('💗 저장 완료','success');
+  }catch(e){
+    toast('저장 실패: '+e.message,'error');console.error(e);
+  }
+}
+
+async function renderJournal(){
+  const arr=await jAll();
+  const box=document.getElementById('journalList');
+  if(!arr.length){box.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:20px">아직 기록이 없어요. 첫 하루를 적어볼까? ✏️</p>';return;}
+  arr.sort((a,b)=>b.ts-a.ts);
+  box.innerHTML='';
+  arr.forEach(e=>{
+    const d=new Date(e.ts).toLocaleString('ko-KR');
+    const div=document.createElement('div');div.className='entry';
+    let html='<div class="entry-meta">'+d+' <button data-id="'+e.id+'" class="j-del" style="float:right;color:var(--error);font-weight:700;background:none;border:none;cursor:pointer">✕</button></div><div class="entry-text">'+(e.text||'(음성만)').replace(/</g,'&lt;')+'</div>';
+    div.innerHTML=html;
+    if(e.audio){
+      const audio=document.createElement('audio');audio.controls=true;audio.src=URL.createObjectURL(e.audio);
+      audio.style.width='100%';audio.style.marginTop='6px';
+      div.appendChild(audio);
+    }
+    div.querySelector('.j-del').onclick=async ()=>{
+      if(!confirm('이 기록을 삭제할까요?'))return;
+      await jDel(e.id);await renderJournal();await refreshStorageStatus();toast('삭제됨');
+    };
+    box.appendChild(div);
+  });
+}
+
+async function toggleRec(){
+  const btn=document.getElementById('recBtn');
+  if(mediaRec&&mediaRec.state==='recording'){mediaRec.stop();return;}
+  try{
+    const s=await navigator.mediaDevices.getUserMedia({audio:true});
+    recChunks=[];mediaRec=new MediaRecorder(s);
+    mediaRec.ondataavailable=ev=>recChunks.push(ev.data);
+    mediaRec.onstop=async ()=>{
+      const blob=new Blob(recChunks,{type:'audio/webm'});
+      const t=document.getElementById('journalText').value.trim();
+      try{
+        await jAdd({ts:Date.now(),text:t,audio:blob});
+        document.getElementById('journalText').value='';
+        await renderJournal();await refreshStorageStatus();
+        toast('🎙️ 음성 저장 완료 ('+(blob.size/1024).toFixed(0)+'KB)','success');
+      }catch(e){toast('녹음 저장 실패: '+e.message,'error');}
+      s.getTracks().forEach(t=>t.stop());
+      btn.textContent='🎙️ 음성녹음 시작';btn.classList.remove('btn-danger');btn.classList.add('btn-ghost');
+    };
+    mediaRec.start();
+    btn.textContent='⏹️ 녹음 중지하고 저장';btn.classList.add('btn-danger');btn.classList.remove('btn-ghost');
+  }catch(e){toast('마이크 권한 확인: '+e.message,'error');}
+}
+
+async function exportJournal(){
+  const arr=await jAll();
+  let txt='민지·근철·포니의 뉴질랜드 일기 💗\n\n';
+  arr.slice().sort((a,b)=>a.ts-b.ts).forEach(e=>{txt+='[ '+new Date(e.ts).toLocaleString('ko-KR')+' ]\n'+(e.text||'(음성만)')+'\n\n';});
+  const b=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='nz_journal_'+new Date().toISOString().slice(0,10)+'.txt';a.click();
+  toast('💌 텍스트 내보내기 완료','success');
+}
+
+async function blobToBase64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(blob);});}
+async function backupAll(){
+  toast('📦 백업 준비 중...');
+  const journals=await jAll();
+  const media=await dbAll();
+  const journalsExp=[];
+  for(const j of journals){
+    const o={id:j.id,ts:j.ts,text:j.text||''};
+    if(j.audio) o.audio=await blobToBase64(j.audio);
+    journalsExp.push(o);
+  }
+  const mediaExp=[];
+  for(const m of media){
+    mediaExp.push({id:m.id,ts:m.ts,meta:m.meta,blob:await blobToBase64(m.blob)});
+  }
+  // checklist
+  const chk={};Object.keys(localStorage).filter(k=>k.startsWith('chk_')).forEach(k=>{chk[k]=localStorage.getItem(k);});
+  const dump={app:'NZ-Trip-MJ-GC-PONY',version:1,exportedAt:Date.now(),journals:journalsExp,media:mediaExp,checklist:chk};
+  const blob=new Blob([JSON.stringify(dump)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='nz_backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  toast('📦 백업 완료 ('+(blob.size/1024).toFixed(0)+'KB)','success');
+}
+
+async function base64ToBlob(b64){const r=await fetch(b64);return await r.blob();}
+async function restoreBackup(ev){
+  const f=ev.target.files[0];if(!f)return;
+  if(!confirm('백업으로 복원할까요? 기존 기록과 합쳐집니다.'))return;
+  try{
+    const txt=await f.text();const data=JSON.parse(txt);
+    if(data.app!=='NZ-Trip-MJ-GC-PONY')throw new Error('백업 파일 형식이 아닙니다');
+    let n=0;
+    for(const j of (data.journals||[])){
+      const o={ts:j.ts,text:j.text||''};
+      if(j.audio) o.audio=await base64ToBlob(j.audio);
+      await jAdd(o);n++;
+    }
+    let m=0;
+    for(const it of (data.media||[])){
+      await dbAdd(await base64ToBlob(it.blob),it.meta||{});m++;
+    }
+    if(data.checklist)Object.entries(data.checklist).forEach(([k,v])=>localStorage.setItem(k,v));
+    await renderJournal();await renderGallery();await refreshStorageStatus();
+    toast('✅ 복원 완료: 일기 '+n+'개, 사진 '+m+'개','success');
+    ev.target.value='';
+  }catch(e){toast('복원 실패: '+e.message,'error');}
+}
+
+// 초기화
+(async ()=>{
+  await ensurePersistent();
+  const migrated=await migrateOldJournal();
+  if(migrated>0) toast('이전 기록 '+migrated+'개를 안전한 저장소로 옮겼어요 💗','success');
+  await renderJournal();
+  await refreshStorageStatus();
+})();
+
+// ==== 갤러리 (IndexedDB) ====
+const DB_NAME='nz_gallery',DB_STORE='media';
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB_NAME,1);r.onupgradeneeded=()=>{r.result.createObjectStore(DB_STORE,{keyPath:'id',autoIncrement:true})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);})}
+async function dbAdd(blob,meta){const db=await openDB();return new Promise((res,rej)=>{const t=db.transaction(DB_STORE,'readwrite');const s=t.objectStore(DB_STORE);const req=s.add({blob,meta,ts:Date.now()});req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error);})}
+async function dbAll(){const db=await openDB();return new Promise((res,rej)=>{const t=db.transaction(DB_STORE,'readonly');const s=t.objectStore(DB_STORE);const req=s.getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>rej(req.error);})}
+async function dbDel(id){const db=await openDB();return new Promise((res,rej)=>{const t=db.transaction(DB_STORE,'readwrite');const s=t.objectStore(DB_STORE);const req=s.delete(id);req.onsuccess=()=>res();req.onerror=()=>rej(req.error);})}
+async function handleUpload(ev){
+  const files=ev.target.files;if(!files||!files.length)return;
+  let ok=0,fail=0;
+  for(const f of files){
+    try{await dbAdd(f,{name:f.name,type:f.type,size:f.size});ok++;}
+    catch(e){fail++;console.error(e);}
+  }
+  ev.target.value='';
+  await renderGallery();
+  if(typeof refreshStorageStatus==='function')await refreshStorageStatus();
+  toast('📸 '+ok+'개 저장'+(fail?' / '+fail+'개 실패':''),fail?'error':'success');
+}
+async function renderGallery(){
+  if(typeof refreshStorageStatus==='function')setTimeout(refreshStorageStatus,100);
+  
+  const box=document.getElementById('galleryGrid');
+  const items=await dbAll();
+  if(!items.length){box.innerHTML='<p style="text-align:center;color:var(--text-muted);padding:20px;grid-column:1/-1">아직 사진이 없어요 📸</p>';return}
+  box.innerHTML='';
+  items.sort((a,b)=>b.ts-a.ts).forEach(it=>{
+    const url=URL.createObjectURL(it.blob);
+    const div=document.createElement('div');div.className='gallery-item';
+    const isVid=(it.meta&&it.meta.type||'').startsWith('video');
+    div.innerHTML=(isVid?'<video src="'+url+'" playsinline muted></video>':'<img loading="lazy" src="'+url+'"/>')+'<button class="g-del" onclick="event.stopPropagation();delMedia('+it.id+')">✕</button>';
+    div.onclick=()=>{if(isVid){const v=div.querySelector('video');v.controls=true;v.play();}else{window.open(url,'_blank');}};
+    box.appendChild(div);
+  });
+}
+async function delMedia(id){if(!confirm('삭제할까요?'))return;await dbDel(id);renderGallery();}
+renderGallery();
+
+// ==== 긴급 연락처 ====
+(function(){
+  const box=document.getElementById('emerGrid');
+  const iconMap={'111':'🚨','+64 4 473':'🇰🇷','+64 9 379':'🇰🇷','+82 2':'🇰🇷','Healthline':'🏥','*555':'🚑','Hotel':'🏨','Pullman':'🏨','Onsen':'♨️','Hobbiton':'🧙','Waitomo':'✨','AJ Hackett':'🪢','Skyline':'🚠','Hot Tubs':'♨️'};
+  box.innerHTML=DATA.emergency.map(e=>{
+    let ic='☎️';Object.keys(iconMap).forEach(k=>{if(e.phone.includes(k)||e.label.includes(k))ic=iconMap[k]});
+    return '<a class="emer-item" href="tel:'+e.phone.replace(/[^+\d*]/g,'')+'"><div class="emer-icon">'+ic+'</div><div class="emer-info"><div class="emer-label">'+e.label+'</div><div class="emer-phone">'+e.phone+'</div>'+(e.note?'<div class="emer-note">'+e.note+'</div>':'')+'</div></a>';
+  }).join('');
+})();
+
+// Reveal on scroll
+const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.1});
+document.querySelectorAll('.section').forEach(s=>{s.classList.add('reveal');io.observe(s)});
+
+// debug: ?debug=YYYY-MM-DD
+(function(){const m=location.search.match(/debug=(\d{4}-\d{2}-\d{2})/);if(m){localStorage.setItem('DEBUG_DATE',m[1]);location.reload();}})();
+</script>
+</body>
+</html>
