@@ -73,14 +73,14 @@ button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer
   position:absolute;inset:0;opacity:0;
   transition:opacity 1.6s ease;
   background-size:cover;background-position:center;
-  filter:saturate(.82) brightness(.5);
-  transform:scale(1.06);
+  filter:saturate(.78) brightness(.36) blur(2px);
+  transform:scale(1.1);
 }
 .bg.on{opacity:1}
 .bg video{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;opacity:.9;
-  filter:saturate(.8) brightness(.52) blur(1px);
+  filter:saturate(.78) brightness(.4) blur(2px);
 }
 .bg video.dead{display:none}
 .bg .grade{
@@ -89,7 +89,7 @@ button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer
 }
 .bg .veil{
   position:absolute;inset:0;
-  background:radial-gradient(115% 85% at 50% 45%, rgba(11,10,12,.15) 0%, rgba(11,10,12,.78) 72%, rgba(11,10,12,.95) 100%);
+  background:radial-gradient(115% 85% at 50% 45%, rgba(11,10,12,.34) 0%, rgba(11,10,12,.84) 70%, rgba(11,10,12,.97) 100%);
 }
 
 /* ---------- 사진 / 장면 레이어 ---------- */
@@ -506,7 +506,13 @@ body.mode-scroll #epilogue{position:relative;opacity:1;visibility:visible;inset:
 
 /* ---------- 모션 최소화 ---------- */
 @media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.24s !important}
+  *:not(.exp-in):not(.exp-out):not(.kick):not(#subG .line):not(#subP .bubble){
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.28s !important}
+  /* 글자는 사라져 버리면 안 되므로 최소한의 지속시간을 남긴다 */
+  .exp-in{animation-duration:.6s !important}
+  .exp-out{animation-duration:.6s !important}
+  .kick{animation-duration:.7s !important}
+  #subG .line,#subP .bubble{animation-duration:.4s !important}
 }
 body.rm .exp-in{animation-name:fade-rise !important;animation-duration:.7s !important}
 body.rm .exp-out{animation-name:fade-hold !important}
