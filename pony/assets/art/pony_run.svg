@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" width="560" height="400" role="img" aria-labelledby="prTitle" color="var(--pony-pink, #F2B3C6)">
+  <title id="prTitle">포니 — 달리기</title>
+
+  <!-- speed lines -->
+  <g fill="none" stroke="#C9C1BA" stroke-width="7" stroke-linecap="round" opacity="0.45">
+    <path d="M18 132 H84"/>
+    <path d="M6 178 H68"/>
+    <path d="M26 224 H78"/>
+  </g>
+
+  <ellipse cx="272" cy="356" rx="152" ry="16" fill="#000000" opacity="0.07"/>
+
+  <!-- tail -->
+  <path d="M192 170 C154 148 106 156 78 182 C108 180 132 189 147 202 C113 209 86 228 74 252 C108 228 152 217 188 209 Z" fill="#E7D6BE"/>
+  <path d="M192 178 C160 162 124 168 100 186 C126 186 146 194 158 204 C130 212 108 226 96 244 C124 226 158 216 190 210 Z" fill="#F6ECDC"/>
+
+  <!-- far legs -->
+  <g fill="none" stroke="#B2A8A0" stroke-width="23" stroke-linecap="round">
+    <path d="M306 250 C318 280 314 306 298 324"/>
+    <path d="M228 248 C210 280 214 308 228 328"/>
+  </g>
+  <ellipse cx="296" cy="330" rx="15" ry="12.5" fill="#E7D6BE" transform="rotate(12 296 330)"/>
+  <ellipse cx="230" cy="334" rx="15" ry="12.5" fill="#E7D6BE" transform="rotate(-6 230 334)"/>
+
+  <!-- torso -->
+  <ellipse cx="270" cy="210" rx="96" ry="67" fill="#C9C1BA" transform="rotate(-7 270 210)"/>
+  <path d="M270 276 C214 274 180 250 176 216 C196 250 232 266 274 266 C316 266 348 248 362 218 C360 254 324 278 270 276 Z" fill="#B2A8A0" opacity="0.45"/>
+
+  <!-- outfit -->
+  <g fill="currentColor">
+    <path d="M234 146 C268 132 322 138 348 156 L338 230 C310 246 258 246 232 228 Z"/>
+    <circle cx="238" cy="228" r="10"/>
+    <circle cx="261" cy="238" r="11"/>
+    <circle cx="286" cy="242" r="11"/>
+    <circle cx="311" cy="238" r="11"/>
+    <circle cx="334" cy="227" r="10"/>
+    <path d="M330 142 C346 146 356 152 360 160 C350 174 332 178 322 172 Z"/>
+  </g>
+  <path d="M300 138 C322 142 340 148 348 156 L338 230 C324 240 306 244 288 244 C312 216 314 172 300 138 Z" fill="#000000" opacity="0.09"/>
+
+  <!-- near legs -->
+  <g fill="none" stroke="#C9C1BA" stroke-width="25" stroke-linecap="round">
+    <path d="M322 246 C352 272 386 286 414 286"/>
+    <path d="M214 246 C184 278 148 294 116 292"/>
+  </g>
+  <ellipse cx="110" cy="292" rx="16" ry="13" fill="#F6ECDC" transform="rotate(10 110 292)"/>
+  <ellipse cx="420" cy="288" rx="16" ry="13" fill="#F6ECDC" transform="rotate(-14 420 288)"/>
+
+  <!-- neck -->
+  <path d="M326 158 C344 128 370 106 398 94 L436 138 C408 150 384 172 370 200 Z" fill="#C9C1BA"/>
+
+  <!-- mane along the neck -->
+  <g fill="#F6ECDC">
+    <path d="M406 84 C382 78 354 92 338 114 C356 110 372 114 380 122 C356 126 336 142 328 160 C350 144 380 134 404 130 C394 114 396 94 406 84 Z"/>
+    <path d="M366 106 C352 108 340 118 334 130 C346 126 356 128 362 134 C356 122 358 112 366 106 Z" fill="#E7D6BE"/>
+  </g>
+
+  <!-- head -->
+  <path d="M398 108 C398 82 421 64 448 66 C477 68 495 91 497 118 C498 131 508 137 513 148 C518 161 509 173 494 175 C475 177 457 170 445 160 C427 146 398 134 398 108 Z" fill="#C9C1BA"/>
+  <path d="M470 126 C486 128 496 136 505 146 C513 157 508 171 494 175 C478 178 462 171 450 161 C462 155 470 142 470 126 Z" fill="#F6ECDC"/>
+  <!-- ear -->
+  <path d="M432 76 C426 56 433 38 445 36 C456 35 463 52 459 74 Z" fill="#C9C1BA"/>
+  <path d="M436 72 C432 57 437 45 444 44 C451 44 455 57 452 71 Z" fill="#F0C3CF" opacity="0.85"/>
+  <!-- forelock -->
+  <path d="M452 62 C470 54 486 62 492 76 C480 68 466 70 456 80 Z" fill="#F6ECDC"/>
+
+  <!-- face -->
+  <ellipse cx="452" cy="110" rx="9.5" ry="11.5" fill="#4B403A"/>
+  <circle cx="449" cy="105" r="3.6" fill="#FFFFFF"/>
+  <path d="M438 90 Q452 82 466 90" fill="none" stroke="#A2968D" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+  <ellipse cx="497" cy="150" rx="4.5" ry="6" fill="#A2968D" transform="rotate(24 497 150)"/>
+  <path d="M478 166 Q490 174 500 166" fill="none" stroke="#A2968D" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="428" cy="136" rx="16" ry="9" fill="#F59DB2" opacity="0.5"/>
+</svg>

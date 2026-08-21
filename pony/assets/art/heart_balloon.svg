@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 220" width="140" height="220" role="img" aria-labelledby="hbTitle" color="var(--pony-pink, #F07D9C)">
+  <title id="hbTitle">하트 풍선</title>
+
+  <!-- string -->
+  <path d="M70 140 C80 160 58 176 70 194 C78 206 70 213 64 217" fill="none" stroke="#C9B9AE" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- knot -->
+  <path d="M70 128 L79 142 L61 142 Z" fill="currentColor"/>
+  <path d="M70 128 L79 142 L70 142 Z" fill="#000000" opacity="0.15"/>
+
+  <!-- heart body -->
+  <path d="M70 133 C38 110 12 88 12 60 C12 36 30 22 48 27 C58 30 65 38 70 47 C75 38 82 30 92 27 C110 22 128 36 128 60 C128 88 102 110 70 133 Z" fill="currentColor"/>
+
+  <!-- shading -->
+  <path d="M70 47 C75 38 82 30 92 27 C110 22 128 36 128 60 C128 88 102 110 70 133 C94 104 104 66 70 47 Z" fill="#000000" opacity="0.12"/>
+
+  <!-- highlights -->
+  <ellipse cx="40" cy="52" rx="11" ry="17" fill="#FFFFFF" opacity="0.5" transform="rotate(-28 40 52)"/>
+  <ellipse cx="55" cy="40" rx="4" ry="6" fill="#FFFFFF" opacity="0.6" transform="rotate(-28 55 40)"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 120" width="90" height="120" role="img" aria-labelledby="mnTitle" color="var(--pony-mauve, #C9A6B4)">
+  <title id="mnTitle">음표</title>
+  <g fill="currentColor">
+    <!-- stems -->
+    <path d="M33 96 V22 h7 v74 z"/>
+    <path d="M76 84 V10 h7 v74 z"/>
+    <!-- beam -->
+    <path d="M33 22 L83 10 V27 L33 39 Z"/>
+    <path d="M33 45 L83 33 V44 L33 56 Z" opacity="0.85"/>
+    <!-- note heads -->
+    <ellipse cx="21" cy="96" rx="18" ry="13" transform="rotate(-18 21 96)"/>
+    <ellipse cx="64" cy="84" rx="18" ry="13" transform="rotate(-18 64 84)"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.4">
+    <ellipse cx="16" cy="91" rx="6" ry="4" transform="rotate(-18 16 91)"/>
+    <ellipse cx="59" cy="79" rx="6" ry="4" transform="rotate(-18 59 79)"/>
+  </g>
+</svg>

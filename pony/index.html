@@ -1,0 +1,1808 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>포니에게 가는 길 — 백민지 · 박근철 만삭 기념</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="포니는 예쁜 손녀딸 — 아직 태어나지 않은 아이에게 보내는 3분짜리 편지">
+<meta property="og:title" content="포니에게 가는 길">
+<meta property="og:description" content="포니는 예쁜 손녀딸 — 아직 태어나지 않은 아이에게 보내는 3분짜리 편지">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0A0C">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Gowun+Dodum&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   포니에게 가는 길 — 연출 스타일시트 (2번 AI)
+   어두운 시네마 톤 고정. 금빛 #D4A960 / 장미빛 #E8B4C8 주조.
+   ============================================================ */
+:root{
+  --ink:#0B0A0C;
+  --ink-2:#141117;
+  --gold:#D4A960;
+  --gold-lt:#F2D9A0;
+  --gold-hi:#FFE9BE;
+  --rose:#E8B4C8;
+  --rose-lt:#FFD9E4;
+  --paper:#F3EDE3;
+  --dim:rgba(243,237,227,.62);
+  --serif:'Noto Serif KR', 'Nanum Myeongjo', serif;
+  --hand:'Gowun Dodum', 'Gaegu', 'Noto Serif KR', sans-serif;
+  --pony:'Gaegu', 'Gowun Dodum', 'Noto Serif KR', cursive;
+  --band:96px;           /* 자막 밴드 하단 여유 */
+  --p1:#A8C9E4; --p2:#77925F; --p3:#F2A7BC;
+  --hud-h:70px;
+  /* 6번 AI SVG가 참조하는 색 토큰 */
+  --pony-pink:#E8B4C8; --pony-gold:#F2D9A0; --pony-mauve:#C9A6B4;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+html{background:var(--ink)}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--serif);
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overscroll-behavior:none;
+}
+body.mode-scroll{overflow-y:auto;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 무대 ---------- */
+#stage{
+  position:fixed; inset:0; overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 40%, #17131a 0%, #0B0A0C 68%);
+  transform-origin:50% 50%;
+  will-change:transform;
+  transition:opacity .8s ease;
+}
+#stage.beat{animation:heartPulse 300ms cubic-bezier(.2,.7,.3,1)}
+@keyframes heartPulse{0%{transform:scale(1)}28%{transform:scale(1.004)}100%{transform:scale(1)}}
+
+/* ---------- 배경 영상 레이어 ---------- */
+#bgLayer{position:absolute;inset:0}
+.bg{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.6s ease;
+  background-size:cover;background-position:center;
+  filter:saturate(.82) brightness(.5);
+  transform:scale(1.06);
+}
+.bg.on{opacity:1}
+.bg video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:.9;
+  filter:saturate(.8) brightness(.52) blur(1px);
+}
+.bg video.dead{display:none}
+.bg .grade{
+  position:absolute;inset:0;mix-blend-mode:soft-light;opacity:.55;
+  background:linear-gradient(160deg,var(--c1) 0%,transparent 45%,var(--c3) 100%);
+}
+.bg .veil{
+  position:absolute;inset:0;
+  background:radial-gradient(115% 85% at 50% 45%, rgba(11,10,12,.15) 0%, rgba(11,10,12,.78) 72%, rgba(11,10,12,.95) 100%);
+}
+
+/* ---------- 사진 / 장면 레이어 ---------- */
+#photoLayer{position:absolute;inset:0}
+.scene{
+  position:absolute;inset:0;opacity:0;visibility:hidden;
+  transition:opacity 1.2s ease, visibility 1.2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.scene.on{opacity:1;visibility:visible}
+.frame{
+  position:relative;
+  height:min(62vh, 74vw);
+  aspect-ratio:3/4;
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 34px 90px rgba(0,0,0,.66), 0 0 0 1px rgba(212,169,96,.18);
+  background:#0d0c0e;
+  transform:translateY(-2vh);
+}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame .kb{animation:kenburns 34s ease-in-out both}
+@keyframes kenburns{0%{transform:scale(1.1) translate3d(1.5%,1.5%,0)}100%{transform:scale(1.005) translate3d(-1%,-1.2%,0)}}
+.frame .glow{
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 70px rgba(212,169,96,.18), inset 0 0 160px rgba(0,0,0,.5);
+}
+.stack{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+
+/* CH1 — 창문처럼 좌우로 열림 + 금빛 역광 */
+.shutter{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(#0e0d10,#050506);z-index:4}
+.shutter.l{left:0;border-right:1px solid rgba(212,169,96,.5)}
+.shutter.r{right:0;border-left:1px solid rgba(212,169,96,.5)}
+.scene.on .shutter.l{animation:winL 2.6s cubic-bezier(.6,.02,.2,1) .35s both}
+.scene.on .shutter.r{animation:winR 2.6s cubic-bezier(.6,.02,.2,1) .35s both}
+@keyframes winL{0%{transform:translateX(0)}100%{transform:translateX(-102%)}}
+@keyframes winR{0%{transform:translateX(0)}100%{transform:translateX(102%)}}
+.leak{
+  position:absolute;inset:-4%;z-index:5;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,rgba(255,233,190,.85),transparent 22%,transparent 78%,rgba(255,233,190,.85));
+  filter:blur(14px);
+}
+.scene.on .leak{animation:leakIn 3.6s ease-out .3s both}
+@keyframes leakIn{0%{opacity:0}18%{opacity:.95}100%{opacity:.1}}
+.mullion{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,233,190,.22);z-index:3;opacity:0}
+.scene.on .mullion{animation:mull 2.2s ease-out both}
+@keyframes mull{0%{opacity:0;transform:scaleY(.2)}45%{opacity:.9}100%{opacity:.25;transform:scaleY(1)}}
+.p09strip{position:absolute;inset:0;opacity:0;z-index:6}
+.p09strip img{height:100%;width:100%;object-fit:cover}
+.p09strip.on{opacity:1;transition:opacity 1.1s ease}
+.p09strip.on img{animation:stripFlow 6.5s linear both}
+@keyframes stripFlow{0%{object-position:50% 0%}100%{object-position:50% 100%}}
+
+/* CH2 — 조각으로 분해됐다 모임 */
+.tiles{position:absolute;inset:0;z-index:3}
+.scene.on .tiles{animation:tilesOut 1s ease 2.9s both}
+@keyframes tilesOut{0%{opacity:1}100%{opacity:0}}
+.tile{position:absolute;background-repeat:no-repeat;will-change:transform,opacity;opacity:0}
+.scene.on .tile{animation:tileIn 1.5s cubic-bezier(.18,.9,.24,1) both;animation-delay:var(--d)}
+@keyframes tileIn{
+  0%{opacity:0;transform:translate3d(var(--tx),var(--ty),0) rotate(var(--tr)) scale(.55);filter:blur(6px)}
+  60%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:none;filter:blur(0)}
+}
+
+/* CH3 — P O N Y 풍선처럼 떠오름 */
+.pony-letters{position:absolute;inset:0;z-index:6;display:flex;align-items:flex-start;justify-content:center;gap:min(3.2vw,26px);padding-top:8%}
+.pl{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(38px,7.4vw,96px);line-height:1;
+  color:#EFF2F5;
+  text-shadow:0 0 26px rgba(198,203,209,.55), 0 2px 0 rgba(255,255,255,.35);
+  opacity:0;
+}
+.scene.on .pl{animation:balloonUp 2.4s cubic-bezier(.2,.9,.25,1.02) both var(--d), plSway 5.2s ease-in-out infinite alternate calc(var(--d) + 2.4s)}
+@keyframes balloonUp{
+  0%{opacity:0;transform:translateY(46vh) scale(.72) rotate(-8deg)}
+  55%{opacity:1}
+  78%{transform:translateY(-3vh) scale(1.05) rotate(3deg)}
+  100%{opacity:1;transform:none}
+}
+@keyframes plSway{0%{transform:translateY(0) rotate(-2deg)}100%{transform:translateY(-10px) rotate(2deg)}}
+
+/* CH4 — 카드처럼 쌓였다 한 장씩 */
+.cards{position:relative;width:100%;height:100%}
+.card{position:absolute;inset:0;transition:transform 3.4s cubic-bezier(.4,0,.2,1), opacity 3.4s ease, filter 3.4s ease}
+.card.c0{transform:rotate(-1.6deg) translateY(0)}
+.card.c1{transform:rotate(1.4deg) translateY(10px) scale(.985)}
+.card.c2{transform:rotate(-.6deg) translateY(20px) scale(.97)}
+.cards.step1 .c0{transform:rotate(-11deg) translate(-58%,12%);opacity:0;filter:blur(7px)}
+.cards.step1 .c1{transform:none}
+.cards.step2 .c0{transform:rotate(-11deg) translate(-58%,12%);opacity:0;filter:blur(7px)}
+.cards.step2 .c1{transform:rotate(9deg) translate(56%,10%);opacity:0;filter:blur(7px)}
+.cards.step2 .c2{transform:none}
+
+/* CH5 — 요람처럼 흔들림 + 아기 신발이 걸어감 */
+.cradle{animation:cradle 8.5s ease-in-out infinite alternate;transform-origin:50% 8%}
+@keyframes cradle{0%{transform:rotate(-.9deg) translateX(-9px)}100%{transform:rotate(.9deg) translateX(9px)}}
+.walker{position:absolute;left:-14vw;bottom:9%;z-index:9;width:clamp(46px,6vw,84px);opacity:.92;pointer-events:none}
+.scene.on .walker{animation:walkAcross 15s linear 2s infinite}
+.walker svg{width:100%;height:auto;animation:toddle 720ms ease-in-out infinite alternate}
+@keyframes walkAcross{0%{transform:translateX(0)}100%{transform:translateX(128vw)}}
+@keyframes toddle{0%{transform:rotate(-9deg) translateY(0)}100%{transform:rotate(9deg) translateY(-9px)}}
+
+/* CH6 — 조각들이 중앙으로 빨려듦 */
+.suck{position:absolute;inset:0;z-index:7;pointer-events:none}
+.shard{
+  position:absolute;width:16%;height:12%;border-radius:3px;
+  background-size:cover;background-position:center;opacity:0;
+  box-shadow:0 6px 22px rgba(0,0,0,.5);
+}
+.scene.on .shard{animation:suckIn 2.9s cubic-bezier(.55,.02,.35,1) both;animation-delay:var(--d)}
+@keyframes suckIn{
+  0%{opacity:0;transform:translate3d(var(--sx),var(--sy),0) rotate(var(--sr)) scale(1)}
+  22%{opacity:.95}
+  100%{opacity:0;transform:translate3d(0,0,0) rotate(calc(var(--sr) * 3)) scale(.04)}
+}
+.scene.on .frame.arrive{animation:arrive 3.4s cubic-bezier(.2,.8,.25,1) 1.6s both}
+@keyframes arrive{0%{opacity:0;transform:translateY(-2vh) scale(1.16);filter:blur(10px)}100%{opacity:1;transform:translateY(-2vh) scale(1);filter:blur(0)}}
+
+/* 떠오르는 하트 풍선 (CH5) · 흩날리는 꽃잎 (CH2) */
+.floatHeart{position:absolute;right:11%;bottom:14%;width:clamp(38px,5.2vw,70px);z-index:9;pointer-events:none;opacity:0}
+.scene.on .floatHeart{animation:heartRise 15s ease-in-out 3.5s infinite}
+@keyframes heartRise{0%{opacity:0;transform:translateY(0) rotate(-5deg)}14%{opacity:.9}
+  50%{transform:translateY(-28vh) rotate(4deg)}100%{opacity:0;transform:translateY(-62vh) rotate(7deg)}}
+.svgPetal{position:absolute;top:0;width:clamp(20px,2.8vw,40px);z-index:9;pointer-events:none;opacity:0}
+.scene.on .svgPetal{animation:petalFall 14s linear infinite;animation-delay:var(--pd)}
+@keyframes petalFall{0%{opacity:0;transform:translateY(-16vh) rotate(0) translateX(0)}
+  12%{opacity:.85}55%{transform:translateY(42vh) rotate(280deg) translateX(4vw)}
+  100%{opacity:0;transform:translateY(96vh) rotate(560deg) translateX(-2vw)}}
+
+/* ---------- FX / 플래시 / 화이트아웃 ---------- */
+#fxLayer{position:absolute;inset:0;pointer-events:none;z-index:12}
+#flash{position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 48%,rgba(255,240,220,.5),transparent 70%);opacity:0;transition:opacity .5s ease}
+#whiteout{position:absolute;inset:0;background:#FBF7F1;opacity:0;transition:opacity 2.4s ease;pointer-events:none}
+#vig{position:absolute;inset:0;box-shadow:inset 0 0 min(28vw,240px) rgba(0,0,0,.72)}
+
+/* ---------- 파티클 캔버스 ---------- */
+#pcv{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:none}
+
+/* ---------- 표현 레이어 ---------- */
+#expLayer,#kickLayer{position:absolute;inset:0;z-index:14;pointer-events:none}
+.exp-out{position:absolute;transform:translate(-50%,-50%);will-change:opacity,transform,filter}
+.exp-in{display:block;white-space:nowrap;will-change:opacity,transform,filter}
+.exp{
+  font-family:var(--hand);font-weight:400;letter-spacing:.02em;
+  text-shadow:0 0 24px rgba(255,240,220,.35);
+}
+.exp.S{font-size:clamp(18px,2.2vw,28px)}
+.exp.M{font-size:clamp(24px,3.4vw,44px)}
+.exp.L{font-size:clamp(34px,5.4vw,72px)}
+.exp.XL{font-size:clamp(52px,9vw,120px);font-family:var(--serif);font-weight:300}
+.kick{position:absolute;transform:translate(-50%,-50%);font-family:var(--pony);font-weight:700;
+  font-size:clamp(20px,3vw,40px);color:var(--rose-lt);text-shadow:0 0 20px rgba(232,180,200,.5);
+  animation:kickPop 760ms cubic-bezier(.2,1.4,.4,1) both}
+@keyframes kickPop{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}22%{opacity:1;transform:translate(-50%,-62%) scale(1.12)}55%{transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-46%) scale(.94)}}
+
+/* 등장 12종 */
+@keyframes fade-rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@keyframes drift-in{from{opacity:0;transform:translateX(-30px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes sparkle-pop{0%{opacity:0;transform:scale(.4)}55%{opacity:1;transform:scale(1.15)}100%{opacity:1;transform:scale(1)}}
+@keyframes blur-in{from{opacity:0;filter:blur(12px);transform:scale(1.06)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes scale-soft{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+@keyframes slide-left{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes slide-right{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes peek-in{from{opacity:.2;clip-path:inset(100% 0 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes breath-in{from{opacity:0;transform:scale(1)}to{opacity:1;transform:scale(1.04)}}
+@keyframes unroll-down{from{opacity:.3;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes bounce-in{0%{opacity:0;transform:translateY(-14px)}45%{opacity:1;transform:translateY(6px)}72%{transform:translateY(-4px)}100%{opacity:1;transform:none}}
+@keyframes settle-down{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+/* 퇴장 8종 */
+@keyframes blur-out{from{opacity:1;filter:blur(0)}to{opacity:0;filter:blur(10px)}}
+@keyframes fade-fall{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(12px)}}
+@keyframes sparkle-dissolve{0%{opacity:1;letter-spacing:.02em}100%{opacity:0;transform:scale(1.22);letter-spacing:.42em}}
+@keyframes scale-down{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.82)}}
+@keyframes drift-out{from{opacity:1;transform:translateX(0);filter:blur(0)}to{opacity:0;transform:translateX(30px);filter:blur(5px)}}
+@keyframes fade-hold{0%{opacity:1}58%{opacity:.96}100%{opacity:0}}
+@keyframes sink-out{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(20px) scale(.95)}}
+@keyframes pop-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.4)}}
+
+/* ---------- 자막 ---------- */
+#subLayer{position:absolute;inset:0;z-index:16;pointer-events:none}
+#subG{
+  position:absolute;left:clamp(18px,7vw,110px);right:clamp(18px,7vw,110px);
+  bottom:calc(var(--band) + env(safe-area-inset-bottom,0px));
+  text-align:left;
+}
+#subG .line{
+  display:inline-block;position:relative;
+  font-family:var(--serif);font-weight:300;color:#FBF6EE;
+  font-size:clamp(19px,2.5vw,34px);line-height:1.55;letter-spacing:-.01em;
+  padding:2px 0 2px 18px;
+  border-left:2px solid var(--gold);
+  text-shadow:0 2px 22px rgba(0,0,0,.9), 0 0 46px rgba(0,0,0,.6);
+  animation:subG .9s cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes subG{from{opacity:0;transform:translateY(12px);clip-path:inset(0 100% 0 0)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+#subP{position:absolute;left:0;right:0;top:8.5%;display:flex;justify-content:center}
+#subP .bubble{
+  font-family:var(--pony);font-weight:700;color:#FFE1EC;
+  font-size:clamp(21px,3.1vw,40px);line-height:1.35;
+  padding:.42em .95em;border-radius:26px 26px 26px 8px;
+  background:rgba(70,38,52,.42);
+  border:1px solid rgba(232,180,200,.42);
+  box-shadow:0 10px 40px rgba(0,0,0,.45), inset 0 0 30px rgba(232,180,200,.12);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  transform:rotate(-1.8deg);
+  max-width:min(84vw,760px);text-align:center;
+  animation:subP .82s cubic-bezier(.18,1.5,.4,1) both;
+}
+@keyframes subP{0%{opacity:0;transform:rotate(-1.8deg) translateY(-16px) scale(.72)}55%{opacity:1;transform:rotate(-1.8deg) translateY(4px) scale(1.06)}78%{transform:rotate(-1.8deg) translateY(-2px) scale(.99)}100%{opacity:1;transform:rotate(-1.8deg) scale(1)}}
+
+/* ---------- 챕터 타이틀 카드 ---------- */
+#chapTitle{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;pointer-events:none;opacity:0;text-align:center;padding:0 6vw}
+#chapTitle.show{animation:titleCard 6.2s ease both}
+@keyframes titleCard{0%{opacity:0;transform:scale(1.04)}14%{opacity:1;transform:scale(1)}72%{opacity:1}100%{opacity:0;transform:scale(.99)}}
+#chapTitle .num{font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);letter-spacing:.6em;color:var(--gold);margin-bottom:1.1em}
+#chapTitle .ko{font-family:var(--serif);font-weight:300;font-size:clamp(30px,5.6vw,64px);letter-spacing:.06em;
+  text-shadow:0 0 60px rgba(0,0,0,.8)}
+#chapTitle .en{font-family:var(--serif);font-size:clamp(11px,1.5vw,17px);letter-spacing:.34em;color:var(--dim);margin-top:1em;text-transform:uppercase}
+#chapTitle .rule{width:min(220px,40vw);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-top:1.6em}
+
+/* ---------- 마스코트 ---------- */
+#mascot{position:absolute;left:-18vw;bottom:calc(var(--band) - 46px);z-index:13;width:clamp(64px,9vw,132px);opacity:0;pointer-events:none}
+#mascot.run{animation:mascotRun 4.4s cubic-bezier(.35,.05,.4,1) both}
+#mascot svg{width:100%;height:auto}
+@keyframes mascotRun{0%{opacity:0;transform:translateX(0) translateY(0)}8%{opacity:.95}
+  25%{transform:translateX(32vw) translateY(-16px)}50%{transform:translateX(62vw) translateY(0)}
+  75%{transform:translateX(92vw) translateY(-14px)}92%{opacity:.9}100%{opacity:0;transform:translateX(126vw)}}
+
+/* ---------- 프렐류드 ---------- */
+#prelude{position:fixed;inset:0;z-index:60;background:#07060a;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;transition:opacity 1.4s ease, visibility 1.4s}
+#prelude.gone{opacity:0;visibility:hidden;pointer-events:none}
+#precv{position:absolute;inset:0;width:100%;height:100%}
+#preInner{position:relative;z-index:2;text-align:center;padding:0 24px;margin-top:min(30vh,260px)}
+#startBtn{
+  font-family:var(--serif);font-weight:400;font-size:clamp(17px,2.1vw,23px);letter-spacing:.16em;
+  color:#F6ECD8;padding:.95em 2.4em;border-radius:999px;
+  border:1px solid rgba(212,169,96,.55);
+  background:linear-gradient(180deg,rgba(212,169,96,.16),rgba(212,169,96,.05));
+  box-shadow:0 0 44px rgba(212,169,96,.22), inset 0 0 26px rgba(212,169,96,.1);
+  transition:transform .35s ease, box-shadow .35s ease, background .35s ease;
+  animation:btnBreath 4.2s ease-in-out infinite;
+}
+#startBtn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 66px rgba(212,169,96,.42)}
+@keyframes btnBreath{0%,100%{box-shadow:0 0 40px rgba(212,169,96,.2), inset 0 0 24px rgba(212,169,96,.08)}
+  50%{box-shadow:0 0 70px rgba(212,169,96,.36), inset 0 0 34px rgba(212,169,96,.16)}}
+#preSub{margin-top:1.8em;font-size:clamp(12px,1.4vw,15px);letter-spacing:.24em;color:rgba(243,237,227,.5)}
+#preTag{margin-bottom:.9em;font-size:clamp(12px,1.5vw,16px);letter-spacing:.3em;color:rgba(212,169,96,.75)}
+#preKin{margin-bottom:2.4em;font-family:var(--serif);font-size:clamp(13px,1.7vw,18px);letter-spacing:.22em;
+  color:rgba(232,180,200,.82);opacity:0;animation:kinIn 1.8s ease .7s forwards}
+@keyframes kinIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ep-final .kin{margin-top:2.2em;font-family:var(--serif);font-size:clamp(15px,2.2vw,22px);
+  letter-spacing:.16em;color:var(--gold-lt);opacity:.92}
+#preWave{position:absolute;right:6vw;bottom:8vh;width:clamp(80px,12vw,170px);opacity:0;animation:waveIn 1.6s ease 1.1s forwards}
+#preWave svg{width:100%;height:auto;animation:waveBob 3.4s ease-in-out infinite alternate}
+@keyframes waveIn{to{opacity:.95}}
+@keyframes waveBob{0%{transform:translateY(0) rotate(-2deg)}100%{transform:translateY(-12px) rotate(2deg)}}
+
+/* ---------- HUD ---------- */
+#hud{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:10px clamp(12px,3vw,32px) calc(12px + env(safe-area-inset-bottom,0px));
+  background:linear-gradient(0deg,rgba(7,6,10,.92),rgba(7,6,10,.55) 62%,transparent);
+  opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s;
+}
+body.playing #hud{opacity:1;visibility:visible}
+body.mode-scroll #hud .seekwrap{opacity:.35;pointer-events:none}
+#track{position:relative;height:26px;display:flex;align-items:center;cursor:pointer;touch-action:none}
+#track .rail{position:absolute;left:0;right:0;height:3px;background:rgba(243,237,227,.16);border-radius:2px}
+#track .fill{position:absolute;left:0;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--rose));width:0}
+#track .knob{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--gold-hi);
+  box-shadow:0 0 14px rgba(255,233,190,.8);transform:translateX(-50%);left:0;transition:transform .12s ease}
+#track:hover .knob,#track.drag .knob{transform:translateX(-50%) scale(1.35)}
+#track .tick{position:absolute;width:1px;height:9px;background:rgba(243,237,227,.28)}
+#hudRow{display:flex;align-items:center;gap:clamp(4px,1.4vw,12px);margin-top:2px}
+.ctrl{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:15px;
+  color:rgba(243,237,227,.86);transition:background .25s ease,color .25s ease,transform .25s ease;flex:0 0 auto;
+}
+.ctrl:hover{background:rgba(212,169,96,.16);color:var(--gold-hi);transform:translateY(-1px)}
+.ctrl svg{width:17px;height:17px;fill:currentColor}
+#nowCh{flex:1 1 auto;min-width:0;font-size:clamp(11px,1.4vw,14px);letter-spacing:.12em;color:rgba(243,237,227,.78);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
+#nowCh b{color:var(--gold);font-weight:400;margin-right:.7em}
+#tRemain{font-variant-numeric:tabular-nums;font-size:clamp(11px,1.3vw,13px);color:rgba(243,237,227,.55);flex:0 0 auto}
+
+/* 우상단 토글 */
+#topRight{position:fixed;top:0;right:0;z-index:41;display:flex;gap:6px;
+  padding:calc(10px + env(safe-area-inset-top,0px)) clamp(10px,2.4vw,22px) 10px;
+  opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s}
+body.playing #topRight{opacity:1;visibility:visible}
+.chip{
+  font-size:clamp(10px,1.2vw,12.5px);letter-spacing:.1em;padding:.62em 1.05em;border-radius:999px;
+  border:1px solid rgba(243,237,227,.2);color:rgba(243,237,227,.72);background:rgba(11,10,12,.5);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:all .25s ease;white-space:nowrap;
+}
+.chip:hover{border-color:var(--gold);color:var(--gold-hi)}
+.chip[aria-pressed="true"]{border-color:var(--gold);color:var(--ink);background:var(--gold)}
+
+/* ---------- 스크롤 모드 트랙 ---------- */
+#scrollTrack{display:none;position:relative;z-index:5}
+body.mode-scroll #scrollTrack{display:block}
+.scroll-sec{height:130vh;position:relative}
+.scroll-hint{position:fixed;left:50%;bottom:calc(var(--band) + 6px);transform:translateX(-50%);z-index:30;
+  font-size:12px;letter-spacing:.3em;color:rgba(243,237,227,.45);pointer-events:none;
+  animation:hintBob 2.6s ease-in-out infinite}
+@keyframes hintBob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(7px);opacity:.95}}
+body:not(.mode-scroll) .scroll-hint{display:none}
+
+/* ---------- 에필로그 ---------- */
+#epilogue{
+  position:fixed;inset:0;z-index:50;overflow-y:auto;overscroll-behavior:contain;
+  background:linear-gradient(180deg,#0B0A0C 0%,#141117 40%,#0B0A0C 100%);
+  opacity:0;visibility:hidden;transition:opacity 1.6s ease,visibility 1.6s;
+  padding:clamp(48px,9vh,110px) clamp(18px,5vw,64px) 120px;
+}
+#epilogue.on{opacity:1;visibility:visible}
+body.mode-scroll #epilogue{position:relative;opacity:1;visibility:visible;inset:auto;z-index:20}
+.ep-final{max-width:940px;margin:0 auto clamp(56px,9vh,110px);text-align:center}
+.ep-final .q{
+  font-family:var(--serif);font-weight:300;font-size:clamp(23px,4.4vw,52px);line-height:1.7;
+  letter-spacing:-.01em;color:#FBF6EE;text-shadow:0 0 70px rgba(212,169,96,.22);
+}
+.ep-final .q em{font-style:normal;color:var(--gold-lt)}
+.ep-final .sig{margin-top:2.6em;font-size:clamp(12px,1.5vw,15px);letter-spacing:.3em;color:rgba(243,237,227,.45)}
+.ep-h{font-family:var(--serif);font-weight:400;font-size:clamp(13px,1.6vw,16px);letter-spacing:.42em;
+  color:var(--gold);text-align:center;margin:0 0 2.2em;display:flex;align-items:center;justify-content:center;gap:.9em}
+.ep-h .spk{display:inline-block;width:1.15em;height:1.15em;opacity:.7;flex:0 0 auto;
+  animation:spkTwinkle 3.6s ease-in-out infinite}
+.ep-h .spk svg{width:100%;height:100%}
+@keyframes spkTwinkle{0%,100%{opacity:.35;transform:scale(.86) rotate(-6deg)}50%{opacity:.95;transform:scale(1.08) rotate(6deg)}}
+.ep-mascot{width:clamp(96px,13vw,168px);margin:0 auto clamp(30px,5vh,58px);opacity:.95;
+  animation:mascotBob 5.4s ease-in-out infinite alternate}
+@keyframes mascotBob{0%{transform:translateY(0) rotate(-1.6deg)}100%{transform:translateY(-11px) rotate(1.6deg)}}
+#preSub .note{display:inline-block;width:.85em;height:1.1em;vertical-align:-.2em;margin-right:.6em;opacity:.75}
+#preSub .note svg{width:100%;height:100%}
+.gallery{max-width:1220px;margin:0 auto clamp(56px,9vh,110px);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(112px,15vw,190px),1fr));gap:clamp(7px,1.1vw,14px)}
+.gcell{position:relative;overflow:hidden;border-radius:6px;background:#141117;aspect-ratio:3/4;
+  border:1px solid rgba(212,169,96,.12);transition:transform .5s cubic-bezier(.2,.8,.3,1),border-color .4s ease;cursor:zoom-in}
+.gcell img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease,filter .6s ease;filter:saturate(.85) brightness(.86)}
+.gcell:hover{transform:translateY(-5px);border-color:rgba(212,169,96,.5)}
+.gcell:hover img{transform:scale(1.07);filter:saturate(1) brightness(1)}
+.gcell .cap{position:absolute;left:0;right:0;bottom:0;padding:.6em .7em;font-size:10.5px;letter-spacing:.08em;
+  color:rgba(243,237,227,.8);background:linear-gradient(0deg,rgba(7,6,10,.9),transparent);opacity:0;transition:opacity .35s ease}
+.gcell:hover .cap{opacity:1}
+.credits{max-width:960px;margin:0 auto clamp(48px,8vh,96px);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,258px),1fr));gap:clamp(10px,1.6vw,20px)}
+.cr{padding:clamp(16px,2.4vw,26px);border-radius:10px;background:rgba(255,255,255,.028);
+  border:1px solid rgba(212,169,96,.16);transition:border-color .4s ease,background .4s ease}
+.cr:hover{border-color:rgba(212,169,96,.45);background:rgba(212,169,96,.05)}
+.cr .no{font-size:11px;letter-spacing:.36em;color:var(--gold);margin-bottom:1em}
+.cr .role{font-family:var(--serif);font-size:clamp(16px,2vw,21px);font-weight:400;margin-bottom:.7em;color:#FBF6EE}
+.cr .desc{font-size:clamp(12px,1.4vw,14px);line-height:1.85;color:rgba(243,237,227,.62)}
+.ep-actions{text-align:center;margin-top:clamp(28px,5vh,56px);display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.ep-btn{font-family:var(--serif);font-size:clamp(13px,1.6vw,16px);letter-spacing:.2em;color:#F6ECD8;
+  padding:.95em 2.3em;border-radius:999px;border:1px solid rgba(212,169,96,.5);
+  background:linear-gradient(180deg,rgba(212,169,96,.14),transparent);transition:all .35s ease}
+.ep-btn:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+#sleeper{margin:clamp(40px,7vh,80px) auto 0;width:clamp(120px,17vw,220px);opacity:.9}
+#sleeper svg{width:100%;height:auto;animation:sleepBreathe 5.6s ease-in-out infinite}
+@keyframes sleepBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.zzz{text-align:center;font-family:var(--pony);color:rgba(232,180,200,.55);font-size:clamp(15px,2vw,22px);
+  letter-spacing:.5em;margin-top:.6em;animation:zzzFade 4.4s ease-in-out infinite}
+@keyframes zzzFade{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:.85;transform:translateY(-6px)}}
+
+/* 라이트박스 */
+#lightbox{position:fixed;inset:0;z-index:70;background:rgba(6,5,8,.96);display:none;
+  align-items:center;justify-content:center;padding:clamp(16px,4vw,54px);cursor:zoom-out;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#lightbox.on{display:flex;animation:lbIn .4s ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+#lightbox figure{margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;gap:14px}
+#lightbox img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.8);
+  animation:lbImg .5s cubic-bezier(.2,.8,.3,1) both}
+@keyframes lbImg{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+#lightbox figcaption{font-size:13px;letter-spacing:.14em;color:rgba(243,237,227,.6);text-align:center;max-width:60ch}
+#lbClose{position:absolute;top:clamp(10px,2.5vw,26px);right:clamp(10px,2.5vw,26px);font-size:26px;color:rgba(243,237,227,.75);
+  width:44px;height:44px;border-radius:50%}
+#lbClose:hover{background:rgba(255,255,255,.1)}
+
+/* ---------- 모바일 ---------- */
+@media (max-width:760px){
+  :root{--band:104px}
+  .frame{height:min(56vh,116vw);transform:translateY(-3vh)}
+  #subG{left:16px;right:16px}
+  #subG .line{font-size:17.5px;padding-left:13px;line-height:1.5}
+  #subP{top:7.5%}
+  #subP .bubble{font-size:20px;border-radius:20px 20px 20px 6px}
+  .exp.XL{font-size:clamp(44px,15vw,72px)}
+  .exp.L{font-size:clamp(30px,9.5vw,48px)}
+  .exp.M{font-size:clamp(22px,6.4vw,34px)}
+  .exp.S{font-size:clamp(15px,4.4vw,22px)}
+  .ctrl{width:34px;height:34px}
+  #nowCh{font-size:11px;letter-spacing:.06em}
+  .pony-letters{gap:14px;padding-top:10%}
+  #mascot{bottom:calc(var(--band) - 30px);width:78px}
+  .credits{grid-template-columns:1fr}
+}
+@media (max-width:400px){
+  #hudRow{gap:0}
+  .ctrl{width:31px;height:31px}
+  .ctrl svg{width:15px;height:15px}
+  #nowCh{font-size:10px;padding:0 3px}
+  #tRemain{font-size:10px}
+  .frame{height:min(52vh,120vw)}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .frame{height:min(74vh,52vw)}
+  :root{--band:78px}
+}
+
+/* ---------- 모션 최소화 ---------- */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.24s !important}
+}
+body.rm .exp-in{animation-name:fade-rise !important;animation-duration:.7s !important}
+body.rm .exp-out{animation-name:fade-hold !important}
+body.rm .frame .kb,body.rm .cradle,body.rm .walker,body.rm #mascot{animation:none !important}
+</style>
+</head>
+<body class="pre">
+
+<!-- ===================== 무대 ===================== -->
+<main id="stage" aria-label="포니에게 가는 길 — 웹 다큐멘터리 무대">
+  <div id="bgLayer"></div>
+  <div id="photoLayer"></div>
+  <canvas id="pcv" aria-hidden="true"></canvas>
+  <div id="expLayer" aria-hidden="true"></div>
+  <div id="kickLayer" aria-hidden="true"></div>
+  <div id="fxLayer"><div id="flash"></div><div id="vig"></div><div id="whiteout"></div></div>
+  <div id="mascot" aria-hidden="true"></div>
+  <div id="chapTitle" aria-hidden="true">
+    <div class="num"></div><div class="ko"></div><div class="en"></div><div class="rule"></div>
+  </div>
+  <div id="subLayer" aria-live="polite">
+    <div id="subP"></div>
+    <div id="subG"></div>
+  </div>
+</main>
+
+<!-- 스크롤 모드용 트랙 -->
+<div id="scrollTrack" aria-hidden="true"></div>
+<div class="scroll-hint">스크롤</div>
+
+<!-- ===================== 프렐류드 ===================== -->
+<div id="prelude">
+  <canvas id="precv" aria-hidden="true"></canvas>
+  <div id="preInner">
+    <div id="preTag">포니에게 가는 길</div>
+    <div id="preKin">포니는 예쁜 손녀딸</div>
+    <button id="startBtn" type="button">시작하기 ♪</button>
+    <div id="preSub"><span class="note" aria-hidden="true"></span>소리를 켜고 보시길 권합니다</div>
+  </div>
+  <div id="preWave" aria-hidden="true"></div>
+</div>
+
+<!-- ===================== HUD ===================== -->
+<div id="topRight">
+  <button class="chip" id="modeBtn" type="button" aria-pressed="false">스크롤 모드</button>
+  <button class="chip" id="epBtn" type="button">에필로그</button>
+</div>
+
+<div id="hud">
+  <div class="seekwrap">
+    <div id="track" role="slider" tabindex="0" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="180" aria-valuenow="0">
+      <div class="rail"></div><div class="fill"></div><div class="knob"></div>
+    </div>
+  </div>
+  <div id="hudRow">
+    <button class="ctrl" id="btnPrev" type="button" title="이전 챕터 (←)" aria-label="이전 챕터">
+      <svg viewBox="0 0 24 24"><path d="M7 6h2v12H7zM19 6v12l-9-6z"/></svg></button>
+    <button class="ctrl" id="btnPlay" type="button" title="재생/일시정지 (Space)" aria-label="재생 또는 일시정지">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <button class="ctrl" id="btnNext" type="button" title="다음 챕터 (→)" aria-label="다음 챕터">
+      <svg viewBox="0 0 24 24"><path d="M15 6h2v12h-2zM5 6l9 6-9 6z"/></svg></button>
+    <div id="nowCh"><b>CH1</b><span>창가에서</span></div>
+    <div id="tRemain">3:00</div>
+    <button class="ctrl" id="btnMute" type="button" title="음소거 (M)" aria-label="음소거">
+      <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+    <button class="ctrl" id="btnFull" type="button" title="전체화면 (F)" aria-label="전체화면">
+      <svg viewBox="0 0 24 24"><path d="M4 9V4h5v2H6v3H4zm11-5h5v5h-2V6h-3V4zM4 15h2v3h3v2H4v-5zm14 0h2v5h-5v-2h3v-3z"/></svg></button>
+  </div>
+</div>
+
+<!-- ===================== 에필로그 ===================== -->
+<section id="epilogue" aria-label="에필로그">
+  <div class="ep-final">
+    <p class="q">두 사람이 각자 한 손을 들었더니,<br><em>그 사이에 한 사람이 더 있었다.</em></p>
+    <p class="kin">포니는 예쁜 손녀딸</p>
+    <div class="sig">2026 여름 · 백민지 · 박근철 · 그리고 포니</div>
+  </div>
+
+  <div class="ep-mascot" id="epMascot" aria-hidden="true"></div>
+
+  <h2 class="ep-h"><span class="spk" aria-hidden="true"></span>갤 러 리<span class="spk" aria-hidden="true"></span></h2>
+  <div class="gallery" id="gallery"></div>
+
+  <h2 class="ep-h"><span class="spk" aria-hidden="true"></span>만든 이들<span class="spk" aria-hidden="true"></span></h2>
+  <div class="credits">
+    <div class="cr"><div class="no">AI 01</div><div class="role">스토리라인</div>
+      <div class="desc">사진 열 장을 읽고 6챕터 180초의 대본을 썼다. 외할아버지와 포니, 두 화자의 큐시트와 자막 축약본 전부.</div></div>
+    <div class="cr"><div class="no">AI 02</div><div class="role">연출 · 웹 구현</div>
+      <div class="desc">다섯 갈래의 산출물을 하나의 동적 페이지로 조립했다. 타임라인, 전환 연출, 파티클, 자막 레이어.</div></div>
+    <div class="cr"><div class="no">AI 03</div><div class="role">표현 설계</div>
+      <div class="desc">화면 위를 날아다니는 의성어·의태어 99개를 초 단위로 배치했다. 사르륵, 빼꼼, 그렁 — 사물의 소리만.</div></div>
+    <div class="cr"><div class="no">AI 04</div><div class="role">오케스트레이션 · 배포</div>
+      <div class="desc">여섯 갈래의 작업을 설계하고, 사양서를 쓰고, 결과물을 하나로 묶어 세상에 내보냈다.</div></div>
+    <div class="cr"><div class="no">AI 05</div><div class="role">음악</div>
+      <div class="desc">D장조 오르골 한 대에서 시작해 E장조로 전조하는 181.8초. 오디오 파일 없이 브라우저가 실시간으로 연주한다.</div></div>
+    <div class="cr"><div class="no">AI 06</div><div class="role">파생 소재</div>
+      <div class="desc">사진에서 켄번즈 영상과 아트 변주본, 마스코트를 길어 올렸다. 잉크, 수채, 금박, 실루엣, 폴라로이드.</div></div>
+  </div>
+
+  <div class="ep-actions">
+    <button class="ep-btn" id="btnReplay" type="button">처음부터 다시 보기</button>
+  </div>
+
+  <div id="sleeper" aria-hidden="true"></div>
+  <div class="zzz" aria-hidden="true">z z z</div>
+</section>
+
+<div id="lightbox" aria-hidden="true">
+  <button id="lbClose" type="button" aria-label="닫기">×</button>
+  <figure><img id="lbImg" src="" alt="크게 본 만삭 기념 사진"><figcaption id="lbCap"></figcaption></figure>
+</div>
+
+<script src="assets/expressions.js"></script>
+<script src="assets/music.js"></script>
+<script>
+/* ================================================================
+   「포니에게 가는 길」 — 연출 엔진 (2번 AI)
+   ================================================================ */
+(function(){
+'use strict';
+
+/* ---------- 외부 산출물 안전 참조 ---------- */
+var EXP = (typeof EXPRESSIONS !== 'undefined') ? EXPRESSIONS : {placement:{},kicks:[],sparkles:[]};
+var NOOP = function(){};
+var Score = (typeof PonyScore !== 'undefined') ? PonyScore : {
+  start:function(){return Promise.resolve(false);}, stop:NOOP, setChapter:NOOP,
+  mute:NOOP, unmute:NOOP, isMuted:function(){return false;},
+  onBeat:function(){return NOOP;}, setVolume:NOOP, isPlaying:function(){return false;}
+};
+
+var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (RM) document.body.classList.add('rm');
+
+/* ================================================================
+   1. 대본 — 1번 AI `docs/01_STORYLINE.md` 자막 축약본 그대로
+   ================================================================ */
+var SCRIPT = {
+  ch1: {
+    n:1, id:'ch1', title:'창가에서', en:'At the Window', mood:'시작',
+    palette:['#A8C9E4','#77925F','#F2A7BC'],
+    photos:['p01_bouquet_window','p09_triptych'], video:'v01_bouquet_window.mp4',
+    oneLine:'한 손으로 꽃을 받고, 남은 한 손으로 아이를 안고 있었다.',
+    lines:[
+      {at:0,  who:'G', t:'서른 해 전 여름에도'},
+      {at:2,  who:'G', t:'이만큼 밝은 창이 있었다'},
+      {at:6,  who:'G', t:'그때 내 팔에 안겨 있던 아이가'},
+      {at:9,  who:'G', t:'지금 저 창가에 서 있다'},
+      {at:12, who:'P', t:'여기 안은 좀 깜깜해'},
+      {at:15, who:'P', t:'근데 바깥은 되게 밝은가 봐'},
+      {at:19, who:'G', t:'사위가 허리를 숙인다'},
+      {at:21, who:'G', t:'꽃보다 더 낮게'},
+      {at:24, who:'G', t:'꽃을 받는 손은 하나뿐이다'},
+      {at:27, who:'G', t:'남은 한 손은 배 위에 있다'}
+    ]
+  },
+  ch2: {
+    n:2, id:'ch2', title:'반짝이는 것들', en:'The Glittering Things', mood:'다정',
+    palette:['#DC5580','#F1E1C6','#7BD64F'],
+    photos:['p02_bouquet_closeup'], video:'v02_bouquet_closeup.mp4',
+    oneLine:'아직 오지 않은 생일에게, 미리 카드를 썼다.',
+    lines:[
+      {at:0,  who:'G', t:'배 위에 스티커를 붙였다'},
+      {at:2,  who:'G', t:'리본, 하트, 고양이 얼굴 하나'},
+      {at:5,  who:'G', t:'장미와 거베라 뒤 선반 위에'},
+      {at:8,  who:'G', t:'회색 조랑말이 앉아 있다'},
+      {at:11, who:'P', t:'나 위에 붙은 거 뭐야?'},
+      {at:15, who:'P', t:'나 지금 반짝여?'},
+      {at:19, who:'G', t:'꽃다발 사이에 생일 카드'},
+      {at:22, who:'G', t:'그것도 거꾸로'},
+      {at:24, who:'G', t:'아직 오지 않은 생일에게'},
+      {at:27, who:'G', t:'미리 건네는 카드다'}
+    ]
+  },
+  ch3: {
+    n:3, id:'ch3', title:'포니라는 이름', en:'A Name Called Pony', mood:'호명',
+    palette:['#C6CBD1','#D02534','#AFCFE7'],
+    photos:['p03_pony_balloons'], video:'v03_pony_balloons.mp4',
+    oneLine:'이름은, 아직 오지 않은 사람을 미리 부르는 방법이다.',
+    lines:[
+      {at:0,  who:'G', t:'창에 은박 글자 네 개'},
+      {at:3,  who:'G', t:'피, 오, 엔, 와이'},
+      {at:6,  who:'G', t:'양쪽 끝엔 빨간 하트'},
+      {at:9,  who:'G', t:'이름보다 먼저 걸어둔 마음'},
+      {at:12, who:'P', t:'포니. 그거 나 부르는 소리야'},
+      {at:15, who:'P', t:'벌써 여러 번 들었어'},
+      {at:18, who:'G', t:'아빠는 배냇저고리를 펼쳐 들고'},
+      {at:21, who:'G', t:'엄마는 신발 상자를 들었다'},
+      {at:24, who:'P', t:'그거 다 내 거지?'},
+      {at:27, who:'P', t:'나 아직 발 진짜 작은데'}
+    ]
+  },
+  ch4: {
+    n:4, id:'ch4', title:'아직 볼 수 없는 얼굴', en:'The Face Not Yet Seen', mood:'기다림',
+    palette:['#EEEBE5','#E5B463','#A69D95'],
+    photos:['p04_hide_shoebox','p06_plush_hide','p05_bed_hide'], video:'v04_hide_shoebox.mp4',
+    oneLine:'이 방에서 아직 아무도 보지 못한 얼굴이 하나 있다.',
+    lines:[
+      {at:0,  who:'G', t:'두 사람이 얼굴을 가렸다'},
+      {at:2,  who:'G', t:'신발 상자로, 배냇저고리로'},
+      {at:5,  who:'G', t:'가린 얼굴 옆으로'},
+      {at:7,  who:'G', t:'아기 얼굴 풍선이 빼꼼'},
+      {at:10, who:'P', t:'그거 내 대신이야'},
+      {at:14, who:'G', t:'이번엔 조랑말 인형'},
+      {at:16, who:'G', t:'인형 다리가 축 늘어져 있다'},
+      {at:19, who:'P', t:'다 가려도 나는 다 알아'},
+      {at:22, who:'P', t:'목소리로 알아'},
+      {at:24, who:'G', t:'이 방에서 아직'},
+      {at:26, who:'G', t:'아무도 보지 못한 얼굴이 하나 있다'}
+    ]
+  },
+  ch5: {
+    n:5, id:'ch5', title:'작은 신발 한 짝', en:'One Small Shoe', mood:'고요',
+    palette:['#E4B375','#F1EEE8','#EFA6BC'],
+    photos:['p07_shoe_gaze','p08_heart_balloon'], video:'v07_shoe_gaze.mp4',
+    oneLine:'저만한 크기를 나도 손에 쥐어본 적이 있다.',
+    lines:[
+      {at:0,  who:'G', t:'딸이 신발 한 짝을 들여다본다'},
+      {at:4,  who:'G', t:'오래'},
+      {at:6,  who:'G', t:'저만한 크기를'},
+      {at:8,  who:'G', t:'나도 손에 쥐어본 적이 있다'},
+      {at:12, who:'P', t:'그거 나 신는 거지?'},
+      {at:16, who:'P', t:'근데 왜 한 짝만 봐?'},
+      {at:20, who:'G', t:'사위는 조랑말을 얼굴 옆에 들고'},
+      {at:23, who:'G', t:'웃는다'},
+      {at:25, who:'G', t:'하트 풍선과 조랑말이'},
+      {at:27, who:'G', t:'방 한가운데서 마주 본다'}
+    ]
+  },
+  ch6: {
+    n:6, id:'ch6', title:'우리가 함께 올려다본 것', en:'What We Looked Up At', mood:'도착',
+    palette:['#F5F2EE','#6A574A','#E2B47C'],
+    photos:['p10_ultrasound'], video:'v10_ultrasound.mp4',
+    oneLine:'두 사람이 각자 한 손을 들었더니, 그 사이에 한 사람이 더 있었다.',
+    lines:[
+      {at:0,  who:'G', t:'두 사람이 침대에 엎드려'},
+      {at:3,  who:'G', t:'팔을 들었다. 각자 한 손씩'},
+      {at:6,  who:'G', t:'손끝에 초음파 필름이'},
+      {at:9,  who:'G', t:'일곱 칸 매달려 있다'},
+      {at:12, who:'P', t:'저거 나야'},
+      {at:14, who:'P', t:'아직 좀 흐릿한 나'},
+      {at:17, who:'G', t:'둘 사이엔 분홍 옷 입은 조랑말'},
+      {at:21, who:'P', t:'나 벌써 저기'},
+      {at:23, who:'P', t:'앉아 있는 거 맞지?'},
+      {at:26, who:'G', t:'포니야'},
+      {at:28, who:'G', t:'신발은 내가 신겨주마'}
+    ]
+  }
+};
+var CH_IDS = ['ch1','ch2','ch3','ch4','ch5','ch6'];
+var CH_LEN = 30;          // 챕터당 초
+var TOTAL  = 180;         // 전체 초
+
+/* 사진 한국어 대체 텍스트 */
+var ALT = {
+  p01_bouquet_window:'창가에서 꽃다발을 받는 만삭의 딸과 허리를 숙여 꽃을 건네는 사위',
+  p02_bouquet_closeup:'배 위에 붙인 보석 스티커와 장미·거베라 꽃다발을 가까이 담은 사진',
+  p03_pony_balloons:'창에 붙인 은박 P·O·N·Y 글자와 빨간 하트 풍선 앞에 선 두 사람',
+  p04_hide_shoebox:'신발 상자와 배냇저고리로 얼굴을 가린 두 사람, 그 사이로 나온 아기 얼굴 풍선',
+  p05_bed_hide:'흰 침구에 나란히 누워 머리를 맞댄 두 사람',
+  p06_plush_hide:'회색 조랑말 인형으로 얼굴을 가린 두 사람',
+  p07_shoe_gaze:'두 손으로 아기 신발 한 짝을 들고 오래 들여다보는 딸',
+  p08_heart_balloon:'하트 풍선과 조랑말 인형이 방 한가운데서 마주 놓인 장면',
+  p09_triptych:'창가 장면을 세로 3분할 필름처럼 이어 붙인 사진',
+  p10_ultrasound:'침대에 엎드려 초음파 필름을 함께 들어 올린 두 사람과 분홍 옷을 입은 조랑말'
+};
+
+/* ================================================================
+   2. 인라인 아트 (6번 AI SVG 자리 — 없으면 이 대체 도형이 쓰인다)
+   ================================================================ */
+var ART = {
+/*<<ART:pony_mascot>>*/
+pony_mascot:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="pmTitle" color="var(--pony-pink, #F2B3C6)"> <title id="pmTitle">포니 — 정면</title> <ellipse cx="256" cy="494" rx="122" ry="15" fill="#000000" opacity="0.07"/> <path d="M352 372 C382 356 406 374 398 396 C390 418 362 418 348 402 Z" fill="#E7D6BE"/> <path d="M356 378 C378 368 394 380 388 394 C382 408 364 408 354 396 Z" fill="#F6ECDC"/> <g> <path d="M190 152 C167 139 145 106 147 81 C149 60 172 60 189 81 C204 100 210 134 205 154 Z" fill="#C9C1BA"/> <path d="M191 145 C175 132 161 108 163 91 C165 79 177 81 187 95 C197 110 201 131 199 146 Z" fill="#F0C3CF" opacity="0.85"/> </g> <g transform="translate(512,0) scale(-1,1)"> <path d="M190 152 C167 139 145 106 147 81 C149 60 172 60 189 81 C204 100 210 134 205 154 Z" fill="#C9C1BA"/> <path d="M191 145 C175 132 161 108 163 91 C165 79 177 81 187 95 C197 110 201 131 199 146 Z" fill="#F0C3CF" opacity="0.85"/> </g> <path d="M256 286 C322 286 358 326 358 386 C358 434 316 452 256 452 C196 452 154 434 154 386 C154 326 190 286 256 286 Z" fill="#C9C1BA"/> <path d="M256 286 C322 286 358 326 358 386 C358 434 316 452 256 452 C300 440 322 406 322 366 C322 328 296 298 256 286 Z" fill="#B2A8A0" opacity="0.5"/> <g> <rect x="204" y="428" width="42" height="66" rx="21" fill="#C9C1BA"/> <rect x="266" y="428" width="42" height="66" rx="21" fill="#C9C1BA"/> <rect x="204" y="464" width="42" height="30" rx="15" fill="#F6ECDC"/> <rect x="266" y="464" width="42" height="30" rx="15" fill="#F6ECDC"/> </g> <g> <ellipse cx="168" cy="392" rx="21" ry="30" fill="#C9C1BA" transform="rotate(13 168 392)"/> <ellipse cx="344" cy="392" rx="21" ry="30" fill="#C9C1BA" transform="rotate(-13 344 392)"/> <ellipse cx="163" cy="414" rx="18" ry="15" fill="#F6ECDC" transform="rotate(13 163 414)"/> <ellipse cx="349" cy="414" rx="18" ry="15" fill="#F6ECDC" transform="rotate(-13 349 414)"/> </g> <g fill="currentColor"> <path d="M198 320 C224 304 288 304 314 320 L338 418 C338 418 302 442 256 442 C210 442 174 418 174 418 Z"/> <circle cx="180" cy="418" r="11"/> <circle cx="204" cy="429" r="12"/> <circle cx="230" cy="436" r="13"/> <circle cx="256" cy="438" r="13"/> <circle cx="282" cy="436" r="13"/> <circle cx="308" cy="429" r="12"/> <circle cx="332" cy="418" r="11"/> <path d="M196 318 C222 300 290 300 316 318 C300 334 212 334 196 318 Z"/> </g> <path d="M290 307 C304 310 311 314 314 320 L338 418 C338 418 306 442 266 442 C300 412 306 356 290 307 Z" fill="#000000" opacity="0.09"/> <circle cx="256" cy="352" r="7" fill="#FFFFFF" opacity="0.75"/> <circle cx="256" cy="382" r="7" fill="#FFFFFF" opacity="0.75"/> <path d="M256 106 C321 106 367 151 367 212 C367 263 331 297 296 307 C280 312 232 312 216 307 C181 297 145 263 145 212 C145 151 191 106 256 106 Z" fill="#C9C1BA"/> <path d="M300 118 C344 134 367 168 367 212 C367 263 331 297 296 307 C316 286 328 254 328 218 C328 176 318 142 300 118 Z" fill="#B2A8A0" opacity="0.4"/> <g fill="#F6ECDC"> <path d="M201 150 C186 119 191 84 216 65 C220 96 236 113 253 119 C238 142 217 154 201 150 Z"/> <path d="M232 124 C226 83 245 50 278 42 C273 77 290 99 308 105 C289 128 256 134 232 124 Z"/> <path d="M292 117 C301 84 331 66 358 79 C339 95 333 119 337 144 C318 142 300 131 292 117 Z"/> <path d="M239 130 C250 150 263 152 274 137 C279 152 270 168 255 168 C240 168 233 149 239 130 Z"/> </g> <g fill="#E7D6BE" opacity="0.75"> <path d="M262 118 C273 122 287 118 296 108 C297 122 290 130 280 133 C270 129 264 124 262 118 Z"/> </g> <g transform="translate(324,86) rotate(-14)" fill="currentColor"> <path d="M0 0 C -9 -15 -27 -17 -31 -6 C -35 5 -18 13 0 0 Z"/> <path d="M0 0 C 9 -15 27 -17 31 -6 C 35 5 18 13 0 0 Z"/> <circle r="6.5"/> </g> <ellipse cx="256" cy="254" rx="65" ry="46" fill="#F6ECDC"/> <ellipse cx="256" cy="262" rx="65" ry="38" fill="#E7D6BE" opacity="0.4"/> <ellipse cx="235" cy="245" rx="6" ry="8.5" fill="#A2968D" transform="rotate(-14 235 245)"/> <ellipse cx="277" cy="245" rx="6" ry="8.5" fill="#A2968D" transform="rotate(14 277 245)"/> <path d="M234 271 Q256 289 278 271" fill="none" stroke="#A2968D" stroke-width="5.5" stroke-linecap="round"/> <ellipse cx="166" cy="243" rx="23" ry="13" fill="#F59DB2" opacity="0.5"/> <ellipse cx="346" cy="243" rx="23" ry="13" fill="#F59DB2" opacity="0.5"/> <g fill="#4B403A"> <ellipse cx="204" cy="200" rx="16" ry="19.5"/> <ellipse cx="308" cy="200" rx="16" ry="19.5"/> </g> <g fill="#FFFFFF"> <circle cx="199" cy="192" r="6"/> <circle cx="303" cy="192" r="6"/> <circle cx="210" cy="210" r="3.2" opacity="0.75"/> <circle cx="314" cy="210" r="3.2" opacity="0.75"/> </g> <g fill="none" stroke="#A2968D" stroke-width="4" stroke-linecap="round" opacity="0.85"> <path d="M186 176 Q204 166 222 176"/> <path d="M290 176 Q308 166 326 176"/> </g> </svg>',
+/*<<ART:pony_run>>*/
+pony_run:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 400" role="img" aria-labelledby="prTitle" color="var(--pony-pink, #F2B3C6)"> <title id="prTitle">포니 — 달리기</title> <g fill="none" stroke="#C9C1BA" stroke-width="7" stroke-linecap="round" opacity="0.45"> <path d="M18 132 H84"/> <path d="M6 178 H68"/> <path d="M26 224 H78"/> </g> <ellipse cx="272" cy="356" rx="152" ry="16" fill="#000000" opacity="0.07"/> <path d="M192 170 C154 148 106 156 78 182 C108 180 132 189 147 202 C113 209 86 228 74 252 C108 228 152 217 188 209 Z" fill="#E7D6BE"/> <path d="M192 178 C160 162 124 168 100 186 C126 186 146 194 158 204 C130 212 108 226 96 244 C124 226 158 216 190 210 Z" fill="#F6ECDC"/> <g fill="none" stroke="#B2A8A0" stroke-width="23" stroke-linecap="round"> <path d="M306 250 C318 280 314 306 298 324"/> <path d="M228 248 C210 280 214 308 228 328"/> </g> <ellipse cx="296" cy="330" rx="15" ry="12.5" fill="#E7D6BE" transform="rotate(12 296 330)"/> <ellipse cx="230" cy="334" rx="15" ry="12.5" fill="#E7D6BE" transform="rotate(-6 230 334)"/> <ellipse cx="270" cy="210" rx="96" ry="67" fill="#C9C1BA" transform="rotate(-7 270 210)"/> <path d="M270 276 C214 274 180 250 176 216 C196 250 232 266 274 266 C316 266 348 248 362 218 C360 254 324 278 270 276 Z" fill="#B2A8A0" opacity="0.45"/> <g fill="currentColor"> <path d="M234 146 C268 132 322 138 348 156 L338 230 C310 246 258 246 232 228 Z"/> <circle cx="238" cy="228" r="10"/> <circle cx="261" cy="238" r="11"/> <circle cx="286" cy="242" r="11"/> <circle cx="311" cy="238" r="11"/> <circle cx="334" cy="227" r="10"/> <path d="M330 142 C346 146 356 152 360 160 C350 174 332 178 322 172 Z"/> </g> <path d="M300 138 C322 142 340 148 348 156 L338 230 C324 240 306 244 288 244 C312 216 314 172 300 138 Z" fill="#000000" opacity="0.09"/> <g fill="none" stroke="#C9C1BA" stroke-width="25" stroke-linecap="round"> <path d="M322 246 C352 272 386 286 414 286"/> <path d="M214 246 C184 278 148 294 116 292"/> </g> <ellipse cx="110" cy="292" rx="16" ry="13" fill="#F6ECDC" transform="rotate(10 110 292)"/> <ellipse cx="420" cy="288" rx="16" ry="13" fill="#F6ECDC" transform="rotate(-14 420 288)"/> <path d="M326 158 C344 128 370 106 398 94 L436 138 C408 150 384 172 370 200 Z" fill="#C9C1BA"/> <g fill="#F6ECDC"> <path d="M406 84 C382 78 354 92 338 114 C356 110 372 114 380 122 C356 126 336 142 328 160 C350 144 380 134 404 130 C394 114 396 94 406 84 Z"/> <path d="M366 106 C352 108 340 118 334 130 C346 126 356 128 362 134 C356 122 358 112 366 106 Z" fill="#E7D6BE"/> </g> <path d="M398 108 C398 82 421 64 448 66 C477 68 495 91 497 118 C498 131 508 137 513 148 C518 161 509 173 494 175 C475 177 457 170 445 160 C427 146 398 134 398 108 Z" fill="#C9C1BA"/> <path d="M470 126 C486 128 496 136 505 146 C513 157 508 171 494 175 C478 178 462 171 450 161 C462 155 470 142 470 126 Z" fill="#F6ECDC"/> <path d="M432 76 C426 56 433 38 445 36 C456 35 463 52 459 74 Z" fill="#C9C1BA"/> <path d="M436 72 C432 57 437 45 444 44 C451 44 455 57 452 71 Z" fill="#F0C3CF" opacity="0.85"/> <path d="M452 62 C470 54 486 62 492 76 C480 68 466 70 456 80 Z" fill="#F6ECDC"/> <ellipse cx="452" cy="110" rx="9.5" ry="11.5" fill="#4B403A"/> <circle cx="449" cy="105" r="3.6" fill="#FFFFFF"/> <path d="M438 90 Q452 82 466 90" fill="none" stroke="#A2968D" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/> <ellipse cx="497" cy="150" rx="4.5" ry="6" fill="#A2968D" transform="rotate(24 497 150)"/> <path d="M478 166 Q490 174 500 166" fill="none" stroke="#A2968D" stroke-width="4" stroke-linecap="round"/> <ellipse cx="428" cy="136" rx="16" ry="9" fill="#F59DB2" opacity="0.5"/> </svg>',
+/*<<ART:pony_sleep>>*/
+pony_sleep:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 380" role="img" aria-labelledby="psTitle" color="var(--pony-pink, #F2B3C6)"> <title id="psTitle">포니 — 잠든 포즈</title> <ellipse cx="248" cy="322" rx="182" ry="20" fill="#000000" opacity="0.07"/> <path d="M366 268 C398 254 424 268 420 292 C416 314 388 320 370 306 Z" fill="#E7D6BE"/> <path d="M370 274 C392 266 410 276 406 292 C402 308 382 310 372 300 Z" fill="#F6ECDC"/> <path d="M142 288 C124 246 144 198 196 174 C252 148 330 156 368 198 C398 232 392 286 356 298 C322 310 174 310 142 288 Z" fill="#C9C1BA"/> <path d="M368 198 C398 232 392 286 356 298 C330 307 250 310 190 304 C268 302 344 288 360 250 C368 230 370 212 368 198 Z" fill="#B2A8A0" opacity="0.45"/> <path d="M212 262 C246 250 292 252 318 268 C330 276 326 294 306 298 C272 304 224 302 206 292 C194 285 196 268 212 262 Z" fill="#B2A8A0"/> <ellipse cx="308" cy="292" rx="20" ry="14" fill="#E7D6BE"/> <g fill="currentColor"> <path d="M182 214 C210 188 252 176 296 180 C338 184 366 200 380 222 L382 276 C368 296 320 306 262 306 C208 306 176 298 172 284 Z"/> <circle cx="180" cy="288" r="12"/> <circle cx="210" cy="299" r="13"/> <circle cx="244" cy="304" r="13"/> <circle cx="280" cy="304" r="13"/> <circle cx="316" cy="299" r="13"/> <circle cx="350" cy="288" r="12"/> <circle cx="376" cy="272" r="10"/> </g> <path d="M300 181 C340 186 366 201 380 222 L382 276 C370 294 336 303 292 306 C334 288 344 232 300 181 Z" fill="#000000" opacity="0.09"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="236" cy="222" r="5"/> <circle cx="280" cy="212" r="5"/> <circle cx="322" cy="230" r="5"/> <circle cx="258" cy="256" r="5"/> <circle cx="304" cy="266" r="5"/> </g> <g transform="translate(26,-26) rotate(34 200 180)"> <path d="M186 206 C176 182 182 158 198 152 C212 148 220 168 214 192 Z" fill="#C9C1BA"/> <path d="M190 202 C183 184 187 166 198 162 C207 160 212 175 208 192 Z" fill="#F0C3CF" opacity="0.85"/> </g> <path d="M150 176 C196 176 226 210 226 250 C226 288 194 312 150 312 C104 312 74 288 74 250 C74 210 104 176 150 176 Z" fill="#C9C1BA"/> <path d="M186 186 C212 200 226 224 226 250 C226 288 194 312 150 312 C186 300 206 274 206 244 C206 220 198 200 186 186 Z" fill="#B2A8A0" opacity="0.35"/> <g fill="#F6ECDC"> <path d="M112 200 C102 176 108 150 128 138 C130 162 142 174 156 178 C144 196 126 204 112 200 Z"/> <path d="M140 180 C136 150 152 128 176 124 C172 148 184 162 198 166 C182 182 158 186 140 180 Z"/> <path d="M186 178 C194 158 216 148 234 158 C220 168 216 184 218 200 C204 198 192 190 186 178 Z"/> </g> <ellipse cx="118" cy="272" rx="46" ry="34" fill="#F6ECDC"/> <ellipse cx="118" cy="278" rx="46" ry="28" fill="#E7D6BE" opacity="0.35"/> <ellipse cx="104" cy="264" rx="4.5" ry="6" fill="#A2968D" transform="rotate(-14 104 264)"/> <ellipse cx="132" cy="264" rx="4.5" ry="6" fill="#A2968D" transform="rotate(14 132 264)"/> <path d="M106 286 Q118 296 130 286" fill="none" stroke="#A2968D" stroke-width="4.5" stroke-linecap="round"/> <g fill="none" stroke="#4B403A" stroke-width="6.5" stroke-linecap="round"> <path d="M96 232 Q110 246 124 232"/> <path d="M162 230 Q176 244 190 230"/> </g> <ellipse cx="82" cy="256" rx="17" ry="10" fill="#F59DB2" opacity="0.5"/> <ellipse cx="186" cy="254" rx="17" ry="10" fill="#F59DB2" opacity="0.5"/> <ellipse cx="112" cy="306" rx="26" ry="17" fill="#F6ECDC"/> <ellipse cx="160" cy="308" rx="26" ry="17" fill="#F6ECDC"/> <g fill="none" stroke="#B9AEA6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"> <g transform="translate(396,196) scale(0.62)"><path d="M0 0 h26 l-26 30 h26"/></g> <g transform="translate(424,136) scale(0.85)" stroke="#C5B4AE"><path d="M0 0 h26 l-26 30 h26"/></g> <g transform="translate(456,58) scale(1.12)" stroke="currentColor" opacity="0.85"><path d="M0 0 h26 l-26 30 h26"/></g> </g> </svg>',
+/*<<ART:pony_wave>>*/
+pony_wave:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="pwTitle" color="var(--pony-pink, #F2B3C6)"> <title id="pwTitle">포니 — 인사</title> <ellipse cx="262" cy="494" rx="118" ry="15" fill="#000000" opacity="0.07"/> <path d="M356 372 C386 356 410 374 402 396 C394 418 366 418 352 402 Z" fill="#E7D6BE"/> <path d="M360 378 C382 368 398 380 392 394 C386 408 368 408 358 396 Z" fill="#F6ECDC"/> <path d="M196 356 C166 334 140 302 130 250" fill="none" stroke="#C9C1BA" stroke-width="40" stroke-linecap="round"/> <ellipse cx="126" cy="236" rx="25" ry="23" fill="#F6ECDC" transform="rotate(-18 126 236)"/> <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" opacity="0.65"> <path d="M92 208 C 84 200 80 190 80 180"/> <path d="M104 182 C 100 170 100 158 104 148"/> </g> <g transform="rotate(-6 256 260)"> <g> <path d="M190 152 C167 139 145 106 147 81 C149 60 172 60 189 81 C204 100 210 134 205 154 Z" fill="#C9C1BA"/> <path d="M191 145 C175 132 161 108 163 91 C165 79 177 81 187 95 C197 110 201 131 199 146 Z" fill="#F0C3CF" opacity="0.85"/> </g> <g transform="translate(512,0) scale(-1,1)"> <path d="M190 152 C167 139 145 106 147 81 C149 60 172 60 189 81 C204 100 210 134 205 154 Z" fill="#C9C1BA"/> <path d="M191 145 C175 132 161 108 163 91 C165 79 177 81 187 95 C197 110 201 131 199 146 Z" fill="#F0C3CF" opacity="0.85"/> </g> </g> <path d="M258 286 C324 286 360 326 360 386 C360 434 318 452 258 452 C198 452 156 434 156 386 C156 326 192 286 258 286 Z" fill="#C9C1BA"/> <g> <rect x="206" y="428" width="42" height="66" rx="21" fill="#C9C1BA"/> <rect x="268" y="428" width="42" height="66" rx="21" fill="#C9C1BA"/> <rect x="206" y="464" width="42" height="30" rx="15" fill="#F6ECDC"/> <rect x="268" y="464" width="42" height="30" rx="15" fill="#F6ECDC"/> </g> <ellipse cx="348" cy="394" rx="21" ry="30" fill="#C9C1BA" transform="rotate(-15 348 394)"/> <ellipse cx="353" cy="416" rx="18" ry="15" fill="#F6ECDC" transform="rotate(-15 353 416)"/> <g fill="currentColor"> <path d="M200 320 C226 304 290 304 316 320 L340 418 C340 418 304 442 258 442 C212 442 176 418 176 418 Z"/> <circle cx="182" cy="418" r="11"/> <circle cx="206" cy="429" r="12"/> <circle cx="232" cy="436" r="13"/> <circle cx="258" cy="438" r="13"/> <circle cx="284" cy="436" r="13"/> <circle cx="310" cy="429" r="12"/> <circle cx="334" cy="418" r="11"/> <path d="M198 318 C224 300 292 300 318 318 C302 334 214 334 198 318 Z"/> </g> <path d="M292 307 C306 310 313 314 316 320 L340 418 C340 418 308 442 268 442 C302 412 308 356 292 307 Z" fill="#000000" opacity="0.09"/> <circle cx="258" cy="352" r="7" fill="#FFFFFF" opacity="0.75"/> <circle cx="258" cy="382" r="7" fill="#FFFFFF" opacity="0.75"/> <g transform="rotate(-6 256 260)"> <path d="M256 106 C321 106 367 151 367 212 C367 263 331 297 296 307 C280 312 232 312 216 307 C181 297 145 263 145 212 C145 151 191 106 256 106 Z" fill="#C9C1BA"/> <path d="M300 118 C344 134 367 168 367 212 C367 263 331 297 296 307 C316 286 328 254 328 218 C328 176 318 142 300 118 Z" fill="#B2A8A0" opacity="0.4"/> <g fill="#F6ECDC"> <path d="M201 150 C186 119 191 84 216 65 C220 96 236 113 253 119 C238 142 217 154 201 150 Z"/> <path d="M232 124 C226 83 245 50 278 42 C273 77 290 99 308 105 C289 128 256 134 232 124 Z"/> <path d="M292 117 C301 84 331 66 358 79 C339 95 333 119 337 144 C318 142 300 131 292 117 Z"/> <path d="M239 130 C250 150 263 152 274 137 C279 152 270 168 255 168 C240 168 233 149 239 130 Z"/> </g> <g transform="translate(324,86) rotate(-14)" fill="currentColor"> <path d="M0 0 C -9 -15 -27 -17 -31 -6 C -35 5 -18 13 0 0 Z"/> <path d="M0 0 C 9 -15 27 -17 31 -6 C 35 5 18 13 0 0 Z"/> <circle r="6.5"/> </g> <ellipse cx="256" cy="254" rx="65" ry="46" fill="#F6ECDC"/> <ellipse cx="256" cy="262" rx="65" ry="38" fill="#E7D6BE" opacity="0.4"/> <ellipse cx="235" cy="243" rx="6" ry="8.5" fill="#A2968D" transform="rotate(-14 235 243)"/> <ellipse cx="277" cy="243" rx="6" ry="8.5" fill="#A2968D" transform="rotate(14 277 243)"/> <path d="M232 265 C240 292 272 292 280 265 C266 272 246 272 232 265 Z" fill="#9C6F6B"/> <path d="M247 281 C252 289 262 289 267 281 C262 277 252 277 247 281 Z" fill="#F08FA4"/> <ellipse cx="166" cy="243" rx="23" ry="13" fill="#F59DB2" opacity="0.5"/> <ellipse cx="346" cy="243" rx="23" ry="13" fill="#F59DB2" opacity="0.5"/> <ellipse cx="308" cy="200" rx="16" ry="19.5" fill="#4B403A"/> <circle cx="303" cy="192" r="6" fill="#FFFFFF"/> <circle cx="314" cy="210" r="3.2" fill="#FFFFFF" opacity="0.75"/> <path d="M188 206 Q204 188 220 206" fill="none" stroke="#4B403A" stroke-width="7.5" stroke-linecap="round"/> <g fill="none" stroke="#A2968D" stroke-width="4" stroke-linecap="round" opacity="0.85"> <path d="M186 176 Q204 166 222 176"/> <path d="M290 176 Q308 166 326 176"/> </g> </g> </svg>',
+/*<<ART:baby_shoe>>*/
+baby_shoe:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 110" role="img" aria-labelledby="bsTitle" color="var(--pony-pink, #F2B3C6)"> <title id="bsTitle">아기 신발</title> <ellipse cx="74" cy="102" rx="60" ry="6" fill="#000000" opacity="0.07"/> <path d="M13 68 C11 49 24 36 46 32 L57 30 C57 19 72 11 94 11 C116 11 131 19 131 30 L133 68 Z" fill="#F6ECDC"/> <path d="M100 12 C120 15 131 22 131 30 L133 68 L104 68 C110 48 108 27 100 12 Z" fill="#E7D6BE" opacity="0.65"/> <path d="M9 80 C5 69 15 62 31 62 L122 60 C134 60 139 68 139 76 C139 86 130 92 118 92 L29 92 C17 92 11 87 9 80 Z" fill="#FBF3E6"/> <path d="M9 80 C5 69 15 62 31 62 L122 60 C134 60 139 68 139 76 L9 80 Z" fill="#F6ECDC"/> <path d="M10 84 C15 91 22 95 32 95 L118 95 C132 95 139 89 139 79 C139 91 131 99 118 99 L31 99 C19 99 12 92 10 84 Z" fill="#E4D5BF"/> <path d="M55 30 C55 18 72 10 94 10 C116 10 133 18 133 30 C133 41 116 48 94 48 C72 48 55 41 55 30 Z" fill="#FFFFFF"/> <ellipse cx="94" cy="28" rx="32" ry="12" fill="#E7D6BE"/> <ellipse cx="94" cy="27" rx="26" ry="8" fill="#D6C4AA" opacity="0.6"/> <path d="M58 36 C70 45 118 45 130 36" fill="none" stroke="#E4D5BF" stroke-width="3" stroke-linecap="round"/> <g transform="translate(52,58) rotate(-6)" fill="currentColor"> <path d="M0 0 C -8 -12 -24 -13 -27 -4 C -30 5 -15 12 0 0 Z"/> <path d="M0 0 C 8 -12 24 -13 27 -4 C 30 5 15 12 0 0 Z"/> <path d="M-3 3 C -8 12 -13 17 -19 20 C -15 12 -13 7 -11 2 Z"/> <path d="M3 3 C 8 12 13 17 19 20 C 15 12 13 7 11 2 Z"/> <circle r="5.5"/> </g> <path d="M20 74 C50 78 104 77 130 72" fill="none" stroke="#E4D5BF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 7"/> <path d="M22 55 C30 44 40 39 52 37" fill="none" stroke="#E7D6BE" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 6"/> </svg>',
+/*<<ART:heart_balloon>>*/
+heart_balloon:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 220" role="img" aria-labelledby="hbTitle" color="var(--pony-pink, #F07D9C)"> <title id="hbTitle">하트 풍선</title> <path d="M70 140 C80 160 58 176 70 194 C78 206 70 213 64 217" fill="none" stroke="#C9B9AE" stroke-width="3" stroke-linecap="round"/> <path d="M70 128 L79 142 L61 142 Z" fill="currentColor"/> <path d="M70 128 L79 142 L70 142 Z" fill="#000000" opacity="0.15"/> <path d="M70 133 C38 110 12 88 12 60 C12 36 30 22 48 27 C58 30 65 38 70 47 C75 38 82 30 92 27 C110 22 128 36 128 60 C128 88 102 110 70 133 Z" fill="currentColor"/> <path d="M70 47 C75 38 82 30 92 27 C110 22 128 36 128 60 C128 88 102 110 70 133 C94 104 104 66 70 47 Z" fill="#000000" opacity="0.12"/> <ellipse cx="40" cy="52" rx="11" ry="17" fill="#FFFFFF" opacity="0.5" transform="rotate(-28 40 52)"/> <ellipse cx="55" cy="40" rx="4" ry="6" fill="#FFFFFF" opacity="0.6" transform="rotate(-28 55 40)"/> </svg>',
+/*<<ART:petal>>*/
+petal:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="ptTitle" color="var(--pony-pink, #F5A9BE)"> <title id="ptTitle">꽃잎</title> <g transform="rotate(-14 32 32)"> <path d="M32 61 C21 51 13 40 14 27 C15 13 24 3 34 4 C45 5 51 16 50 29 C49 42 42 52 32 61 Z" fill="currentColor"/> <path d="M34 4 C45 5 51 16 50 29 C49 42 42 52 32 61 C42 45 45 22 34 4 Z" fill="#000000" opacity="0.12"/> <path d="M32 61 C22 51 15 40 15 27 C15 15 22 6 30 5 C24 19 22 42 32 61 Z" fill="#FFFFFF" opacity="0.32"/> <path d="M30 56 C26 41 27 23 33 8" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/> <path d="M36 48 C35 36 36 24 40 15" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" opacity="0.22"/> </g> </svg>',
+/*<<ART:sparkle>>*/
+sparkle:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="spTitle" color="var(--pony-gold, #F3D08A)"> <title id="spTitle">반짝임</title> <path d="M32 1 C34.5 20 44 29.5 63 32 C44 34.5 34.5 44 32 63 C29.5 44 20 34.5 1 32 C20 29.5 29.5 20 32 1 Z" fill="currentColor"/> <path d="M32 12 C33.6 23.5 40.5 30.4 52 32 C40.5 33.6 33.6 40.5 32 52 C30.4 40.5 23.5 33.6 12 32 C23.5 30.4 30.4 23.5 32 12 Z" fill="#FFFFFF" opacity="0.55"/> <path d="M53 6 C53.8 11.2 56.8 14.2 62 15 C56.8 15.8 53.8 18.8 53 24 C52.2 18.8 49.2 15.8 44 15 C49.2 14.2 52.2 11.2 53 6 Z" fill="currentColor" opacity="0.75"/> <path d="M11 45 C11.6 48.6 13.4 50.4 17 51 C13.4 51.6 11.6 53.4 11 57 C10.4 53.4 8.6 51.6 5 51 C8.6 50.4 10.4 48.6 11 45 Z" fill="currentColor" opacity="0.6"/> </svg>',
+/*<<ART:music_note>>*/
+music_note:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 120" role="img" aria-labelledby="mnTitle" color="var(--pony-mauve, #C9A6B4)"> <title id="mnTitle">음표</title> <g fill="currentColor"> <path d="M33 96 V22 h7 v74 z"/> <path d="M76 84 V10 h7 v74 z"/> <path d="M33 22 L83 10 V27 L33 39 Z"/> <path d="M33 45 L83 33 V44 L33 56 Z" opacity="0.85"/> <ellipse cx="21" cy="96" rx="18" ry="13" transform="rotate(-18 21 96)"/> <ellipse cx="64" cy="84" rx="18" ry="13" transform="rotate(-18 64 84)"/> </g> <g fill="#FFFFFF" opacity="0.4"> <ellipse cx="16" cy="91" rx="6" ry="4" transform="rotate(-18 16 91)"/> <ellipse cx="59" cy="79" rx="6" ry="4" transform="rotate(-18 59 79)"/> </g> </svg>'
+};
+
+/* ================================================================
+   3. DOM 참조
+   ================================================================ */
+var $ = function(s){ return document.querySelector(s); };
+var stage=$('#stage'), bgLayer=$('#bgLayer'), photoLayer=$('#photoLayer'),
+    expLayer=$('#expLayer'), kickLayer=$('#kickLayer'), subG=$('#subG'), subP=$('#subP'),
+    chapTitle=$('#chapTitle'), mascot=$('#mascot'), flash=$('#flash'), whiteout=$('#whiteout'),
+    prelude=$('#prelude'), startBtn=$('#startBtn'), hud=$('#hud'), track=$('#track'),
+    fill=track.querySelector('.fill'), knob=track.querySelector('.knob'),
+    nowCh=$('#nowCh'), tRemain=$('#tRemain'), epilogue=$('#epilogue'),
+    scrollTrack=$('#scrollTrack'), modeBtn=$('#modeBtn'), pcv=$('#pcv');
+
+$('#preWave').innerHTML = ART.pony_wave;
+$('#sleeper').innerHTML = ART.pony_sleep;
+mascot.innerHTML = ART.pony_run;
+$('#epMascot').innerHTML = ART.pony_mascot;
+/* 장식용으로 여러 번 삽입되는 SVG는 id·title을 벗겨 중복 id를 막는다 */
+function deco(svg){
+  return String(svg)
+    .replace(/<title[^>]*>[\s\S]*?<\/title>/g,'')
+    .replace(/\srole="img"/g,'')
+    .replace(/\saria-labelledby="[^"]*"/g,'')
+    .replace('<svg ','<svg aria-hidden="true" ');
+}
+$('#preSub').querySelector('.note').innerHTML = deco(ART.music_note);
+Array.prototype.forEach.call(document.querySelectorAll('.ep-h .spk'), function(s){ s.innerHTML = deco(ART.sparkle); });
+
+/* ================================================================
+   4. 장면(사진 레이어) 구축 — 챕터마다 다른 전환 연출
+   ================================================================ */
+function imgEl(name, cls){
+  var i = document.createElement('img');
+  i.src = 'assets/photos/' + name + '.jpg';
+  i.alt = ALT[name] || '만삭 기념 사진';
+  i.loading = 'lazy'; i.decoding = 'async';
+  if (cls) i.className = cls;
+  return i;
+}
+function frameWrap(inner, extraCls){
+  var f = document.createElement('div');
+  f.className = 'frame' + (extraCls ? ' ' + extraCls : '');
+  f.appendChild(inner);
+  var g = document.createElement('div'); g.className='glow'; f.appendChild(g);
+  return f;
+}
+var scenes = {};
+
+function buildScenes(){
+  CH_IDS.forEach(function(id){
+    var ch = SCRIPT[id];
+    var sc = document.createElement('section');
+    sc.className = 'scene ' + id;
+    sc.setAttribute('aria-label', 'CH' + ch.n + ' ' + ch.title);
+    var stack = document.createElement('div'); stack.className='stack';
+    sc.appendChild(stack);
+
+    if (id === 'ch1') {
+      var f1 = frameWrap(imgEl(ch.photos[0],'kb'));
+      ['l','r'].forEach(function(s){ var d=document.createElement('div'); d.className='shutter '+s; f1.appendChild(d); });
+      [33,50,67].forEach(function(p){ var m=document.createElement('div'); m.className='mullion'; m.style.left=p+'%';
+        m.style.animationDelay=(0.35+p/140)+'s'; f1.appendChild(m); });
+      var lk=document.createElement('div'); lk.className='leak'; f1.appendChild(lk);
+      var strip=document.createElement('div'); strip.className='p09strip'; strip.appendChild(imgEl(ch.photos[1]));
+      f1.appendChild(strip);
+      sc._strip = strip;
+      stack.appendChild(f1);
+
+    } else if (id === 'ch2') {
+      var f2 = frameWrap(imgEl(ch.photos[0],'kb'));
+      var tiles = document.createElement('div'); tiles.className='tiles';
+      var C=6, R=8, k=0;
+      for (var r=0;r<R;r++) for (var c=0;c<C;c++){
+        var t=document.createElement('div'); t.className='tile';
+        t.style.left=(c*100/C)+'%'; t.style.top=(r*100/R)+'%';
+        t.style.width=(100/C)+'%'; t.style.height=(100/R)+'%';
+        t.style.backgroundImage='url(assets/photos/'+ch.photos[0]+'.jpg)';
+        t.style.backgroundSize=(C*100)+'% '+(R*100)+'%';
+        t.style.backgroundPosition=(c/(C-1)*100)+'% '+(r/(R-1)*100)+'%';
+        t.style.setProperty('--tx',((Math.random()-0.5)*220).toFixed(0)+'px');
+        t.style.setProperty('--ty',((Math.random()-0.5)*220).toFixed(0)+'px');
+        t.style.setProperty('--tr',((Math.random()-0.5)*46).toFixed(0)+'deg');
+        t.style.setProperty('--d',(0.15+k*0.021).toFixed(3)+'s');
+        tiles.appendChild(t); k++;
+      }
+      f2.insertBefore(tiles, f2.querySelector('.glow'));
+      f2.querySelector('img').style.opacity='0';
+      f2.querySelector('img').style.transition='opacity 1.2s ease 1.9s';
+      sc._revealImg = f2.querySelector('img');
+      stack.appendChild(f2);
+      /* 6번 AI 꽃잎 SVG가 화면을 가로질러 떨어진다 */
+      [18,47,74].forEach(function(x,i){
+        var pt=document.createElement('div'); pt.className='svgPetal';
+        pt.style.left=x+'%'; pt.style.setProperty('--pd',(i*3.6)+'s');
+        pt.innerHTML=deco(ART.petal); sc.appendChild(pt);
+      });
+
+    } else if (id === 'ch3') {
+      var f3 = frameWrap(imgEl(ch.photos[0],'kb'));
+      var pl = document.createElement('div'); pl.className='pony-letters';
+      'PONY'.split('').forEach(function(ch2,i){
+        var s=document.createElement('span'); s.className='pl'; s.textContent=ch2;
+        s.style.setProperty('--d',(0.5+i*0.36)+'s'); pl.appendChild(s);
+      });
+      f3.appendChild(pl);
+      stack.appendChild(f3);
+
+    } else if (id === 'ch4') {
+      var cards = document.createElement('div'); cards.className='cards';
+      ch.photos.forEach(function(p,i){
+        var c=document.createElement('div'); c.className='card c'+i;
+        c.appendChild(imgEl(p, i===0?'kb':''));
+        cards.appendChild(c);
+      });
+      var f4 = frameWrap(cards);
+      sc._cards = cards;
+      stack.appendChild(f4);
+
+    } else if (id === 'ch5') {
+      var wrap5=document.createElement('div'); wrap5.className='cradle';
+      wrap5.style.width='100%'; wrap5.style.height='100%';
+      var i7 = imgEl(ch.photos[0],'kb');
+      var i8 = imgEl(ch.photos[1]);
+      i8.style.position='absolute'; i8.style.inset='0'; i8.style.opacity='0';
+      i8.style.transition='opacity 2.2s ease';
+      wrap5.appendChild(i7); wrap5.appendChild(i8);
+      var f5 = frameWrap(wrap5);
+      sc._p08 = i8;
+      stack.appendChild(f5);
+      var walker=document.createElement('div'); walker.className='walker'; walker.innerHTML=ART.baby_shoe;
+      sc.appendChild(walker); sc._walker = walker;
+      var hb=document.createElement('div'); hb.className='floatHeart';
+      hb.innerHTML=deco(ART.heart_balloon); sc.appendChild(hb);
+
+    } else if (id === 'ch6') {
+      var f6 = frameWrap(imgEl(ch.photos[0]), 'arrive');
+      stack.appendChild(f6);
+      var suck=document.createElement('div'); suck.className='suck';
+      var srcs=['p01_bouquet_window','p02_bouquet_closeup','p03_pony_balloons','p04_hide_shoebox',
+                'p05_bed_hide','p06_plush_hide','p07_shoe_gaze','p08_heart_balloon',
+                'p09_triptych','p01_bouquet_window','p03_pony_balloons','p07_shoe_gaze'];
+      srcs.forEach(function(p,i){
+        var sh=document.createElement('div'); sh.className='shard';
+        sh.style.backgroundImage='url(assets/photos/'+p+'_sm.jpg)';
+        var a=(i/srcs.length)*Math.PI*2;
+        sh.style.left=(50+Math.cos(a)*30-8)+'%';
+        sh.style.top=(50+Math.sin(a)*34-6)+'%';
+        sh.style.setProperty('--sx',(Math.cos(a)*22).toFixed(0)+'vw');
+        sh.style.setProperty('--sy',(Math.sin(a)*24).toFixed(0)+'vh');
+        sh.style.setProperty('--sr',((Math.random()-0.5)*40).toFixed(0)+'deg');
+        sh.style.setProperty('--d',(i*0.085).toFixed(3)+'s');
+        suck.appendChild(sh);
+      });
+      sc.appendChild(suck);
+    }
+
+    photoLayer.appendChild(sc);
+    scenes[id] = sc;
+
+    /* 배경 영상 슬롯 */
+    var bg = document.createElement('div');
+    bg.className='bg'; bg.dataset.ch=id;
+    bg.style.backgroundImage = 'url(assets/photos/' + ch.photos[0] + '_sm.jpg)';
+    bg.style.setProperty('--c1', ch.palette[0]);
+    bg.style.setProperty('--c3', ch.palette[2]);
+    var v = document.createElement('video');
+    v.muted=true; v.loop=true; v.playsInline=true; v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    v.autoplay=true; v.preload='none';
+    v.poster='assets/photos/' + ch.photos[0] + '_sm.jpg';
+    v.setAttribute('aria-hidden','true');
+    v.addEventListener('error', function(){ v.classList.add('dead'); });
+    bg.appendChild(v);
+    var gr=document.createElement('div'); gr.className='grade'; bg.appendChild(gr);
+    var ve=document.createElement('div'); ve.className='veil'; bg.appendChild(ve);
+    bgLayer.appendChild(bg);
+    scenes[id]._bg = bg; scenes[id]._video = v; scenes[id]._src = 'assets/video/' + ch.video;
+  });
+}
+buildScenes();
+
+/* 영상 lazy load — 현재 챕터와 바로 다음 챕터만 예열 */
+function warmVideos(idx){
+  CH_IDS.forEach(function(id,i){
+    var sc = scenes[id], v = sc._video;
+    if (i === idx || i === idx+1) {
+      if (!v.getAttribute('src')) { v.setAttribute('src', sc._src); v.load(); }
+      if (i === idx) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    } else if (i < idx-1 || i > idx+1) {
+      if (v.getAttribute('src')) { try{ v.pause(); }catch(e){} }
+    }
+  });
+}
+
+/* ================================================================
+   5. 파티클 시스템 (금가루 · 꽃가루 · 반짝임 · 빛무리)
+   ================================================================ */
+var ctx = pcv.getContext('2d');
+var CW=0, CH2=0, DPR=1, parts=[], MAXP = RM ? 60 : 400;
+
+function resizeCanvas(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  CW = pcv.clientWidth; CH2 = pcv.clientHeight;
+  pcv.width = Math.round(CW*DPR); pcv.height = Math.round(CH2*DPR);
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resizeCanvas);
+
+var GOLDS = ['#FFE9BE','#F5E6C0','#E8C88A','#D4A960'];
+var ROSES = ['#FFD9E4','#F3C9D6','#E8B4C8'];
+var PCFG = {
+  ch1:{rate:12, mix:{gold:.48,petal:.2,spark:.2,halo:.12}, cols:GOLDS.concat(['#BFD6C8']), speed:1},
+  ch2:{rate:16, mix:{gold:.3,petal:.4,spark:.24,halo:.06}, cols:GOLDS.concat(ROSES), speed:1.1},
+  ch3:{rate:12, mix:{gold:.42,petal:.16,spark:.28,halo:.14}, cols:GOLDS.concat(['#C6CBD1']), speed:.95},
+  ch4:{rate:2.4,mix:{gold:.16,petal:.06,spark:.08,halo:.7},  cols:['#DCD6D0','#EDE7E0','#C8BEB4','#E8DDD4'], speed:.42},
+  ch5:{rate:8, mix:{gold:.44,petal:.14,spark:.18,halo:.24}, cols:['#F0C97A','#E5B98C','#E4B375','#FFE9BE'], speed:.72},
+  ch6:{rate:20,mix:{gold:.6,petal:.1,spark:.24,halo:.06}, cols:GOLDS.concat(['#CBB8D6','#EBD7E0','#F5E3C8']), speed:1.35}
+};
+function pickType(mix){
+  var r=Math.random(), a=0;
+  for (var k in mix){ a+=mix[k]; if (r<=a) return k; }
+  return 'gold';
+}
+function spawn(type, x, y, cfg, boost){
+  if (parts.length >= MAXP) return;
+  var cols = cfg.cols, col = cols[(Math.random()*cols.length)|0];
+  var sp = cfg.speed * (boost||1);
+  var p = {t:type, x:x, y:y, c:col, life:0, rot:Math.random()*6.28, vr:(Math.random()-.5)*0.9};
+  if (type==='gold'){ p.r=1.1+Math.random()*2.4; p.vx=(Math.random()-.5)*0.22*sp; p.vy=-(0.16+Math.random()*0.5)*sp; p.max=4200+Math.random()*3600; p.a=.75; }
+  else if (type==='petal'){ p.r=5+Math.random()*8; p.vx=(Math.random()-.5)*0.4*sp; p.vy=(0.16+Math.random()*0.34)*sp; p.max=7000+Math.random()*5000; p.a=.55; p.sw=Math.random()*6.28; }
+  else if (type==='spark'){ p.r=2.6+Math.random()*4.4; p.vx=(Math.random()-.5)*0.28*sp; p.vy=-(Math.random()*0.24)*sp; p.max=1500+Math.random()*1700; p.a=.9; }
+  else { p.r=40+Math.random()*95; p.vx=(Math.random()-.5)*0.06*sp; p.vy=-(0.014+Math.random()*0.05)*sp; p.max=13000+Math.random()*9000; p.a=.09; }
+  parts.push(p);
+}
+function burst(x,y,n,type,cfg,boost){
+  for (var i=0;i<n;i++){
+    if (parts.length>=MAXP) return;
+    var a=Math.random()*6.28, s=(0.4+Math.random()*2.3)*(boost||1);
+    spawn(type,x,y,cfg,1);
+    var p=parts[parts.length-1];
+    if(!p) return;
+    p.vx=Math.cos(a)*s; p.vy=Math.sin(a)*s - 0.25; p.max=Math.min(p.max,2600);
+  }
+}
+function hex2rgb(h){
+  h=h.replace('#',''); if(h.length===3) h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  var n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255];
+}
+function drawPart(p){
+  var k = p.life/p.max, fade = k<.12 ? k/.12 : (k>.72 ? (1-k)/.28 : 1);
+  if (fade<=0) return;
+  var rgb=hex2rgb(p.c), base='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',';
+  ctx.save();
+  if (p.t==='gold'){
+    var g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4.2);
+    g.addColorStop(0, base+(p.a*fade)+')'); g.addColorStop(.4, base+(p.a*fade*.36)+')'); g.addColorStop(1, base+'0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*4.2,0,6.2832); ctx.fill();
+    ctx.fillStyle=base+(Math.min(1,p.a*fade*1.5))+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*.62,0,6.2832); ctx.fill();
+  } else if (p.t==='petal'){
+    ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.scale(1, .55+.45*Math.sin(p.sw+p.life/420));
+    ctx.fillStyle=base+(p.a*fade)+')';
+    ctx.beginPath();
+    ctx.moveTo(0,-p.r);
+    ctx.bezierCurveTo(p.r*.95,-p.r*.55, p.r*.8,p.r*.72, 0,p.r);
+    ctx.bezierCurveTo(-p.r*.8,p.r*.72, -p.r*.95,-p.r*.55, 0,-p.r);
+    ctx.fill();
+  } else if (p.t==='spark'){
+    var tw = .45 + .55*Math.abs(Math.sin(p.life/210 + p.rot));
+    ctx.translate(p.x,p.y); ctx.rotate(p.rot*.35);
+    ctx.fillStyle=base+(p.a*fade*tw)+')';
+    var R=p.r*(0.7+tw*0.6), r2=R*0.24;
+    ctx.beginPath();
+    ctx.moveTo(0,-R); ctx.quadraticCurveTo(r2,-r2,R,0); ctx.quadraticCurveTo(r2,r2,0,R);
+    ctx.quadraticCurveTo(-r2,r2,-R,0); ctx.quadraticCurveTo(-r2,-r2,0,-R);
+    ctx.fill();
+  } else {
+    var g2=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+    g2.addColorStop(0, base+(p.a*fade*1.5)+')'); g2.addColorStop(.55, base+(p.a*fade*.55)+')'); g2.addColorStop(1, base+'0)');
+    ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+  }
+  ctx.restore();
+}
+var spawnAcc = 0;
+function stepParticles(dt){
+  var cfg = PCFG[CH_IDS[curCh]] || PCFG.ch1;
+  if (running && !RM){
+    spawnAcc += (cfg.rate * dt/1000);
+    while (spawnAcc >= 1){
+      spawnAcc -= 1;
+      var ty = pickType(cfg.mix);
+      var x = Math.random()*CW;
+      var y = (ty==='petal') ? -20 : CH2 + 20 + Math.random()*40;
+      if (ty==='halo') { x=Math.random()*CW; y=CH2*(0.3+Math.random()*0.7); }
+      spawn(ty, x, y, cfg);
+    }
+  } else if (RM && running && parts.length < 24 && Math.random()<0.02){
+    spawn('gold', Math.random()*CW, CH2+10, cfg);
+  }
+  ctx.clearRect(0,0,CW,CH2);
+  ctx.globalCompositeOperation='lighter';
+  for (var i=parts.length-1;i>=0;i--){
+    var p=parts[i];
+    p.life += dt;
+    if (p.life>=p.max || p.y< -160 || p.y>CH2+180 || p.x<-200 || p.x>CW+200){ parts.splice(i,1); continue; }
+    p.x += p.vx*dt*0.06; p.y += p.vy*dt*0.06; p.rot += p.vr*dt*0.0012;
+    if (p.t==='petal') p.x += Math.sin(p.life/700 + p.sw)*dt*0.014;
+    drawPart(p);
+  }
+  ctx.globalCompositeOperation='source-over';
+}
+
+/* ================================================================
+   6. 음악 비트 연동
+   ================================================================ */
+var beatOff = null;
+function bindBeats(){
+  if (beatOff) return;
+  beatOff = Score.onBeat(function(e){
+    var cfg = PCFG[CH_IDS[curCh]] || PCFG.ch1;
+    if (e.type === 'heartbeat'){
+      if (!RM){
+        stage.classList.remove('beat'); void stage.offsetWidth; stage.classList.add('beat');
+      }
+      burst(CW*0.5, CH2*0.52, Math.round(3 + (e.velocity||.5)*6), 'gold', cfg, 1 + (e.velocity||.5));
+    } else if (e.type === 'bell'){
+      var bx = CW*(0.14+Math.random()*0.72), by = CH2*(0.18+Math.random()*0.58);
+      burst(bx, by, Math.round(2 + (e.velocity||.5)*7), 'spark', cfg, 1.2);
+    } else if (e.type === 'melody'){
+      if ((e.velocity||0) > 0.9 && !RM){
+        flash.style.opacity = '0.07';
+        setTimeout(function(){ flash.style.opacity='0'; }, 260);
+      }
+    }
+  });
+}
+
+/* ================================================================
+   7. 표현 레이어 — EXPRESSIONS.placement.chN 을 타임라인에 태움
+   ================================================================ */
+var POS = {
+  '좌상':[16,26], '상':[50,22], '우상':[84,26],
+  '좌':[15,50],  '중앙':[50,48], '우':[85,50],
+  '좌하':[20,70], '하':[50,66],  '우하':[80,70]     /* '하'는 자막 밴드보다 위 */
+};
+var POS_M = {
+  '좌상':[24,25], '상':[50,21], '우상':[76,25],
+  '좌':[24,48],  '중앙':[50,47], '우':[76,48],
+  '좌하':[26,66], '하':[50,62],  '우하':[74,66]
+};
+var activeExp = [];   /* 동시 표시 상한 4 */
+var spawnedFlags = {};
+
+function resetExpressions(){
+  expLayer.innerHTML=''; kickLayer.innerHTML='';
+  activeExp.length = 0;
+  spawnedFlags = {};
+  kickFired = {};
+}
+function spawnExpression(item){
+  var mobile = window.innerWidth <= 760;
+  var pos = (mobile ? POS_M : POS)[item.pos] || [50,50];
+  var out = document.createElement('div');
+  out.className = 'exp-out';
+  out.style.left = pos[0] + '%';
+  out.style.top  = pos[1] + '%';
+  var inner = document.createElement('span');
+  inner.className = 'exp-in';
+  var span = document.createElement('span');
+  span.className = 'exp ' + (item.size || 'M');
+  span.textContent = item.text;
+  span.style.color = item.color || '#F2D9A0';
+  inner.appendChild(span);
+  out.appendChild(inner);
+
+  var dur = item.dur || 2400;
+  var inD = Math.max(360, Math.round(dur * 0.20));
+  var outD = Math.max(420, Math.round(dur * 0.25));
+  var outDelay = Math.max(0, dur - outD);
+  inner.style.animation = (item.in || 'fade-rise') + ' ' + inD + 'ms cubic-bezier(.2,.8,.3,1) both';
+  out.style.animation = (item.out || 'fade-hold') + ' ' + outD + 'ms ease-in ' + outDelay + 'ms both';
+
+  expLayer.appendChild(out);
+  activeExp.push(out);
+  while (activeExp.length > 4){
+    var old = activeExp.shift();
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+  }
+  setTimeout(function(){
+    var i = activeExp.indexOf(out);
+    if (i>=0) activeExp.splice(i,1);
+    if (out.parentNode) out.parentNode.removeChild(out);
+  }, dur + 260);
+}
+function tickExpressions(chIdx, localMs){
+  var list = (EXP.placement && EXP.placement[CH_IDS[chIdx]]) || [];
+  var flags = spawnedFlags[chIdx] || (spawnedFlags[chIdx] = {});
+  for (var i=0;i<list.length;i++){
+    /* 정상 재생 시엔 at 시각에, 탐색 직후엔 아직 수명이 남은 항목을 즉시 되살린다 */
+    if (!flags[i] && list[i].at <= localMs && localMs < list[i].at + (list[i].dur || 2400)){
+      flags[i] = 1;
+      spawnExpression(list[i]);
+    }
+  }
+}
+
+/* 태동 리듬 텍스트 (챕터당 최대 2회) */
+var KICK_PLAN = {
+  0:[{id:'k13',at:8200,  a:[38,54]}, {id:'k13',at:25600, a:[43,58]}],
+  1:[{id:'k12',at:3200,  a:[62,46]}, {id:'k12',at:16800, a:[57,50]}],
+  2:[{id:'k07',at:11000, a:[50,58]}, {id:'k06',at:24600, a:[46,60]}],
+  3:[{id:'k09',at:9600,  a:[50,52]}, {id:'k15',at:26200, a:[50,50]}],
+  4:[{id:'k02',at:12600, a:[44,56]}, {id:'k14',at:21600, a:[40,54]}],
+  5:[{id:'k04',at:12200, a:[50,50]}, {id:'k10',at:26600, a:[50,55]}]
+};
+var kickFired = {};
+function findKick(id){
+  var ks = EXP.kicks || [];
+  for (var i=0;i<ks.length;i++) if (ks[i].id===id) return ks[i];
+  return null;
+}
+function fireKick(plan){
+  var k = findKick(plan.id); if (!k) return;
+  k.pattern.forEach(function(txt, i){
+    setTimeout(function(){
+      var el = document.createElement('div');
+      el.className='kick'; el.textContent = txt;
+      el.style.left = (plan.a[0] + (Math.random()-.5)*7) + '%';
+      el.style.top  = (plan.a[1] + (Math.random()-.5)*7) + '%';
+      kickLayer.appendChild(el);
+      setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); }, 820);
+    }, k.timing[i] || 0);
+  });
+}
+function tickKicks(chIdx, localMs){
+  var plans = KICK_PLAN[chIdx] || [];
+  var fired = kickFired[chIdx] || (kickFired[chIdx] = {});
+  for (var i=0;i<plans.length;i++){
+    if (!fired[i] && localMs >= plans[i].at && localMs - plans[i].at < 900){
+      fired[i] = 1; fireKick(plans[i]);
+    }
+  }
+}
+
+/* ================================================================
+   8. 자막
+   ================================================================ */
+var lastLineKey = '';
+function tickSubs(chIdx, local){
+  var lines = SCRIPT[CH_IDS[chIdx]].lines;
+  var idx = -1;
+  for (var i=0;i<lines.length;i++) if (local >= lines[i].at) idx = i;
+  var key = chIdx + ':' + idx;
+  if (key === lastLineKey) return;
+  lastLineKey = key;
+  if (idx < 0){ subG.innerHTML=''; subP.innerHTML=''; return; }
+  var L = lines[idx];
+  if (L.who === 'P'){
+    subG.innerHTML = '';
+    subP.innerHTML = '<div class="bubble">' + esc(L.t) + '</div>';
+  } else {
+    subP.innerHTML = '';
+    subG.innerHTML = '<span class="line">' + esc(L.t) + '</span>';
+  }
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ================================================================
+   9. 챕터별 내부 연출 스텝
+   ================================================================ */
+function tickSceneSteps(chIdx, local){
+  var id = CH_IDS[chIdx], sc = scenes[id];
+  if (id==='ch1' && sc._strip){
+    sc._strip.classList.toggle('on', local >= 27.5);
+  }
+  if (id==='ch4' && sc._cards){
+    var cl = sc._cards;
+    cl.classList.toggle('step1', local >= 14 && local < 24);
+    cl.classList.toggle('step2', local >= 24);
+  }
+  if (id==='ch5' && sc._p08){
+    sc._p08.style.opacity = (local >= 25) ? '1' : '0';
+  }
+  if (id==='ch6'){
+    if (local >= 28.4){
+      whiteout.style.opacity = String(Math.min(1, (local-28.4)/1.4));
+    } else if (parseFloat(whiteout.style.opacity||'0') > 0 && local < 28.4){
+      whiteout.style.opacity = '0';
+    }
+  } else {
+    if (whiteout.style.opacity !== '0') whiteout.style.opacity = '0';
+  }
+}
+
+/* ================================================================
+   10. 타임라인 상태 · 챕터 전환
+   ================================================================ */
+var T = 0;              /* 전역 시각 (초) */
+var curCh = -1;
+var running = false;
+var mode = 'auto';
+var started = false;
+var lastNow = 0;
+var epShown = false;
+
+function setChapter(idx, opts){
+  idx = Math.max(0, Math.min(5, idx));
+  if (idx === curCh) return;
+  var prev = curCh;
+  curCh = idx;
+  var id = CH_IDS[idx], ch = SCRIPT[id];
+
+  CH_IDS.forEach(function(cid,i){
+    scenes[cid].classList.toggle('on', i===idx);
+    scenes[cid]._bg.classList.toggle('on', i===idx);
+  });
+  /* 등장 애니메이션 재시작 */
+  var sc = scenes[id];
+  sc.style.animation='none'; void sc.offsetWidth; sc.style.animation='';
+  restartSceneAnims(sc);
+
+  resetExpressions();
+  lastLineKey = '';
+  warmVideos(idx);
+
+  document.documentElement.style.setProperty('--p1', ch.palette[0]);
+  document.documentElement.style.setProperty('--p2', ch.palette[1]);
+  document.documentElement.style.setProperty('--p3', ch.palette[2]);
+
+  /* 챕터 타이틀 카드 */
+  chapTitle.querySelector('.num').textContent = 'CHAPTER ' + ch.n;
+  chapTitle.querySelector('.ko').textContent = ch.title;
+  chapTitle.querySelector('.en').textContent = ch.en;
+  chapTitle.classList.remove('show'); void chapTitle.offsetWidth; chapTitle.classList.add('show');
+
+  nowCh.innerHTML = '<b>CH' + ch.n + '</b><span>' + esc(ch.title) + '</span>';
+
+  /* 마스코트가 챕터 전환마다 화면 하단을 가로질러 달린다 */
+  if (prev >= 0 && !RM){
+    mascot.classList.remove('run'); void mascot.offsetWidth; mascot.classList.add('run');
+  }
+  /* 챕터 진입 파티클 */
+  var cfg = PCFG[id];
+  if (!RM) burst(CW*0.5, CH2*0.6, idx===3 ? 6 : 26, idx===5 ? 'gold' : 'spark', cfg, 1.5);
+  if (idx===5 && !RM) burst(CW*0.5, CH2*0.9, 40, 'gold', cfg, 2.2);
+
+  try { Score.setChapter(idx+1); } catch(e){}
+}
+function restartSceneAnims(sc){
+  var nodes = sc.querySelectorAll('.tiles,.tile,.pl,.shard,.shutter,.mullion,.leak,.frame.arrive,.walker,.svgPetal,.floatHeart');
+  for (var i=0;i<nodes.length;i++){
+    var n = nodes[i];
+    var a = n.style.animation;
+    n.style.animation = 'none'; void n.offsetWidth; n.style.animation = a || '';
+  }
+  var rv = sc._revealImg;
+  if (rv){ rv.style.opacity='0'; void rv.offsetWidth; setTimeout(function(){ rv.style.opacity='1'; }, 30); }
+  var cards = sc._cards;
+  if (cards){ cards.classList.remove('step1','step2'); }
+  if (sc._strip) sc._strip.classList.remove('on');
+  if (sc._p08) sc._p08.style.opacity='0';
+}
+
+function seek(sec, opts){
+  T = Math.max(0, Math.min(TOTAL - 0.01, sec));
+  var idx = Math.min(5, Math.floor(T / CH_LEN));
+  if (idx !== curCh) setChapter(idx);
+  else { resetExpressions(); lastLineKey=''; restartSceneAnims(scenes[CH_IDS[idx]]); }
+  updateHUD();
+}
+
+/* ================================================================
+   11. 메인 루프
+   ================================================================ */
+function loop(now){
+  var dt = Math.min(60, now - (lastNow||now));
+  lastNow = now;
+  if (running && mode === 'auto' && !RM){
+    T += dt/1000;
+    if (T >= TOTAL){ T = TOTAL - 0.001; showEpilogue(); }
+    var idx = Math.min(5, Math.floor(T/CH_LEN));
+    if (idx !== curCh) setChapter(idx);
+  } else if (mode === 'scroll'){
+    onScrollProgress();
+  } else if (running && mode === 'auto' && RM){
+    T += dt/1000;
+    if (T >= (curCh+1)*CH_LEN) { T = (curCh+1)*CH_LEN - 0.05; }  /* 자동 챕터 전환 정지 */
+  }
+  if (curCh >= 0){
+    var local = T - curCh*CH_LEN;
+    if (local < 0) local = 0;
+    tickSubs(curCh, local);
+    tickExpressions(curCh, local*1000);
+    tickKicks(curCh, local*1000);
+    tickSceneSteps(curCh, local);
+  }
+  stepParticles(dt);
+  updateHUD();
+  requestAnimationFrame(loop);
+}
+
+function fmt(s){
+  s = Math.max(0, Math.round(s));
+  return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2);
+}
+function updateHUD(){
+  var pct = (T/TOTAL)*100;
+  fill.style.width = pct + '%';
+  knob.style.left = pct + '%';
+  tRemain.textContent = fmt(TOTAL - T);
+  track.setAttribute('aria-valuenow', Math.round(T));
+}
+
+/* 진행바 눈금 */
+for (var ti=1; ti<6; ti++){
+  var tk = document.createElement('div'); tk.className='tick'; tk.style.left=(ti/6*100)+'%';
+  track.appendChild(tk);
+}
+
+/* ================================================================
+   12. 컨트롤
+   ================================================================ */
+function setPlaying(on){
+  running = on;
+  document.body.classList.toggle('playing', started);
+  var icon = $('#btnPlay').querySelector('svg');
+  icon.innerHTML = on ? '<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>' : '<path d="M8 5v14l11-7z"/>';
+  CH_IDS.forEach(function(id,i){
+    var v = scenes[id]._video;
+    if (!v.getAttribute('src')) return;
+    if (on && i===curCh){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+    else { try{ v.pause(); }catch(e){} }
+  });
+}
+$('#btnPlay').addEventListener('click', function(){ if(!started) return; setPlaying(!running); });
+$('#btnPrev').addEventListener('click', function(){ if(!started) return; gotoChapter(curCh-1); });
+$('#btnNext').addEventListener('click', function(){ if(!started) return; gotoChapter(curCh+1); });
+function gotoChapter(i){
+  if (i > 5){ showEpilogue(); return; }
+  i = Math.max(0, Math.min(5, i));
+  if (mode === 'scroll'){
+    var secs = scrollTrack.children;
+    if (secs[i]) secs[i].scrollIntoView({behavior: RM ? 'auto' : 'smooth', block:'start'});
+    return;
+  }
+  seek(i*CH_LEN + 0.02);
+}
+var muted = false;
+$('#btnMute').addEventListener('click', toggleMute);
+function toggleMute(){
+  muted = !muted;
+  try { muted ? Score.mute() : Score.unmute(); } catch(e){}
+  $('#btnMute').querySelector('svg').innerHTML = muted
+    ? '<path d="M4 9v6h4l5 4V5L8 9H4zm15.5 3l2.5 2.5-1.4 1.4L18 13.4 15.4 16 14 14.6 16.6 12 14 9.4 15.4 8 18 10.6 20.6 8 22 9.4z"/>'
+    : '<path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/>';
+  $('#btnMute').setAttribute('aria-pressed', String(muted));
+}
+$('#btnFull').addEventListener('click', toggleFull);
+function toggleFull(){
+  var d = document;
+  if (!d.fullscreenElement && !d.webkitFullscreenElement){
+    var el = d.documentElement;
+    (el.requestFullscreen || el.webkitRequestFullscreen || NOOP).call(el);
+  } else {
+    (d.exitFullscreen || d.webkitExitFullscreen || NOOP).call(d);
+  }
+}
+
+/* 진행바 드래그 탐색 */
+var dragging = false;
+function seekFromEvent(e){
+  var r = track.getBoundingClientRect();
+  var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+  var p = Math.max(0, Math.min(1, x / r.width));
+  seek(p * TOTAL);
+}
+track.addEventListener('pointerdown', function(e){
+  if (!started || mode==='scroll') return;
+  dragging = true; track.classList.add('drag');
+  try{ track.setPointerCapture(e.pointerId); }catch(err){}
+  seekFromEvent(e);
+});
+track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+window.addEventListener('pointerup', function(){ dragging=false; track.classList.remove('drag'); });
+track.addEventListener('keydown', function(e){
+  if (!started) return;
+  if (e.key==='ArrowLeft'){ seek(T-5); e.preventDefault(); }
+  if (e.key==='ArrowRight'){ seek(T+5); e.preventDefault(); }
+});
+
+/* 키보드 */
+document.addEventListener('keydown', function(e){
+  if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+  if ($('#lightbox').classList.contains('on') && e.key==='Escape'){ closeLb(); return; }
+  if (!started){
+    if (e.code==='Space' || e.key==='Enter'){ startShow(); e.preventDefault(); }
+    return;
+  }
+  switch(e.code){
+    case 'Space': setPlaying(!running); e.preventDefault(); break;
+    case 'ArrowLeft': gotoChapter(curCh-1); e.preventDefault(); break;
+    case 'ArrowRight': gotoChapter(curCh+1); e.preventDefault(); break;
+    case 'KeyM': toggleMute(); break;
+    case 'KeyF': toggleFull(); break;
+    case 'Escape': if (epilogue.classList.contains('on') && mode==='auto') hideEpilogue(); break;
+  }
+});
+
+/* ================================================================
+   13. 스크롤 모드
+   ================================================================ */
+var io = null;
+function buildScrollTrack(){
+  if (scrollTrack.children.length) return;
+  CH_IDS.forEach(function(id,i){
+    var s = document.createElement('div');
+    s.className = 'scroll-sec'; s.dataset.idx = i;
+    scrollTrack.appendChild(s);
+  });
+}
+function enableScrollMode(on){
+  mode = on ? 'scroll' : 'auto';
+  document.body.classList.toggle('mode-scroll', on);
+  modeBtn.setAttribute('aria-pressed', String(on));
+  modeBtn.textContent = on ? '오토플레이 모드' : '스크롤 모드';
+  if (on){
+    buildScrollTrack();
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function(entries){
+      var best=null, bestR=0;
+      entries.forEach(function(en){
+        if (en.intersectionRatio > bestR){ bestR = en.intersectionRatio; best = en; }
+      });
+      if (best && bestR > 0.25){
+        var i = parseInt(best.target.dataset.idx,10);
+        if (i !== curCh) { setChapter(i); onScrollProgress(); }
+      }
+    }, {threshold:[0,.25,.5,.75,1]});
+    Array.prototype.forEach.call(scrollTrack.children, function(s){ io.observe(s); });
+    epilogue.classList.add('on');
+    setPlaying(true);
+    window.addEventListener('scroll', onScrollProgress, {passive:true});
+    onScrollProgress();
+  } else {
+    if (io){ io.disconnect(); io=null; }
+    window.removeEventListener('scroll', onScrollProgress);
+    window.scrollTo(0,0);
+    if (!epShown) epilogue.classList.remove('on');
+    seek(curCh*CH_LEN + 0.02);
+    setPlaying(true);
+  }
+}
+function onScrollProgress(){
+  if (mode !== 'scroll' || curCh < 0) return;
+  var sec = scrollTrack.children[curCh];
+  if (!sec) return;
+  var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+  var p = (vh - r.top) / (r.height + vh);
+  p = Math.max(0, Math.min(1, p));
+  var target = curCh*CH_LEN + p*CH_LEN;
+  if (target < T) { resetExpressions(); lastLineKey=''; }   /* 되감기 시 재생성 */
+  T = target;
+}
+modeBtn.addEventListener('click', function(){ if(!started) return; enableScrollMode(mode!=='scroll'); });
+
+/* ================================================================
+   14. 프렐류드 — 금빛 입자가 PONY 를 이룬다
+   ================================================================ */
+var pre = document.getElementById('precv');
+var pctx = pre.getContext('2d');
+var pPts = [], pParts = [], preRAF = 0, preScatter = false, preT = 0;
+
+function buildPrelude(){
+  var w = pre.clientWidth, h = pre.clientHeight, dpr = Math.min(window.devicePixelRatio||1,2);
+  pre.width = Math.round(w*dpr); pre.height = Math.round(h*dpr);
+  pctx.setTransform(dpr,0,0,dpr,0,0);
+  var off = document.createElement('canvas');
+  off.width = Math.max(200, Math.round(w)); off.height = Math.max(120, Math.round(h*0.5));
+  var octx = off.getContext('2d');
+  var fs = Math.min(w*0.17, h*0.20);
+  octx.fillStyle='#fff';
+  octx.font = '700 ' + fs + 'px "Noto Serif KR", serif';
+  octx.textAlign='center'; octx.textBaseline='middle';
+  try { octx.letterSpacing = (fs*0.14) + 'px'; } catch(e){}
+  octx.fillText('PONY', off.width/2, off.height/2);
+  var data = octx.getImageData(0,0,off.width,off.height).data;
+  pPts.length = 0;
+  var gap = Math.max(2, Math.round(fs/40));
+  for (var y=0; y<off.height; y+=gap){
+    for (var x=0; x<off.width; x+=gap){
+      if (data[(y*off.width+x)*4+3] > 128){
+        pPts.push({x:x, y:y});
+      }
+    }
+  }
+  /* 글자 덩어리를 실제 경계로 재보정 — 자간·폰트 폴백에 상관없이 항상 화면 중앙 위쪽에 */
+  if (pPts.length){
+    var mnX=1e9,mxX=-1e9,mnY=1e9,mxY=-1e9;
+    for (var q=0;q<pPts.length;q++){
+      var pt=pPts[q];
+      if(pt.x<mnX)mnX=pt.x; if(pt.x>mxX)mxX=pt.x;
+      if(pt.y<mnY)mnY=pt.y; if(pt.y>mxY)mxY=pt.y;
+    }
+    var bw=Math.max(1,mxX-mnX), bh=Math.max(1,mxY-mnY);
+    var sc2=Math.min(1, (w*0.80)/bw, (h*0.30)/bh);
+    var cx0=(mnX+mxX)/2, cy0=(mnY+mxY)/2, cx1=w/2, cy1=h*0.31;
+    for (var q2=0;q2<pPts.length;q2++){
+      var pt2=pPts[q2];
+      pt2.x = cx1 + (pt2.x-cx0)*sc2;
+      pt2.y = cy1 + (pt2.y-cy0)*sc2;
+    }
+  }
+  pParts.length = 0;
+  var lim = Math.min(pPts.length, RM ? 260 : 1500);
+  var stepN = Math.max(1, Math.round(pPts.length/lim));
+  for (var i=0;i<pPts.length;i+=stepN){
+    var t = pPts[i];
+    pParts.push({
+      tx:t.x, ty:t.y,
+      x: w/2 + (Math.random()-.5)*w*1.4,
+      y: h/2 + (Math.random()-.5)*h*1.4,
+      vx:0, vy:0, r:0.5+Math.random()*0.9,
+      d: Math.random()*520,
+      c: GOLDS[(Math.random()*GOLDS.length)|0]
+    });
+  }
+}
+var preLast = 0;
+function preLoop(ts){
+  var w = pre.clientWidth, h = pre.clientHeight;
+  var pdt = Math.min(50, ts - (preLast || ts)); preLast = ts;
+  preT += pdt;
+  var kStep = Math.min(2.4, pdt/16.67);   /* 프레임률과 무관하게 같은 속도로 모이게 */
+  pctx.clearRect(0,0,w,h);
+  pctx.globalCompositeOperation='lighter';
+  for (var i=0;i<pParts.length;i++){
+    var p = pParts[i];
+    if (!preScatter){
+      if (preT > p.d){
+        var ax = (p.tx - p.x)*0.0125*kStep, ay=(p.ty - p.y)*0.0125*kStep;
+        p.vx = (p.vx + ax)*0.90; p.vy = (p.vy + ay)*0.90;
+        p.x += p.vx*kStep; p.y += p.vy*kStep;
+        if (preT - p.d > 1200){          /* 마지막엔 확실히 제자리에 앉힌다 */
+          var lp = Math.min(0.4, 0.15*kStep);
+          p.x += (p.tx - p.x)*lp; p.y += (p.ty - p.y)*lp;
+        }
+      }
+    } else {
+      p.x += p.vx*kStep; p.y += p.vy*kStep;
+    }
+    var rgb = hex2rgb(p.c);
+    var near = Math.abs(p.x-p.tx)+Math.abs(p.y-p.ty);
+    var al = preScatter ? Math.max(0, 1 - (preT-scatterAt)/1100) : Math.min(1, 0.16 + (1 - Math.min(1, near/180))*0.94);
+    if (al<=0) continue;
+    var g = pctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3.2);
+    g.addColorStop(0,'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+(0.42*al)+')');
+    g.addColorStop(1,'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0)');
+    pctx.fillStyle=g; pctx.beginPath(); pctx.arc(p.x,p.y,p.r*3.2,0,6.2832); pctx.fill();
+    pctx.fillStyle='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+al+')';
+    pctx.beginPath(); pctx.arc(p.x,p.y,p.r*0.9,0,6.2832); pctx.fill();
+  }
+  pctx.globalCompositeOperation='source-over';
+  if (preScatter && preT - scatterAt > 1400){ cancelAnimationFrame(preRAF); return; }
+  preRAF = requestAnimationFrame(preLoop);
+}
+var scatterAt = 0;
+function scatterPrelude(){
+  preScatter = true; scatterAt = preT;
+  for (var i=0;i<pParts.length;i++){
+    var a = Math.random()*6.2832, s = 2.5 + Math.random()*9;
+    pParts[i].vx = Math.cos(a)*s; pParts[i].vy = Math.sin(a)*s - 1.2;
+  }
+}
+
+/* ================================================================
+   15. 시작 / 에필로그 / 리셋
+   ================================================================ */
+function startShow(){
+  if (started) return;
+  started = true;
+  try {
+    var pr = Score.start();
+    if (pr && pr.then) pr.then(function(ok){ if(!ok) console.warn('오디오를 시작할 수 없습니다 (사용자 제스처 필요)'); });
+  } catch(e){ console.warn(e); }
+  bindBeats();
+  scatterPrelude();
+  prelude.classList.add('gone');
+  document.body.classList.remove('pre');
+  document.body.classList.add('playing');
+  setTimeout(function(){ prelude.style.display='none'; }, 1600);
+  resizeCanvas();
+  T = 0; curCh = -1;
+  setChapter(0);
+  setPlaying(true);
+  if (RM){ setPlaying(false); }
+  lastNow = 0;
+  requestAnimationFrame(loop);
+}
+startBtn.addEventListener('click', startShow, {once:true});
+
+function showEpilogue(){
+  if (epShown) return;
+  epShown = true;
+  running = false;
+  epilogue.classList.add('on');
+  epilogue.scrollTop = 0;
+  document.body.classList.remove('playing');
+}
+function hideEpilogue(){
+  epShown = false;
+  epilogue.classList.remove('on');
+  document.body.classList.add('playing');
+  running = true;
+}
+$('#epBtn').addEventListener('click', function(){
+  if (mode==='scroll'){ epilogue.scrollIntoView({behavior:'smooth'}); return; }
+  epilogue.classList.contains('on') ? hideEpilogue() : showEpilogue();
+});
+$('#btnReplay').addEventListener('click', function(){
+  epShown = false;
+  epilogue.classList.remove('on');
+  if (mode === 'scroll') enableScrollMode(false);
+  document.body.classList.add('playing');
+  whiteout.style.opacity='0';
+  curCh = -1; T = 0;
+  setChapter(0);
+  setPlaying(true);
+});
+
+/* ================================================================
+   16. 갤러리 + 라이트박스
+   ================================================================ */
+var DERIVED = [
+  ['hero_wide','와이드 히어로 — 창가 장면 파노라마 변주'],
+  ['p01_gold','P01 금박 변주 — 창가의 꽃다발'],
+  ['p01_silhouette','P01 실루엣 변주 — 창가의 두 사람'],
+  ['p02_duotone_rose','P02 장미빛 듀오톤 — 꽃다발 클로즈업'],
+  ['p02_watercolor','P02 수채 변주 — 꽃다발 클로즈업'],
+  ['p03_duotone_rose','P03 장미빛 듀오톤 — 포니 은박 글자'],
+  ['p03_ink','P03 잉크 변주 — 포니 은박 글자'],
+  ['p04_ink','P04 잉크 변주 — 얼굴을 가린 두 사람'],
+  ['p05_gold','P05 금박 변주 — 침대 위의 두 사람'],
+  ['p06_ink','P06 잉크 변주 — 조랑말 인형'],
+  ['p06_silhouette','P06 실루엣 변주 — 조랑말 인형'],
+  ['p07_watercolor','P07 수채 변주 — 아기 신발을 든 손'],
+  ['p08_duotone_rose','P08 장미빛 듀오톤 — 하트 풍선'],
+  ['p09_ink','P09 잉크 변주 — 세로 3분할'],
+  ['p09_watercolor','P09 수채 변주 — 세로 3분할'],
+  ['p10_gold','P10 금박 변주 — 초음파 필름'],
+  ['p10_silhouette','P10 실루엣 변주 — 초음파 필름'],
+  ['polaroid_01','폴라로이드 01 — 창가에서'],
+  ['polaroid_02','폴라로이드 02 — 반짝이는 것들'],
+  ['polaroid_03','폴라로이드 03 — 작은 신발 한 짝'],
+  ['strip_film','필름 스트립 — 여섯 챕터의 연속 컷'],
+  ['contact_sheet','콘택트 시트 — 사진 열 장 한눈에']
+];
+function buildGallery(){
+  var g = $('#gallery'), frag = document.createDocumentFragment();
+  var order = ['p01_bouquet_window','p02_bouquet_closeup','p03_pony_balloons','p04_hide_shoebox',
+               'p05_bed_hide','p06_plush_hide','p07_shoe_gaze','p08_heart_balloon',
+               'p09_triptych','p10_ultrasound'];
+  order.forEach(function(name, i){
+    frag.appendChild(cell('assets/photos/'+name+'_sm.jpg','assets/photos/'+name+'.jpg',
+      ALT[name], 'P' + ('0'+(i+1)).slice(-2)));
+  });
+  DERIVED.forEach(function(d){
+    frag.appendChild(cell('assets/derived/'+d[0]+'.jpg','assets/derived/'+d[0]+'.jpg', d[1], d[0]));
+  });
+  g.appendChild(frag);
+}
+function cell(thumb, full, alt, cap){
+  var b = document.createElement('button');
+  b.type='button'; b.className='gcell'; b.setAttribute('aria-label', alt + ' — 크게 보기');
+  var im = document.createElement('img');
+  im.src = thumb; im.alt = alt; im.loading='lazy'; im.decoding='async';
+  var c = document.createElement('span'); c.className='cap'; c.textContent = cap;
+  b.appendChild(im); b.appendChild(c);
+  b.addEventListener('click', function(){ openLb(full, alt); });
+  return b;
+}
+buildGallery();
+var lb = $('#lightbox');
+function openLb(src, alt){
+  $('#lbImg').src = src; $('#lbImg').alt = alt; $('#lbCap').textContent = alt;
+  lb.classList.add('on'); lb.setAttribute('aria-hidden','false');
+}
+function closeLb(){ lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); $('#lbImg').removeAttribute('src'); }
+lb.addEventListener('click', closeLb);
+$('#lbClose').addEventListener('click', function(e){ e.stopPropagation(); closeLb(); });
+
+/* ================================================================
+   17. 부팅
+   ================================================================ */
+window.addEventListener('pagehide', function(){ try{ Score.stop(); }catch(e){} });
+document.addEventListener('visibilitychange', function(){
+  if (document.hidden && running && mode==='auto') setPlaying(false);
+});
+window.addEventListener('resize', function(){ if(!started) buildPrelude(); });
+
+resizeCanvas();
+buildPrelude();
+/* 웹폰트가 늦게 붙으면 글자 모양이 달라지므로 아주 초반에 한 번만 다시 계산 */
+if (document.fonts && document.fonts.ready){
+  document.fonts.ready.then(function(){ if (!started && preT < 1500) buildPrelude(); });
+}
+preRAF = requestAnimationFrame(preLoop);
+
+})();
+</script>
+</body>
+</html>

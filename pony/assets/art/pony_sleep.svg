@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 380" width="512" height="380" role="img" aria-labelledby="psTitle" color="var(--pony-pink, #F2B3C6)">
+  <title id="psTitle">포니 — 잠든 포즈</title>
+
+  <ellipse cx="248" cy="322" rx="182" ry="20" fill="#000000" opacity="0.07"/>
+
+  <!-- tail curled behind -->
+  <path d="M366 268 C398 254 424 268 420 292 C416 314 388 320 370 306 Z" fill="#E7D6BE"/>
+  <path d="M370 274 C392 266 410 276 406 292 C402 308 382 310 372 300 Z" fill="#F6ECDC"/>
+
+  <!-- curled body -->
+  <path d="M142 288 C124 246 144 198 196 174 C252 148 330 156 368 198 C398 232 392 286 356 298 C322 310 174 310 142 288 Z" fill="#C9C1BA"/>
+  <path d="M368 198 C398 232 392 286 356 298 C330 307 250 310 190 304 C268 302 344 288 360 250 C368 230 370 212 368 198 Z" fill="#B2A8A0" opacity="0.45"/>
+
+  <!-- tucked hind leg -->
+  <path d="M212 262 C246 250 292 252 318 268 C330 276 326 294 306 298 C272 304 224 302 206 292 C194 285 196 268 212 262 Z" fill="#B2A8A0"/>
+  <ellipse cx="308" cy="292" rx="20" ry="14" fill="#E7D6BE"/>
+
+  <!-- blanket -->
+  <g fill="currentColor">
+    <path d="M182 214 C210 188 252 176 296 180 C338 184 366 200 380 222 L382 276 C368 296 320 306 262 306 C208 306 176 298 172 284 Z"/>
+    <circle cx="180" cy="288" r="12"/>
+    <circle cx="210" cy="299" r="13"/>
+    <circle cx="244" cy="304" r="13"/>
+    <circle cx="280" cy="304" r="13"/>
+    <circle cx="316" cy="299" r="13"/>
+    <circle cx="350" cy="288" r="12"/>
+    <circle cx="376" cy="272" r="10"/>
+  </g>
+  <path d="M300 181 C340 186 366 201 380 222 L382 276 C370 294 336 303 292 306 C334 288 344 232 300 181 Z" fill="#000000" opacity="0.09"/>
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="236" cy="222" r="5"/>
+    <circle cx="280" cy="212" r="5"/>
+    <circle cx="322" cy="230" r="5"/>
+    <circle cx="258" cy="256" r="5"/>
+    <circle cx="304" cy="266" r="5"/>
+  </g>
+
+  <!-- ears (laid back, behind head) -->
+  <g transform="translate(26,-26) rotate(34 200 180)">
+    <path d="M186 206 C176 182 182 158 198 152 C212 148 220 168 214 192 Z" fill="#C9C1BA"/>
+    <path d="M190 202 C183 184 187 166 198 162 C207 160 212 175 208 192 Z" fill="#F0C3CF" opacity="0.85"/>
+  </g>
+
+  <!-- head resting -->
+  <path d="M150 176 C196 176 226 210 226 250 C226 288 194 312 150 312 C104 312 74 288 74 250 C74 210 104 176 150 176 Z" fill="#C9C1BA"/>
+  <path d="M186 186 C212 200 226 224 226 250 C226 288 194 312 150 312 C186 300 206 274 206 244 C206 220 198 200 186 186 Z" fill="#B2A8A0" opacity="0.35"/>
+
+  <!-- mane -->
+  <g fill="#F6ECDC">
+    <path d="M112 200 C102 176 108 150 128 138 C130 162 142 174 156 178 C144 196 126 204 112 200 Z"/>
+    <path d="M140 180 C136 150 152 128 176 124 C172 148 184 162 198 166 C182 182 158 186 140 180 Z"/>
+    <path d="M186 178 C194 158 216 148 234 158 C220 168 216 184 218 200 C204 198 192 190 186 178 Z"/>
+  </g>
+
+  <!-- muzzle -->
+  <ellipse cx="118" cy="272" rx="46" ry="34" fill="#F6ECDC"/>
+  <ellipse cx="118" cy="278" rx="46" ry="28" fill="#E7D6BE" opacity="0.35"/>
+  <ellipse cx="104" cy="264" rx="4.5" ry="6" fill="#A2968D" transform="rotate(-14 104 264)"/>
+  <ellipse cx="132" cy="264" rx="4.5" ry="6" fill="#A2968D" transform="rotate(14 132 264)"/>
+  <path d="M106 286 Q118 296 130 286" fill="none" stroke="#A2968D" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- closed eyes -->
+  <g fill="none" stroke="#4B403A" stroke-width="6.5" stroke-linecap="round">
+    <path d="M96 232 Q110 246 124 232"/>
+    <path d="M162 230 Q176 244 190 230"/>
+  </g>
+  <ellipse cx="82" cy="256" rx="17" ry="10" fill="#F59DB2" opacity="0.5"/>
+  <ellipse cx="186" cy="254" rx="17" ry="10" fill="#F59DB2" opacity="0.5"/>
+
+  <!-- front hooves tucked under the chin -->
+  <ellipse cx="112" cy="306" rx="26" ry="17" fill="#F6ECDC"/>
+  <ellipse cx="160" cy="308" rx="26" ry="17" fill="#F6ECDC"/>
+
+  <!-- Zzz -->
+  <g fill="none" stroke="#B9AEA6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(396,196) scale(0.62)"><path d="M0 0 h26 l-26 30 h26"/></g>
+    <g transform="translate(424,136) scale(0.85)" stroke="#C5B4AE"><path d="M0 0 h26 l-26 30 h26"/></g>
+    <g transform="translate(456,58) scale(1.12)" stroke="currentColor" opacity="0.85"><path d="M0 0 h26 l-26 30 h26"/></g>
+  </g>
+</svg>

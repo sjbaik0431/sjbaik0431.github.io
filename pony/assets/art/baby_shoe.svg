@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 110" width="145" height="110" role="img" aria-labelledby="bsTitle" color="var(--pony-pink, #F2B3C6)">
+  <title id="bsTitle">아기 신발</title>
+
+  <ellipse cx="74" cy="102" rx="60" ry="6" fill="#000000" opacity="0.07"/>
+
+  <!-- upper: low rounded toe on the left, soft ankle shaft on the right -->
+  <path d="M13 68 C11 49 24 36 46 32 L57 30 C57 19 72 11 94 11 C116 11 131 19 131 30 L133 68 Z" fill="#F6ECDC"/>
+  <path d="M100 12 C120 15 131 22 131 30 L133 68 L104 68 C110 48 108 27 100 12 Z" fill="#E7D6BE" opacity="0.65"/>
+
+  <!-- sole -->
+  <path d="M9 80 C5 69 15 62 31 62 L122 60 C134 60 139 68 139 76 C139 86 130 92 118 92 L29 92 C17 92 11 87 9 80 Z" fill="#FBF3E6"/>
+  <path d="M9 80 C5 69 15 62 31 62 L122 60 C134 60 139 68 139 76 L9 80 Z" fill="#F6ECDC"/>
+  <!-- sole rim -->
+  <path d="M10 84 C15 91 22 95 32 95 L118 95 C132 95 139 89 139 79 C139 91 131 99 118 99 L31 99 C19 99 12 92 10 84 Z" fill="#E4D5BF"/>
+
+  <!-- ankle cuff -->
+  <path d="M55 30 C55 18 72 10 94 10 C116 10 133 18 133 30 C133 41 116 48 94 48 C72 48 55 41 55 30 Z" fill="#FFFFFF"/>
+  <ellipse cx="94" cy="28" rx="32" ry="12" fill="#E7D6BE"/>
+  <ellipse cx="94" cy="27" rx="26" ry="8" fill="#D6C4AA" opacity="0.6"/>
+  <path d="M58 36 C70 45 118 45 130 36" fill="none" stroke="#E4D5BF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ribbon bow on the vamp -->
+  <g transform="translate(52,58) rotate(-6)" fill="currentColor">
+    <path d="M0 0 C -8 -12 -24 -13 -27 -4 C -30 5 -15 12 0 0 Z"/>
+    <path d="M0 0 C 8 -12 24 -13 27 -4 C 30 5 15 12 0 0 Z"/>
+    <path d="M-3 3 C -8 12 -13 17 -19 20 C -15 12 -13 7 -11 2 Z"/>
+    <path d="M3 3 C 8 12 13 17 19 20 C 15 12 13 7 11 2 Z"/>
+    <circle r="5.5"/>
+  </g>
+
+  <!-- stitching -->
+  <path d="M20 74 C50 78 104 77 130 72" fill="none" stroke="#E4D5BF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 7"/>
+  <path d="M22 55 C30 44 40 39 52 37" fill="none" stroke="#E7D6BE" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 6"/>
+</svg>
