@@ -187,7 +187,7 @@ a{color:var(--ocean);text-decoration:none}
 <!-- TTS 상단 -->
 <div class="tts">
   <div class="tts-inner">
-    <div class="tts-title">🎙️ 여행 종합 안내 · 약 15분 · 조용한 바람 (본인 목소리) · 문장별 정확 매칭</div>
+    <div class="tts-title">🎙️ 여행 종합 안내 · 약 15분 · 조용한 바람 (30% 천천히) · 아래로만 스크롤</div>
     <button class="tts-btn play" onclick="ttsPlay()">▶ 재생</button>
     <button class="tts-btn sec" onclick="ttsPause()">⏸</button>
     <button class="tts-btn sec" onclick="ttsStop()">⏹</button>
@@ -546,12 +546,27 @@ function highlightKw(kw, sectionSel){
     parent.insertBefore(span, target);
     parent.insertBefore(afterNode, target);
     parent.removeChild(target);
-    // scroll to keyword smoothly
-    span.scrollIntoView({behavior:'smooth',block:'center'});
+    // ⭐ 아래로만 스크롤: 현재 뷰포트보다 아래일 때만
+    const rect=span.getBoundingClientRect();
+    const winH=window.innerHeight;
+    // 키워드가 화면 아래 절반보다 더 아래에 있거나, 화면 밖 아래에 있을 때만 스크롤
+    if(rect.top > winH*0.5 || rect.top < 0){
+      // 하지만 위로 튀지 않도록: 목표 위치가 현재 스크롤보다 아래일 때만
+      const targetTop=window.pageYOffset+rect.top-winH*0.3;
+      if(targetTop > window.pageYOffset){
+        window.scrollTo({top:targetTop,behavior:'smooth'});
+      }
+    }
     curKwEl=span;
   } else {
-    // fallback: 섹션만 스크롤
-    scope.scrollIntoView({behavior:'smooth',block:'start'});
+    // fallback: 섹션이 아래에 있을 때만 이동
+    const secRect=scope.getBoundingClientRect();
+    if(secRect.top > window.innerHeight*0.5){
+      const targetTop=window.pageYOffset+secRect.top-100;
+      if(targetTop > window.pageYOffset){
+        window.scrollTo({top:targetTop,behavior:'smooth'});
+      }
+    }
   }
 }
 audio.ontimeupdate=function(){
