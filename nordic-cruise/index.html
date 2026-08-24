@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#1E3A5F"/>
+<title>롯데관광 · 스칸디나비아 크루즈 12일 🚢</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚢%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Myeongjo:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+--ocean:#1E3A5F;--ocean-deep:#0F2540;--sky:#4A7A94;
+--ice:#F5F9FC;--paper:#E8EEF3;--gray-warm:#D4DDE5;
+--gold:#D4A657;--gold-deep:#9C7A2E;--gold-light:#F5E6B3;
+--aurora:#4A9B8E;--aurora-light:#7BB8AA;
+--ink:#1A2028;--ink-soft:#3E4A5C;
+--red-hi:#FF3B5C;
+--success:#4A9B8E;--warning:#D89614;--info:#4A7A94;--error:#B84040;
+--shadow-soft:0 4px 12px rgba(30,58,95,.08);
+--shadow-card:0 8px 24px rgba(30,58,95,.15);
+--shadow-pop:0 14px 34px rgba(30,58,95,.24);
+--r-sm:8px;--r-md:14px;--r-lg:20px;
+--font-h:'Noto Serif KR','Playfair Display',serif;
+--font-b:'Noto Sans KR',sans-serif;
+--font-p:'Nanum Myeongjo',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:180px}
+body{font-family:var(--font-b);background:var(--ice);color:var(--ink);line-height:1.75;font-size:16.5px;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+a{color:var(--ocean);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:641px){.container{padding:0 24px}}
+
+/* 파도 애니 */
+.wave-bg{position:fixed;bottom:0;left:0;right:0;height:80px;pointer-events:none;z-index:0;opacity:.15}
+.wave-bg svg{width:200%;animation:wave 12s linear infinite;position:absolute;bottom:0}
+@keyframes wave{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;box-shadow:0 0 6px #FFD;animation:tw 2s infinite}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:1}}
+
+/* TTS 상단 */
+.tts{position:sticky;top:0;z-index:200;background:linear-gradient(135deg,#0F2540 0%,#1E3A5F 100%);color:#F5E6B3;padding:14px 12px;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.tts-inner{max-width:1200px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tts-title{font-family:var(--font-h);font-weight:700;font-size:15px;color:var(--gold-light);flex:1 1 100%;margin-bottom:6px}
+.tts-select{padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.15);color:#F5E6B3;font-family:inherit;font-size:14px;border:1px solid rgba(255,255,255,.2);flex:1;min-width:180px}
+.tts-btn{padding:12px 20px;border-radius:10px;font-weight:700;font-size:16px;transition:all .2s;min-height:52px;display:inline-flex;align-items:center;gap:6px}
+.tts-btn.play{background:var(--gold);color:var(--ocean-deep);font-size:20px;padding:14px 28px;box-shadow:0 4px 16px rgba(212,166,87,.5)}
+.tts-btn.play:hover{background:var(--gold-light);transform:scale(1.05)}
+.tts-btn.sec{background:rgba(255,255,255,.15);color:#F5E6B3;font-size:14px;padding:10px 14px;min-height:44px}
+.tts-progress{flex:1;min-width:120px;height:10px;background:rgba(255,255,255,.15);border-radius:6px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--aurora));width:0%;transition:width .5s}
+.tts-status{min-width:80px;text-align:right;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold-light)}
+
+/* NAV */
+.navbar{position:sticky;top:110px;z-index:100;background:rgba(245,249,252,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--gold);box-shadow:0 2px 12px rgba(30,58,95,.08)}
+.navbar-inner{display:flex;gap:6px;overflow-x:auto;padding:12px 12px;scrollbar-width:none}
+.navbar-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:10px 16px;border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;border:1.5px solid var(--gray-warm);transition:all .2s;min-height:44px;white-space:nowrap}
+.nav-btn:hover{background:var(--paper);border-color:var(--ocean);transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;background:linear-gradient(180deg,#F5F9FC 0%,#E8EEF3 60%,#D4E0EB 100%);padding:44px 0 44px;text-align:center;overflow:hidden;z-index:1;border-bottom:3px solid var(--gold)}
+.hero::before{content:"🚢";position:absolute;top:20px;left:8%;font-size:56px;opacity:.5;animation:sail 8s ease-in-out infinite}
+.hero::after{content:"⚓";position:absolute;top:40px;right:10%;font-size:44px;opacity:.6}
+@keyframes sail{0%,100%{transform:translateX(0)}50%{transform:translateX(20px)}}
+.hero .badge{display:inline-block;padding:6px 20px;background:var(--ocean);color:var(--gold-light);border-radius:999px;font-size:14px;letter-spacing:.1em;margin-bottom:14px;font-weight:600}
+.hero h1{font-family:var(--font-h);font-weight:700;font-size:clamp(24px,4.5vw,40px);color:var(--ocean-deep);line-height:1.3;margin-bottom:10px}
+.hero .subtitle{font-family:var(--font-p);font-size:clamp(16px,2.2vw,22px);color:var(--ink-soft);margin:8px 0 12px}
+.hero .cruise{padding:6px 14px;background:rgba(255,255,255,.7);border-radius:8px;font-size:14px;color:var(--ocean);font-weight:600;display:inline-block;margin:4px 4px}
+
+/* Section */
+.section{padding:44px 0;position:relative;z-index:1}
+.section h2{font-family:var(--font-h);font-size:clamp(22px,3.2vw,28px);font-weight:700;color:var(--ocean-deep);margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);padding-left:14px}
+.section .lead{font-family:var(--font-p);font-size:17px;color:var(--ink-soft);margin-bottom:20px}
+
+/* 개요 카드 */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:20px}
+.ov-card{background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--ocean);border-radius:var(--r-md);padding:18px;box-shadow:var(--shadow-soft)}
+.ov-card h3{font-family:var(--font-h);color:var(--ocean-deep);font-weight:700;font-size:16px;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.ov-card p{font-size:14px;color:var(--ink-soft);line-height:1.65}
+.ov-card ul{padding-left:18px;font-size:14px;line-height:1.7}
+
+/* PORT CARD */
+.port-hero{aspect-ratio:16/9;background:var(--paper) center/cover no-repeat;border-radius:var(--r-md) var(--r-md) 0 0;position:relative}
+.port-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5))}
+.port-hero .flag{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.95);padding:5px 12px;border-radius:8px;font-size:14px;font-weight:700;color:var(--ocean);backdrop-filter:blur(4px);z-index:2}
+.port-hero .day{position:absolute;top:12px;right:12px;background:var(--ocean);color:#fff;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:700;z-index:2}
+.port-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);margin-bottom:24px;overflow:hidden;box-shadow:var(--shadow-card)}
+.port-body{padding:22px}
+.port-title{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ocean-deep);margin-bottom:2px}
+.port-when{font-family:'Playfair Display',serif;color:var(--gold-deep);font-style:italic;font-size:14px;margin-bottom:12px}
+.port-section{padding:12px 0;border-bottom:1px dashed var(--gray-warm)}
+.port-section:last-child{border:none}
+.port-section h4{color:var(--ocean);font-family:var(--font-h);font-size:15px;font-weight:700;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.port-section p,.port-section li{font-size:14.5px;line-height:1.75;color:var(--ink)}
+.port-section ul{padding-left:20px}
+.port-poem{background:var(--paper);border-left:3px solid var(--gold);padding:10px 14px;font-family:var(--font-p);font-style:italic;color:var(--ocean);font-size:15px;line-height:1.85;margin:6px 0}
+.port-kr{background:linear-gradient(135deg,#F5E6B3 20%,#E8EEF3 100%);border-radius:8px;padding:12px 14px;margin:6px 0;font-size:14.5px;line-height:1.75}
+.port-dress{color:var(--aurora);font-size:14px}
+.port-morning{display:flex;gap:12px;align-items:center;padding:10px 14px;background:var(--paper);border-radius:8px;margin-top:8px}
+.port-morning .play-mini{width:40px;height:40px;background:var(--ocean);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;cursor:pointer}
+.port-must{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-top:8px}
+.port-must-item{padding:10px 12px;background:var(--paper);border-radius:8px;font-size:13.5px;line-height:1.55}
+.port-must-item strong{color:var(--ocean-deep);display:block;margin-bottom:2px}
+.port-food{padding:8px 0;border-bottom:1px dotted var(--gray-warm);font-size:14px}
+.port-food:last-child{border:none}
+.port-first{background:linear-gradient(135deg,#FFF9F0 20%,#F5E6B3 100%);border-left:3px solid var(--gold);padding:12px 14px;border-radius:6px;font-size:14.5px;line-height:1.75;color:var(--ocean-deep);margin:6px 0}
+
+/* 시설 그리드 */
+.fac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.fac-card{background:#fff;border:1px solid var(--gray-warm);border-radius:8px;padding:12px 14px}
+.fac-card .fac-name{font-weight:700;color:var(--ocean-deep);font-size:14.5px;margin-bottom:2px}
+.fac-card .fac-loc{font-size:12px;color:var(--gold-deep);font-family:'Playfair Display',serif}
+.fac-card .fac-desc{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.55}
+.fac-card .fac-tip{font-size:12.5px;color:var(--aurora);margin-top:4px}
+.fac-card.free{border-left:3px solid var(--success)}
+.fac-card.paid{border-left:3px solid var(--warning)}
+
+/* 체크리스트 */
+.chk-cat{margin-bottom:16px;padding:14px 18px;background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--gold);border-radius:var(--r-md)}
+.chk-cat h4{color:var(--ocean-deep);font-family:var(--font-h);font-size:16px;margin-bottom:8px}
+.chk-item{display:flex;gap:10px;padding:6px 0;align-items:flex-start;cursor:pointer;user-select:none;transition:all .2s}
+.chk-item input{flex-shrink:0;width:22px;height:22px;margin-top:2px;accent-color:var(--ocean);cursor:pointer}
+.chk-item label{flex:1;font-size:14.5px;line-height:1.6;cursor:pointer;transition:all .3s}
+.chk-item input:checked + label{text-decoration:line-through;color:var(--ink-soft);opacity:.6}
+.chk-item input:checked ~ * {animation:checkPop .4s}
+@keyframes checkPop{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+
+/* Dress code */
+.dress-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.dress-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:14px}
+.dress-scene{color:var(--ocean-deep);font-weight:700;font-size:14.5px;margin-bottom:6px}
+.dress-code{color:var(--gold-deep);font-family:'Playfair Display',serif;font-weight:700;margin-bottom:4px}
+.dress-note{font-size:13px;color:var(--ink-soft);line-height:1.6}
+
+/* 안전 카드 */
+.safety-list{display:flex;flex-direction:column;gap:8px}
+.safety-item{padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);display:flex;gap:10px;align-items:center}
+.safety-item.critical{border-left:5px solid var(--error);background:#FFF4F5}
+.safety-item.warning{border-left:5px solid var(--warning);background:#FFF9F0}
+.safety-item.info{border-left:5px solid var(--info)}
+.safety-item .icon{font-size:22px;flex-shrink:0}
+.safety-item .msg{font-size:14.5px;line-height:1.6;flex:1}
+
+/* 언어 */
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.phrase-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:12px 14px}
+.phrase-country{font-family:var(--font-h);color:var(--ocean-deep);font-weight:700;font-size:15px;margin-bottom:8px;display:flex;gap:6px;align-items:center;padding-bottom:6px;border-bottom:1px dashed var(--gray-warm)}
+.phrase-item{display:flex;justify-content:space-between;padding:3px 0;font-size:13.5px}
+.phrase-item .ko{color:var(--ink-soft)}
+.phrase-item .lc{color:var(--ocean);font-weight:600;font-family:'Playfair Display',serif}
+
+/* 연락처 */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.emer{display:flex;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);transition:all .2s}
+.emer:hover{transform:translateY(-2px);border-color:var(--ocean)}
+.emer .ico{width:40px;height:40px;background:linear-gradient(135deg,var(--gold-light),var(--paper));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.emer .lab{font-size:13.5px;font-weight:700;color:var(--ocean-deep);margin-bottom:2px}
+.emer .ph{font-family:'Playfair Display',serif;font-weight:700;color:var(--ocean);font-size:15px}
+.emer .note{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+
+/* 키워드 하이라이트 */
+.kw{transition:all .3s}
+.kw-active{border:2px solid var(--red-hi);color:var(--red-hi);font-weight:700;background:rgba(255,59,92,.1);padding:2px 8px;border-radius:6px;animation:kwPulse 1s ease-in-out}
+.kw-done{border-bottom:2px solid var(--ink-soft);color:var(--ink-soft)}
+@keyframes kwPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 rgba(255,59,92,0)}50%{transform:scale(1.05);box-shadow:0 0 12px rgba(255,59,92,.5)}}
+
+/* Toast */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:15px;z-index:2000;opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* footer */
+.footer{padding:56px 0 100px;text-align:center;background:linear-gradient(135deg,#0F2540 0%,#1E3A5F 100%);color:var(--gold-light)}
+.footer p{font-family:var(--font-p);font-size:19px;line-height:1.9}
+.footer .from{margin-top:14px;font-size:15px;opacity:.9}
+
+/* 오프라인 다운로드 배너 */
+.offline-banner{margin:16px 0;padding:16px 20px;background:linear-gradient(135deg,#F5E6B3 20%,#E8EEF3 100%);border:2px solid var(--gold);border-left:6px solid var(--ocean);border-radius:var(--r-md)}
+.offline-banner h3{color:var(--ocean-deep);font-family:var(--font-h);font-size:17px;margin-bottom:8px}
+.offline-banner a{background:var(--ocean);color:#fff;padding:8px 18px;border-radius:8px;display:inline-block;margin-top:6px;font-weight:700;font-size:14px}
+
+@media(prefers-reduced-motion:reduce){.wave-bg,.stars,.hero::before{display:none}*,*::before,*::after{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars" aria-hidden="true"></div>
+<div class="wave-bg" aria-hidden="true"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z" fill="#1E3A5F"/></svg></div>
+
+<!-- 상단 크게 TTS -->
+<div class="tts">
+  <div class="tts-inner">
+    <div class="tts-title">🎙️ 오디오 해설 · 35분 · 매 10초마다 키워드 하이라이트 · 자동 스크롤</div>
+    <select id="ttsSelect" class="tts-select" onchange="ttsChange()"></select>
+    <button class="tts-btn play" onclick="ttsPlay()">▶ 재생</button>
+    <button class="tts-btn sec" onclick="ttsPause()">⏸</button>
+    <button class="tts-btn sec" onclick="ttsStop()">⏹</button>
+    <div class="tts-progress"><div class="tts-progress-fill" id="ttsProg"></div></div>
+    <span class="tts-status" id="ttsStatus">00:00</span>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <button class="nav-btn" onclick="scrollTo2('#overview')">🚢 개요</button>
+    <button class="nav-btn" onclick="scrollTo2('#facilities')">🏨 크루즈</button>
+    <button class="nav-btn" onclick="scrollTo2('#ports')">🌍 8개국 기항지</button>
+    <button class="nav-btn" onclick="scrollTo2('#dress')">👔 드레스코드</button>
+    <button class="nav-btn" onclick="scrollTo2('#prep')">🎒 준비물·체크</button>
+    <button class="nav-btn" onclick="scrollTo2('#safety')">🚨 안전</button>
+    <button class="nav-btn" onclick="scrollTo2('#phrases')">🌐 8개국 인사</button>
+    <button class="nav-btn" onclick="scrollTo2('#emergency')">☎️ 연락처</button>
+    <button class="nav-btn" onclick="scrollTo2('#offline')">📥 오프라인</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">🚢 롯데관광 CRUISE</span>
+    <h1>백상진 회장님 · 박현교 사모님의<br/>스칸디나비아 · 발트해 <span data-kw>북유럽 크루즈</span> 12일</h1>
+    <p class="subtitle">2026년 9월 13일 (일) ~ 9월 24일 (목)</p>
+    <div>
+      <span class="cruise">🚢 NCL Norwegian Sun</span>
+      <span class="cruise">🌍 8개국 · 9개 기항지</span>
+      <span class="cruise">👥 인솔자 김소희 선생님</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 종합 개요 -->
+<section id="overview" class="section" style="padding-top:24px">
+  <div class="container">
+    <h2>🚢 여행 종합 개요</h2>
+    <div class="lead">한 화면에서 이번 여행의 모든 핵심을 정리합니다.</div>
+    <div class="overview-grid">
+      <div class="ov-card"><h3>📅 여행 기간</h3><p><strong>10박 12일</strong> · 2026.9.13 (일) 저녁 인천 출발 → 9.24 (목) 인천 도착</p><p>크루즈 승선 8박 (헬싱키→코펜하겐) · 항공 왕복</p></div>
+      <div class="ov-card"><h3>🚢 크루즈 선박</h3><p><strong>Norwegian Sun (NCL 노르위전 선호)</strong> · 15 데크</p><p>승객 약 2,000명 · 프리스타일 크루징 (자유 다이닝)</p><p>13개 레스토랑 · 9개 바 · 대극장 · 스파 · 수영장</p></div>
+      <div class="ov-card"><h3>✈️ 항공편</h3><p><strong>핀에어 AY042</strong> 인천 21:50 → 헬싱키 05:30 (13h40m)</p><p><strong>귀국</strong> 코펜하겐 13:55 → 헬싱키 → 인천</p></div>
+      <div class="ov-card"><h3>🌍 방문 국가 · 도시 (8개국 9개 기항지)</h3><ul>
+        <li>🇫🇮 <strong>핀란드 헬싱키</strong> - 승선지</li>
+        <li>🇪🇪 <strong>에스토니아 탈린</strong> - 중세 유네스코</li>
+        <li>🇸🇪 <strong>스웨덴 스톡홀름</strong> - 노벨상 도시</li>
+        <li>🇱🇻 <strong>라트비아 리가</strong> - 아르누보 진주</li>
+        <li>🇱🇹 <strong>리투아니아 클라이페다</strong> - 쿠로니안 사구</li>
+        <li>🇵🇱 <strong>폴란드 그단스크</strong> - 자유노조 연대</li>
+        <li>🇩🇪 <strong>독일 베를린 & 함부르크</strong> - 통일·항구</li>
+        <li>🇩🇰 <strong>덴마크 코펜하겐</strong> - 오버나잇 · 하선</li>
+      </ul></div>
+      <div class="ov-card"><h3>🇰🇷 한국과의 관계</h3><ul>
+        <li>스웨덴·덴마크: <strong>6.25 야전병원 파견 형제국</strong></li>
+        <li>독일 베를린: <strong>파독 광부·간호사</strong> 상징 도시</li>
+        <li>에스토니아: 세계 최초 <strong>전자정부</strong> 벤치마킹 대상</li>
+        <li>발트 3국: <strong>K-Pop·태권도</strong> 열풍</li>
+        <li>부산-스톡홀름·부산-함부르크 자매도시</li>
+      </ul></div>
+      <div class="ov-card"><h3>⭐ 주요 관광 하이라이트</h3><ul>
+        <li>헬싱키 백색 대성당 · 시벨리우스 공원</li>
+        <li>탈린 중세 구시가 (유네스코) · 톰페아 전망대</li>
+        <li>스톡홀름 <strong>바사 박물관</strong> (400년 전함)</li>
+        <li>리가 아르누보 지구 · 성 베드로 전망대</li>
+        <li>클라이페다 <strong>쿠로니안 사구</strong> (유네스코)</li>
+        <li>그단스크 자유노조 연대 · WW2 박물관</li>
+        <li>베를린 <strong>브란덴부르크 문</strong> · 국회 유리돔</li>
+        <li>함부르크 <strong>엘프필하모니</strong> · 미니어처 원더랜드</li>
+        <li>코펜하겐 <strong>티볼리 공원</strong> · 인어공주</li>
+      </ul></div>
+      <div class="ov-card"><h3>🏨 선내 시설·프로그램</h3><ul>
+        <li>정찬 다이닝 <strong>Four Seasons/Seven Seas</strong> (무료)</li>
+        <li>스페셜티 <strong>Le Bistro·Cagney's</strong> (유료)</li>
+        <li>대극장 <strong>Stardust Lounge</strong> 매일 저녁 공연</li>
+        <li><strong>만다라 스파</strong> · 자쿠지 · 야외 산책 데크</li>
+        <li>기항지 강연 (다음날 도시 소개)</li>
+      </ul></div>
+      <div class="ov-card"><h3>🎒 준비물 핵심</h3><ul>
+        <li>여권 유효기간 6개월 이상 · 사본 3부</li>
+        <li>방수 자켓 · 니트 · 편한 워킹슈즈 2켤레</li>
+        <li>상비약 여유분 · 220V C타입 어댑터</li>
+        <li>유로 300 · 스웨덴크로나 1000 · 폴란드즈워티 200 · 덴마크크로네 500</li>
+        <li>포멀 나이트용 정장·원피스 1벌</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 오프라인 다운로드 -->
+<section id="offline" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="offline-banner">
+      <h3>📥 오프라인 사용 (배 위에서 인터넷 없이 사용)</h3>
+      <p style="font-size:14.5px;line-height:1.7">크루즈 배 위에서는 Wi-Fi가 유료·불안정합니다. 아래 파일들을 승선 전 <strong>노트북·아이패드·핸드폰</strong>에 미리 다운로드하십시오.</p>
+      <ol style="padding-left:20px;font-size:14px;line-height:1.9;margin-top:8px">
+        <li>이 페이지를 브라우저 메뉴 → <strong>"페이지를 PDF로 저장"</strong> 또는 <strong>Ctrl+S</strong> "웹페이지 완료"로 저장</li>
+        <li>아래 <strong>MP3 파일 7개</strong>를 각각 다운로드 (총 약 10MB)</li>
+        <li>파일들을 <strong>같은 폴더</strong>에 저장 · 오프라인에서도 재생 가능</li>
+        <li>또는 <strong>승선 전 크루즈 Wi-Fi 시작 패키지</strong> 구매 시 이 페이지 계속 접속 가능</li>
+      </ol>
+      <a href="audio/0_overview.mp3" download>📖 개요 MP3</a>
+      <a href="audio/1_day01_02.mp3" download>1-2일차</a>
+      <a href="audio/2_day03_04.mp3" download>3-4일차</a>
+      <a href="audio/3_day05_06.mp3" download>5-6일차</a>
+      <a href="audio/4_day07_08.mp3" download>7-8일차</a>
+      <a href="audio/5_day09_10.mp3" download>9-10일차</a>
+      <a href="audio/6_day11_12.mp3" download>11-12일차</a>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--ink-soft)">💡 <strong>인터넷 없을 때 재생</strong>: 다운로드한 MP3 파일을 핸드폰·아이패드 음악 앱에서 재생하시면 됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 크루즈 시설 -->
+<section id="facilities" class="section" style="background:linear-gradient(135deg,#F5F9FC 0%,#E8EEF3 100%)">
+  <div class="container">
+    <h2>🏨 크루즈 시설 · 프로그램</h2>
+    <div class="lead">Norwegian Sun 15개 데크 완전 가이드</div>
+    <h3 style="color:var(--ocean-deep);font-family:var(--font-h);margin:16px 0 10px;font-size:17px">🍽️ 레스토랑 (총 13개 · 초록 = 무료, 노랑 = 유료 스페셜티)</h3>
+    <div class="fac-grid" id="restGrid"></div>
+    <h3 style="color:var(--ocean-deep);font-family:var(--font-h);margin:20px 0 10px;font-size:17px">🍸 바 & 라운지 (9개)</h3>
+    <div class="fac-grid" id="barGrid"></div>
+    <h3 style="color:var(--ocean-deep);font-family:var(--font-h);margin:20px 0 10px;font-size:17px">🎭 부대시설</h3>
+    <div class="fac-grid" id="facGrid"></div>
+    <h3 style="color:var(--ocean-deep);font-family:var(--font-h);margin:20px 0 10px;font-size:17px">✨ 여유 시간 활용 프로그램</h3>
+    <div class="fac-grid" id="actGrid"></div>
+  </div>
+</section>
+
+<!-- 기항지 -->
+<section id="ports" class="section">
+  <div class="container">
+    <h2>🌍 8개국 9개 기항지 상세 안내</h2>
+    <div class="lead">회장님·사모님을 위한 상세 스토리 · 한국과의 관계 · 관광 포인트 · 시(詩) · 드레스코드 · 아침 음악</div>
+    <div id="portsArea"></div>
+  </div>
+</section>
+
+<!-- 드레스코드 -->
+<section id="dress" class="section" style="background:linear-gradient(135deg,#F5F9FC 0%,#E8EEF3 100%)">
+  <div class="container">
+    <h2>👔 드레스코드 완전 가이드</h2>
+    <div class="lead">크루즈 정찬 · 성당 방문 · 포멀 나이트 · 일상까지</div>
+    <div class="dress-row" id="dressGrid"></div>
+  </div>
+</section>
+
+<!-- 준비물/체크리스트 -->
+<section id="prep" class="section">
+  <div class="container">
+    <h2>🎒 사전 준비 & 체크리스트</h2>
+    <div class="lead">체크하면 자동 저장 · 이 기기에만 보관</div>
+    <div id="prepArea"></div>
+    <h3 style="color:var(--ocean-deep);font-family:var(--font-h);margin:20px 0 10px;font-size:17px">🚢 크루즈 승선 첫날 체크리스트</h3>
+    <div class="chk-cat" id="boardChk"></div>
+  </div>
+</section>
+
+<!-- 안전 -->
+<section id="safety" class="section" style="background:linear-gradient(135deg,#FFF9F0 0%,#F5F9FC 100%)">
+  <div class="container">
+    <h2>🚨 안전 최우선 안내</h2>
+    <div class="lead">유럽 통합 응급 112 · 인솔자 김소희 · 소매치기 대응</div>
+    <div class="safety-list" id="safetyArea"></div>
+  </div>
+</section>
+
+<!-- 8개국 인사말 -->
+<section id="phrases" class="section">
+  <div class="container">
+    <h2>🌐 8개국 기본 인사말</h2>
+    <div class="lead">현지어로 "안녕하세요" 한 마디만 해도 대접이 달라집니다</div>
+    <div class="phrase-grid" id="phraseGrid"></div>
+  </div>
+</section>
+
+<!-- 긴급 연락처 -->
+<section id="emergency" class="section" style="background:linear-gradient(135deg,#F5F9FC 0%,#E8EEF3 100%)">
+  <div class="container">
+    <h2>☎️ 긴급 연락처</h2>
+    <div class="lead">응급 · 대사관 · 인솔자 · 롯데관광 24H</div>
+    <div class="emer-grid" id="emerGrid"></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>바다 위 열이틀의 항해가<br/>회장님·사모님 두 분의 삶에<br/>오래오래 남을 소중한 추억이 되기를 진심으로 기원드립니다.</p>
+    <p class="from">— 롯데관광 · 인솔자 김소희 올림 🚢💐</p>
+  </div>
+</footer>
+
+<audio id="ttsAudio"></audio>
+
+<script>
+const DATA = {"ports":[{"id":"helsinki","day":2,"date":"2026-09-14","city":"헬싱키","country":"핀란드","flag":"🇫🇮","arrive":"05:30","depart":"16:00 (승선/출항)","profile":"핀란드의 수도이자 발트해 북단의 '북구의 백색 도시'. 인구 약 65만, 수도권 포함 160만. 아르누보 건축과 러시아·스웨덴 문화가 겹친 디자인 수도.","history":"1550년 스웨덴 왕 구스타브 1세가 세운 무역항이 러시아 지배 108년(1809-1917)을 거쳐 세계 최초로 여성 참정권을 부여한 나라(1906)로 다시 태어났습니다.","korea_connection":"1973년 한-핀란드 수교. 노키아·자일리톨·무민이 우리 생활에 스며든 나라. 헬싱키대학교 한국학 전공 개설(2020), BTS·트와이스 팬덤 활발. 서울시 성북구와 자매결연(1996).","korea_embassy":"주핀란드 한국대사관 · Fabianinkatu 8 A, 00130 Helsinki · +358-9-251-5000 · 긴급 +358-40-861-7772","korean_food":"MunChun Korean Restaurant(Kalevankatu 6) · Restaurant Seoul(Ruoholahdenkatu) · 김밥 전문점 KimBap Store","must_see":[{"name":"헬싱키 대성당(Tuomiokirkko)","desc":"1852년 완공 신고전주의 백색 성당, 원로원 광장 상징","time":"40분","cost":"무료","warn":"정면 계단 30개, 뒤편 완만한 경사 대안"},{"name":"우스펜스키 대성당","desc":"1868년 북유럽 최대 러시아정교회, 붉은벽돌·황금 돔 13개","time":"30분","cost":"무료","warn":"언덕 계단 40개, 여성 스카프 권장"},{"name":"템펠리아우키오 암석교회","desc":"1969년 화강암 바위 안에 만든 세계 유일 교회, 놀라운 자연 음향","time":"40분","cost":"€8","warn":"평지, 휠체어 접근 가능"},{"name":"카우파토리 마켓광장","desc":"항구 옆 재래시장, 갓 잡은 연어·순록육포·베리 시식","time":"1시간","cost":"시식 무료","warn":"평지·벤치 많음"},{"name":"시벨리우스 공원 모뉴먼트","desc":"600개 파이프로 만든 음악 조각(1967), 핀란드 애국가 작곡가 헌정","time":"30분","cost":"무료","warn":"평지·공원 벤치"},{"name":"히든 · 카페 레가타(1887)","desc":"핀란드에서 가장 오래된 목조 카페, 신선 시나몬롤","time":"30분","cost":"커피 €4","warn":"평지·화장실 있음"}],"must_eat":[{"name":"연어 수프(Lohikeitto)","desc":"크림·감자·연어 국민 수프, 담백함","where":"Kappeli Restaurant","price":"€12-15"},{"name":"카렐리안 파이","desc":"호밀 반죽에 쌀죽 채운 전통 파이","where":"Ekberg 베이커리(1852년)","price":"€3-5"},{"name":"시나몬 롤(Korvapuusti)","desc":"핀란드식 큰 시나몬빵","where":"카페 레가타","price":"€4"}],"poem":"백야의 얼음 아래 초록의 숨결이 흐르네 / 침묵도 노래가 되는 이 북방의 아침","safety":"매우 안전. 중앙역 지하도·마켓광장 인파 속 지갑 조심. 응급 112.","first_time":"원로원 광장에 서서 백색 대성당이 파란 하늘 아래 빛나는 순간 · 이래서 유럽이구나 하는 첫 감동","music":{"title":"Finlandia Op.26","artist":"Sibelius","youtube_id":"F5zg_af9b8c","note":"'Sibelius Finlandia' 유튜브 검색"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Helsinki_July_2013-14a.jpg/1280px-Helsinki_July_2013-14a.jpg","dress":"방수 트렌치+따뜻한 니트+숄 · 편한 워킹슈즈 · 오전 8-13°C, 오후 12-15°C"},{"id":"tallinn","day":3,"date":"2026-09-15","city":"탈린","country":"에스토니아","flag":"🇪🇪","arrive":"08:00","depart":"17:00","profile":"발트해 남안의 '중세 그대로의 도시'. 인구 약 45만. 13세기 한자동맹 요새 성벽이 온전히 남은 유네스코 세계문화유산.","history":"덴마크·독일·스웨덴·러시아·소련의 지배를 800년 견디고 1991년 '노래혁명'으로 무혈 독립한 나라 · IT 강국 스카이프 창업지로 부활.","korea_connection":"1991년 수교. 에스토니아는 세계 최초 전자정부(e-Estonia)로 한국 정부 벤치마킹 대상. 삼성·현대 유럽 진출 거점. 탈린공대에 K-Culture 동아리.","korea_embassy":"주에스토니아 한국대사관 · Estonia pst 7, Tallinn · +372-610-6000 · 긴급 +372-5303-0492","korean_food":"Restaurant Bab(Väike-Karja 12) · SEOUL Fusion(Rotermanni 지구)","must_see":[{"name":"구시가 광장(Raekoja plats)","desc":"북유럽 최고령 시청사(1404)와 파스텔 상인 저택","time":"1시간","cost":"무료","warn":"돌바닥·편한 신발"},{"name":"알렉산드르 넵스키 대성당","desc":"1900년 러시아 정교회, 러시아화의 상징이자 걸작","time":"30분","cost":"무료","warn":"톰페아 언덕 오르막"},{"name":"톰페아 성 & Kohtuotsa 전망대","desc":"국회의사당 위 붉은 지붕 바다 파노라마","time":"40분","cost":"무료","warn":"계단 20개, 우회로 있음"},{"name":"카타리나 통로(Katariina käik)","desc":"13세기 골목·수공예 공방, 관광객 적음","time":"30분","cost":"무료","warn":"좁은 돌길"},{"name":"카드리오르그 궁전","desc":"1718년 표트르 대제가 아내 위해 지은 바로크 궁전","time":"2시간","cost":"€8","warn":"트램 5분, 정원 산책 편함"},{"name":"히든 · 텔리스키비 크리에이티브 시티","desc":"옛 철도공장 개조 힙스터 지구, 카페·갤러리","time":"1시간","cost":"무료","warn":"평지"}],"must_eat":[{"name":"엘크 수프(Põdrasupp)","desc":"탈린 겨울 대표 사슴 스튜","where":"Olde Hansa(중세 컨셉, 촛불 조명)","price":"€16"},{"name":"블랙 브레드(Leib)","desc":"1000년 역사 호밀빵, 소금기 있는 버터와","where":"Leib Resto ja Aed","price":"€6"},{"name":"카마 크림 디저트","desc":"곡물가루·요거트 디저트, 소화 잘됨","where":"Kohvik Sesoon","price":"€6"}],"poem":"돌 하나하나가 900년의 기억이라 / 이곳에서는 시간도 발끝을 세우고 걷는다","safety":"구시가 안전, 좁은 골목 오후 늦게 취객 주의. 야간 크루즈 터미널까지 Bolt 택시(€8).","first_time":"톰페아 전망대에서 바라본 붉은 지붕의 바다 · 헨젤과 그레텔 삽화 같은 완벽한 중세 유럽 풍경","music":{"title":"Mu isamaa on minu arm","artist":"Ernesaks (노래혁명 상징곡)","youtube_id":"hVvE0kZ7pMY","note":"에스토니아 합창 노래혁명"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Tallinn_-_panoramio_%2839%29.jpg/1280px-Tallinn_-_panoramio_%2839%29.jpg","dress":"방수 자켓+얇은 다운 · 편한 신발(돌바닥) · 5-13°C"},{"id":"stockholm","day":4,"date":"2026-09-16","city":"스톡홀름","country":"스웨덴","flag":"🇸🇪","arrive":"08:00 (뉘네스함 접안, 시내 45분)","depart":"17:00","profile":"14개 섬 위 '북유럽의 베네치아'. 인구 약 100만, 수도권 250만. 노벨상 도시이자 IKEA·H&M·볼보의 나라 수도.","history":"1252년 비르에르 야를이 세운 무역항이 발트해 대제국 수도(1611-1721)를 거쳐 21세기 '지속가능성의 세계 표준' 도시.","korea_connection":"1959년 수교 · 서구권 최초 수교국. 스웨덴 왕실은 한국전쟁 야전병원 파견한 '피의 형제국'. ABBA 박물관에 K팝 존, 부산-스톡홀름 우호도시.","korea_embassy":"주스웨덴 한국대사관 · Laboratoriegatan 10, Stockholm · +46-8-5455-2820 · 긴급 +46-70-663-2820","korean_food":"Arirang(Luntmakargatan 65) 30년 노포 · Koreana · Seoul Restaurant","must_see":[{"name":"감라스탄(구시가)","desc":"13세기 골목·붉은노란 상인 저택, 세계에서 가장 잘 보존된 중세 도심","time":"2시간","cost":"무료","warn":"돌바닥·언덕"},{"name":"왕궁 & 근위병 교대식(정오 12:15)","desc":"600개 방을 가진 세계 최대 현역 궁전","time":"1시간","cost":"관람 €18","warn":"교대식 서서 관람"},{"name":"바사 박물관 ★필수","desc":"1628년 처녀항해 20분만에 침몰한 전함, 333년 만에 인양","time":"1.5시간","cost":"€23","warn":"평지·엘리베이터"},{"name":"시청사(Stadshuset)","desc":"노벨상 시상 만찬장, 붉은벽돌 이탈리아 양식","time":"1시간","cost":"가이드 €15","warn":"탑 X, 홀만 관람"},{"name":"ABBA 박물관","desc":"댄싱퀸 홀로그램 무대, 사모님이 좋아하실 스팟","time":"1.5시간","cost":"€27","warn":"인터랙티브, 계단 최소"},{"name":"히든 · 몬텔리우스베겐 산책로","desc":"감라스탄 파노라마 무료 전망대, 관광객 적음","time":"40분","cost":"무료","warn":"약간의 오르막"}],"must_eat":[{"name":"미트볼(Köttbullar)","desc":"IKEA 원조, 매쉬드포테이토·링곤베리 잼","where":"Meatballs for the People","price":"€15-20"},{"name":"그라브락스(Gravlax)","desc":"딜·소금·설탕 절인 연어, 겨자소스","where":"Nystekt Strömming 노점","price":"€10"},{"name":"카넬불레","desc":"스웨덴식 시나몬 롤","where":"Vete-Katten(1928년 창업)","price":"€4"}],"poem":"물 위의 이 도시는 / 아침마다 자신을 다시 발명한다","safety":"매우 안전. 감라스탄 좁은 골목 소매치기 조심. 뉘네스함까지 45분 왕복 시간 여유 필수.","first_time":"바사호 · 400년 된 나무 전함이 3층 높이로 서 있는 순간, 유럽 첫 박물관 감동 극대화","music":{"title":"Dancing Queen","artist":"ABBA","youtube_id":"xFrGuyw1V8s","note":"ABBA Dancing Queen"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Gamla_stan_-_Stockholm%2C_Sweden_-_panoramio.jpg/1280px-Gamla_stan_-_Stockholm%2C_Sweden_-_panoramio.jpg","dress":"방수 코트+니트 · 편한 워킹슈즈 · 8-14°C · 감라스탄 정찬은 스마트캐주얼"},{"id":"riga","day":5,"date":"2026-09-17","city":"리가","country":"라트비아","flag":"🇱🇻","arrive":"09:30","depart":"18:00","profile":"다우가바 강 하구의 '발트해 진주'. 인구 약 60만. 세계 최대 아르누보 건축 밀집지(800여 채)로 유네스코 세계문화유산.","history":"1201년 독일 십자군이 세운 한자동맹 요새가 800년간 8개국 지배를 견디고, 1989년 200만 발트인이 손잡은 '발트의 길' 인간사슬로 독립.","korea_connection":"1991년 수교. K-Beauty·K-Pop이 리가 청년 문화 강타. 라트비아 대학교 한국어 전공 개설. 발트해 원산 호박(琥珀)은 조선왕조 시대 진상품.","korea_embassy":"주라트비아는 스톡홀름 대사관 관할. 라트비아 명예영사 · Elizabetes iela 51 · +371-6733-8776","korean_food":"Kimchi Hub(Terbatas iela 49) 김밥·떡볶이 · Seoul BBQ 삼겹살구이","must_see":[{"name":"구시가 광장 & 검은머리길드 하우스","desc":"1334년 미혼 상인들의 화려한 저택","time":"1시간","cost":"€6","warn":"평지·돌바닥"},{"name":"리가 대성당(Doms)","desc":"1211년 발트해 최대 성당, 6768개 파이프 오르간","time":"40분","cost":"€3","warn":"평지, 오르간 콘서트 확인"},{"name":"성 베드로 교회 첨탑 ★엘리베이터","desc":"72m 엘리베이터 전망대, 리가 파노라마","time":"40분","cost":"€9","warn":"★ 엘리베이터, 회장님 강력 추천"},{"name":"아르누보 지구(Alberta iela)","desc":"1904-14년 아르누보 걸작 거리","time":"1시간","cost":"무료","warn":"평지 산책"},{"name":"중앙시장(Centrāltirgus)","desc":"옛 체펠린 격납고 개조 유럽 최대 재래시장","time":"1시간","cost":"무료","warn":"평지·소매치기 주의"},{"name":"히든 · 스피케리 창고 지구","desc":"옛 붉은벽돌 창고 개조 힙스터 카페","time":"40분","cost":"무료","warn":"평지"}],"must_eat":[{"name":"그레이피즈 위드 스페크","desc":"회색콩·베이컨 볶음 국민 요리","where":"Lido Restorans(뷔페식, 한국인에게 편함)","price":"€8-12"},{"name":"블랙 발삼(리큐어)","desc":"1752년 리가 약사가 만든 45도 리큐어, 소량 시음","where":"Black Magic Bar","price":"€6/샷"},{"name":"피라기","desc":"베이컨·양파 채운 미니 빵","where":"Rāma Cafe","price":"€1-2"}],"poem":"발트해의 바람은 / 우리에게 노래로 말한다 / 잃어버린 것들의 이름을","safety":"구시가 안전. 중앙역·중앙시장 소매치기 다수. ATM 화면 가리기.","first_time":"알베르타 거리 아르누보 파사드 · 얼굴·용·꽃이 건물에서 튀어나온 듯한 조각. 유럽 건축 상상력의 극한","music":{"title":"Riga Dimd","artist":"Latvian Voices","youtube_id":"3Dm6y2gJLbY","note":"라트비아 전통 민요 합창"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/View_of_Riga_from_the_St._Peter%27s_Church.jpg/1280px-View_of_Riga_from_the_St._Peter%27s_Church.jpg","dress":"방수 자켓+니트+장갑 · 편한 워킹슈즈 · 7-13°C"},{"id":"klaipeda","day":6,"date":"2026-09-18","city":"클라이페다","country":"리투아니아","flag":"🇱🇹","arrive":"10:00","depart":"18:00","profile":"리투아니아 유일 항구 도시, 옛 독일 이름 '메멜'. 인구 약 15만. 발트해 유일 UNESCO 사구 '쿠로니안 스핏'의 관문.","history":"1252년 튜튼기사단이 세운 '메멜' 요새가 1923년 리투아니아 편입. 여기서 페리 15분이면 유네스코 자연유산 쿠로니안 사구.","korea_connection":"1991년 수교. 리투아니아는 K-pop·태권도 열풍 강한 나라. 삼성·LG 발트3국 유통 거점. 클라이페다는 부산항과 파트너십 진행.","korea_embassy":"주리투아니아 한국대사관 · Kalvarijų g. 300, Vilnius(수도) · +370-5-278-4900 · 클라이페다는 겸임","korean_food":"클라이페다는 한식당 부재. Momo Grill(Turgaus g. 27) 아시안 퓨전에서 김치·불고기 · Maxima 슈퍼에서 신라면·김치","must_see":[{"name":"구시가 광장 & 아네헨 분수","desc":"1990년 재현된 시비(詩碑) 분수, 독일 시인 짐로크 추억","time":"40분","cost":"무료","warn":"평지"},{"name":"쿠로니안 스핏 페리 & 니다 마을 ★","desc":"유네스코 사구, 페리 15분+버스, 98km 모래언덕","time":"4-5시간","cost":"페리 €1, 버스 €5","warn":"왕복 시간 · 크루즈 복귀 여유 필수"},{"name":"블랙고스트 조각상","desc":"2010년 강가 검은 유령 조각, 인기 포토스팟","time":"10분","cost":"무료","warn":"평지"},{"name":"시계 박물관","desc":"18-20세기 유럽 시계 컬렉션, 정원 해시계","time":"1시간","cost":"€3","warn":"평지"},{"name":"해양 박물관 & 돌고래쇼","desc":"옛 요새에 만든 발트 해양 박물관","time":"2시간","cost":"€12","warn":"페리 5분"},{"name":"히든 · 요한 성당 나무 조각","desc":"20세기 리투아니아 목조 예술","time":"30분","cost":"€2","warn":"평지"}],"must_eat":[{"name":"체페리나이(Cepelinai)","desc":"감자 반죽에 다진 고기 채운 '체펠린 만두'","where":"Etno Dvaras(리투아니아 전통 뷔페)","price":"€8-12"},{"name":"샬티바르시치아이","desc":"핑크색 냉수프(비트+케피어), 위장 편함","where":"Momo Grill","price":"€6"},{"name":"훈제 뱀장어","desc":"발트해·쿠로니아 석호산, 흑빵과","where":"Juodkrante 어촌 노점","price":"€15"}],"poem":"모래는 바람의 언어를 배우고 / 소나무는 파도의 노래를 기억한다","safety":"매우 안전, 관광객 적어 조용. 스핏 방문 시 마지막 페리 시간(18:00 출항 대비) 반드시 확인.","first_time":"쿠로니안 사구에서 발트해와 석호를 동시에 내려다보는 순간 · 유럽에도 사막이 있구나 하는 뜻밖의 감동","music":{"title":"Tautiška giesmė","artist":"Kudirka(리투아니아 국가)","youtube_id":"cKAgv7Ejmhc","note":"매우 서정적"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Klaipeda_2007-05_10.jpg/1280px-Klaipeda_2007-05_10.jpg","dress":"방수 자켓+장갑+비니 · 편한 트레킹화(사구 방문시) · 6-13°C"},{"id":"gdansk","day":7,"date":"2026-09-19","city":"그단스크","country":"폴란드","flag":"🇵🇱","arrive":"06:30 (그디니아, 그단스크까지 30분)","depart":"14:30","profile":"발트해 '북쪽의 베네치아', 폴란드 자유노조 '연대(Solidarność)' 발상지. 인구 47만.","history":"1939.9.1 나치 첫 포탄이 웨스터플라테에 떨어져 2차대전 시작된 도시. 1980년 레흐 바웬사 조선소 파업으로 공산주의 붕괴 첫 도미노.","korea_connection":"1989년 수교. 그단스크는 한진해운·현대상선 정박지. LG전자 유럽 최대 공장 브로츠와프에. 폴란드는 K-드라마 열풍 · 오징어게임 넷플릭스 1위.","korea_embassy":"주폴란드 한국대사관 · ul. Szwoleżerów 6, Warszawa · +48-22-559-2900 · 긴급 +48-604-473-114","korean_food":"Namaste India & Korea · Cafe Ferber(그디니아) 김치볶음밥 · Kuchnia Świata 아시안 마트","must_see":[{"name":"긴 광장(Długi Targ) & 넵튠 분수","desc":"1633년 넵튠 분수, 화려한 상인 저택 파사드","time":"1시간","cost":"무료","warn":"평지·돌바닥"},{"name":"성 마리아 성당","desc":"세계 최대 벽돌 성당(길이 105m, 4만 명 수용)","time":"40분","cost":"무료","warn":"회장님은 지상만, 첨탑 X"},{"name":"제2차 세계대전 박물관 ★","desc":"2017년 개관 세계 최대급 WW2 박물관","time":"2시간","cost":"€6","warn":"★ 엘리베이터 완비, 감동 있음"},{"name":"유럽 연대 센터(ECS) ★","desc":"레닌 조선소 옛터, 연대 노조 박물관, 노벨평화상 바웬사","time":"1.5시간","cost":"€6","warn":"★ 현대사 감동"},{"name":"황금문 & 왕의 길","desc":"1612년 그단스크 개선문","time":"20분","cost":"무료","warn":"평지"},{"name":"히든 · 마리아츠카 거리(호박거리)","desc":"발트해 호박(琥珀) 공방·부티크 · 사모님 쇼핑 명당","time":"1시간","cost":"무료","warn":"평지, 진품 확인"}],"must_eat":[{"name":"피에로기","desc":"폴란드 국민 만두, 위장 편함","where":"Pierogarnia Mandu","price":"€6-8"},{"name":"주렉","desc":"호밀 발효 사워수프+소시지·달걀, 빵 그릇에 담음","where":"Kubicki(1918년 창업)","price":"€8"},{"name":"골드바세르","desc":"1598년 그단스크 발명 리큐어, 금박 조각 든 40도 술","where":"Goldwasser Restaurant","price":"€6/샷"}],"poem":"조선소의 철제문 앞에 서서 / 우리는 침묵으로 벽을 무너뜨렸다","safety":"구시가 안전. 그디니아→그단스크 사기 택시 조심(정식 €30-40, Uber €20).","first_time":"긴 광장 파스텔 상인 저택 파사드 · 100개 넘는 서로 다른 색과 조각 · 유럽 광장의 정수","music":{"title":"Nocturne Op.9 No.2","artist":"Chopin","youtube_id":"9E6b3swbnWg","note":"어른 감성 최상"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Gda%C5%84sk_D%C5%82ugie_Pobrze%C5%BCe.jpg/1280px-Gda%C5%84sk_D%C5%82ugie_Pobrze%C5%BCe.jpg","dress":"방수 코트+니트 · 편한 워킹슈즈 · 7-14°C"},{"id":"berlin","day":8,"date":"2026-09-20","city":"베를린","country":"독일","flag":"🇩🇪","arrive":"07:30 (바르네뮌데, 베를린 2h45m)","depart":"21:30","profile":"독일 수도, 통일과 예술의 도시. 인구 약 380만, EU 최대 도시. 1989년 베를린 장벽 붕괴로 냉전 종식 20세기 상징.","history":"1237년 상인 정착지에서 시작해 프로이센 왕국 수도(1701), 나치 제3제국 수도(1933-45), 냉전 분단(1961-89)을 거쳐 통일 독일 수도.","korea_connection":"1883년 조선-독일 수교(140년 이상). 파독 광부·간호사(1963-77) 상징 도시. 파독 60주년 기념관(2023). 통일 롤모델. 베를린한국문화원. 삼성 유럽본부.","korea_embassy":"주독일 한국대사관 · Stülerstraße 8-10, Berlin · +49-30-260-650 · 긴급 +49-1520-146-6394","korean_food":"Kimchi Princess(Skalitzer Str. 36) 최고 인기 · Ma-Makan · K-Bab · Go Asia 슈퍼","must_see":[{"name":"브란덴부르크 문","desc":"1791년 프로이센 개선문, 냉전 분단의 상징이자 통일의 얼굴","time":"40분","cost":"무료","warn":"평지·광장 넓음, 벤치"},{"name":"국회의사당 유리돔 ★","desc":"1894년 건물+1999년 노먼 포스터 유리돔","time":"1.5시간","cost":"무료(사전 예약)","warn":"★ 엘리베이터, 회장님 가능"},{"name":"베를린 장벽 이스트사이드 갤러리","desc":"1.3km 남은 장벽 105점 벽화, '형제의 키스'","time":"1시간","cost":"무료","warn":"평지 산책"},{"name":"홀로코스트 메모리얼","desc":"피터 아이젠먼 설계 2711개 콘크리트 비석","time":"40분","cost":"무료","warn":"★ 정숙, 사진 최소화 예의"},{"name":"체크포인트 찰리","desc":"옛 미국-소련 경계선, 냉전 사진 촬영지","time":"40분","cost":"무료","warn":"관광객 매우 많음, 소매치기 주의"},{"name":"히든 · 카이저 빌헬름 기념교회","desc":"폭격당한 채 보존된 옛 첨탑+8만개 스테인드글라스 새 성당","time":"40분","cost":"무료","warn":"쿠담 쇼핑거리 옆, 평지"}],"must_eat":[{"name":"커리부어스트","desc":"1949년 베를린 발명 카레소스 소시지","where":"Curry 36(24시간 노포)","price":"€5-7"},{"name":"슈니첼","desc":"송아지 커틀릿, 레몬·감자샐러드 · 위장 부담 적음","where":"Zur letzten Instanz(1621년, 베를린 최고령)","price":"€22"},{"name":"베를리너 도넛","desc":"잼 채운 독일식 도넛, JFK '나는 도넛이다' 유명","where":"베이커리 어디서나","price":"€2"}],"poem":"벽은 무너지고 / 우리는 서로의 눈에서 / 30년의 겨울을 읽었다","safety":"일반적 안전. 알렉산더 광장·중앙역·크로이츠베르크 소매치기 다수. U8 지하철 야간 회피.","first_time":"브란덴부르크 문 앞 · 이 문이 30년간 서독과 동독을 갈랐던 자리라는 순간 · 유럽 현대사가 몸으로 느껴짐","music":{"title":"Ode to Joy (1989 장벽 붕괴 콘서트)","artist":"Beethoven, Bernstein","youtube_id":"kbJcQYVtZMo","note":"눈물 나오는 역사적 연주"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Brandenburger_Tor_abends.jpg/1280px-Brandenburger_Tor_abends.jpg","dress":"긴 여행일 방수+레이어드 · 편한 워킹슈즈 · 9-16°C"},{"id":"hamburg","day":9,"date":"2026-09-21","city":"함부르크","country":"독일","flag":"🇩🇪","arrive":"07:00","depart":"19:00","profile":"독일 제2 도시, 유럽 3위 항구. 인구 약 190만. '자유 한자 도시' 물의 도시 · 다리 2500개, 베네치아·암스테르담보다 많음.","history":"834년 신성로마제국 대주교좌에서 시작해 13세기 한자동맹 맹주로 800년 자치 공화국. 비틀즈가 무명 시절 1년 활동하며 세계적 밴드로 성장.","korea_connection":"함부르크는 파독 광부·간호사 시대 한국 배가 정박한 항구, 한인 커뮤니티 뿌리깊음. 주함부르크 한국총영사관(북부 5개주 관할). 부산-함부르크 자매항.","korea_embassy":"주함부르크 한국총영사관 · Kaiser-Wilhelm-Str. 9, Hamburg · +49-40-650-677-600 · 긴급 +49-160-9020-8935","korean_food":"Kim's(Alsterufer 2) 한식 파인다이닝 · SEOUL Kitchen(중앙역) · K-Mart(St. Georg) 한국식품점","must_see":[{"name":"엘프필하모니 홀 ★","desc":"2017년 개관 세계 최고 음향 콘서트홀, 옛 창고 위 유리 건축","time":"1시간","cost":"전망대 무료","warn":"★ 엘리베이터, 전망대 강력 추천"},{"name":"슈파이허슈타트(창고지구, 유네스코)","desc":"1883년 세계 최대 창고 단지, 붉은벽돌+운하","time":"1시간","cost":"무료","warn":"평지, 다리 많음"},{"name":"미니어처 원더랜드 ★","desc":"세계 최대 미니어처 철도, 16km 선로·1000편 열차","time":"2시간","cost":"€25","warn":"★ 예약 필수, 실내·엘리베이터, 어른들 매우 좋아하심"},{"name":"알스터 호수 유람선 ★","desc":"시내 한복판 인공호수 유람선","time":"1시간","cost":"€18","warn":"★ 편함, 앉아서 관광"},{"name":"성 미하엘 교회(미헬)","desc":"1786년 함부르크 랜드마크, 132m 첨탑","time":"40분","cost":"€6","warn":"엘리베이터 일부, 지상 권장"},{"name":"히든 · 플란텐 운 블로멘 공원","desc":"1935년 창설 도심 오아시스, 일본 정원 있음","time":"1시간","cost":"무료","warn":"평지·벤치·화장실"}],"must_eat":[{"name":"라브스카우스","desc":"선원 요리, 소고기·비트·감자 매쉬+청어절임·달걀","where":"Old Commercial Room(1795년)","price":"€18"},{"name":"판피시","desc":"함부르크식 흰살생선 팬프라이, 겨자소스","where":"Deichgraf","price":"€22"},{"name":"프란츠부르거 로트슈펜","desc":"함부르크 시나몬 페이스트리","where":"베이커리 Junge","price":"€2"}],"poem":"항구에서 자라는 아이들은 / 늘 떠남을 배우고 / 늘 돌아옴을 그린다","safety":"일반적 안전. 상파울리·레퍼반 유흥가 야간 여성 단독 X. 중앙역 소매치기.","first_time":"엘프필하모니 전망대(무료) · 창고지구·항구·시내 파노라마 · 미니어처 원더랜드에서 어른들이 어린이처럼 웃는 감동","music":{"title":"Hey Jude","artist":"The Beatles(함부르크에서 무명 시절 완성)","youtube_id":"A_MjCqQoLLA","note":"비틀즈 함부르크 시절 없었다면 오늘의 비틀즈도 없음"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Elbphilharmonie_Hamburg_2017.jpg/1280px-Elbphilharmonie_Hamburg_2017.jpg","dress":"방수 코트+니트+얇은 스카프 · 편한 워킹슈즈 · 10-16°C"},{"id":"copenhagen","day":"10-11","date":"2026-09-22 ~ 09-23","city":"코펜하겐","country":"덴마크","flag":"🇩🇰","arrive":"09/22 09:00 (오버나잇)","depart":"09/23 21:00","profile":"'상인의 항구'라는 뜻의 덴마크 수도. 인구 약 65만, 수도권 130만. 세계 행복지수 상위 도시, 안데르센의 인어공주와 자전거의 도시.","history":"1167년 압살론 주교가 세운 어촌이 1417년 덴마크 수도가 되어 왕정 800년. 안데르센(1805-1875) 동화가 세계 어린이 마음에 새겨진 낭만의 도시.","korea_connection":"1959년 수교. 덴마크는 한국전쟁 야전병원선 유틀란디아호(1951-53) 파견한 형제국. 노보노디스크·레고·머스크. 서울-코펜하겐 자매도시(1990). K-Beauty·K-pop 열풍 심층.","korea_embassy":"주덴마크 한국대사관 · Svanemøllevej 104, København Ø · +45-3946-0400 · 긴급 +45-3157-2782","korean_food":"Restaurant Bibimbap · Kokoro(삼겹살·소주) · Meraki 한식료품점","must_see":[{"name":"인어공주 상","desc":"1913년 에드바르 에릭센 조각, 안데르센 동화 주인공","time":"20분","cost":"무료","warn":"생각보다 작음(1.25m)"},{"name":"뉘하운(Nyhavn) 운하 ★","desc":"1673년 항구 파스텔 상인 저택, 안데르센이 20년 거주","time":"1시간","cost":"유람선 €13","warn":"★ 유람선 편안, 강력 추천"},{"name":"아말리엔보르 왕궁 & 근위병 교대(정오)","desc":"1760년 완공 4개 궁전","time":"40분","cost":"광장 무료","warn":"평지"},{"name":"티볼리 공원 ★★","desc":"1843년 세계 두 번째 오래된 놀이공원, 월트 디즈니 영감의 원천","time":"2-3시간","cost":"€22","warn":"★ 야간 조명 환상적, 오버나잇 첫날 밤 필수, 벤치·카페 많음"},{"name":"스트뢰에트 보행자거리","desc":"유럽 최장 보행자거리 · 로얄코펜하겐·조지젠슨","time":"1-2시간","cost":"무료","warn":"★ 평지, 사모님 쇼핑 최적"},{"name":"국립박물관 · 바이킹 컬렉션","desc":"덴마크 국립박물관 · 바이킹·이집트·중세","time":"2시간","cost":"무료","warn":"★ 엘리베이터"},{"name":"게피온 분수","desc":"북유럽 전설 게피온 여신 조각 분수","time":"20분","cost":"무료","warn":"평지"},{"name":"히든 · 크리스티안스하운 운하","desc":"1618년 건설 조용한 운하, 뉘하운 대안","time":"1시간","cost":"무료","warn":"평지"}],"must_eat":[{"name":"스뫼레브뢰드","desc":"덴마크 오픈샌드위치, 청어·훈제연어·로스트비프","where":"Aamanns 1921 or Schønnemann(1877)","price":"€8-15"},{"name":"프리카델러","desc":"덴마크 미트볼, 감자·붉은 양배추","where":"Restaurant Kronborg","price":"€18"},{"name":"코펜하겐 시나몬롤(Kanelsnegle)","desc":"덴마크 페이스트리 원조, 미국식 시나몬롤의 조상","where":"Sankt Peders Bageri(1652년, 최고령)","price":"€3"}],"poem":"인어의 눈물이 바다가 되고 / 바다는 다시 어린이의 꿈이 된다","safety":"세계 최고 수준 안전. 뉘하운·중앙역 소매치기(EU 관광지 공통). 자전거 도로(빨간색) 걷지 말 것. 야간 여성 단독도 안전.","first_time":"티볼리 공원의 밤 · 십만 개 등불이 켜지는 세계 두 번째 오래된 놀이공원. 어른의 어린 시절을 소환하는 완벽한 유럽 마무리","music":{"title":"Wonderful Copenhagen","artist":"Danny Kaye(1952 안데르센 영화 OST)","youtube_id":"9YMTfEwtoK4","note":"낭만적"},"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nyhavn_%28views%29.jpg/1280px-Nyhavn_%28views%29.jpg","dress":"방수 코트+니트+장갑 · 편한 워킹슈즈 · 8-14°C · 오버나잇이라 정찬 스마트캐주얼"}],"restaurants":[{"n":"Four Seasons","d":"Deck 5","t":"메인 정찬 다이닝","free":true,"tip":"창가석 요청, 저녁 정찬 스마트캐주얼"},{"n":"Seven Seas","d":"Deck 5","t":"메인 정찬 다이닝","free":true,"tip":"Four Seasons보다 한적, 커플에 적합"},{"n":"Garden Café","d":"Deck 11","t":"메인 뷔페","free":true,"tip":"아침·점심 편한 뷔페, 소량씩 여러 접시"},{"n":"Great Outdoors Café","d":"Deck 11","t":"아웃도어 뷔페","free":true,"tip":"발트해 조망 하며 식사"},{"n":"Sports Bar","d":"Deck 11","t":"스낵바","free":true,"tip":"무료 간단 스낵"},{"n":"La Cucina","d":"Deck 5","t":"이탈리안","free":false,"tip":"프리미엄 스페셜티, €25"},{"n":"Le Bistro","d":"Deck 12","t":"프렌치","free":false,"tip":"기념일 저녁 추천, €35"},{"n":"Cagney's Steakhouse","d":"Deck 12","t":"미국식 스테이크","free":false,"tip":"양 많음, 부부 나눠 드시기 가능"},{"n":"Moderno Churrascaria","d":"Deck 11","t":"브라질리안 스테이크","free":false,"tip":"뷔페식 고기, 든든한 저녁"},{"n":"Los Lobos Cantina","d":"Deck 12","t":"멕시칸","free":false,"tip":"매콤한 요리, 향신료 조심"},{"n":"Sushi Bar","d":"Deck 12","t":"일식 스시","free":false,"tip":"소량 주문 가능"},{"n":"Teppanyaki","d":"Deck 12","t":"철판구이","free":false,"tip":"셰프 퍼포먼스 볼거리"},{"n":"Atrium Café","d":"Deck 5","t":"프렌치 디저트·마카롱","free":false,"tip":"오후 티타임"}],"bars":[{"n":"Atrium Café & Bar","d":"Deck 5","t":"커피·티·디저트"},{"n":"Bliss Ultra Lounge","d":"Deck 6","t":"에너지 넘치는 칵테일 라운지"},{"n":"Windjammer Bar","d":"Deck 6","t":"피아노 바 · 저녁 감성"},{"n":"Champagne Bar","d":"Deck 7","t":"샴페인·캐비어·푸아그라 프리미엄"},{"n":"Sun Casino Bar","d":"Deck 7","t":"카지노 내부 바"},{"n":"Sports Bar","d":"Deck 11","t":"무료 스낵바"},{"n":"Topsiders Bar","d":"Deck 11","t":"수영장 옆"},{"n":"Champ's Bar","d":"Deck 12","t":"운동 후 캐주얼"},{"n":"Spinnaker Lounge","d":"Deck 12","t":"댄스와 함께 라운지"}],"facilities":[{"n":"Stardust Lounge","d":"Deck 6-7","t":"1000석 메인 대극장 · 매일 저녁 브로드웨이 공연"},{"n":"Perspectives Photography","d":"Deck 6","t":"사진 스튜디오 · 포멀 사진"},{"n":"East Indies Library","d":"Deck 6","t":"도서관 · 브릿지·체스 무료"},{"n":"Jogging/Walking Track","d":"Deck 6","t":"야외 산책 트랙 · 400m/바퀴 · 아침 발트 일출"},{"n":"Sun Casino","d":"Deck 7","t":"카지노 · 발트해 국제수역 진입 시 개장"},{"n":"Galleria Shops","d":"Deck 7","t":"면세점·부티크"},{"n":"The Oasis Pool","d":"Deck 11","t":"야외 수영장"},{"n":"Hot Tubs","d":"Deck 11","t":"온수 자쿠지 · 24시간 · 38도"},{"n":"Mandara Spa & Salon","d":"Deck 11","t":"스파·마사지 · 첫날 예약 25% 할인"},{"n":"Sports Court","d":"Deck 12","t":"농구·배구 코트"},{"n":"Golf Driving Net","d":"Deck 12","t":"골프 드라이빙 네트"},{"n":"The Chapel","d":"Deck 12","t":"작은 예배당"}],"prep":[{"cat":"필수 서류","items":["여권 유효기간 6개월+ 확인","크루즈 바우처 프린트+PDF 2부","여행자보험 증권 (60세+ 특약)","항공권 e-티켓 프린트+PDF","여권 사본 3부 (여행가방·크루즈방·핸드폰)","해외운전면허증(선택)","크루즈 룸 카드 목걸이 스트랩"]},{"cat":"의복 (9월 발트해 10-15°C)","items":["방수 자켓 + 얇은 다운","니트 스웨터 2벌","긴팔 티셔츠 3-4벌","방수 워킹슈즈 2켤레","슬리퍼 or 로퍼","포멀 나이트용 정장(회장님)·원피스(사모님) 1벌","얇은 스카프·목도리","비니·장갑","실내복·수영복(스파용)"]},{"cat":"상비약·개인 위생","items":["복용 중인 약 여유분 2주치","감기약·소화제·진통제","일회용 밴드·파스","안약·인공눈물","기내용 마스크","220V 어댑터 (C타입)","보조배터리 (100Wh 이하 기내반입)","휴대용 티슈·손소독제","자외선 차단제 (발트해 반사광)"]},{"cat":"돈·통신","items":["환전: 유로 300 + 스웨덴크로나 1000 + 폴란드즈워티 200 + 덴마크크로네 500","신용카드 2장(비자·마스터)","트래블월렛 카드 (수수료 낮음)","크루즈 룸 결제 카드 등록 (승선 시)","한국 로밍 or 유럽 e-SIM","카톡 오픈채팅 가족 방"]},{"cat":"소지품","items":["크로스백 (여행용, 앞으로 메기)","여권 지갑 (목걸이형)","안경·선글라스·안경 클리너","독서용 책 or 킨들","슬리퍼 (기내·크루즈방)","1회용 우비 or 접이 우산","작은 자물쇠 (짐 잠금)","이 대시보드 zip 다운로드 (오프라인용)"]}],"board":["크루즈 터미널 도착 · 여권+바우처 제시","안전 훈련(뮤스터 드릴) 참여 (필수)","크루즈 룸 카드 수령 · 목걸이에 걸기","방 위치·비상구 위치 확인","선상신문(Freestyle Daily) 수령 및 다음날 일정 확인","다이닝 예약 (스페셜티 원할 시 리셉션)","스파 첫날 25% 할인 예약","팁 자동청구 확인 ($16-20/일/인)","와이파이 패키지 필요 시 구매 (기항지만 이용은 무료 대안)","비상 연락처 · 인솔자 김소희 선생님 연락처 저장"],"dress":[{"scene":"일상 (낮·기항지)","code":"편한 워킹슈즈 · 방수 자켓 · 니트","note":"돌바닥 많음 · 성당 방문 시 어깨·무릎 가리기"},{"scene":"뷔페 (Garden Café)","code":"캐주얼","note":"수영복·반바지 X, 셔츠·바지 필수"},{"scene":"정찬 다이닝 (저녁)","code":"스마트 캐주얼","note":"청바지·반바지·러닝·티셔츠 X · 카라 셔츠+정장 바지, 원피스 or 블라우스+슬랙스"},{"scene":"포멀 나이트 (항해일 저녁, 1-2회)","code":"세미포멀 or 정장","note":"회장님: 정장·넥타이(옵션) · 사모님: 원피스+숄 or 블라우스+치마"},{"scene":"스타더스트 라운지 공연","code":"스마트 캐주얼","note":"편한 옷도 OK, 사진 촬영 금지"},{"scene":"스파·수영장","code":"수영복+가운","note":"수영모 권장 · 실내복 X"},{"scene":"성당 방문 (탈린·리가·헬싱키)","code":"어깨·무릎 가리기 필수","note":"사모님 얇은 스카프 지참"},{"scene":"포멀 사진 촬영","code":"어두운 정장·컬러 원피스","note":"승선 첫날 or 포멀 나이트에 무료 촬영"}],"safety":[{"level":"critical","icon":"🚨","msg":"유럽 통합 응급전화 112 (경찰·구급·소방 통합, 영어 가능)"},{"level":"critical","icon":"📞","msg":"한국 외교부 영사콜센터 24H: +82-2-3210-0404 (수신자 부담)"},{"level":"critical","icon":"🚢","msg":"인솔자 김소희 선생님 연락처 반드시 휴대폰 저장 & 종이 지참"},{"level":"warning","icon":"👜","msg":"크로스백 반드시 앞으로 메기 · 지퍼 방향 몸 쪽"},{"level":"warning","icon":"📄","msg":"여권 원본은 크루즈 방 금고 · 사본만 지참"},{"level":"warning","icon":"⚠️","msg":"'도와줄까요' 낯선 사람 100% 소매치기 미끼"},{"level":"warning","icon":"🌐","msg":"팔찌 강매·서명 요구·꽃 강매 절대 응하지 말고 크게 'NO!'"},{"level":"info","icon":"⏰","msg":"기항지에서 크루즈 출항 최소 1시간 전 복귀 (배 놓치면 자비로 다음 항구까지 이동)"},{"level":"info","icon":"💊","msg":"복용 약은 이름/성분 영문 처방전 함께 지참 (세관 검사 대비)"},{"level":"info","icon":"💳","msg":"신용카드 결제 시 반드시 유로(EUR) 선택 · 원화(KRW)는 DCC 수수료 3-8%"}],"activities":[{"n":"정찬 다이닝","loc":"Deck 6-7","d":"NCL Sun은 Freestyle Cruising · 정해진 시간 자리 없음. 저녁 5:30-10:00 원할 때 방문","tip":"첫날 저녁은 Four Seasons 창가석 요청, 스페셜티 5일 패키지 15% 할인"},{"n":"Stardust Theater 공연","loc":"Deck 6-7","d":"1000석 브로드웨이 뮤지컬·마술·아크로바틱 · 매일 저녁 7:30 & 9:30","tip":"30분 전 도착 앞자리 확보 · 사진·플래시 금지"},{"n":"야외 산책 데크 7","loc":"Deck 7 전체 원형","d":"선체 외부 나무 데크 · 한 바퀴 400m · 아침 발트해 일출","tip":"회장님 아침 3바퀴 = 1.2km · 자켓 필수"},{"n":"만다라 스파","loc":"Deck 12","d":"발리 스타일 마사지·페이셜 · 60분 €120","tip":"승선 첫날 예약 25% 할인 · 항구 정박일 30% 저렴 · 회장님 목·어깨 마사지 강추"},{"n":"사진 스튜디오","loc":"Deck 6","d":"승선 첫날 포멀 · 정찬 · 하선 촬영 · 인쇄 €25, 파일 €300","tip":"포멀 나이트 정장 착용시 무료 촬영, 마음에 들면 구매"},{"n":"카지노","loc":"Deck 6","d":"발트해 국제수역 진입 시 오픈 · 슬롯 €0.25, 블랙잭 €5","tip":"딜러 팁 €1/승리 · 카드에 손대지 말 것 · 회장님 소액 관람만"},{"n":"도서관 & 카드룸","loc":"Deck 12","d":"영어 신문·잡지 매일 · 브릿지·체스 무료","tip":"항해일 오후 조용한 시간 · 발트해 일몰 조망"},{"n":"야외 자쿠지","loc":"Deck 11","d":"38도 온수 자쿠지 4개 · 24시간","tip":"발트해 위 자쿠지 특별한 경험 · 수영복 필수"},{"n":"기항지 강연","loc":"Stardust Theater 오전","d":"다음 날 도시 역사·관광 무료 강연 (영어) · 사무장 진행","tip":"슬라이드·지도 이해 가능 · 관광 지도 배포"}],"tts":[{"file":"0_overview.mp3","label":"📖 종합 개요 (4분)","chunks":[{"t":0,"kw":"백상진 회장님·박현교 사모님"},{"t":10,"kw":"9박 12일"},{"t":20,"kw":"Norwegian Sun"},{"t":30,"kw":"프리스타일 크루징"},{"t":40,"kw":"13개 레스토랑"},{"t":50,"kw":"Stardust 대극장"},{"t":60,"kw":"발트해"},{"t":70,"kw":"8개국"},{"t":80,"kw":"헬싱키"},{"t":90,"kw":"코펜하겐"},{"t":100,"kw":"형제국"},{"t":110,"kw":"파독 광부"},{"t":120,"kw":"K팝·태권도"},{"t":130,"kw":"바사호"},{"t":140,"kw":"브란덴부르크 문"},{"t":150,"kw":"인어공주"},{"t":160,"kw":"응급전화 112"},{"t":170,"kw":"크로스백"},{"t":180,"kw":"방수 자켓"},{"t":190,"kw":"자동 스크롤"},{"t":200,"kw":"편안한 크루즈"}]},{"file":"1_day01_02.mp3","label":"🛫 1-2일차 · 인천→헬싱키 (4분)","chunks":[{"t":0,"kw":"인천공항 1터미널"},{"t":10,"kw":"핀에어"},{"t":20,"kw":"헬싱키 반타 공항"},{"t":30,"kw":"북구의 백색 도시"},{"t":40,"kw":"여성 참정권"},{"t":50,"kw":"성북구"},{"t":60,"kw":"템펠리아우키오 암석교회"},{"t":70,"kw":"카우파토리 마켓"},{"t":80,"kw":"헬싱키 대성당"},{"t":90,"kw":"우스펜스키 대성당"},{"t":100,"kw":"어깨 가리기"},{"t":110,"kw":"시벨리우스 공원"},{"t":120,"kw":"로히케이토"},{"t":130,"kw":"오후 4시 출항"},{"t":140,"kw":"뮤스터 드릴"},{"t":150,"kw":"포시즌즈"},{"t":160,"kw":"스타더스트 웰컴 쇼"},{"t":170,"kw":"핀란디아"}]},{"file":"2_day03_04.mp3","label":"🏰 3-4일차 · 탈린·스톡홀름 (5분)","chunks":[{"t":0,"kw":"에스토니아 탈린"},{"t":10,"kw":"중세 그대로의 도시"},{"t":20,"kw":"유네스코 세계문화유산"},{"t":30,"kw":"노래혁명"},{"t":40,"kw":"이-에스토니아"},{"t":50,"kw":"라에코야 플라츠"},{"t":60,"kw":"1404년 시청사"},{"t":70,"kw":"카타리나 통로"},{"t":80,"kw":"코투옷사 전망대"},{"t":90,"kw":"붉은 지붕의 바다"},{"t":100,"kw":"알렉산드르 넵스키"},{"t":110,"kw":"엘크 수프"},{"t":120,"kw":"스톡홀름"},{"t":130,"kw":"뉘네스함"},{"t":140,"kw":"14개 섬"},{"t":150,"kw":"노벨상"},{"t":160,"kw":"형제국"},{"t":170,"kw":"근위병 교대식"},{"t":180,"kw":"바사 박물관"},{"t":190,"kw":"333년 만에 인양"},{"t":200,"kw":"감라스탄"},{"t":210,"kw":"아바 박물관"},{"t":220,"kw":"미트볼"},{"t":230,"kw":"5시까지 복귀"},{"t":240,"kw":"댄싱퀸"}]},{"file":"3_day05_06.mp3","label":"🏛️ 5-6일차 · 리가·클라이페다 (5분)","chunks":[{"t":0,"kw":"라트비아 리가"},{"t":10,"kw":"발트해 진주"},{"t":20,"kw":"아르누보 800채"},{"t":30,"kw":"발트의 길"},{"t":40,"kw":"성 베드로 전망대"},{"t":50,"kw":"엘리베이터 완비"},{"t":60,"kw":"알베르타 거리"},{"t":70,"kw":"검은머리길드"},{"t":80,"kw":"리가 대성당"},{"t":90,"kw":"6768개 파이프 오르간"},{"t":100,"kw":"리도 뷔페"},{"t":110,"kw":"블랙 발삼"},{"t":120,"kw":"클라이페다"},{"t":130,"kw":"메멜"},{"t":140,"kw":"쿠로니안 사구"},{"t":150,"kw":"유럽의 사하라"},{"t":160,"kw":"페리 15분"},{"t":170,"kw":"블랙고스트"},{"t":180,"kw":"체페리나이"},{"t":190,"kw":"샬티바르시치아이"},{"t":200,"kw":"모모 그릴"},{"t":210,"kw":"타우티슈카"}]},{"file":"4_day07_08.mp3","label":"⚓ 7-8일차 · 그단스크·베를린 (6분)","chunks":[{"t":0,"kw":"폴란드 그디니아"},{"t":10,"kw":"북쪽의 베네치아"},{"t":20,"kw":"자유노조 연대"},{"t":30,"kw":"1939년 9월 1일"},{"t":40,"kw":"레흐 바웬사"},{"t":50,"kw":"긴 광장"},{"t":60,"kw":"넵튠 분수"},{"t":70,"kw":"성 마리아 성당"},{"t":80,"kw":"제2차 세계대전 박물관"},{"t":90,"kw":"유럽 연대 센터"},{"t":100,"kw":"호박거리"},{"t":110,"kw":"피에로기"},{"t":120,"kw":"주렉"},{"t":130,"kw":"베를린"},{"t":140,"kw":"바르네뮌데"},{"t":150,"kw":"통일의 상징"},{"t":160,"kw":"파독 광부"},{"t":170,"kw":"브란덴부르크 문"},{"t":180,"kw":"국회 유리돔"},{"t":190,"kw":"홀로코스트 메모리얼"},{"t":200,"kw":"이스트사이드 갤러리"},{"t":210,"kw":"형제의 키스"},{"t":220,"kw":"커리부어스트"},{"t":230,"kw":"킴치 프린세스"},{"t":240,"kw":"환희의 송가"},{"t":250,"kw":"번스타인"}]},{"file":"5_day09_10.mp3","label":"🎼 9-10일차 · 함부르크·코펜하겐 (6분)","chunks":[{"t":0,"kw":"함부르크"},{"t":10,"kw":"물의 도시"},{"t":20,"kw":"다리 2500개"},{"t":30,"kw":"한국 총영사관"},{"t":40,"kw":"부산항 자매항"},{"t":50,"kw":"엘프필하모니"},{"t":60,"kw":"전망대 무료"},{"t":70,"kw":"슈파이허슈타트"},{"t":80,"kw":"미니어처 원더랜드"},{"t":90,"kw":"어린이처럼 웃으시는 감동"},{"t":100,"kw":"알스터 유람선"},{"t":110,"kw":"라브스카우스"},{"t":120,"kw":"올드 커머셜 룸"},{"t":130,"kw":"헤이 주드"},{"t":140,"kw":"코펜하겐"},{"t":150,"kw":"오버나잇"},{"t":160,"kw":"안데르센"},{"t":170,"kw":"자전거의 도시"},{"t":180,"kw":"유틀란디아호"},{"t":190,"kw":"뉘하운 운하"},{"t":200,"kw":"아말리엔보르 왕궁"},{"t":210,"kw":"인어공주 상"},{"t":220,"kw":"티볼리 공원"},{"t":230,"kw":"디즈니 영감"},{"t":240,"kw":"스뫼레브뢰드"},{"t":250,"kw":"원더풀 코펜하겐"}]},{"file":"6_day11_12.mp3","label":"🏠 11-12일차 · 관광·귀국 (3분)","chunks":[{"t":0,"kw":"최종 하선"},{"t":10,"kw":"로젠보르 성"},{"t":20,"kw":"스트뢰에트"},{"t":30,"kw":"로얄 코펜하겐"},{"t":40,"kw":"국립박물관 바이킹"},{"t":50,"kw":"크리스티안스하운"},{"t":60,"kw":"산크트 페더스"},{"t":70,"kw":"카넬스네글레"},{"t":80,"kw":"코펜하겐 공항"},{"t":90,"kw":"헬싱키 환승"},{"t":100,"kw":"인천 도착"},{"t":110,"kw":"12일간의 여정"},{"t":120,"kw":"소중한 추억"},{"t":130,"kw":"안전하고 행복한 여행"}]}],"phrases":[{"country":"핀란드","hi":"Moi (모이)","thanks":"Kiitos (키토스)","bye":"Näkemiin (내케민)","excuse":"Anteeksi (안텍시)"},{"country":"에스토니아","hi":"Tere (테레)","thanks":"Aitäh (아이태)","bye":"Head aega (헤아드 아에가)","excuse":"Vabandage (바반다게)"},{"country":"스웨덴","hi":"Hej (헤이)","thanks":"Tack (탁)","bye":"Hej då (헤이 도)","excuse":"Ursäkta (우르섹타)"},{"country":"라트비아","hi":"Sveiki (스베이키)","thanks":"Paldies (팔디에스)","bye":"Uz redzēšanos","excuse":"Atvainojiet"},{"country":"리투아니아","hi":"Labas (라바스)","thanks":"Ačiū (아츄)","bye":"Viso gero","excuse":"Atsiprašau"},{"country":"폴란드","hi":"Cześć (체시치)","thanks":"Dziękuję (지엔쿠예)","bye":"Do widzenia","excuse":"Przepraszam"},{"country":"독일","hi":"Hallo / Guten Tag (구텐 탁)","thanks":"Danke (당케)","bye":"Auf Wiedersehen (아우프 비더제엔)","excuse":"Entschuldigung (엔트슐디궁)"},{"country":"덴마크","hi":"Hej (하이)","thanks":"Tak (탁)","bye":"Farvel (파르벨)","excuse":"Undskyld (운스퀼)"}],"emergency":[{"label":"유럽 통합 응급 (경찰·구급·소방)","phone":"112","note":"영어 가능"},{"label":"인솔자 김소희 선생님","phone":"현지 도착 후 등록","note":"★ 반드시 저장"},{"label":"롯데관광 서울 24H","phone":"1544-8880","note":"긴급 문의"},{"label":"외교부 영사콜센터 24H","phone":"+82-2-3210-0404","note":"수신자 부담, 한국어"},{"label":"주핀란드 대사관","phone":"+358-9-251-5000","note":"긴급 +358-40-861-7772"},{"label":"주에스토니아 대사관","phone":"+372-610-6000","note":"긴급 +372-5303-0492"},{"label":"주스웨덴 대사관","phone":"+46-8-5455-2820","note":"긴급 +46-70-663-2820 · 라트비아·리투아니아 겸임"},{"label":"주폴란드 대사관","phone":"+48-22-559-2900","note":"긴급 +48-604-473-114"},{"label":"주독일 대사관 (베를린)","phone":"+49-30-260-650","note":"긴급 +49-1520-146-6394"},{"label":"주함부르크 총영사관","phone":"+49-40-650-677-600","note":"긴급 +49-160-9020-8935"},{"label":"주덴마크 대사관","phone":"+45-3946-0400","note":"긴급 +45-3157-2782"},{"label":"NCL Norwegian Sun 24H","phone":"현지 도착 후 안내","note":"룸카드에 표기"},{"label":"핀에어 한국지사","phone":"02-730-0067","note":"항공편 문의"},{"label":"카카오톡 채널 '외교부 영사콜센터'","phone":"채팅","note":"친구 추가 · 24H 응대"}],"meta":{"title":"롯데관광 · 스칸디나비아·발트해 크루즈 12일","subtitle":"백상진 회장님 · 박현교 사모님 · 2026.9.13 ~ 9.24","cruise":"NCL Norwegian Sun · 15 데크 · 승객 약 2000명","leader":"인솔자 김소희 선생님","start":"2026-09-13","end":"2026-09-24","today":"2026-08-24"}};
+function scrollTo2(s){const el=document.querySelector(s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2400);}
+
+// 별
+(function(){const s=document.getElementById('stars');for(let i=0;i<15;i++){const st=document.createElement('div');st.className='star';st.style.left=(Math.random()*100)+'vw';st.style.top=(Math.random()*100)+'vh';st.style.animationDelay=(Math.random()*2)+'s';s.appendChild(st)}})();
+
+// 시설 렌더
+function renderFac(list,elId){
+  document.getElementById(elId).innerHTML=list.map(x=>'<div class="fac-card '+(x.free===true?'free':x.free===false?'paid':'')+'"><div class="fac-name">'+x.n+'</div><div class="fac-loc">📍 '+x.d+'</div><div class="fac-desc">'+x.t+'</div>'+(x.tip?'<div class="fac-tip">💡 '+x.tip+'</div>':'')+'</div>').join('');
+}
+renderFac(DATA.restaurants,'restGrid');
+renderFac(DATA.bars,'barGrid');
+renderFac(DATA.facilities,'facGrid');
+document.getElementById('actGrid').innerHTML=DATA.activities.map(a=>'<div class="fac-card"><div class="fac-name">'+a.n+'</div><div class="fac-loc">📍 '+a.loc+'</div><div class="fac-desc">'+a.d+'</div><div class="fac-tip">💡 '+a.tip+'</div></div>').join('');
+
+// 기항지 카드
+document.getElementById('portsArea').innerHTML=DATA.ports.map(p=>{
+  const must=(p.must_see||[]).map(m=>'<div class="port-must-item"><strong>'+m.name+'</strong><div>'+m.desc+'</div><div style="color:var(--gold-deep);font-size:12px;margin-top:4px">⏱️ '+m.time+' · '+m.cost+' · '+m.warn+'</div></div>').join('');
+  const foods=(p.must_eat||[]).map(f=>'<div class="port-food">🍽️ <strong>'+f.name+'</strong> · '+f.desc+' <span style="color:var(--gold-deep)">('+f.where+' · '+f.price+')</span></div>').join('');
+  return '<div class="port-card"><div class="port-hero" style="background-image:url('+p.image+')"><span class="flag">'+p.flag+' '+p.country+'</span><span class="day">Day '+p.day+'</span></div>'+
+  '<div class="port-body">'+
+  '<div class="port-title">'+p.city+'</div>'+
+  '<div class="port-when">'+p.date+' · '+p.arrive+' 도착 → '+p.depart+'</div>'+
+  '<div class="port-section"><h4>🏛️ 도시 이야기</h4><p>'+p.profile+'</p><p style="margin-top:6px">'+p.history+'</p></div>'+
+  '<div class="port-section"><h4>🇰🇷 한국과의 관계</h4><div class="port-kr">'+p.korea_connection+'</div><p style="font-size:13px;margin-top:4px;color:var(--ink-soft)">🏛️ '+p.korea_embassy+'</p><p style="font-size:13px;color:var(--ink-soft)">🍚 '+p.korean_food+'</p></div>'+
+  '<div class="port-section"><h4>⭐ 필수 관광 스팟</h4><div class="port-must">'+must+'</div></div>'+
+  '<div class="port-section"><h4>🍽️ 반드시 먹어봐야 할 로컬 음식</h4>'+foods+'</div>'+
+  '<div class="port-section"><h4>✨ 처음 유럽에 오신 감동</h4><div class="port-first">'+p.first_time+'</div></div>'+
+  '<div class="port-section"><h4>📜 오늘의 시</h4><div class="port-poem">"'+p.poem+'"</div></div>'+
+  '<div class="port-section"><h4>👔 오늘의 드레스코드</h4><div class="port-dress">'+p.dress+'</div></div>'+
+  '<div class="port-section"><h4>🚨 안전 주의사항</h4><p>'+p.safety+'</p></div>'+
+  '<div class="port-section"><h4>🎵 오늘 아침 어울리는 음악</h4><div class="port-morning"><a class="play-mini" href="https://www.youtube.com/results?search_query='+encodeURIComponent(p.music.title+' '+p.music.artist)+'" target="_blank">▶</a><div><strong>'+p.music.title+'</strong><div style="font-size:13px;color:var(--ink-soft)">'+p.music.artist+' · '+p.music.note+'</div></div></div></div>'+
+  '</div></div>';
+}).join('');
+
+// 드레스코드
+document.getElementById('dressGrid').innerHTML=DATA.dress.map(d=>'<div class="dress-card"><div class="dress-scene">'+d.scene+'</div><div class="dress-code">'+d.code+'</div><div class="dress-note">'+d.note+'</div></div>').join('');
+
+// 체크리스트
+function chkKey(cat,i){return 'chk_cruise_'+cat+'_'+i}
+document.getElementById('prepArea').innerHTML=DATA.prep.map(c=>{
+  let html='<div class="chk-cat"><h4>📌 '+c.cat+'</h4>';
+  c.items.forEach((it,i)=>{
+    const k=chkKey(c.cat,i);
+    const ck=localStorage.getItem(k)==='1';
+    html+='<div class="chk-item"><input type="checkbox" id="'+k+'" '+(ck?'checked':'')+' onchange="localStorage.setItem(\''+k+'\',this.checked?1:0);this.parentNode.style.animation=\'checkPop 0.4s\';setTimeout(()=>this.parentNode.style.animation=\'\',400)"/><label for="'+k+'">'+it+'</label></div>';
+  });
+  return html+'</div>';
+}).join('');
+document.getElementById('boardChk').innerHTML='<h4>📅 승선 당일</h4>'+DATA.board.map((it,i)=>{
+  const k=chkKey('board',i);
+  const ck=localStorage.getItem(k)==='1';
+  return '<div class="chk-item"><input type="checkbox" id="'+k+'" '+(ck?'checked':'')+' onchange="localStorage.setItem(\''+k+'\',this.checked?1:0)"/><label for="'+k+'">'+it+'</label></div>';
+}).join('');
+
+// 안전
+document.getElementById('safetyArea').innerHTML=DATA.safety.map(s=>'<div class="safety-item '+s.level+'"><div class="icon">'+s.icon+'</div><div class="msg">'+s.msg+'</div></div>').join('');
+
+// 언어
+document.getElementById('phraseGrid').innerHTML=DATA.phrases.map(p=>'<div class="phrase-card"><div class="phrase-country">'+p.country+'</div><div class="phrase-item"><span class="ko">안녕하세요</span><span class="lc">'+p.hi+'</span></div><div class="phrase-item"><span class="ko">감사합니다</span><span class="lc">'+p.thanks+'</span></div><div class="phrase-item"><span class="ko">안녕히</span><span class="lc">'+p.bye+'</span></div><div class="phrase-item"><span class="ko">실례합니다</span><span class="lc">'+p.excuse+'</span></div></div>').join('');
+
+// 연락처
+document.getElementById('emerGrid').innerHTML=DATA.emergency.map(e=>{
+  const ic=e.label.includes('112')?'🚨':e.label.includes('대사관')||e.label.includes('영사')?'🇰🇷':e.label.includes('인솔자')?'👤':e.label.includes('롯데')?'🏢':e.label.includes('카카오톡')?'💬':e.label.includes('핀에어')?'✈️':e.label.includes('NCL')?'🚢':'☎️';
+  return '<a class="emer" href="tel:'+e.phone.replace(/[^+\d]/g,'')+'"><div class="ico">'+ic+'</div><div><div class="lab">'+e.label+'</div><div class="ph">'+e.phone+'</div>'+(e.note?'<div class="note">'+e.note+'</div>':'')+'</div></a>';
+}).join('');
+
+// ==== TTS ====
+const tts=DATA.tts;
+const audio=document.getElementById('ttsAudio');
+let curTtsIdx=0, kwTimer=null, kwIdx=0;
+document.getElementById('ttsSelect').innerHTML=tts.map((t,i)=>'<option value="'+i+'">'+t.label+'</option>').join('');
+
+function ttsChange(){
+  curTtsIdx=parseInt(document.getElementById('ttsSelect').value);
+  ttsStop();
+}
+function ttsPlay(){
+  const t=tts[curTtsIdx];
+  audio.src='audio/'+t.file;
+  audio.play().catch(e=>{
+    toast('MP3 파일이 필요합니다. 오프라인 배포시 audio/ 폴더에 함께 저장됩니다.');
+  });
+  kwIdx=0;
+  scheduleKw();
+  audio.ontimeupdate=()=>{
+    const p=(audio.currentTime/audio.duration)*100;
+    document.getElementById('ttsProg').style.width=(p||0)+'%';
+    const m=Math.floor(audio.currentTime/60), s=Math.floor(audio.currentTime%60);
+    document.getElementById('ttsStatus').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  };
+  audio.onended=()=>{clearInterval(kwTimer);document.querySelectorAll('.kw-active').forEach(el=>el.classList.remove('kw-active'));}
+}
+function ttsPause(){audio.pause();clearInterval(kwTimer);toast('⏸ 일시정지');}
+function ttsStop(){audio.pause();audio.currentTime=0;clearInterval(kwTimer);document.querySelectorAll('.kw-active,.kw-done').forEach(el=>{el.classList.remove('kw-active','kw-done')});document.getElementById('ttsProg').style.width='0%';document.getElementById('ttsStatus').textContent='00:00';}
+
+function scheduleKw(){
+  clearInterval(kwTimer);
+  const t=tts[curTtsIdx];
+  kwIdx=0;
+  kwTimer=setInterval(()=>{
+    if(audio.paused){return;}
+    // 현재 시간 기준으로 어느 청크인가
+    const curSec=Math.floor(audio.currentTime);
+    let idx=0;
+    for(let i=t.chunks.length-1;i>=0;i--){if(t.chunks[i].t<=curSec){idx=i;break;}}
+    if(idx===kwIdx && idx>0) return;
+    kwIdx=idx;
+    highlightKw(t.chunks[idx].kw);
+  },500);
+}
+
+function highlightKw(kw){
+  document.querySelectorAll('.kw-active').forEach(el=>{el.classList.remove('kw-active');el.classList.add('kw-done')});
+  // 페이지에서 kw를 포함하는 요소 찾기
+  const nodes=Array.from(document.querySelectorAll('h1,h2,h3,h4,p,li,strong,div.ov-card,div.port-must-item,div.port-first,div.port-kr,div.port-poem')).filter(el=>el.children.length<3 && el.textContent && el.textContent.includes(kw));
+  const target=nodes[0];
+  if(target){
+    // 인라인 span 감싸기 (기존 마킹 없을 때만)
+    if(!target.querySelector('.kw-active')){
+      try {
+        const html=target.innerHTML;
+        const escKw=kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+        const re=new RegExp('('+escKw+')');
+        if(re.test(target.innerHTML)){
+          target.innerHTML=target.innerHTML.replace(re,'<span class="kw kw-active">$1</span>');
+        }
+      } catch(e){}
+    }
+    target.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+</script>
+</body>
+</html>
