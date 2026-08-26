@@ -330,6 +330,7 @@ a{color:var(--red-primary);text-decoration:none}
     <button class="nav-btn" onclick="scrollTo2('#alerts')">🔔 알림<span class="badge-dot" id="navDot" style="display:none"></span></button>
     <button class="nav-btn" onclick="scrollTo2('#progress')">📍 진행현황</button>
     <button class="nav-btn" onclick="scrollTo2('#timeline')">🗓️ 전체 일정</button>
+    <button class="nav-btn" onclick="scrollTo2('#phrases')">🌐 중국어 회화</button>
     <button class="nav-btn" onclick="scrollTo2('#today')">🌅 오늘</button>
     <button class="nav-btn" onclick="scrollTo2('#places')">🏛️ 여행지</button>
     <button class="nav-btn" onclick="location.href='maps/overview.html'">🗺️ 이동 지도</button>
@@ -377,6 +378,149 @@ a{color:var(--red-primary);text-decoration:none}
       <div class="timeline-hscroll" id="timelineScroll"></div>
     </div>
   </section>
+
+
+  <!-- 중국어 회화 -->
+  <section id="phrases" class="section" style="background:linear-gradient(135deg,#FFF9F0 0%,#F5EFE3 100%)">
+    <div class="container">
+      <h2 style="color:#B22222;font-family:'Noto Serif KR',serif;font-size:24px;margin-bottom:8px;border-left:4px solid #D4A017;padding-left:14px">🌐 현지에서 쓰는 중국어 회화 20문장</h2>
+      <div style="color:#7A5C68;font-family:'Nanum Myeongjo',serif;font-size:16px;margin-bottom:20px">호텔·택시·고속열차·유람선·셔틀·관광지·식당별 정리 · 🔊 버튼을 누르면 실제 중국어 발음이 나옵니다</div>
+<h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🏨 호텔</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">예약했습니다. 성함은 백입니다</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">我预订了房间,姓白</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 워 위딩러 팡지엔, 씽 바이</div>
+<button onclick="playZh(0)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a0" src="tts-audio/zh_p00.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">체크인 부탁드립니다</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">我要办理入住</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 워 야오 반리 루주</div>
+<button onclick="playZh(1)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a1" src="tts-audio/zh_p01.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">체크아웃 하고 짐 맡길 수 있나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">退房后可以寄存行李吗</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 퉤이팡 허우 커이 지춘 씽리 마</div>
+<button onclick="playZh(2)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a2" src="tts-audio/zh_p02.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">와이파이 비밀번호 알려주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">请告诉我 Wi-Fi 密码</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 칭 가오쑤 워 와이파이 미마</div>
+<button onclick="playZh(3)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a3" src="tts-audio/zh_p03.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🚕 택시</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">여기로 가주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">请去这里</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 칭 취 저리</div>
+<button onclick="playZh(4)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a4" src="tts-audio/zh_p04.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">미터기로 가주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">请打表</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 칭 다뱌오</div>
+<button onclick="playZh(5)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a5" src="tts-audio/zh_p05.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🚄 고속열차</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">청두동역 가는 표 있나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">有去成都东站的票吗</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 요우 취 청두 둥잔 더 퍄오 마</div>
+<button onclick="playZh(6)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a6" src="tts-audio/zh_p06.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">1등석 두 장 주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">两张一等座</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 량 장 이덩쭈오</div>
+<button onclick="playZh(7)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a7" src="tts-audio/zh_p07.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">이 좌석은 제 자리입니다</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">这是我的座位</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 저 스 워더 쭈오웨이</div>
+<button onclick="playZh(8)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a8" src="tts-audio/zh_p08.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🚢 유람선</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">양강 야간 유람선 표 있나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">有两江夜游的船票吗</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 요우 량장 예요우 더 촨퍄오 마</div>
+<button onclick="playZh(9)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a9" src="tts-audio/zh_p09.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">몇 시에 출발하나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">几点开船</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 지디엔 카이 촨</div>
+<button onclick="playZh(10)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a10" src="tts-audio/zh_p10.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🚌 셔틀버스</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">판다 기지 가는 셔틀 어디서 타나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">去熊猫基地的班车在哪里坐</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 취 시옹마오 지디 더 반처 짜이 나리 쭈오</div>
+<button onclick="playZh(11)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a11" src="tts-audio/zh_p11.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">돌아오는 마지막 차는 몇 시인가요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">最后一班回程车几点</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 쮀이허우 이반 후이청 처 지디엔</div>
+<button onclick="playZh(12)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a12" src="tts-audio/zh_p12.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🏛️ 관광지</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">입장권은 얼마인가요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">门票多少钱</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 먼퍄오 두어사오 치엔</div>
+<button onclick="playZh(13)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a13" src="tts-audio/zh_p13.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">사진 좀 찍어주시겠어요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">能帮我们拍张照吗</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 넝 방 워먼 파이 장자오 마</div>
+<button onclick="playZh(14)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a14" src="tts-audio/zh_p14.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">화장실은 어디에 있나요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">洗手间在哪里</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 시서우지엔 짜이 나리</div>
+<button onclick="playZh(15)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a15" src="tts-audio/zh_p15.mp3" preload="none"></audio>
+</div></div><h3 style="color:#8B1A1A;font-family:'Noto Serif KR',serif;margin:18px 0 10px;font-size:17px">🍽️ 식당</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">두 사람 자리 부탁합니다</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">两位,谢谢</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 량웨이, 씨에씨에</div>
+<button onclick="playZh(16)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a16" src="tts-audio/zh_p16.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">덜 맵게 해주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">请少放辣椒</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 칭 사오팡 라자오</div>
+<button onclick="playZh(17)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a17" src="tts-audio/zh_p17.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">이거 뭐예요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">这个是什么</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 저거 스 션머</div>
+<button onclick="playZh(18)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a18" src="tts-audio/zh_p18.mp3" preload="none"></audio>
+</div><div style="background:#fff;border:1px solid #E8DFD1;border-left:4px solid #D4A017;border-radius:10px;padding:14px">
+<div style="font-size:14px;color:#3E332E;line-height:1.55;margin-bottom:8px;font-weight:600">계산해 주세요</div>
+<div style="font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;color:#B22222;font-weight:700;margin-bottom:6px">买单</div>
+<div style="font-size:12.5px;color:#8B7139;font-style:italic;margin-bottom:8px">🔤 마이단</div>
+<button onclick="playZh(19)" style="background:#B22222;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">🔊 발음 재생</button>
+<audio id="zh_a19" src="tts-audio/zh_p19.mp3" preload="none"></audio>
+</div></div>
+      <div style="margin-top:16px;padding:12px 14px;background:#FFF4F5;border-left:4px solid #B22222;border-radius:6px;font-size:13px;color:#3E332E;line-height:1.6">
+        💡 <strong>사용 팁</strong>: 발음 버튼을 눌러 실제 중국어 발음을 들으신 후 따라하시면 됩니다.
+        중국인은 성조에 매우 민감하므로 발음을 그대로 흉내내는 것이 가장 정확합니다.
+      </div>
+    </div>
+  </section>
+
+<script>
+function playZh(idx){
+  // 다른 재생 중인 오디오 멈춤
+  document.querySelectorAll('audio[id^="zh_a"]').forEach(a=>{if(!a.paused){a.pause();a.currentTime=0;}});
+  const a=document.getElementById('zh_a'+idx);
+  if(a){a.currentTime=0;a.play().catch(e=>alert('오디오 재생 실패: '+e.message));}
+}
+</script>
 
   <!-- 오늘 -->
   <section id="today" class="section">
