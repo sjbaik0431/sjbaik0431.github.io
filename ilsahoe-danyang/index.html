@@ -151,8 +151,6 @@ a{color:var(--forest);text-decoration:none}
     <button class="nav-btn" onclick="scrollTo2('#schedule')">🗓️ 일정</button>
     <button class="nav-btn" onclick="scrollTo2('#weather')">☀️ 날씨</button>
     <button class="nav-btn" onclick="scrollTo2('#members')">👥 회원</button>
-    <button class="nav-btn" onclick="scrollTo2('#highlights')">💬 회원들 수다</button>
-    <button class="nav-btn" onclick="scrollTo2('#gallery')">📷 프로필</button>
   </div>
 </nav>
 
@@ -194,21 +192,9 @@ a{color:var(--forest);text-decoration:none}
   </div>
 </section>
 
-<section id="highlights" class="section">
-  <div class="container">
-    <h2>💬 회원들 수다 · 명대사 아카이브</h2>
-    <div class="lead">그동안 단톡방에 남긴 재미있는 말들, 하이라이트로 뽑았어요 😊</div>
-    <div id="highlightArea"></div>
-  </div>
-</section>
 
-<section id="gallery" class="section">
-  <div class="container">
-    <h2>📷 회원 프로필 갤러리</h2>
-    <div class="lead">각자의 개성이 담긴 프로필 사진 · 카톡방 캡처</div>
-    <div class="profile-gallery" id="profileGallery"></div>
-  </div>
-</section>
+
+
 </main>
 
 <footer class="footer">
@@ -247,7 +233,7 @@ document.getElementById('memberGrid').innerHTML=DATA.members.map(m=>
   '<div class="avatar">'+m.emoji+'</div>'+
   '<div class="name">'+m.n+'</div>'+
   '<div class="role">'+m.role+'</div>'+
-  (m.note?'<div class="note">'+m.note+'</div>':'')+
+  ''+
   '</div>').join('');
 
 // 일정
@@ -297,10 +283,11 @@ async function loadWeather(){
     function icon(code){if([0].includes(code))return'☀️';if([1,2,3].includes(code))return'⛅';if([45,48].includes(code))return'🌫️';if([51,53,55,61,63,65,80,81,82].includes(code))return'🌧️';if([95,96,99].includes(code))return'⛈️';return'☁️'}
     let html='';
     d.time.forEach((t,i)=>{
+      // 토요일·일요일 (8/29, 8/30)만 표시
+      if(t!=='2026-08-29' && t!=='2026-08-30') return;
       const dt=new Date(t);
       const wd=['일','월','화','수','목','금','토'][dt.getDay()];
-      const isEvent=(t==='2026-08-29'||t==='2026-08-30');
-      html+='<div class="weather-cell'+(isEvent?' event':'')+'">'+
+      html+='<div class="weather-cell event">'+
         '<div class="wday">'+wd+'요일</div>'+
         '<div class="wdate">'+(dt.getMonth()+1)+'/'+dt.getDate()+'</div>'+
         '<span class="wicon">'+icon(d.weather_code[i])+'</span>'+
