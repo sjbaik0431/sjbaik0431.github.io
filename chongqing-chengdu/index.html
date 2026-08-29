@@ -978,7 +978,7 @@ function closeModal(){document.getElementById('modal').classList.remove('open');
 
 // 음악 — YouTube IFrame API 기반 (자동재생·일시정지·다음곡 큐 지원)
 var ytPlayer=null, ytReady=false, mpQueue=[], mpIndex=0;
-var mpPendingQueue=(DATA.theme_music||[]).map(m=>({youtube_id:m.youtube_id,title:m.title,artist:m.artist}));
+var mpPendingQueue=[]; // 자동재생 비활성화 - 음악 카드 클릭 시에만 재생
 (function(){
   const tag=document.createElement('script');
   tag.src='https://www.youtube.com/iframe_api';
