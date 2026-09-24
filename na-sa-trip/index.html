@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<meta name="theme-color" content="#B0521E"/>
+<title>백상진·박현교 부부 북미·중남미 자유여행 🌎 두 대륙 대장정</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Myeongjo:wght@400;700&family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red-primary:#B0521E; --red-deep:#7A3714; --red-cinnabar:#D9752E;
+  --gold:#2F7873; --gold-antique:#1F5450; --gold-light:#D9EDE9;
+  --bamboo:#4A7C59; --bamboo-light:#6B9F7A;
+  --ink:#211A14; --ink-soft:#4A3A2E;
+  --cream:#FBF6EF; --paper:#F3EBDC; --gray-warm:#E6DCC8;
+  --panda-black:#1A1A1A; --panda-white:#FAFAFA;
+  --success:#5B8C5A; --warning:#D89614; --info:#3D7EA6; --error:#B84040;
+  --shadow-soft:0 4px 12px rgba(122,55,20,.08);
+  --shadow-card:0 8px 24px rgba(122,55,20,.12);
+  --shadow-pop:0 12px 32px rgba(176,82,30,.18);
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
+  --font-heading:'Noto Serif KR','Fraunces',serif;
+  --font-body:'Noto Sans KR','Inter',sans-serif;
+  --font-poem:'Nanum Myeongjo','Noto Serif KR',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--font-body);background:var(--cream);color:var(--ink);line-height:1.75;min-height:100vh;overflow-x:hidden;font-size:16px}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent;color:inherit}
+a{color:var(--red-primary);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:641px){.container{padding:0 24px}}
+@media(min-width:1025px){.container{padding:0 32px}}
+
+/* ==== 홍등 배경 ==== */
+.lanterns{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.lantern{position:absolute;top:-40px;font-size:24px;opacity:.4;animation:lanternSway 8s ease-in-out infinite,fallSlow 30s linear infinite;will-change:transform}
+@keyframes lanternSway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@keyframes fallSlow{0%{top:-40px}100%{top:110vh}}
+
+/* ==== HERO ==== */
+.hero{position:relative;background:linear-gradient(180deg,#FBF6EF 0%,#F5EFE3 60%,#D9EDE9 100%);padding:80px 0 60px;text-align:center;overflow:hidden;z-index:1;border-bottom:3px solid var(--gold)}
+.hero::before{content:"🏮";position:absolute;top:20px;left:8%;font-size:56px;opacity:.6;animation:lanternSway 5s ease-in-out infinite}
+.hero::after{content:"🐼";position:absolute;top:40px;right:10%;font-size:44px;opacity:.8;animation:lanternSway 6s ease-in-out infinite reverse}
+.hero .celebrate{display:inline-block;padding:6px 20px;background:var(--red-primary);color:#fff;border-radius:999px;font-size:14px;letter-spacing:.1em;margin-bottom:16px;font-weight:600}
+.hero h1{font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,5vw,44px);color:var(--red-deep);line-height:1.3;margin-bottom:12px;letter-spacing:-.01em}
+.hero .subtitle{font-family:var(--font-poem);font-size:clamp(17px,2.4vw,22px);color:var(--ink-soft);margin:8px 0 20px;font-style:italic}
+.hero .dday{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:rgba(255,255,255,.9);border:2px solid var(--gold);border-radius:999px;box-shadow:var(--shadow-soft);font-weight:700;color:var(--red-primary);font-size:17px}
+.hero .info{margin-top:14px;font-size:14px;color:var(--ink-soft);font-family:var(--font-poem)}
+
+/* ==== NAV ==== */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(251,246,239,.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--gold);box-shadow:0 2px 12px rgba(122,55,20,.08)}
+.navbar-inner{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.navbar-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:10px 16px;border-radius:8px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;border:1.5px solid var(--gray-warm);transition:all .2s;min-height:44px;white-space:nowrap;font-family:var(--font-body)}
+.nav-btn:hover{background:var(--paper);border-color:var(--gold);transform:translateY(-1px)}
+.nav-btn.active{background:var(--red-primary);color:#fff;border-color:var(--red-primary)}
+.nav-btn .badge-dot{display:inline-block;width:8px;height:8px;background:var(--red-primary);border-radius:50%;margin-left:4px;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+
+/* ==== SECTION ==== */
+.section{padding:48px 0;position:relative;z-index:1}
+.section h2{font-family:var(--font-heading);font-size:clamp(24px,3.5vw,30px);font-weight:700;color:var(--red-deep);margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);padding-left:14px}
+.section .lead{font-family:var(--font-poem);font-size:17px;color:var(--ink-soft);margin-bottom:24px;font-style:italic}
+
+/* ==== CARDS ==== */
+.card{background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--red-primary);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow-card);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-pop)}
+
+/* ==== ALERT BANNER ==== */
+.alert-banner{margin:20px 0;padding:18px 22px;background:linear-gradient(135deg,#FFF9F0 0%,#D9EDE9 100%);border:1.5px solid var(--gold);border-left:5px solid var(--red-primary);border-radius:var(--r-md);box-shadow:var(--shadow-soft)}
+.alert-banner h3{display:flex;align-items:center;gap:8px;font-size:17px;margin-bottom:10px;color:var(--red-deep);font-family:var(--font-heading);font-weight:700}
+.alert-banner ul{list-style:none;font-size:15px;color:var(--ink-soft)}
+.alert-banner li{padding:6px 0;display:flex;gap:8px;align-items:start;line-height:1.6}
+.alert-banner li::before{content:"🏮";flex-shrink:0}
+.alert-empty{color:var(--success)}
+.alert-empty::before{content:"✅"}
+
+/* ==== PROGRESS ==== */
+.progress-wrap{margin:12px 0 28px;padding:22px 24px;background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%);border:1px solid var(--gold);border-radius:var(--r-lg);box-shadow:var(--shadow-soft)}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.progress-top strong{font-size:18px;color:var(--red-deep);font-family:var(--font-heading);font-weight:700}
+.progress-pct{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:24px}
+.progress-bar{height:12px;background:#fff;border:1px solid var(--gold);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red-primary),var(--gold));border-radius:999px;transition:width .8s}
+.progress-meta{margin-top:10px;font-size:15px;color:var(--ink-soft);font-family:var(--font-poem)}
+
+/* ==== TIMELINE ==== */
+.timeline-hscroll{display:flex;gap:14px;overflow-x:auto;padding:8px 4px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.timeline-hscroll::-webkit-scrollbar{height:6px}
+.timeline-hscroll::-webkit-scrollbar-track{background:var(--paper);border-radius:3px}
+.timeline-hscroll::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.day-card{flex:0 0 280px;scroll-snap-align:start;padding:16px;background:#fff;border:1.5px solid var(--gray-warm);border-radius:var(--r-md);cursor:pointer;transition:all .3s;position:relative}
+.day-card:hover{background:var(--paper);border-color:var(--red-primary)}
+.day-card.today{background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%);border:2px solid var(--red-primary);box-shadow:var(--shadow-pop)}
+.day-card.past{opacity:.55;background:var(--gray-warm)}
+.day-card .day-num{display:inline-block;padding:4px 12px;background:var(--red-primary);color:#fff;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:8px;letter-spacing:.05em}
+.day-card.today .day-num{background:var(--gold);color:var(--ink);animation:pulse 1.6s infinite}
+.day-card .day-date{font-weight:700;color:var(--red-deep);font-size:15px;margin-bottom:2px;font-family:var(--font-heading)}
+.day-card .day-city{font-size:14px;color:var(--bamboo);font-weight:700;margin-bottom:4px}
+.day-card .day-title{font-size:15px;line-height:1.5;color:var(--ink);margin-bottom:6px;font-weight:500}
+
+/* ==== PLACE CARD GRID ==== */
+.daysec{margin-bottom:44px}
+.daysec-head{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px dashed var(--gold)}
+.daysec-date{font-family:var(--font-heading);font-weight:700;color:var(--red-primary);font-size:20px}
+.daysec-title{font-size:18px;font-weight:600;color:var(--ink)}
+.daysec-weather{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:var(--paper);border-radius:999px;font-size:13px;color:var(--ink-soft);font-weight:600}
+.place-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.place-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);overflow:hidden;cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.place-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-pop);border-color:var(--red-primary)}
+.place-thumb{aspect-ratio:16/10;background:var(--paper) center/cover no-repeat;position:relative}
+.place-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4))}
+.place-thumb .chip-city{position:absolute;top:10px;left:10px;z-index:2;padding:4px 12px;background:rgba(176,82,30,.9);color:#fff;border-radius:8px;font-size:12px;font-weight:700;backdrop-filter:blur(4px)}
+.place-thumb .chip-photos{position:absolute;top:10px;right:10px;z-index:2;padding:4px 10px;background:rgba(0,0,0,.55);color:#fff;border-radius:8px;font-size:11.5px;font-weight:700;backdrop-filter:blur(4px)}
+.modal-gallery{display:flex;gap:8px;padding:12px 26px 0;overflow-x:auto}
+.modal-gallery img{width:88px;height:66px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;flex:none}
+.modal-gallery img.active{border-color:var(--red-primary)}
+.place-body{padding:16px;flex:1;display:flex;flex-direction:column}
+.place-name{font-size:16px;font-weight:700;color:var(--red-deep);margin-bottom:2px;line-height:1.4;font-family:var(--font-heading)}
+.place-zh{font-family:'Noto Serif SC',serif;font-size:13px;color:var(--gold-antique);margin-bottom:8px}
+.place-intro{font-size:14px;color:var(--ink-soft);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;flex:1}
+.place-actions{display:flex;gap:6px;flex-wrap:wrap}
+.mini-chip{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;background:var(--paper);color:var(--ink-soft);border-radius:8px;font-size:12px;font-weight:600}
+
+/* ==== MODAL ==== */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,22,20,.7);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px}
+.modal-overlay.open{display:flex;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:var(--r-xl);max-width:720px;width:100%;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;animation:slideUp .3s;border-top:5px solid var(--red-primary)}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:sticky;top:12px;margin-left:auto;margin-right:12px;z-index:10;width:40px;height:40px;background:#fff;border-radius:50%;font-size:22px;box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center;color:var(--red-primary);float:right;top:12px;border:1px solid var(--gray-warm);font-weight:700}
+.modal-hero{aspect-ratio:16/9;background:var(--paper) center/cover no-repeat;border-radius:var(--r-xl) var(--r-xl) 0 0}
+.modal-body{padding:26px}
+.modal-body h2{font-size:26px;margin-bottom:4px;font-family:var(--font-heading);color:var(--red-deep);font-weight:700}
+.modal-body .m-en{font-family:'Noto Serif SC',serif;color:var(--gold-antique);margin-bottom:14px;font-size:15px}
+.modal-tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 0 18px;border-bottom:2px solid var(--paper);margin-bottom:18px;scrollbar-width:none}
+.modal-tabs::-webkit-scrollbar{display:none}
+.m-tab{padding:9px 16px;border-radius:8px;background:var(--paper);font-size:14px;font-weight:600;color:var(--ink-soft);white-space:nowrap;cursor:pointer;font-family:var(--font-body)}
+.m-tab.active{background:var(--red-primary);color:#fff}
+.m-panel{display:none}
+.m-panel.active{display:block;animation:fadeIn .2s}
+.m-panel p,.m-panel li{font-size:15px;line-height:1.8;color:var(--ink)}
+.m-panel h4{color:var(--red-primary);margin:14px 0 8px;font-size:16px;display:flex;gap:6px;align-items:center;font-family:var(--font-heading);font-weight:700}
+.m-panel ul{padding-left:20px;margin:6px 0}
+.info-row{display:flex;gap:10px;padding:10px 0;border-bottom:1px dashed var(--paper);font-size:15px}
+.info-row:last-child{border:none}
+.info-row strong{min-width:90px;color:var(--red-primary);font-weight:700}
+.warn{padding:12px 14px;background:#FFF4E6;border-left:4px solid var(--warning);border-radius:8px;font-size:14px;color:var(--ink);margin:10px 0;line-height:1.6}
+
+/* ==== VOUCHER ==== */
+.voucher-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.voucher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.voucher{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:18px;position:relative;overflow:hidden;padding-left:22px}
+.voucher::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red-primary)}
+.voucher[data-status="not_booked"]::before,.voucher[data-status="todo"]::before{background:var(--warning)}
+.voucher[data-status="recommended"]::before{background:var(--bamboo)}
+.voucher[data-cat="flight"]::before{background:var(--info)}
+.voucher-cat{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;margin-bottom:8px;letter-spacing:.06em;background:var(--paper);color:var(--red-primary)}
+.voucher-label{font-weight:700;color:var(--red-deep);margin-bottom:6px;font-size:15px;font-family:var(--font-heading)}
+.voucher-when{font-family:'Noto Serif KR',serif;font-weight:600;color:var(--gold-antique);font-size:14px;margin-bottom:6px}
+.voucher-note{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.voucher-status{position:absolute;top:14px;right:14px;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.voucher-status.booked{background:var(--success);color:#fff}
+.voucher-status.recommended{background:var(--bamboo);color:#fff}
+.voucher-status.not_booked{background:var(--warning);color:#fff}
+.voucher-status.onsite{background:var(--info);color:#fff}
+.voucher-status.todo{background:var(--gray-warm);color:var(--ink)}
+
+/* ==== HOTELS ==== */
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.hotel-card{background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);padding:20px;position:relative}
+.hotel-card.selected{border:3px solid var(--red-primary);background:linear-gradient(135deg,#FFF9F0 0%,#FBF6EF 100%)}
+.hotel-card .sel-badge{position:absolute;top:-12px;right:14px;background:var(--red-primary);color:#fff;padding:5px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em}
+.hotel-photo{width:100%;height:150px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:10px;background:var(--paper)}
+.wcell .wsrc{font-size:10px;color:#A68F72;margin-top:2px}
+.hotel-name{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--red-deep);margin-bottom:4px}
+.hotel-brand{font-size:12px;color:var(--gold-antique);margin-bottom:8px}
+.hotel-price{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:20px;margin:8px 0}
+.hotel-pros{list-style:none;padding:0;margin:8px 0;font-size:13px;color:var(--ink-soft)}
+.hotel-pros li{padding:3px 0;display:flex;gap:6px}
+.hotel-pros li::before{content:"✓";color:var(--success);font-weight:700}
+
+/* ==== WEATHER ==== */
+.weather-city-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.wtab{padding:8px 14px;background:var(--paper);border-radius:8px;font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer;font-family:var(--font-body)}
+.wtab.active{background:var(--red-primary);color:#fff}
+.weather-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.wcell{padding:14px 10px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);text-align:center}
+.wcell.today{background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%);border:1.5px solid var(--red-primary)}
+.wcell .wday{font-size:12px;color:var(--ink-soft);font-weight:700}
+.wcell .wdate{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;color:var(--red-deep);margin:2px 0}
+.wcell .wicon{font-size:28px;margin:6px 0}
+.wcell .wtemp{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;color:var(--red-primary)}
+.wcell .wlow{font-size:12px;color:var(--ink-soft)}
+.wcell .wprecip{font-size:11px;color:var(--info);margin-top:2px}
+
+/* ==== MUSIC ==== */
+.music-item{display:flex;gap:12px;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);margin-bottom:10px;cursor:pointer;transition:all .2s}
+.music-item:hover{background:var(--paper);transform:translateX(4px);border-color:var(--red-primary)}
+.music-item.playing{background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%);border-color:var(--red-primary)}
+.music-play{width:40px;height:40px;border-radius:50%;background:var(--red-primary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.music-item.playing .music-play{animation:bounce .8s infinite}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.music-meta{flex:1;min-width:0}
+.music-title{font-weight:700;font-size:15px;color:var(--red-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-heading)}
+.music-sub{font-size:13px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#musicPlayer{position:fixed;bottom:0;left:0;right:0;z-index:90;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .3s;padding:14px 18px;display:flex;gap:14px;align-items:center;border-top:3px solid var(--red-primary)}
+#musicPlayer.show{transform:translateY(0)}
+#musicPlayer .mp-meta{flex:1;min-width:0}
+#musicPlayer .mp-title{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--red-deep)}
+#musicPlayer .mp-close{font-size:24px;color:var(--red-primary);padding:4px 10px;font-weight:700}
+#ytFrame{width:100%;aspect-ratio:16/9;max-width:320px;background:#000}
+#musicPlayer .mp-toggle{font-size:20px;color:#fff;background:var(--red-primary);border-radius:50%;width:38px;height:38px;min-width:38px;display:flex;align-items:center;justify-content:center;font-weight:700}
+#musicPlayer .mp-unmute{font-size:12.5px;color:#fff;background:#2F7873;border-radius:16px;padding:6px 12px;font-weight:700;white-space:nowrap}
+
+/* ==== CHECKLIST ==== */
+.chk-day{margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--gray-warm);border-left:4px solid var(--gold);border-radius:var(--r-md)}
+.chk-day h4{font-size:17px;color:var(--red-deep);margin-bottom:10px;display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:700}
+.chk-day h4 .chk-count{font-size:12px;padding:3px 10px;background:var(--paper);border-radius:8px;color:var(--red-primary);font-weight:700}
+.chk-item{display:flex;gap:12px;padding:8px 0;align-items:flex-start;cursor:pointer;user-select:none}
+.chk-item input{flex-shrink:0;width:22px;height:22px;margin-top:2px;accent-color:var(--red-primary);cursor:pointer}
+.chk-item label{flex:1;font-size:15px;line-height:1.65;cursor:pointer}
+.chk-item input:checked + label{text-decoration:line-through;color:var(--ink-soft);opacity:.7}
+
+/* ==== JOURNAL ==== */
+.journal-form{padding:18px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);margin-bottom:18px}
+.storage-status{padding:10px 14px;background:var(--paper);border-radius:8px;font-size:13px;color:var(--ink-soft);margin-bottom:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.storage-status strong{color:var(--red-primary);font-weight:700}
+.storage-help{margin-top:10px;padding:10px 12px;background:#FFF9F0;border-left:3px solid var(--gold);font-size:13px;color:var(--ink-soft);border-radius:4px;line-height:1.6}
+.journal-form textarea{width:100%;min-height:100px;padding:14px;border:1.5px solid var(--gray-warm);border-radius:var(--r-sm);font-family:inherit;font-size:15px;color:var(--ink);background:var(--cream);resize:vertical}
+.journal-form textarea:focus{outline:none;border-color:var(--red-primary)}
+.journal-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 20px;border-radius:8px;font-weight:700;min-height:48px;font-size:15px;transition:all .2s;font-family:var(--font-body)}
+.btn-primary{background:var(--red-primary);color:#fff;box-shadow:var(--shadow-pop)}
+.btn-primary:hover{background:var(--red-deep);transform:translateY(-2px)}
+.btn-ghost{background:var(--paper);color:var(--ink);border:1px solid var(--gray-warm)}
+.btn-ghost:hover{background:var(--gray-warm)}
+.btn-danger{background:#fff;color:var(--error);border:1.5px solid var(--error)}
+.journal-list .entry{padding:14px 16px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);margin-bottom:10px}
+.journal-list .entry-meta{font-size:12px;color:var(--gold-antique);margin-bottom:6px;font-family:'Noto Serif KR',serif}
+.journal-list .entry-text{font-size:15px;line-height:1.7;white-space:pre-wrap}
+.journal-list audio{width:100%;margin-top:8px}
+
+/* ==== GALLERY ==== */
+.gallery-upload{padding:22px;background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%);border-radius:var(--r-md);text-align:center;border:2px dashed var(--red-primary);margin-bottom:18px;cursor:pointer;display:block}
+.gallery-upload p{font-size:15px;color:var(--ink);margin:4px 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.gallery-item{aspect-ratio:1;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-sm);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img,.gallery-item video{width:100%;height:100%;object-fit:cover}
+.gallery-item .g-del{position:absolute;top:4px;right:4px;background:rgba(255,255,255,.95);width:28px;height:28px;border-radius:50%;font-size:14px;color:var(--error);display:flex;align-items:center;justify-content:center;font-weight:700}
+
+/* ==== EMERGENCY ==== */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.emer-item{display:flex;gap:12px;align-items:center;padding:14px 16px;background:#fff;border:1px solid var(--gray-warm);border-radius:var(--r-md);transition:transform .2s}
+.emer-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);border-color:var(--red-primary)}
+.emer-icon{width:44px;height:44px;background:linear-gradient(135deg,#D9EDE9,#FBF6EF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.emer-info{flex:1;min-width:0}
+.emer-label{font-size:14px;font-weight:700;color:var(--red-deep);margin-bottom:2px}
+.emer-phone{font-family:'Noto Serif KR',serif;font-weight:700;color:var(--red-primary);font-size:16px}
+.emer-note{font-size:12px;color:var(--ink-soft);margin-top:2px}
+
+/* ==== TOAST ==== */
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-size:15px;z-index:2000;opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--error)}
+
+/* ==== FOOTER ==== */
+.footer{padding:56px 0 120px;text-align:center;background:linear-gradient(135deg,#B0521E 0%,#7A3714 100%);color:#D9EDE9}
+.footer p{font-family:var(--font-poem);font-size:20px;line-height:1.9;font-style:italic}
+.footer .from{margin-top:14px;font-size:16px;color:#D9EDE9;opacity:.9}
+
+/* ==== UTIL ==== */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:4px 12px;background:var(--gold);color:var(--ink);border-radius:8px;font-size:12px;font-weight:700;letter-spacing:.05em}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.lantern{display:none}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ==== TTS 상단 컸트롤바 (클론 보이스 내레이션) ==== */
+.tts-bar{position:sticky;top:0;z-index:200;background:linear-gradient(135deg,var(--red-deep) 0%,var(--red-primary) 100%);color:var(--gold-light);padding:14px 16px;box-shadow:0 4px 20px rgba(122,55,20,.25)}
+.tts-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tts-title{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--gold-light);flex:1;min-width:180px}
+.tts-btn{padding:12px 18px;border-radius:10px;font-weight:700;font-size:15px;transition:all .2s;min-height:52px;display:inline-flex;align-items:center;gap:6px}
+.tts-btn-play{background:var(--gold);color:var(--red-deep);font-size:20px;padding:14px 28px;box-shadow:0 4px 16px rgba(47,120,115,.5)}
+.tts-btn-play:hover{background:var(--gold-light);transform:scale(1.05)}
+.tts-btn-sec{background:rgba(255,255,255,.15);color:var(--gold-light);font-size:14px;padding:10px 14px;min-height:44px}
+.tts-btn-sec:hover{background:rgba(255,255,255,.25)}
+.tts-progress{flex:1;min-width:100px;height:10px;background:rgba(255,255,255,.15);border-radius:6px;overflow:hidden}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0%;transition:width .5s}
+.tts-status{min-width:80px;text-align:right;font-family:var(--font-heading);font-size:14px;color:var(--gold-light)}
+.place-card-active{outline:3px solid var(--red-primary);box-shadow:0 0 0 5px rgba(176,82,30,.2),var(--shadow-pop)!important;transform:translateY(-4px)}
+</style>
+
+</head>
+<body>
+<div class="lanterns" id="lanterns"></div>
+
+<header class="hero">
+  <div class="container">
+    <span class="celebrate">FREE &amp; EASY · 90 DAYS</span>
+    <h1>백상진 · 박현교 부부<br>북미·중남미 자유여행</h1>
+    <p class="subtitle">쉬엄쉬엄, 무리 없이 — 두 대륙을 잇는 대장정</p>
+    <div class="dday" id="ddayBadge">⏳</div>
+    <p class="info">2027.4.25 LA 입국 ~ 7.26 인천 귀국 (약 93일) · 렌터카·캠핑카(북미) + 버스·기차·국내선(중남미)</p>
+  </div>
+</header>
+
+<div class="tts-bar">
+  <div class="tts-inner">
+    <div class="tts-title">🎙️ 백상진·박현교 부부 대장정 해설</div>
+    <button class="tts-btn tts-btn-play" id="ttsPlay" onclick="ttsPlay()">▶ 재생</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsPause()">⏸</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsStop()">⏹</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsPrev()">⏪</button>
+    <button class="tts-btn tts-btn-sec" onclick="ttsNext()">⏩</button>
+    <button class="tts-btn tts-btn-sec" id="ttsSpeedBtn" onclick="ttsCycleSpeed()">1.0x</button>
+    <div class="tts-progress"><div class="tts-progress-fill" id="ttsProg"></div></div>
+    <span class="tts-status" id="ttsStatus">0/0 · 00:00</span>
+  </div>
+</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <button class="nav-btn" onclick="scrollTo2('#progress')">📍 진행현황</button>
+    <button class="nav-btn" onclick="scrollTo2('#timeline')">🗓️ 전체 일정</button>
+    <button class="nav-btn" onclick="scrollTo2('#today')">🌅 오늘</button>
+    <button class="nav-btn" onclick="scrollTo2('#places')">🏛️ 여행지</button>
+    <button class="nav-btn" onclick="location.href='maps/overview.html'">🗺️ 이동 지도</button>
+    <button class="nav-btn" onclick="scrollTo2('#transport')">🚐 이동수단</button>
+    <button class="nav-btn" onclick="scrollTo2('#stay')">🏨 숙소</button>
+    <button class="nav-btn" onclick="scrollTo2('#booking')">🎫 예약 우선순위</button>
+    <button class="nav-btn" onclick="scrollTo2('#climate')">🌤️ 기후</button>
+    <button class="nav-btn" onclick="scrollTo2('#festivals')">🎉 축제&amp;이벤트</button>
+    <button class="nav-btn" onclick="scrollTo2('#mileage')">✈️ 마일리지</button>
+    <button class="nav-btn" onclick="scrollTo2('#language')">🌐 여행 언어</button>
+    <button class="nav-btn" onclick="scrollTo2('#packing')">📦 짐싸기</button>
+    <button class="nav-btn" onclick="scrollTo2('#checklist')">✅ 체크리스트</button>
+    <button class="nav-btn" onclick="scrollTo2('#music')">🎵 음악</button>
+    <button class="nav-btn" onclick="scrollTo2('#journal')">📔 기록</button>
+    <button class="nav-btn" onclick="scrollTo2('#gallery')">📸 앨범</button>
+    <button class="nav-btn" onclick="scrollTo2('#emergency')">☎️ 연락처</button>
+  </div>
+</nav>
+
+<!-- 진행현황 -->
+<section id="progress" class="section" style="padding-top:0">
+  <div class="container">
+    <h2>📍 여행 진행 현황</h2>
+    <div class="lead">두 대륙, 93일의 발자국</div>
+    <div class="progress-wrap">
+      <div id="progressText" style="font-weight:700;color:var(--red-primary);font-size:18px;margin-bottom:10px"></div>
+      <div style="background:var(--gray-warm);border-radius:999px;height:14px;overflow:hidden">
+        <div id="progressBar" style="height:100%;background:linear-gradient(90deg,var(--red-primary),var(--gold));width:0%;transition:width 1s"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 전체 일정 -->
+<section id="timeline" class="section">
+  <div class="container">
+    <h2>🗓️ 전체 일정</h2>
+    <div class="lead">카드를 누르면 해당 날짜로 이동 · 총 93일</div>
+    <div class="timeline-scroll" id="timelineScroll"></div>
+  </div>
+</section>
+
+<!-- 오늘 -->
+<section id="today" class="section">
+  <div class="container">
+    <h2>🌅 오늘의 여정</h2>
+    <div class="lead" id="todayLead">오늘은...</div>
+    <div id="todayContent"></div>
+  </div>
+</section>
+
+<!-- 여행지 -->
+<section id="places" class="section">
+  <div class="container">
+    <h2>🏛️ 날짜별 여행지</h2>
+    <div class="lead">카드를 누르면 소개·꿀팁·맛집 상세 정보</div>
+    <div id="placesArea"></div>
+  </div>
+</section>
+
+<!-- 이동수단 가이드 -->
+<section id="transport" class="section" style="background:linear-gradient(135deg,#F3EBDC 0%,#D9EDE9 100%)">
+  <div class="container">
+    <h2>🚐 이동수단 가이드</h2>
+    <div class="lead">북미 렌터카·캠핑카 + 중남미 버스·기차·국내선</div>
+    <div id="transportArea"></div>
+  </div>
+</section>
+
+<!-- 숙소 전략 -->
+<section id="stay" class="section">
+  <div class="container">
+    <h2>🏨 숙소 전략</h2>
+    <div class="lead">북미 3성급+캠핑장 · 중남미 4성급+한인민박</div>
+    <div id="stayArea"></div>
+  </div>
+</section>
+
+<!-- 예약 우선순위 -->
+<section id="booking" class="section" style="background:linear-gradient(135deg,#FBF6EF 0%,#D9EDE9 100%)">
+  <div class="container">
+    <h2>🎫 예약 우선순위 타임라인</h2>
+    <div class="lead" id="bookingSummary">아직 예약된 것은 없습니다 — 언제 무엇을 예약할지 미리 정리했습니다</div>
+    <div class="voucher-filter" id="bookingFilter">
+      <button class="wtab active" data-bf="all">전체</button>
+      <button class="wtab" data-bf="visa">🛂 비자·전자허가</button>
+      <button class="wtab" data-bf="transport">🚐 교통</button>
+      <button class="wtab" data-bf="activity">🎢 액티비티</button>
+      <button class="wtab" data-bf="hotel">🏨 숙소</button>
+      <button class="wtab" data-bf="insurance">🛡️ 보험</button>
+    </div>
+    <div class="voucher-grid" id="bookingGrid"></div>
+  </div>
+</section>
+
+<!-- 기후 가이드 -->
+<section id="climate" class="section">
+  <div class="container">
+    <h2>🌤️ 구간별 기후 가이드</h2>
+    <div class="lead">7개월 후 실시간 예보는 의미가 없어, 평년 기후로 안내합니다</div>
+    <div id="climateArea"></div>
+  </div>
+</section>
+
+<!-- 축제&이벤트 -->
+<section id="festivals" class="section" style="background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%)">
+  <div class="container">
+    <h2>🎉 축제 & 이벤트</h2>
+    <div class="lead">이번 일정과 맞물리는 현지 이벤트</div>
+    <div id="festivalsArea"></div>
+    <div class="warn" id="venezuelaNote" style="margin-top:20px"></div>
+  </div>
+</section>
+
+<!-- 마일리지 -->
+<section id="mileage" class="section">
+  <div class="container">
+    <h2 id="mileageTitle">✈️ 마일리지 가이드</h2>
+    <div class="lead" id="mileageSubtitle"></div>
+    <div id="mileageArea"></div>
+    <div class="warn" id="mileageNote" style="margin-top:16px"></div>
+  </div>
+</section>
+
+<!-- 여행 언어 -->
+<section id="language" class="section" style="background:linear-gradient(135deg,#FFF9F0 0%,#D9EDE9 100%)">
+  <div class="container">
+    <h2>🌐 여행 언어</h2>
+    <div class="lead">영어(북미) · 스페인어(중남미 대부분) · 포르투갈어(브라질)</div>
+    <div id="languageArea"></div>
+  </div>
+</section>
+
+<!-- 짐싸기 -->
+<section id="packing" class="section">
+  <div class="container">
+    <h2 id="packingTitle">📦 짐싸기 전략</h2>
+    <div id="packingArea"></div>
+  </div>
+</section>
+
+<!-- 체크리스트 -->
+<section id="checklist" class="section" style="background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%)">
+  <div class="container">
+    <h2>✅ 구간별 체크리스트</h2>
+    <div class="lead">체크 자동 저장 · 이 기기에만 보관됨</div>
+    <div id="checklistArea"></div>
+  </div>
+</section>
+
+<!-- 음악 -->
+<section id="music" class="section">
+  <div class="container">
+    <h2>🎵 여행 테마 음악</h2>
+    <div class="lead">▶ 눌러 재생 · 대륙을 넘나드는 로드트립 플레이리스트</div>
+    <div id="musicArea"></div>
+  </div>
+</section>
+
+<!-- 기록 -->
+<section id="journal" class="section" style="background:linear-gradient(135deg,#FBF6EF 0%,#D9EDE9 100%)">
+  <div class="container">
+    <h2>📔 여행 일기</h2>
+    <div class="lead">글로도, 음성으로도 · 93일의 하루하루</div>
+    <div id="journalList">📦 불러오는 중…</div>
+    <textarea id="journalInput" placeholder="오늘 하루는 어떠셨나요..." style="width:100%;min-height:100px;margin-top:14px;padding:14px;border-radius:12px;border:1px solid var(--gray-warm);font-family:inherit;font-size:15px"></textarea>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <button class="tts-btn tts-btn-play" onclick="saveJournal()">💗 저장</button>
+      <button class="tts-btn tts-btn-sec" style="background:var(--paper);color:var(--ink)" onclick="startRecording()">🎙️ 음성녹음 시작</button>
+      <button class="tts-btn tts-btn-sec" style="background:var(--paper);color:var(--ink)" onclick="exportJournalText()">💌 텍스트 내보내기</button>
+      <button class="tts-btn tts-btn-sec" style="background:var(--paper);color:var(--ink)" onclick="backupAll()">📦 전체 백업(.json)</button>
+      <label class="tts-btn tts-btn-sec" style="background:var(--paper);color:var(--ink);cursor:pointer">📥 백업 복원<input type="file" accept=".json" style="display:none" onchange="restoreBackup(event)"></label>
+    </div>
+    <div class="storage-help">💡 기록은 이 기기에만 저장됩니다. 안전을 위해 가끔 <b>전체 백업</b>을 받아두세요.</div>
+  </div>
+</section>
+
+<!-- 앨범 -->
+<section id="gallery" class="section">
+  <div class="container">
+    <h2>📸 사진·동영상 아카이브</h2>
+    <div class="lead">두 대륙 대장정의 순간들 (이 기기 저장)</div>
+    <div id="galleryList">📦 불러오는 중…</div>
+    <label class="gallery-upload">
+      <div style="font-size:32px">📷</div>
+      <div style="font-weight:700;margin-top:6px">사진/동영상 업로드</div>
+      <div style="font-size:13px;color:var(--ink-soft);margin-top:4px">탭해서 카메라로 찍거나 앨범에서 선택</div>
+      <input type="file" accept="image/*,video/*" multiple style="display:none" onchange="handleGalleryUpload(event)">
+    </label>
+    <div class="storage-help">💡 일기 섹션의 <b>전체 백업</b> 버튼으로 사진까지 함께 백업 가능합니다.</div>
+  </div>
+</section>
+
+<!-- 연락처 -->
+<section id="emergency" class="section" style="background:linear-gradient(135deg,#D9EDE9 0%,#FBF6EF 100%)">
+  <div class="container">
+    <h2>☎️ 국가별 비상 연락처</h2>
+    <div class="lead">긴급 · 대사관·총영사관</div>
+    <div id="emergencyArea"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div style="font-family:var(--font-heading);font-size:22px;font-weight:700">🧭 두 대륙, 93일의 자유여행</div>
+    <div class="from">백상진 · 박현교 부부의 대장정을 응원합니다 🌎</div>
+  </div>
+</footer>
+
+<div id="modal" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div id="musicPlayer">
+  <div id="ytFrame"></div>
+</div>
+
+<div id="toast-container"></div>
+
+<script>
+
+const DATA = {"meta":{"title":"백상진 · 박현교 부부 북미·중남미 자유여행 🌎 두 대륙 대장정","subtitle":"2027.4.25 ~ 7.26 · 약 93일 · LA 입국 → 리우데자네이루 아웃","start_iso":"2027-04-25","end_iso":"2027-07-26","today_iso":"2026-09-24","anniversary":"쉬엄쉬엄, 무리 없이 — 두 분의 자유로운 대장정을 응원합니다 🧭","concept":"정해진 투어 없이 두 분 페이스대로. 북미는 렌터카·캠핑카 로드트립(3성급 호텔+캠핑장 혼합), 중남미는 버스·기차·국내선(4성급 호텔+한인민박) 위주."},"itinerary":[{"date":"2027-04-25","day_num":1,"city":"로스앤젤레스","city_en":"Los Angeles","country":"미국","leg_nights":3,"leg_mode":"✈️ 인천→LA 직항(대한항공/델타, 스카이팀)","title":"✈️ 인천 → LA 도착","summary":"OZ/KE 또는 델타 직항, 약 11시간, 태평양 넘어가며 같은 날 도착(시차). 렌터카 또는 캠핑카 픽업, 첫날은 숙소 체크인 후 가볍게 시차 적응.","places_ids":[]},{"date":"2027-04-26","day_num":2,"city":"로스앤젤레스","city_en":"Los Angeles","country":"미국","leg_nights":3,"leg_mode":"","title":"🎬 할리우드 · 산타모니카","summary":"할리우드 사인·그리피스 천문대에서 도심 조망, 오후엔 산타모니카 비치·부두에서 노을.","places_ids":["griffith-observatory"]},{"date":"2027-04-27","day_num":3,"city":"로스앤젤레스","city_en":"Los Angeles","country":"미국","leg_nights":3,"leg_mode":"","title":"🎨 게티 센터 · 베니스비치","summary":"게티 센터(무료 입장, 예술+전망) 오전 관람 후 베니스비치 산책, 저녁은 한인타운에서 든든하게.","places_ids":[]},{"date":"2027-04-28","day_num":4,"city":"샌디에고","city_en":"San Diego","country":"미국","leg_nights":2,"leg_mode":"🚗 LA→SD 차량 약 2시간","title":"🌊 발보아 파크 · 올드타운","summary":"발보아 파크(박물관·정원 단지)와 스페인 식민지풍 올드타운 산책.","places_ids":[]},{"date":"2027-04-29","day_num":5,"city":"샌디에고","city_en":"San Diego","country":"미국","leg_nights":2,"leg_mode":"","title":"🐬 라호야 · 씨포트빌리지","summary":"라호야 코브에서 바다사자 관찰, 씨포트빌리지에서 여유로운 점심·쇼핑.","places_ids":["la-jolla-cove"]},{"date":"2027-04-30","day_num":6,"city":"라스베가스","city_en":"Las Vegas","country":"미국","leg_nights":2,"leg_mode":"🚗 SD→Vegas 차량 약 5시간(또는 LA경유)","title":"🎰 스트립 · 벨라지오 분수쇼","summary":"라스베가스 스트립 구경, 벨라지오 분수쇼(무료, 저녁 추천), 원하면 쇼 1편 관람.","places_ids":["vegas-strip"]},{"date":"2027-05-01","day_num":7,"city":"라스베가스","city_en":"Las Vegas","country":"미국","leg_nights":2,"leg_mode":"","title":"🏜️ (선택) 그랜드캐니언 당일 투어","summary":"체력 되면 그랜드캐니언 웨스트림 또는 사우스림 당일 투어(왕복 5~8시간, 버스/경비행기 옵션). 무리라면 라스베가스 근교 레드록 캐년으로 대체.","places_ids":[]},{"date":"2027-05-02","day_num":8,"city":"산타바바라·빅서 (경유)","city_en":"Santa Barbara / Big Sur","country":"미국","leg_nights":1,"leg_mode":"🚗 Vegas→해안 차량, 캠핑카라면 캠핑장 1박","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-03","day_num":9,"city":"샌프란시스코","city_en":"San Francisco","country":"미국","leg_nights":3,"leg_mode":"🚗 해안도로(1번국도) 경유","title":"🌉 금문교 · 피셔맨스워프","summary":"금문교 조망(뷰포인트: 배터리 스펜서), 피셔맨스워프·기라델리 스퀘어.","places_ids":["golden-gate"]},{"date":"2027-05-04","day_num":10,"city":"샌프란시스코","city_en":"San Francisco","country":"미국","leg_nights":3,"leg_mode":"","title":"🚋 알카트라즈 · 케이블카","summary":"알카트라즈 섬 투어(사전예약 필수), 케이블카로 도심 이동, 롬바드 스트리트.","places_ids":["alcatraz"]},{"date":"2027-05-05","day_num":11,"city":"샌프란시스코","city_en":"San Francisco","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-06","day_num":12,"city":"포틀랜드·레드우드 (경유)","city_en":"Portland / Redwoods","country":"미국","leg_nights":2,"leg_mode":"🚗 SF→북부, 레드우드 국립공원 경유","title":"🌲 레드우드 국립공원","summary":"세계에서 가장 키 큰 나무들의 숲을 천천히 드라이브·산책.","places_ids":[]},{"date":"2027-05-07","day_num":13,"city":"포틀랜드·레드우드 (경유)","city_en":"Portland / Redwoods","country":"미국","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-08","day_num":14,"city":"시애틀","city_en":"Seattle","country":"미국","leg_nights":3,"leg_mode":"🚗 포틀랜드→시애틀 약 3시간","title":"☕ 파이크 플레이스 마켓","summary":"1907년 개장한 시장, 1호점 스타벅스, 생선 던지기 쇼.","places_ids":["pike-place"]},{"date":"2027-05-09","day_num":15,"city":"시애틀","city_en":"Seattle","country":"미국","leg_nights":3,"leg_mode":"","title":"🚀 스페이스 니들 · 체이스 폭포","summary":"스페이스 니들 전망대, 워싱턴대학 캠퍼스, 근교 스노퀄미 폭포.","places_ids":[]},{"date":"2027-05-10","day_num":16,"city":"시애틀","city_en":"Seattle","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-11","day_num":17,"city":"밴쿠버","city_en":"Vancouver","country":"캐나다","leg_nights":3,"leg_mode":"🚗 시애틀→밴쿠버 국경 약 3시간(여권 지참)","title":"🏞️ 스탠리 파크 · 개스타운","summary":"스탠리 파크 자전거 라이딩, 개스타운 증기시계.","places_ids":["stanley-park"]},{"date":"2027-05-12","day_num":18,"city":"밴쿠버","city_en":"Vancouver","country":"캐나다","leg_nights":3,"leg_mode":"","title":"🚡 그라우스 마운틴","summary":"그라우스 마운틴 곤돌라로 도심 전망, 빅토리아 섬 당일 페리도 선택 가능.","places_ids":[]},{"date":"2027-05-13","day_num":19,"city":"밴쿠버","city_en":"Vancouver","country":"캐나다","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-14","day_num":20,"city":"로키산맥·아이다호 (경유)","city_en":"Rockies / Idaho","country":"미국","leg_nights":2,"leg_mode":"🚐 캠핑카로 남하 시작, 국립공원 캠핑장 이용","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-15","day_num":21,"city":"로키산맥·아이다호 (경유)","city_en":"Rockies / Idaho","country":"미국","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-16","day_num":22,"city":"자이언 · 브라이스캐년","city_en":"Zion & Bryce Canyon","country":"미국","leg_nights":2,"leg_mode":"🚐 유타 '마이티 5' 국립공원 구간","title":"🏞️ 자이언 국립공원","summary":"협곡 셔틀버스로 이동, 리버사이드 워크 등 완만한 트레일 위주.","places_ids":["zion"]},{"date":"2027-05-17","day_num":23,"city":"자이언 · 브라이스캐년","city_en":"Zion & Bryce Canyon","country":"미국","leg_nights":2,"leg_mode":"","title":"🌄 브라이스캐년 국립공원","summary":"독특한 후두(hoodoo) 지형의 선셋포인트·선라이즈포인트 조망.","places_ids":["bryce-canyon"]},{"date":"2027-05-18","day_num":24,"city":"아치스 · 캐년랜즈 (모압)","city_en":"Arches & Canyonlands (Moab)","country":"미국","leg_nights":2,"leg_mode":"🚐 모압 지역 캠핑","title":"🪨 아치스 국립공원","summary":"델리케이트 아치 등 사암 아치 지형, 이른 아침·노을 추천.","places_ids":["arches"]},{"date":"2027-05-19","day_num":25,"city":"아치스 · 캐년랜즈 (모압)","city_en":"Arches & Canyonlands (Moab)","country":"미국","leg_nights":2,"leg_mode":"","title":"🏜️ 캐년랜즈 국립공원","summary":"그랜드뷰 포인트에서 콜로라도강 협곡 파노라마.","places_ids":[]},{"date":"2027-05-20","day_num":26,"city":"덴버 (경유)","city_en":"Denver","country":"미국","leg_nights":1,"leg_mode":"🚐 로키산맥 관통 후 평원 진입 전 휴식","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-21","day_num":27,"city":"시카고","city_en":"Chicago","country":"미국","leg_nights":3,"leg_mode":"🚗 평원 구간(네브래스카·아이오와) 경유 약 2일 운전","title":"🏙️ 밀레니엄 파크 · 클라우드 게이트","summary":"'The Bean' 클라우드 게이트, 시카고 강변 건축 보트투어.","places_ids":["millennium-park"]},{"date":"2027-05-22","day_num":28,"city":"시카고","city_en":"Chicago","country":"미국","leg_nights":3,"leg_mode":"","title":"🏢 시어스타워 전망대","summary":"윌리스타워 스카이덱 유리 발코니에서 도심 조망.","places_ids":[]},{"date":"2027-05-23","day_num":29,"city":"시카고","city_en":"Chicago","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-24","day_num":30,"city":"나이아가라 폭포","city_en":"Niagara Falls","country":"미국/캐나다","leg_nights":2,"leg_mode":"🚗 시카고→나이아가라 약 8시간(또는 1박 경유)","title":"💦 나이아가라 폭포(미국·캐나다 양쪽)","summary":"호수의 여신호 선상투어, 캐나다 쪽 전망이 특히 좋음(여권 지참 국경 이동).","places_ids":["niagara"]},{"date":"2027-05-25","day_num":31,"city":"나이아가라 폭포","city_en":"Niagara Falls","country":"미국/캐나다","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-26","day_num":32,"city":"보스턴","city_en":"Boston","country":"미국","leg_nights":3,"leg_mode":"🚗 나이아가라→보스턴 약 7~8시간","title":"🎓 하버드 · 프리덤트레일","summary":"하버드대 캠퍼스, 프리덤트레일 도보로 미국 독립 역사 탐방.","places_ids":["harvard"]},{"date":"2027-05-27","day_num":33,"city":"보스턴","city_en":"Boston","country":"미국","leg_nights":3,"leg_mode":"","title":"🦞 퀸시마켓 · 랍스터","summary":"퀸시마켓에서 뉴잉글랜드 랍스터롤, 보스턴 커먼 산책.","places_ids":[]},{"date":"2027-05-28","day_num":34,"city":"보스턴","city_en":"Boston","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-05-29","day_num":35,"city":"뉴욕","city_en":"New York","country":"미국","leg_nights":4,"leg_mode":"🚗 보스턴→뉴욕 약 4시간(뉴욕은 도심 주차 어려워 렌터카 반납 후 대중교통 권장)","title":"🗽 자유의 여신상 · 월가","summary":"페리로 자유의 여신상·엘리스 아일�드, 월스트리트 황소상.","places_ids":["statue-of-liberty"]},{"date":"2027-05-30","day_num":36,"city":"뉴욕","city_en":"New York","country":"미국","leg_nights":4,"leg_mode":"","title":"🌆 센트럴파크 · 탑오브더록","summary":"센트럴파크 산책, 탑오브더록 또는 엠파이어스테이트 전망대(야경 추천).","places_ids":["central-park"]},{"date":"2027-05-31","day_num":37,"city":"뉴욕","city_en":"New York","country":"미국","leg_nights":4,"leg_mode":"","title":"🎭 브로드웨이 뮤지컬","summary":"저녁 브로드웨이 뮤지컬 관람(사전 예매), 타임스퀘어 야경.","places_ids":[]},{"date":"2027-06-01","day_num":38,"city":"뉴욕","city_en":"New York","country":"미국","leg_nights":4,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-02","day_num":39,"city":"워싱턴DC","city_en":"Washington D.C.","country":"미국","leg_nights":3,"leg_mode":"🚂 뉴욕→DC 암트랙 기차 약 3시간 추천(렌터카 재대여)","title":"🏛️ 내셔널몰 · 스미소니언","summary":"링컨기념관·워싱턴기념탑·스미소니언 박물관군(대부분 무료).","places_ids":["national-mall"]},{"date":"2027-06-03","day_num":40,"city":"워싱턴DC","city_en":"Washington D.C.","country":"미국","leg_nights":3,"leg_mode":"","title":"🏛️ 백악관 · 국회의사당","summary":"백악관 외관, 국회의사당(사전예약 시 내부 투어).","places_ids":[]},{"date":"2027-06-04","day_num":41,"city":"워싱턴DC","city_en":"Washington D.C.","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-05","day_num":42,"city":"애틀랜타","city_en":"Atlanta","country":"미국","leg_nights":2,"leg_mode":"🚗 DC→애틀랜타 약 10시간(또는 국내선)","title":"🥤 코카콜라 월드 · CNN센터","summary":"코카콜라 월드, 조지아 아쿠아리움, 마틴 루터 킹 주니어 사적지.","places_ids":["coca-cola-world"]},{"date":"2027-06-06","day_num":43,"city":"애틀랜타","city_en":"Atlanta","country":"미국","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-07","day_num":44,"city":"올랜도(디즈니월드)","city_en":"Orlando (Disney World)","country":"미국","leg_nights":3,"leg_mode":"🚗 애틀랜타→올랜도 약 6~7시간","title":"🏰 매직킹덤","summary":"월트디즈니월드 매직킹덤 하루 종일.","places_ids":["magic-kingdom"]},{"date":"2027-06-08","day_num":45,"city":"올랜도(디즈니월드)","city_en":"Orlando (Disney World)","country":"미국","leg_nights":3,"leg_mode":"","title":"🌊 엡콧 또는 유니버설","summary":"엡콧(세계 각국 파빌리온) 또는 유니버설 스튜디오 중 선택.","places_ids":[]},{"date":"2027-06-09","day_num":46,"city":"올랜도(디즈니월드)","city_en":"Orlando (Disney World)","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-10","day_num":47,"city":"마이애미","city_en":"Miami","country":"미국","leg_nights":3,"leg_mode":"🚗 올랜도→마이애미 약 3.5시간, 렌터카/캠핑카 최종 반납","title":"🏖️ 사우스비치 · 아트데코","summary":"사우스비치에서 여유, 아트데코 건축 지구 산책.","places_ids":["south-beach"]},{"date":"2027-06-11","day_num":48,"city":"마이애미","city_en":"Miami","country":"미국","leg_nights":3,"leg_mode":"","title":"🎨 리틀아바나","summary":"리틀아바나에서 쿠바 커피·시가 문화 체험(다음 목적지 쿠바 예습).","places_ids":[]},{"date":"2027-06-12","day_num":49,"city":"마이애미","city_en":"Miami","country":"미국","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-13","day_num":50,"city":"멕시코시티","city_en":"Mexico City","country":"멕시코","leg_nights":2,"leg_mode":"✈️ 마이애미→멕시코시티, 아에로멕시코(스카이팀) 약 3시간","title":"🏛️ 소칼로 · 프리다칼로 박물관","summary":"역사지구 소칼로 광장, 코요아칸의 프리다 칼로 박물관(까사 아술).","places_ids":["zocalo"]},{"date":"2027-06-14","day_num":51,"city":"멕시코시티","city_en":"Mexico City","country":"멕시코","leg_nights":2,"leg_mode":"","title":"🌞 테오티우아칸","summary":"근교 테오티우아칸 피라미드 유적 반나절 투어.","places_ids":[]},{"date":"2027-06-15","day_num":52,"city":"칸쿤","city_en":"Cancun","country":"멕시코","leg_nights":2,"leg_mode":"✈️ 멕시코시티→칸쿤 국내선 약 2.5시간","title":"🏖️ 카리브해 해변","summary":"에메랄드빛 카리브해에서 휴양, 원하면 스노클링.","places_ids":[]},{"date":"2027-06-16","day_num":53,"city":"칸쿤","city_en":"Cancun","country":"멕시코","leg_nights":2,"leg_mode":"","title":"🗿 치첸이트사","summary":"세계 7대 불가사의 마야 유적 치첸이트사 당일 투어.","places_ids":["chichen-itza"]},{"date":"2027-06-17","day_num":54,"city":"아바나","city_en":"Havana","country":"쿠바","leg_nights":3,"leg_mode":"✈️ 칸쿤→아바나 약 1시간(또는 멕시코시티 경유)","title":"🚗 올드아바나 · 클래식카","summary":"유네스코 구시가지, 알록달록 1950년대 클래식카 투어.","places_ids":["old-havana"]},{"date":"2027-06-18","day_num":55,"city":"아바나","city_en":"Havana","country":"쿠바","leg_nights":3,"leg_mode":"","title":"🎺 부에나비스타소셜클럽 라이브","summary":"말레콘 방파제 노을, 저녁 라이브 쿠바 음악 공연.","places_ids":[]},{"date":"2027-06-19","day_num":56,"city":"아바나","city_en":"Havana","country":"쿠바","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-20","day_num":57,"city":"리마","city_en":"Lima","country":"페루","leg_nights":2,"leg_mode":"✈️ 아바나→리마(파나마/보고타 경유), 약 6~8시간","title":"🍽️ 미라플로레스 · 세비체","summary":"해안 절벽 도시 미라플로레스 산책, 페루 대표 요리 세비체.","places_ids":["miraflores"]},{"date":"2027-06-21","day_num":58,"city":"리마","city_en":"Lima","country":"페루","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-22","day_num":59,"city":"쿠스코·성스러운계곡","city_en":"Cusco & Sacred Valley","country":"페루","leg_nights":3,"leg_mode":"✈️ 리마→쿠스코 국내선 약 1시간20분 (고산 3400m, 도착 후 반나절 휴식 권장)","title":"⛰️ 고산 적응 · 시내 산책","summary":"도착 첫날은 코카차 마시며 고산 적응, 아르마스 광장·산토도밍고 성당.","places_ids":["cusco-plaza"]},{"date":"2027-06-23","day_num":60,"city":"쿠스코·성스러운계곡","city_en":"Cusco & Sacred Valley","country":"페루","leg_nights":3,"leg_mode":"","title":"🏔️ 성스러운 계곡(피삭·오얀타이탐보)","summary":"잉카 유적 피삭 시장, 오얀타이탐보 요새 마을.","places_ids":[]},{"date":"2027-06-24","day_num":61,"city":"쿠스코·성스러운계곡","city_en":"Cusco & Sacred Valley","country":"페루","leg_nights":3,"leg_mode":"","title":"☀️ 인티라이미 축제 (6/24)","summary":"★ 잉카 태양신 축제 인티라이미 — 삭사이와만 유적에서 대규모 재현 퍼포먼스. 사전 티켓 예매 필수.","places_ids":["inti-raymi"]},{"date":"2027-06-25","day_num":62,"city":"마추픽추","city_en":"Machu Picchu","country":"페루","leg_nights":2,"leg_mode":"🚂 오얀타이탐보→마추픽추 기차(잉카레일/페루레일) 약 1시간40분","title":"🏔️ 마추픽추 유적","summary":"세계 7대 불가사의, 새벽 첫 입장 추천(고산 트레킹 없이 기차+버스로 편하게 접근).","places_ids":["machu-picchu"]},{"date":"2027-06-26","day_num":63,"city":"마추픽추","city_en":"Machu Picchu","country":"페루","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-27","day_num":64,"city":"티티카카호(푸노)","city_en":"Lake Titicaca (Puno)","country":"페루","leg_nights":1,"leg_mode":"🚌 쿠스코→푸노 버스 약 6시간(경관 좋은 관광버스 추천)","title":"🛶 우로스 갈대섬","summary":"세계에서 가장 높은 호수, 갈대로 만든 우로스 인공섬 방문.","places_ids":["uros-islands"]},{"date":"2027-06-28","day_num":65,"city":"라파스","city_en":"La Paz","country":"볼리비아","leg_nights":2,"leg_mode":"🚌 푸노→라파스 버스 약 4시간(국경통과)","title":"🚡 텔레페리코 케이블카","summary":"세계에서 가장 높은 대중교통 케이블카로 도심 조망, 마녀시장.","places_ids":["la-paz-teleferico"]},{"date":"2027-06-29","day_num":66,"city":"라파스","city_en":"La Paz","country":"볼리비아","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-06-30","day_num":67,"city":"우유니 소금사막","city_en":"Uyuni Salt Flat","country":"볼리비아","leg_nights":3,"leg_mode":"✈️/🚌 라파스→우유니 (건기라 거울효과 대신 새하얀 결정 사막)","title":"🧂 우유니 소금사막 투어","summary":"기차무덤·소금호텔·인편(콜차니) 마을, 일몰 투어가 백미.","places_ids":["uyuni"]},{"date":"2027-07-01","day_num":68,"city":"우유니 소금사막","city_en":"Uyuni Salt Flat","country":"볼리비아","leg_nights":3,"leg_mode":"","title":"🌵 선셋 & 별 관측","summary":"건조한 고원 사막이라 밤하늘 별이 매우 선명, 별사진 명소.","places_ids":[]},{"date":"2027-07-02","day_num":69,"city":"우유니 소금사막","city_en":"Uyuni Salt Flat","country":"볼리비아","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-03","day_num":70,"city":"아타카마 사막(산페드로)","city_en":"San Pedro de Atacama","country":"칠레","leg_nights":2,"leg_mode":"🚌 우유니→산페드로 국경 넘는 명물 버스(약 4~5시간, 고지대 절경)","title":"🌋 달의 계곡","summary":"화성같은 지형의 달의 계곡(Valle de la Luna), 노을이 장관.","places_ids":["moon-valley"]},{"date":"2027-07-04","day_num":71,"city":"아타카마 사막(산페드로)","city_en":"San Pedro de Atacama","country":"칠레","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-05","day_num":72,"city":"엘칼라파테 (파타고니아)","city_en":"El Calafate","country":"아르헨티나","leg_nights":3,"leg_mode":"✈️ 산티아고 경유 엘칼라파테 국내선 (남반구 겨울 — 트레킹 대신 빙하 중심 일정)","title":"🧊 페리토모레노 빙하","summary":"연중 접근 가능한 대표 빙하, 전망대 산책로에서 얼음 붕괴 장관 관찰(겨울엔 인파 적어 더 여유롭게).","places_ids":["perito-moreno"]},{"date":"2027-07-06","day_num":73,"city":"엘칼라파테 (파타고니아)","city_en":"El Calafate","country":"아르헨티나","leg_nights":3,"leg_mode":"","title":"🚢 (선택) 빙하 보트투어","summary":"날씨 좋으면 빙하 코앞까지 가는 나비게이션 보트투어 추가.","places_ids":[]},{"date":"2027-07-07","day_num":74,"city":"엘칼라파테 (파타고니아)","city_en":"El Calafate","country":"아르헨티나","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-08","day_num":75,"city":"부에노스아이레스","city_en":"Buenos Aires","country":"아르헨티나","leg_nights":4,"leg_mode":"✈️ 엘칼라파테→부에노스아이레스 국내선 약 3시간","title":"💃 라보카 · 탱고","summary":"라보카 지구 카미니토 거리, 저녁 탱고쇼 & 아사도(아르헨티나식 바비큐).","places_ids":["la-boca"]},{"date":"2027-07-09","day_num":76,"city":"부에노스아이레스","city_en":"Buenos Aires","country":"아르헨티나","leg_nights":4,"leg_mode":"","title":"📚 레콜레타 · 엘아테네오","summary":"레콜레타 묘지(에비타), 세계에서 가장 아름다운 서점 엘아테네오.","places_ids":["recoleta"]},{"date":"2027-07-10","day_num":77,"city":"부에노스아이레스","city_en":"Buenos Aires","country":"아르헨티나","leg_nights":4,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-11","day_num":78,"city":"부에노스아이레스","city_en":"Buenos Aires","country":"아르헨티나","leg_nights":4,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-12","day_num":79,"city":"몬테비데오 (선택)","city_en":"Montevideo","country":"우루과이","leg_nights":2,"leg_mode":"⛴️ 부에노스아이레스→몬테비데오 페리(부케부스) 약 2.5~3시간","title":"🌅 시우다드비에하 구시가지","summary":"한적한 항구도시 산책, 원한다면 근교 휴양지 푼타델에스테까지 연장 가능.","places_ids":["montevideo"]},{"date":"2027-07-13","day_num":80,"city":"몬테비데오 (선택)","city_en":"Montevideo","country":"우루과이","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-14","day_num":81,"city":"살타","city_en":"Salta","country":"아르헨티나","leg_nights":2,"leg_mode":"✈️ 부에노스아이레스→살타 국내선 약 2시간","title":"🍷 칼차키 계곡 와이너리","summary":"해발고도 와인 산지 칼차키 계곡, 카파야테 와이너리 투어.","places_ids":["salta-wine"]},{"date":"2027-07-15","day_num":82,"city":"살타","city_en":"Salta","country":"아르헨티나","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-16","day_num":83,"city":"이구아수 폭포","city_en":"Iguazu Falls","country":"아르헨티나/브라질","leg_nights":3,"leg_mode":"✈️ 살타→이구아수 국내선(경유 가능) 약 2~3시간","title":"💦 아르헨티나쪽 이구아수","summary":"'악마의 목구멍' 등 트레일로 폭포 가까이 체험.","places_ids":["iguazu-ar"]},{"date":"2027-07-17","day_num":84,"city":"이구아수 폭포","city_en":"Iguazu Falls","country":"아르헨티나/브라질","leg_nights":3,"leg_mode":"","title":"💦 브라질쪽 이구아수","summary":"국경 넘어 브라질쪽에서 폭포 전경 파노라마(양쪽 다 봐야 완성).","places_ids":[]},{"date":"2027-07-18","day_num":85,"city":"이구아수 폭포","city_en":"Iguazu Falls","country":"아르헨티나/브라질","leg_nights":3,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-19","day_num":86,"city":"상파울루","city_en":"São Paulo","country":"브라질","leg_nights":2,"leg_mode":"✈️ 이구아수→상파울루 국내선(골, GOL항공 등) 약 1시간40분","title":"🎨 파울리스타 대로 · 미술관","summary":"남미 최대 경제도시의 스카이라인, 상파울루 미술관(MASP).","places_ids":["sao-paulo"]},{"date":"2027-07-20","day_num":87,"city":"상파울루","city_en":"São Paulo","country":"브라질","leg_nights":2,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-21","day_num":88,"city":"리우데자네이루","city_en":"Rio de Janeiro","country":"브라질","leg_nights":4,"leg_mode":"✈️ 상파울루→리우 국내선 약 1시간","title":"⛪ 코르코바도 예수상","summary":"코르코바도 산 예수상, 도시 전경 파노라마.","places_ids":["corcovado"]},{"date":"2027-07-22","day_num":89,"city":"리우데자네이루","city_en":"Rio de Janeiro","country":"브라질","leg_nights":4,"leg_mode":"","title":"🚡 팡지아수카르(설탕빵산)","summary":"케이블카로 오르는 설탕빵산, 노을이 일품.","places_ids":["sugarloaf"]},{"date":"2027-07-23","day_num":90,"city":"리우데자네이루","city_en":"Rio de Janeiro","country":"브라질","leg_nights":4,"leg_mode":"","title":"🏖️ 이파네마 · 코파카바나","summary":"이파네마·코파카바나 해변에서 여유, 삼바 공연 관람.","places_ids":[]},{"date":"2027-07-24","day_num":91,"city":"리우데자네이루","city_en":"Rio de Janeiro","country":"브라질","leg_nights":4,"leg_mode":"","title":"🌿 자유 일정 · 여유","summary":"정해진 일정 없이 동네 산책·카페·현지 마켓 구경 등 쉬어가는 날. 컨디션 보며 근교 소도시나 못 가본 명소를 자유롭게 추가해도 좋음.","places_ids":[]},{"date":"2027-07-25","day_num":92,"city":"귀국 여정","city_en":"Return Journey","country":"경유·귀국","leg_nights":2,"leg_mode":"✈️ 리우/상파울루 → 홍콩 또는 두바이 경유 → 인천","title":"✈️ 상파울루/리우 → 홍콩(또는 두바이) 경유","summary":"남미→아시아 직항이 없어 중동(두바이, 에미레이트) 또는 극동(홍콩, 캐세이퍼시픽) 경유가 일반적 — 총 비행시간만 30시간 내외. 경유지에서 1박하며 여독 풀기 추천.","places_ids":[]},{"date":"2027-07-26","day_num":93,"city":"귀국 여정","city_en":"Return Journey","country":"경유·귀국","leg_nights":2,"leg_mode":"","title":"🏠 인천 도착","summary":"약 90~92일간의 대장정을 마치고 인천 도착. 수고하셨습니다!","places_ids":[]}],"places":[{"id":"griffith-observatory","name_ko":"그리피스 천문대","name_en":"Griffith Observatory","city":"로스앤젤레스","country":"미국","intro":"LA 전경과 할리우드 사인을 한눈에 보는 무료 전망대. 해질녘 방문이 최고.","tip":"주차장이 협소해 성수기엔 셔틀버스(그리피스파크 남쪽) 이용 추천. 산타모니카 비치·게티센터도 같은 동선으로 묶기 좋음.","nearby_food":["한인타운 갈비·순두부","그랜드센트럴마켓 푸드홀"],"coordinates":{"lat":34.1184,"lng":-118.3004}},{"id":"la-jolla-cove","name_ko":"라호야 코브","name_en":"La Jolla Cove","city":"샌디에고","country":"미국","intro":"야생 바다사자·물개를 가까이서 볼 수 있는 절벽 해변. 씨포트빌리지와 발보아파크도 도보권.","tip":"냄새가 꽤 강하니 참고. 절벽 산책로(La Jolla Coast Walk)가 느긋한 산책에 좋음.","nearby_food":["피시타코","씨포트빌리지 해산물"],"coordinates":{"lat":32.8508,"lng":-117.2713}},{"id":"vegas-strip","name_ko":"라스베가스 스트립","name_en":"Las Vegas Strip","city":"라스베가스","country":"미국","intro":"벨라지오 분수쇼(무료, 저녁 15~30분 간격)를 중심으로 초대형 호텔들이 늘어선 화려한 거리.","tip":"한여름 낮 기온이 40도를 넘으니 낮엔 실내 위주로, 저녁에 스트립 산책. 쇼 티켓은 당일 반값 부스(tix4tonight)도 있음.","nearby_food":["뷔페(카지노 호텔 내)","인앤아웃 버거"],"coordinates":{"lat":36.1147,"lng":-115.1728}},{"id":"golden-gate","name_ko":"금문교","name_en":"Golden Gate Bridge","city":"샌프란시스코","country":"미국","intro":"샌프란시스코의 상징. 배터리 스펜서 뷰포인트에서 다리 전체가 한눈에 들어옴.","tip":"바람이 강하고 안개가 자주 껴서 저녁보다 오전이 사진 찍기 좋을 때가 많음. 자전거로 다리를 건너 사우살리토까지 가는 코스도 인기.","nearby_food":["피셔맨스워프 클램차우더","기라델리 초콜릿"],"coordinates":{"lat":37.8199,"lng":-122.4783}},{"id":"alcatraz","name_ko":"알카트라즈 섬","name_en":"Alcatraz Island","city":"샌프란시스코","country":"미국","intro":"한때 악명 높은 연방교도소가 있던 섬. 페리로만 접근 가능, 오디오가이드 투어가 알차다.","tip":"★ 몇 주 전 사전예매 필수 — 성수기엔 당일 매진이 흔함. 롬바드 스트리트·케이블카와 같은 동선.","nearby_food":["피셔맨스워프 일대 식당가"],"coordinates":{"lat":37.8267,"lng":-122.4233}},{"id":"pike-place","name_ko":"파이크 플레이스 마켓","name_en":"Pike Place Market","city":"시애틀","country":"미국","intro":"1907년 개장한 미국에서 가장 오래된 농산물 시장. 생선 던지기 쇼, 1호점 스타벅스로 유명.","tip":"이른 아침이 한적하고 신선. 시장 안 골목마다 작은 공방·카페가 많아 천천히 둘러볼 가치가 있음.","nearby_food":["클램차우더 in 브레드볼","피롯피그 샌드위치"],"coordinates":{"lat":47.6097,"lng":-122.3422}},{"id":"stanley-park","name_ko":"스탠리 파크","name_en":"Stanley Park","city":"밴쿠버","country":"캐나다","intro":"뉴욕 센트럴파크보다 큰 도심 공원. 해안 산책로(시월Wall) 자전거 라이딩이 인기.","tip":"자전거 대여소가 공원 초입에 많음. 토템폴 조각공원도 함께 둘러보기 좋음.","nearby_food":["개스타운 브런치 카페"],"coordinates":{"lat":49.3017,"lng":-123.1444}},{"id":"zion","name_ko":"자이언트 국립공원","name_en":"Zion National Park","city":"유타","country":"미국","intro":"붉은 사암 협곡 사이로 셔틀버스가 다니는 유타 '마이티5' 국립공원 중 접근성이 가장 좋은 곳.","tip":"성수기엔 개인차량 진입이 통제되고 국립공원 셔틀버스만 운행 — 이른 아침 셔틀을 타면 여유롭다. 리버사이드 워크는 완만해 부담 없음.","nearby_food":["스프링데일 마을 카페·레스토랑"],"coordinates":{"lat":37.2982,"lng":-113.0263}},{"id":"bryce-canyon","name_ko":"브라이스캐년 국립공원","name_en":"Bryce Canyon National Park","city":"유타","country":"미국","intro":"후두(hoodoo)라 불리는 독특한 첨탑형 바위 지형이 붉게 물드는 일출·일몰 명소.","tip":"해발 2,400m라 아침저녁 기온차가 크니 겉옷 필수. 선셋포인트~선라이즈포인트 구간은 평지 산책로라 편함.","nearby_food":["파크 내 로지 레스토랑"],"coordinates":{"lat":37.593,"lng":-112.1871}},{"id":"arches","name_ko":"아치스 국립공원","name_en":"Arches National Park","city":"모압","country":"미국","intro":"2,000개 이상의 자연 사암 아치가 있는 곳. 델리케이트 아치가 가장 유명(왕복 약 5km 트레킹).","tip":"여름 한낮은 매우 더우니 이른 아침이나 노을 시간대 방문 추천. 캐년랜즈 국립공원도 차로 40분 거리라 함께 묶기 좋음.","nearby_food":["모압 시내 브루어리·버거"],"coordinates":{"lat":38.7331,"lng":-109.5925}},{"id":"millennium-park","name_ko":"밀레니엄 파크 · 클라우드 게이트","name_en":"Millennium Park","city":"시카고","country":"미국","intro":"일명 'The Bean'으로 불리는 반짝이는 콩 모양 조형물 클라우드 게이트가 있는 도심 공원.","tip":"시카고 강변 건축 보트투어(Chicago Architecture Boat Tour)가 도시를 이해하는 가장 좋은 방법.","nearby_food":["딥디쉬 피자 (로우 시카고, 지노스 이스트 등)"],"coordinates":{"lat":41.8826,"lng":-87.6226}},{"id":"niagara","name_ko":"나이아가라 폭포","name_en":"Niagara Falls","city":"나이아가라","country":"미국/캐나다","intro":"미국·캐나다 국경에 걸친 세계적인 폭포. '호수의 여신호' 선상투어로 폭포 바로 앞까지 접근.","tip":"전망은 캐나다 쪽(온타리오)이 훨씬 좋음 — 국경 통과 시 여권 필수. 야간 조명·불꽃쇼도 볼만함.","nearby_food":["클리프턴힐 관광거리 레스토랑"],"coordinates":{"lat":43.0896,"lng":-79.0849}},{"id":"harvard","name_ko":"하버드 대학교","name_en":"Harvard University","city":"보스턴","country":"미국","intro":"1636년 설립된 미국 최고(最古)의 대학. 하버드야드 캠퍼스 산책과 존 하버드 동상 발끝 만지기가 인증샷 명소.","tip":"프리덤트레일(Freedom Trail, 붉은 벽돌 길)을 따라가면 미국 독립운동 유적을 도보로 다 둘러볼 수 있음.","nearby_food":["퀸시마켓 랍스터롤"],"coordinates":{"lat":42.377,"lng":-71.1167}},{"id":"statue-of-liberty","name_ko":"자유의 여신상","name_en":"Statue of Liberty","city":"뉴욕","country":"미국","intro":"허드슨강 리버티 섬에 서 있는 미국의 상징. 페리로 접근하며 엘리스 아일랜드(이민 박물관)와 함께 방문.","tip":"왕관 전망대까지 올라가려면 수개월 전 예약 필요 — 무리라면 페리에서 조망만으로도 충분히 인상적.","nearby_food":["월스트리트 인근 델리"],"coordinates":{"lat":40.6892,"lng":-74.0445}},{"id":"central-park","name_ko":"센트럴파크","name_en":"Central Park","city":"뉴욕","country":"미국","intro":"맨해튼 한복판의 거대한 녹색 쉼터. 벤치에 앉아 뉴요커들의 일상을 구경하는 것만으로도 즐거움.","tip":"탑오브더록 또는 엠파이어스테이트 전망대에서 보는 센트럴파크·야경이 뉴욕 최고의 파노라마.","nearby_food":["타임스퀘어 인근 다이너"],"coordinates":{"lat":40.7829,"lng":-73.9654}},{"id":"national-mall","name_ko":"내셔널몰 · 스미소니언","name_en":"National Mall","city":"워싱턴DC","country":"미국","intro":"링컨기념관부터 국회의사당까지 이어지는 거대한 잔디 광장. 스미소니언 박물관군은 대부분 무료.","tip":"박물관이 워낙 많아(항공우주·자연사 등) 관심사에 따라 2~3곳만 골라 깊게 보는 걸 추천.","nearby_food":["박물관 내 카페테리아"],"coordinates":{"lat":38.8895,"lng":-77.0353}},{"id":"coca-cola-world","name_ko":"코카콜라 월드","name_en":"World of Coca-Cola","city":"애틀랜타","country":"미국","intro":"코카콜라 본사 도시 애틀랜타의 대표 체험관. 전세계 코카콜라 음료를 무제한 시음 가능.","tip":"조지아 아쿠아리움·CNN 센터가 바로 옆이라 도보로 함께 묶기 좋음.","nearby_food":["남부식 프라이드치킨"],"coordinates":{"lat":33.7627,"lng":-84.3928}},{"id":"magic-kingdom","name_ko":"매직킹덤","name_en":"Magic Kingdom","city":"올랜도","country":"미국","intro":"월트디즈니월드의 오리지널 테마파크. 신데렐라 성을 중심으로 한 클래식 디즈니 경험.","tip":"공식 앱(My Disney Experience)으로 사전에 라이트닝레인(우선입장권)을 예약해두면 대기시간을 크게 줄일 수 있음.","nearby_food":["파크 내 테마 레스토랑"],"coordinates":{"lat":28.4177,"lng":-81.5812}},{"id":"south-beach","name_ko":"사우스비치 · 아트데코 지구","name_en":"South Beach","city":"마이애미","country":"미국","intro":"에메랄드빛 바다와 파스텔톤 아르데코 건축물이 어우러진 마이애미 대표 해변.","tip":"오션드라이브를 따라 걷는 저녁 산책이 특히 아름다움. 리틀아바나에서 쿠바 커피(콜라도)로 다음 여정을 예습해도 좋음.","nearby_food":["쿠바 샌드위치","스톤크랩"],"coordinates":{"lat":25.7825,"lng":-80.134}},{"id":"zocalo","name_ko":"소칼로 광장","name_en":"Zócalo","city":"멕시코시티","country":"멕시코","intro":"세계에서 가장 큰 광장 중 하나. 메트로폴리탄 대성당·국립궁전에 둘러싸인 역사지구 중심.","tip":"코요아칸의 프리다 칼로 박물관(까사 아술)은 반나절 코스로 따로 시간을 내는 게 좋음.","nearby_food":["타코 알 파스토르","몰레 소스 요리"],"coordinates":{"lat":19.4326,"lng":-99.1332}},{"id":"chichen-itza","name_ko":"치첸이트사","name_en":"Chichen Itza","city":"칸쿤","country":"멕시코","intro":"세계 7대 불가사의로 꼽히는 마야 문명의 대표 유적. 쿠쿨칸 피라미드가 상징적.","tip":"칸쿤에서 당일 투어로 다녀오기 좋음(왕복 약 5~6시간). 근처 세노테(천연 싱크홀 수영장)도 함께 묶는 투어가 인기.","nearby_food":["유카탄 전통 코치니타 피빌"],"coordinates":{"lat":20.6843,"lng":-88.5678}},{"id":"old-havana","name_ko":"올드아바나","name_en":"Old Havana","city":"아바나","country":"쿠바","intro":"유네스코 세계유산 구시가지. 알록달록한 1950년대 클래식카가 거리를 누빈다.","tip":"클래식카 투어(컨버터블)로 말레콘 방파제까지 달리는 코스가 인기. 저녁엔 라이브 쿠바 음악(살사·손) 공연을 꼭 챙길 것.","nearby_food":["모히토·다이키리","랍스터 요리"],"coordinates":{"lat":23.1367,"lng":-82.3589}},{"id":"miraflores","name_ko":"미라플로레스","name_en":"Miraflores","city":"리마","country":"페루","intro":"태평양이 내려다보이는 절벽 위 세련된 지구. 산책로 말레콘이 노을 명소.","tip":"페루 요리의 대표 세비체는 리마에서 꼭 먹어볼 것 — 세계 최고 레스토랑 순위에 자주 오르는 곳들이 이 도시에 많음.","nearby_food":["세비체","로모 살타도"],"coordinates":{"lat":-12.1211,"lng":-77.0297}},{"id":"cusco-plaza","name_ko":"아르마스 광장 · 산토도밍고","name_en":"Plaza de Armas","city":"쿠스코","country":"페루","intro":"잉카제국의 수도였던 고산도시 쿠스코의 중심. 잉카 태양신전 위에 세워진 산토도밍고 성당이 상징적.","tip":"★ 해발 3,400m — 도착 첫날은 무리하지 말고 코카차(coca tea)를 마시며 고산 적응할 것. 고산병 약은 미리 준비.","nearby_food":["쿠이(기니피그) 요리","로모 살타도"],"coordinates":{"lat":-13.517,"lng":-71.9785}},{"id":"inti-raymi","name_ko":"인티라이미 태양신 축제 (6/24)","name_en":"Inti Raymi Festival","city":"쿠스코","country":"페루","intro":"★★ 잉카제국 최대 축제. 삭사이와만 유적에서 500명 이상의 배우·무용수가 태양신에게 바치는 의식을 재현한다.","tip":"매년 6월 24일 고정 — 이번 여행 일정과 정확히 맞아떨어지는 하이라이트. 유료 좌석 티켓은 몇 달 전 사전예매 필수(무료 관람 구역도 있으나 인파가 매우 많음).","nearby_food":["축제 노점 안티쿠초(꼬치)"],"coordinates":{"lat":-13.5074,"lng":-71.9817}},{"id":"machu-picchu","name_ko":"마추픽추","name_en":"Machu Picchu","city":"마추픽추","country":"페루","intro":"세계 7대 불가사의, 해발 2,430m 산 능선에 숨겨진 15세기 잉카 도시 유적.","tip":"오얀타이탐보에서 기차(잉카레일/페루레일)로 아과스칼리엔테스까지 간 뒤 셔틀버스로 오르는 코스라 트레킹 없이도 편하게 접근 가능. 입장권은 시간대별 티켓제라 사전예매 필수.","nearby_food":["아과스칼리엔테스 마을 레스토랑"],"coordinates":{"lat":-13.1631,"lng":-72.545}},{"id":"uros-islands","name_ko":"우로스 갈대섬","name_en":"Uros Floating Islands","city":"푸노(티티카카호)","country":"페루","intro":"세계에서 가장 높은 곳(3,800m)에 있는 항행 가능 호수. 토토라 갈대로 만든 인공섬에 사는 우로스족 마을을 방문.","tip":"보트 투어로 2~3개 섬을 돌아보는 반나절 코스가 일반적. 고산지대라 천천히 움직일 것.","nearby_food":["송어(트루차) 요리"],"coordinates":{"lat":-15.8203,"lng":-69.9564}},{"id":"la-paz-teleferico","name_ko":"텔레페리코 케이블카","name_en":"Mi Teleférico","city":"라파스","country":"볼리비아","intro":"세계에서 가장 높고 긴 대중교통 케이블카 시스템. 협곡에 자리한 도시 전체를 하늘에서 조망.","tip":"마녀시장(Mercado de las Brujas)에서 전통 부적·기념품 구경도 놓치지 말 것. 세계에서 가장 높은 수도(3,650m)라 고산 적응 유지.","nearby_food":["살테냐(볼리비아식 엠파나다)"],"coordinates":{"lat":-16.5,"lng":-68.1193}},{"id":"uyuni","name_ko":"우유니 소금사막","name_en":"Salar de Uyuni","city":"우유니","country":"볼리비아","intro":"세계 최대 소금 평원(10,582㎢). 건기(4~11월)엔 새하얀 결정 사막, 우기(12~3월)엔 하늘이 비치는 거울 효과.","tip":"이번 방문 시기는 건기라 거울 효과 대신 끝없이 펼쳐진 새하얀 소금밭을 보게 됨 — 이것대로 장관. 기차무덤·인카우아시 섬(선인장 섬)을 묶은 1일 투어가 정석.","nearby_food":["야마 고기 요리"],"coordinates":{"lat":-20.1338,"lng":-67.4891}},{"id":"moon-valley","name_ko":"달의 계곡","name_en":"Valle de la Luna","city":"산페드로데아타카마","country":"칠레","intro":"화성 표면을 연상시키는 붉은 기암·소금 지형. 세계에서 가장 건조한 사막 중 하나인 아타카마의 대표 명소.","tip":"노을 시간대 방문이 가장 드라마틱함(산 능선이 붉게 물듦). 밤엔 광공해가 거의 없어 별 관측 투어도 유명.","nearby_food":["칠레식 엠파나다"],"coordinates":{"lat":-22.917,"lng":-68.307}},{"id":"perito-moreno","name_ko":"페리토모레노 빙하","name_en":"Perito Moreno Glacier","city":"엘칼라파테","country":"아르헨티나","intro":"세계에서 몇 안 되는 '살아있는' 전진 빙하. 전망대 산책로에서 얼음이 굉음과 함께 무너지는 장관을 볼 수 있다.","tip":"남반구 겨울(6~7월)에도 연중 접근 가능한 몇 안 되는 파타고니아 명소 — 오히려 인파가 적어 여유롭게 관람 가능. 두꺼운 방한복 필수(체감온도 영하권).","nearby_food":["파타고니아산 양고기(코르데로)"],"coordinates":{"lat":-50.4967,"lng":-73.0392}},{"id":"la-boca","name_ko":"라보카 · 카미니토","name_en":"La Boca","city":"부에노스아이레스","country":"아르헨티나","intro":"알록달록한 양철집이 늘어선 항구 예술지구. 거리마다 탱고 공연이 펼쳐진다.","tip":"치안이 예민한 구역이라 관광지 핵심 거리(카미니토) 위주로만 다니고 해 진 뒤엔 피하는 게 안전. 저녁엔 정식 탱고쇼+아사도 디너 예약 추천.","nearby_food":["아사도(아르헨티나식 바비큐)","엠파나다"],"coordinates":{"lat":-34.6345,"lng":-58.3631}},{"id":"recoleta","name_ko":"레콜레타 · 엘아테네오","name_en":"Recoleta","city":"부에노스아이레스","country":"아르헨티나","intro":"에비타(에바 페론)가 잠든 레콜레타 묘지, 그리고 옛 극장을 개조한 '세계에서 가장 아름다운 서점' 엘아테네오.","tip":"레콜레타 지구는 파리를 닮은 우아한 건축이 많아 카페에 앉아 여유를 즐기기에도 좋음.","nearby_food":["아르헨티나 스테이크하우스","메디아루나(크루아상)"],"coordinates":{"lat":-34.5875,"lng":-58.3931}},{"id":"montevideo","name_ko":"시우다드비에하 구시가지","name_en":"Ciudad Vieja","city":"몬테비데오","country":"우루과이","intro":"부에노스아이레스보다 훨씬 한적한 우루과이의 수도. 항구·구시가지를 여유롭게 산책하기 좋다.","tip":"부케부스(Buquebus) 페리로 부에노스아이레스와 연결(약 2.5~3시간). 시간이 되면 해변 휴양지 푼타델에스테까지 연장 가능.","nearby_food":["초리팡(초리소 샌드위치)"],"coordinates":{"lat":-34.906,"lng":-56.2073}},{"id":"salta-wine","name_ko":"칼차키 계곡 와이너리","name_en":"Calchaquí Valleys","city":"살타","country":"아르헨티나","intro":"해발 1,700~3,000m 고지대 와인산지. 토론테스 품종의 상큼한 화이트와인이 특산품.","tip":"카파야테 마을을 중심으로 한 와이너리 투어가 대표 코스. 붉은 협곡 케브라다 데 카파야테의 기암 지형도 장관.","nearby_food":["엠파나다 살테냐","양고기 스튜"],"coordinates":{"lat":-25.1093,"lng":-65.6944}},{"id":"iguazu-ar","name_ko":"이구아수 폭포 (아르헨티나·브라질 양쪽)","name_en":"Iguazu Falls","city":"이구아수","country":"아르헨티나/브라질","intro":"너비 2.7km에 275개의 폭포가 이어지는 세계 최대급 폭포. '악마의 목구멍'이 압도적인 하이라이트.","tip":"아르헨티나 쪽은 트레일로 폭포 가까이 체험, 브라질 쪽은 국경 너머에서 전경 파노라마 — 양쪽 다 봐야 완전한 그림이 그려진다(국경 통과 시 비자·여권 확인).","nearby_food":["보트투어 후 젖은 옷 말리며 즐기는 현지 스낵"],"coordinates":{"lat":-25.6953,"lng":-54.4367}},{"id":"sao-paulo","name_ko":"파울리스타 대로 · MASP","name_en":"Avenida Paulista","city":"상파울루","country":"브라질","intro":"남미 최대 경제도시의 상징적 거리. 공중에 떠 있는 듯한 붉은 프레임의 상파울루 미술관(MASP)이 랜드마크.","tip":"일요일엔 파울리스타 대로가 차 없는 거리로 개방되어 산책·거리공연을 즐기기 좋음. 이구아수에서 국내선으로 편하게 연결.","nearby_food":["브라질식 슈하스코(고기뷔페)"],"coordinates":{"lat":-23.5613,"lng":-46.6565}},{"id":"corcovado","name_ko":"코르코바도 예수상","name_en":"Christ the Redeemer","city":"리우데자네이루","country":"브라질","intro":"리우를 상징하는 38m 높이의 거대한 예수상. 산 정상에서 도시 전체와 바다가 한눈에.","tip":"산악열차(트렘 두 코르코바도)로 오르는 것이 가장 쾌적. 아침 일찍 또는 늦은 오후가 인파가 적음.","nearby_food":["페이조아다(브라질 전통 스튜)"],"coordinates":{"lat":-22.9519,"lng":-43.2105}},{"id":"sugarloaf","name_ko":"팡지아수카르(설탕빵산)","name_en":"Sugarloaf Mountain","city":"리우데자네이루","country":"브라질","intro":"두 단계 케이블카로 오르는 화강암 봉우리. 노을 시간대에 오르면 리우 최고의 야경이 펼쳐진다.","tip":"이파네마·코파카바나 해변과 같은 동선으로 하루를 구성하기 좋음. 저녁엔 삼바쇼 관람으로 남미 대장정을 화려하게 마무리.","nearby_food":["아사이볼","해변 코코넛워터"],"coordinates":{"lat":-22.9491,"lng":-43.1546}}],"tts_script":[{"text":"안녕하세요, 백상진 님, 박현교 님! 두 분의 북미·중남미 대장정, 2027년 4월 25일 LA에서 시작해 90여 일간 두 대륙을 가로지르는 이번 여행을 함께할 내비게이터입니다. 쉬엄쉬엄, 무리 없이 함께 떠나볼까요?","kw":null},{"text":"첫 도착지는 로스앤젤레스의 그리피스 천문대예요. 할리우드 사인과 LA 시내를 한눈에 담는 무료 전망대로, 해 질 녘 방문이 특히 아름답습니다.","kw":"griffith-observatory"},{"text":"다음은 샌디에고 라호야 코브. 야생 바다사자와 물개가 바위 위에서 낮잠 자는 모습을 가까이서 볼 수 있는 절벽 해변이에요.","kw":"la-jolla-cove"},{"text":"중간에 잠깐 들르는 라스베가스 스트립. 벨라지오 호텔의 분수쇼는 무료인 데다 저녁마다 열리니 놓치지 마세요.","kw":"vegas-strip"},{"text":"해안도로를 따라 올라가면 샌프란시스코의 금문교가 나옵니다. 배터리 스펜서 전망대에서 다리 전체가 한눈에 들어와요.","kw":"golden-gate"},{"text":"바로 옆 알카트라즈 섬은 예전 연방교도소가 있던 곳으로, 페리 예약은 몇 주 전에 서둘러야 합니다.","kw":"alcatraz"},{"text":"북쪽으로 이동하면 시애틀 파이크 플레이스 마켓이에요. 1907년부터 이어진 미국에서 가장 오래된 시장으로, 생선 던지기 쇼가 유명하죠.","kw":"pike-place"},{"text":"국경을 넘어 캐나다 밴쿠버에 도착하면 스탠리 파크가 기다립니다. 뉴욕 센트럴파크보다 넓은 이 공원을 자전거로 한 바퀴 도는 게 밴쿠버 시민들의 즐거움이에요.","kw":"stanley-park"},{"text":"이제 캠핑카로 남쪽 유타를 향해 로드트립이 시작됩니다. 먼저 자이언 국립공원, 붉은 협곡 사이로 셔틀버스가 다니는 유타 국립공원 중 접근성이 가장 좋은 곳이에요.","kw":"zion"},{"text":"이어서 브라이스캐년 국립공원. 후두라 불리는 독특한 첨탑 지형이 노을에 붉게 물드는 모습이 압권입니다.","kw":"bryce-canyon"},{"text":"모압 지역의 아치스 국립공원에서는 2천 개가 넘는 자연 사암 아치를 만나요. 델리케이트 아치가 가장 유명하답니다.","kw":"arches"},{"text":"평원을 가로질러 도착한 시카고, 밀레니엄 파크의 클라우드 게이트, 일명 '더 빈'이 반짝이며 두 분을 맞이할 거예요.","kw":"millennium-park"},{"text":"미국과 캐나다 국경에 걸친 나이아가라 폭포. 호수의 여신호를 타고 폭포 바로 앞까지 다가가는 체험은 잊을 수 없는 순간이 될 겁니다.","kw":"niagara"},{"text":"보스턴에서는 1636년 설립된 하버드 대학교 캠퍼스를 거닐어보세요. 존 하버드 동상의 발끝을 만지면 행운이 온다는 이야기가 있답니다.","kw":"harvard"},{"text":"뉴욕에 도착하면 자유의 여신상. 허드슨강 위 리버티 섬에 서 있는 이 여신상은 페리를 타고 다가갈수록 그 크기에 놀라게 됩니다.","kw":"statue-of-liberty"},{"text":"뉴욕의 허파, 센트럴파크에서 여유로운 산책을 즐기고, 밤에는 전망대에서 반짝이는 야경을 감상하세요.","kw":"central-park"},{"text":"워싱턴DC의 내셔널몰에서는 링컨기념관부터 국회의사당까지, 그리고 대부분 무료인 스미소니언 박물관들을 둘러볼 수 있어요.","kw":"national-mall"},{"text":"애틀랜타에서는 코카콜라의 고향, 코카콜라 월드에서 전 세계 음료를 무제한으로 시음해보세요.","kw":"coca-cola-world"},{"text":"올랜도에서는 월트디즈니월드의 매직킹덤. 신데렐라 성을 중심으로 한 클래식 디즈니의 마법을 만끽하시길 바랍니다.","kw":"magic-kingdom"},{"text":"북미 대장정의 마지막, 마이애미 사우스비치. 파스텔톤 아르데코 건물과 에메랄드빛 바다가 어우러진 이곳에서 다음 여정, 중남미를 준비합니다.","kw":"south-beach"},{"text":"이제 멕시코시티, 소칼로 광장이에요. 세계에서 가장 큰 광장 중 하나로, 대성당과 국립궁전이 광장을 둘러싸고 있습니다.","kw":"zocalo"},{"text":"칸쿤에서는 세계 7대 불가사의 치첸이트사로 당일 여행을 떠나요. 쿠쿨칸 피라미드가 마야 문명의 위대함을 보여줍니다.","kw":"chichen-itza"},{"text":"쿠바 아바나의 올드아바나 거리에는 알록달록한 1950년대 클래식카가 오갑니다. 저녁엔 라이브 쿠바 음악과 함께 낭만적인 시간을 보내세요.","kw":"old-havana"},{"text":"남미의 첫 도시, 페루 리마의 미라플로레스. 태평양이 내려다보이는 절벽길을 걸으며 세계적으로 유명한 세비체를 맛보세요.","kw":"miraflores"},{"text":"해발 3,400미터, 잉카제국의 수도였던 쿠스코 아르마스 광장에 도착합니다. 첫날은 코카차를 마시며 천천히 고산 적응을 해주세요.","kw":"cusco-plaza"},{"text":"그리고 이번 여행 최고의 행운, 6월 24일 인티라이미 태양신 축제! 삭사이와만 유적에서 펼쳐지는 잉카 최대 축제를 두 분의 일정이 정확히 만나게 됩니다.","kw":"inti-raymi"},{"text":"세계 7대 불가사의 마추픽추. 기차와 셔틀버스로 편안하게 오르는 산 능선 위 잉카 도시, 그 신비로움을 직접 느껴보세요.","kw":"machu-picchu"},{"text":"세계에서 가장 높은 호수 티티카카, 그 위에 갈대로 만든 우로스 인공섬을 방문합니다. 우로스족의 독특한 생활 방식을 엿볼 수 있어요.","kw":"uros-islands"},{"text":"볼리비아 라파스에서는 세계에서 가장 높고 긴 케이블카, 텔레페리코를 타고 협곡 도시 전체를 하늘에서 내려다봅니다.","kw":"la-paz-teleferico"},{"text":"그리고 우유니 소금사막. 건기라 거울처럼 비치진 않지만, 지평선까지 끝없이 펼쳐진 새하얀 소금밭이 그 자체로 장관을 이룹니다.","kw":"uyuni"},{"text":"칠레 아타카마 사막의 달의 계곡. 화성 표면을 닮은 붉은 기암지대가 노을에 물드는 순간이 압권이에요.","kw":"moon-valley"},{"text":"파타고니아 엘칼라파테의 페리토모레노 빙하. 남반구 겨울에도 연중 만날 수 있는 살아있는 빙하로, 얼음이 무너지는 굉음을 직접 들을 수 있어요.","kw":"perito-moreno"},{"text":"부에노스아이레스 라보카 지구, 알록달록한 카미니토 거리에서 탱고 공연을 구경하고, 아사도로 저녁을 즐겨보세요.","kw":"la-boca"},{"text":"레콜레타에서는 에비타가 잠든 묘지와, 세계에서 가장 아름다운 서점이라 불리는 엘아테네오를 함께 둘러봅니다.","kw":"recoleta"},{"text":"페리를 타고 잠깐 다녀올 수 있는 우루과이 몬테비데오. 부에노스아이레스보다 한적한 매력이 있는 도시예요.","kw":"montevideo"},{"text":"아르헨티나 북부 살타의 칼차키 계곡에서는 해발 고지대 와이너리에서 상큼한 토론테스 화이트와인을 맛봅니다.","kw":"salta-wine"},{"text":"드디어 이구아수 폭포. 너비 2.7킬로미터에 275개의 폭포가 이어지는 압도적인 스케일, 아르헨티나와 브라질 양쪽에서 모두 감상해야 완성됩니다.","kw":"iguazu-ar"},{"text":"브라질 상파울루의 파울리스타 대로에서는 공중에 떠 있는 듯한 상파울루 미술관이 남미 최대 경제도시의 활기를 보여줍니다.","kw":"sao-paulo"},{"text":"리우데자네이루의 코르코바도 예수상. 38미터 거대한 예수상이 도시와 바다를 굽어보는 그 정상에서, 이번 대장정을 함께 돌아보시길 바랍니다.","kw":"corcovado"},{"text":"그리고 마지막 하이라이트, 팡지아수카르 설탕빵산. 두 단계 케이블카로 올라 리우 최고의 노을을 보며, 삼바쇼와 함께 90여 일의 대장정을 화려하게 마무리합니다.","kw":"sugarloaf"},{"text":"로스앤젤레스에서 시작해 리우데자네이루까지, 북미와 중남미 두 대륙을 가로지르는 90여 일의 대장정이었습니다. 백상진 님, 박현교 님, 두 분의 자유로운 여행이 건강하고 행복한 추억으로 가득하시길 바랍니다. 백년해로 하세요!","kw":null}],"transport_guide":{"na_title":"🚐 북미 구간 — 렌터카 · 캠핑카 로드트립","na_items":[{"h":"차량 선택","d":"도시 구간(LA~밴쿠버)은 일반 렌터카(SUV급)로 유연하게, 밴쿠버→유타→시카고 로키산맥 구간은 캠핑카(RV, 예: Cruise America·Escape Campervans)로 전환하는 '하이브리드' 방식을 추천드립니다. 캠핑카는 대도시 주차·운전이 번거로우니 국립공원 구간에서만 쓰는 게 효율적이에요."},{"h":"편도 반납(One-way)","d":"LA에서 픽업해 밴쿠버에서 반납, 다시 유타 인근(예: 라스베가스)에서 캠핑카 픽업 후 시카고 인근에서 반납하는 식으로 나누면 편도 수수료를 줄일 수 있습니다. 편도 반납 수수료가 도시 조합에 따라 크게 달라지니 예약 시 여러 조합을 비교해보세요."},{"h":"운전 부담 분산","d":"하루 장거리 구간(밴쿠버→유타, 유타→시카고 등)은 오전 일찍 출발해 점심 전 반나절만 집중 운전하고, 오후는 휴게소·전망대에서 여유 있게 쉬는 방식을 권장드립니다. 무리한 야간운전은 피하시고요."},{"h":"국제운전면허증","d":"출발 전 필수 — 한국 운전면허증 + 국제운전면허증(IDP) 함께 지참. 렌터카사에 따라 한국 면허증 원본도 함께 요구하는 경우가 있어 둘 다 챙기시는 게 안전합니다."},{"h":"주차·통행료","d":"뉴욕·보스턴 등 동부 대도시는 도심 주차가 매우 비싸고 번거로워, 해당 구간에서는 렌터카를 반납하고 기차(암트랙)·대중교통으로 전환하는 걸 권장드립니다(뉴욕→DC 구간이 대표적)."}],"latam_title":"🚌 중남미 구간 — 버스 · 기차 · 국내선","latam_items":[{"h":"장거리 버스","d":"남미는 장거리 고급 버스(cama/semi-cama, 거의 평평하게 눕는 좌석) 문화가 발달해 있어 야간 이동 시 숙박비도 아끼고 시간도 절약됩니다. 대표 업체: Cruz del Sur(페루), Bolivia Hop, Andesmar·Via Bariloche(아르헨티나)."},{"h":"국내선 항공","d":"페루(리마↔쿠스코), 볼리비아(라파스↔우유니, 성수기엔 버스가 더 안전할 때도), 아르헨티나(부에노스아이레스↔엘칼라파테·살타·이구아수), 브라질(이구아수↔상파울루↔리우) 구간은 버스로는 비효율적이라 국내선이 현실적입니다."},{"h":"국경 넘는 버스","d":"페루→볼리비아(푸노→라파스), 볼리비아→칠레(우유니→산페드로데아타카마)는 국경을 통과하는 국제버스가 정기 운행되며, 여행자들 사이에 정석 루트로 잘 알려져 있습니다."},{"h":"고산지대 이동","d":"쿠스코(3,400m)·라파스(3,650m)·우유니(3,656m) 등 고산 구간에서는 이동 자체가 체력 소모가 크므로, 도착 첫날은 일정을 비워두고 천천히 적응하는 하루를 꼭 넣어주세요(이미 일정에 반영)."}]},"accommodation_guide":{"title":"🏨 숙소 전략","na":{"h":"북미 — 3성급 + 캠핑장","items":["도시 구간: Best Western·Holiday Inn Express·La Quinta 등 체인형 3성급 위주(가성비·주차 무료가 관건)","캠핑카 구간(유타·로키): KOA(Kampgrounds of America) 캠핑장 체인이 전기·온수 샤워 완비, 사전 예약 필수(특히 성수기)","국립공원 인근은 예약 경쟁이 치열하니 3~6개월 전 예약 권장"]},"latam":{"h":"중남미 — 4성급 + 한인민박","items":["대도시(멕시코시티·리마·부에노스아이레스·리우): 4성급 체인 호텔로 안전·편의 확보","쿠스코·라파스·우유니 등 배낭여행자 밀집 지역은 한인 민박이 많아 정보 공유·한식 조식이 큰 장점 — '쿠스코 한인민박', '라파스 한인민박' 등으로 검색","이구아수·엘칼라파테처럼 자연 위주 소도시는 로지형 부티크 호텔 추천","치안이 예민한 지역(라보카 인근, 리우 일부)은 반드시 호스텔·저가숙소보다 평점 높은 중급 이상 숙소로"]}},"mileage_guide":{"title":"✈️ 대한항공 마일리지 · 스카이팀 항공동맹 가이드","subtitle":"대한항공은 스카이팀(SkyTeam) 소속 — 아래 구간은 마일리지 적립·보너스 항공권 사용이 유리합니다","categories":[{"name":"🇺🇸 북미 구간","items":[{"perk":"델타항공(Delta) — 스카이팀 핵심","desc":"애틀랜타·LA·샌프란시스코·시애틀·뉴욕·보스턴·워싱턴DC·시카고 대부분이 델타 허브/취항지. 대한항공 마일리지로 보너스 항공권 발권 가능, SkyMiles 적립도 병행 검토."}]},{"name":"🇲🇽 멕시코 구간","items":[{"perk":"아에로멕시코(Aeromexico) — 스카이팀","desc":"마이애미→멕시코시티, 멕시코시티↔칸쿤, 칸쿤↔아바나(경유) 구간에 아에로멕시코가 강세. 마일리지 적립·보너스석 모두 가능."}]},{"name":"🇦🇷 아르헨티나 구간","items":[{"perk":"아르헨티나항공(Aerolíneas Argentinas) — 스카이팀","desc":"부에노스아이레스 허브 — 엘칼라파테·살타·이구아수 국내선이 스카이팀 마일리지 적립 대상. 남미에서 가장 유용한 스카이팀 파트너입니다."}]},{"name":"⚠️ 스카이팀 밖 구간(별도 결제 필요)","items":[{"perk":"페루·볼리비아·칠레 국내선","desc":"LATAM·Sky Airline 등은 스카이팀이 아님 — 별도 현금/카드 결제, 마일리지 적립 불가."},{"perk":"브라질 국내선(상파울루↔리우, 이구아수↔상파울루)","desc":"GOL·아줄(Azul) 등도 스카이팀 밖 — 별도 결제. 현지 저가항공 앱(GOL, Azul)에서 직접 예약이 저렴할 때가 많음."}]},{"name":"🎫 국제선 본선","items":[{"perk":"인천↔LA, 리우/상파울루↔홍콩↔인천","desc":"대한항공 직항 또는 스카이팀 파트너(델타 등) 이용 시 마일리지 적립·보너스 항공권 검토. 90일 이상 장기 일정은 얼라이언스 기준 세계일주 운임(Around-the-World, RTW) 상품도 비교해볼 가치가 있습니다 — 스카이팀도 RTW 운임을 운영합니다."}]}],"note":"항공 스케줄과 마일리지 정책은 자주 바뀌므로, 실제 예약 3~4개월 전에 대한항공 홈페이지에서 최신 스카이팀 파트너 현황과 RTW 운임을 다시 확인하시길 권장드립니다."},"packing_strategy":{"title":"📦 짐싸기 전략 — 90일, 두 대륙, 극과 극의 기후","items":[{"h":"기후 폭 대응","d":"라스베가스 사막 40도부터 파타고니아 영하권까지 — 여름옷 위주로 챙기고, 겨울 구간(파타고니아)은 얇은 옷을 여러 겹 겹쳐 입는 레이어링 전략 + 현지에서 두꺼운 패딩·방한용품을 저렴하게 구매 후 기부/처분하는 방법을 권장드립니다."},{"h":"짐 최소화 원칙","d":"기내용 캐리어 1개 + 백팩 1개를 기본으로, 90일 내내 같은 짐을 끌고 다니지 않도록 '2주에 한 번 코인세탁(Laundromat)' 루틴을 세우세요. 미국은 어디든 코인세탁소가 흔하고, 남미 숙소도 세탁 서비스가 저렴합니다(㎏당 과금)."},{"h":"캠핑카 구간 전용 장비","d":"침낭·캠핑용 매트는 렌탈사에서 옵션으로 제공하는 경우가 많아 별도 구매 불필요. 휴대용 정수 필터(우유니·구채구 등 고산 지역 대비)는 챙기면 유용."},{"h":"고산 대비","d":"쿠스코·라파스·우유니 등 고산지대용 고산병 약(다이아막스 등)은 한국에서 처방받아 미리 준비, 코카차 티백도 현지 구입 가능."},{"h":"전자기기","d":"미국·캐나다는 110~120V(콘센트 동일), 중남미는 국가별로 110V/220V 혼재 — 멀티 어댑터(만능 플러그) 1개면 충분. 보조배터리는 기내 반입만 가능(위탁 금지)."},{"h":"서류","d":"여권 잔여 유효기간 6개월 이상 필수. 미국 ESTA, 캐나다 eTA 사전 신청. 국제운전면허증. 해외여행자보험(90일 장기 플랜으로 별도 가입 필요 — 단기 상품은 보장 안 될 수 있음)."}]},"festivals":[{"date":"2027-06-24","name_ko":"인티라이미 태양신 축제","name_en":"Inti Raymi","city":"쿠스코, 페루","desc":"잉카제국 최대 축제. 삭사이와만 유적에서 열리는 대규모 재현 퍼포먼스. 매년 날짜 고정, 이번 여행 일정과 정확히 맞물림 — 최소 3~4개월 전 유료석 예매 권장."},{"date":"2027-05","name_ko":"신델타 아메리카 시즌 (일반적 여행 성수기 아님)","name_en":"—","city":"—","desc":"5~6월은 북미가 아직 성수기 전이라 국립공원·대도시 모두 비교적 한산 — 이번 여행 타이밍의 숨은 장점입니다."},{"date":"2027-06~07","name_ko":"파타고니아 남반구 겨울","name_en":"Patagonia Winter","city":"엘칼라파테, 아르헨티나","desc":"⚠️ 토레스델파이네 W트레킹은 겨울철 가이드 동반·일부 구간만 가능(오 서킷은 완전 폐쇄). 이번 일정은 트레킹 대신 연중 접근 가능한 페리토모레노 빙하 중심으로 재구성했습니다 — 인파 없는 조용한 관람이 오히려 장점."},{"date":"2027-06","name_ko":"우유니 건기(乾期)","name_en":"Uyuni Dry Season","city":"우유니, 볼리비아","desc":"4~11월은 건기라 하늘이 비치는 '거울 효과'는 볼 수 없지만, 끝없이 펼쳐진 새하얀 소금 결정 사막을 안전하게 차량으로 다닐 수 있는 시즌입니다."}],"venezuela_note":{"title":"⚠️ 참고 — 베네수엘라(앙헬폭포)는 이번 기본 일정에서 제외","body":"베네수엘라는 2026년 1월 정권 교체 이후 미국 국무부 여행경보가 4단계(여행금지)에서 3단계(신중검토)로 완화되었지만, 여전히 범죄·납치 위험이 있는 신중검토 등급입니다. 90일이라는 빠듯한 일정과 안전을 함께 고려해 기본 루트에서는 제외했습니다. 꼭 가보고 싶으시다면 카나이마 국립공원(앙헬폭포) 당일·1박 패키지 투어만 페루 일정 앞뒤로 짧게 추가하는 방식을 검토해보시되, 출발 가까운 시점에 최신 여행경보를 다시 확인하시길 권합니다."},"language_guide":{"en_title":"🇺🇸 영어 필수 표현 (북미)","en_phrases":[{"ko":"두 사람 테이블 부탁합니다","en":"Table for two, please."},{"ko":"이 근처 화장실이 어디인가요?","en":"Where's the restroom near here?"},{"ko":"계산서 부탁합니다","en":"Check, please."},{"ko":"국립공원 셔틀버스는 어디서 타나요?","en":"Where do I catch the park shuttle?"},{"ko":"신용카드 되나요?","en":"Do you take credit cards?"},{"ko":"근처 주유소가 어디예요?","en":"Where's the nearest gas station?"}],"es_title":"🇲🇽🇵🇪🇦🇷 스페인어 필수 표현 (중남미)","es_phrases":[{"ko":"안녕하세요 / 감사합니다","es":"Hola / Gracias","pron":"올라 / 그라시아스"},{"ko":"두 사람 자리 있나요?","es":"¿Mesa para dos, por favor?","pron":"메사 빠라 도스, 뽀르 파보르"},{"ko":"이거 얼마예요?","es":"¿Cuánto cuesta esto?","pron":"꾸안또 꾸에스따 에스또"},{"ko":"화장실이 어디예요?","es":"¿Dónde está el baño?","pron":"돈데 에스따 엘 바뇨"},{"ko":"덜 맵게 해주세요","es":"Menos picante, por favor.","pron":"메노스 삐깐떼, 뽀르 파보르"},{"ko":"버스터미널이 어디예요?","es":"¿Dónde está la terminal de autobuses?","pron":"돈데 에스따 라 떼르미날 데 아우또부세스"},{"ko":"도와주세요","es":"¡Ayuda, por favor!","pron":"아유다, 뽀르 파보르"}],"pt_title":"🇧🇷 포르투갈어 핵심 표현 (브라질)","pt_phrases":[{"ko":"안녕하세요 / 감사합니다","pt":"Olá / Obrigado(남)·Obrigada(여)","pron":"올라 / 오브리가두·오브리가다"},{"ko":"이거 얼마예요?","pt":"Quanto custa isso?","pron":"꽌뚜 꾸스따 이쑤"},{"ko":"화장실이 어디예요?","pt":"Onde fica o banheiro?","pron":"온지 피까 우 반예이루"}]},"climate":[{"period":"4월 말~5월 · 미국 서부","desc":"LA·샌디에고·라스베가스: 따뜻하고 건조(20~30도). 샌프란시스코·시애틀·밴쿠버는 쌀쌀하고 비 잦음(10~18도) — 바람막이 필수."},{"period":"5월 중순~6월 초 · 로키·유타·시카고","desc":"유타 사막은 낮 더위·밤 쌀쌀(일교차 큼). 시카고는 봄 날씨로 쾌적(15~22도)."},{"period":"6월 초~중순 · 미국 동부","desc":"나이아가라·보스턴·뉴욕·DC: 초여름 날씨, 습도 상승 시작(18~28도). 우산 챙기기."},{"period":"6월 중순 · 애틀랜타·플로리다","desc":"본격 무더위·습함(28~33도), 오후 소나기 잦음 — 플로리다는 이미 우기 시작."},{"period":"6월 중순~하순 · 멕시코·쿠바","desc":"우기 초입, 오후 스콜성 소나기(28~33도, 습함). 칸쿤 바다는 여전히 최고 컨디션."},{"period":"6월 하순~7월 초 · 페루·볼리비아 고산","desc":"남반구 건기(冬) — 낮엔 맑고 쌀쌀(10~18도), 밤엔 영하권(고산 특유의 일교차). 우유니는 건기라 맑고 화창."},{"period":"7월 초 · 아타카마·파타고니아","desc":"아타카마 사막은 건조하고 쌀쌀. 파타고니아(엘칼라파테)는 남반구 한겨울 — 영하권, 두꺼운 방한복 필수, 대신 인파는 거의 없음."},{"period":"7월 중순 · 부에노스아이레스·우루과이·살타","desc":"아르헨티나 겨울(5~15도), 흐리고 쌀쌀. 살타는 고지대라 더 건조하고 일교차 큼."},{"period":"7월 중순~하순 · 이구아수·브라질","desc":"남반구 건기(겨울)라 습도 낮고 쾌적(18~26도) — 이구아수·리우 여행 최적 시즌 중 하나."}],"phase_checklists":[{"phase":"출발 전 (~4/25)","items":["여권 잔여 유효기간 6개월 이상 확인","미국 ESTA, 캐나다 eTA 사전 신청(출발 최소 2주 전)","국제운전면허증 발급(경찰서/운전면허시험장)","90일 이상 커버되는 장기 해외여행자보험 가입(단기 상품 보장 여부 꼭 확인)","고산병 약 처방(다이아막스 등) — 페루·볼리비아 구간 대비","대한항공 마일리지 잔액·스카이팀 파트너 항공권 사전 조회","북미 렌터카/캠핑카 예약(성수기 국립공원 캠핑장 포함, 3~6개월 전 권장)","인티라이미(6/24) 유료 관람석 사전 예매","마추픽추 입장권(시간대별 티켓제) 사전 예매","알카트라즈 섬 페리 사전 예매","체크카드/신용카드 해외 사용 한도·알림 설정"]},{"phase":"북미 구간 (Day1~57)","items":["렌터카 인수 시 차량 흠집 사진 촬영(반납 분쟁 예방)","뉴욕 진입 전 렌터카 반납 계획 확정(도심 주차 매우 비쌈)","국립공원 America the Beautiful 연간 패스 구매 검토(공원 3곳 이상 방문 시 이득)","동부 이동 구간은 암트랙 기차 예약 고려"]},{"phase":"중미 구간 (Day58~65)","items":["쿠바는 미국 카드 사용 불가 — 현금(유로/달러) 넉넉히 환전 필수","쿠바 입국 시 관광카드(Tourist Card) 사전 발급 확인"]},{"phase":"안데스 구간 (Day66~80)","items":["쿠스코 도착 첫날은 절대 무리하지 않기(고산 적응)","볼리비아 입국 비자 필요 여부 최신 확인(한국 여권 기준 — 출발 전 재확인 권장)","우유니 투어 업체는 안전 평판이 검증된 곳으로(교통사고 이력 있는 업체 다수 보고됨)"]},{"phase":"남미 동부 구간 (Day81~93)","items":["파타고니아 방한 장비 최종 점검(영하권 대비)","이구아수는 아르헨티나·브라질 양쪽 비자/입국요건 확인","리우 시내 이동 시 저녁 이후 대중교통보다 택시/우버 권장(치안)"]},{"phase":"귀국 전","items":["리우/상파울루→홍콩(또는 두바이) 경유편 확정 및 경유지 숙박 예약","기념품·짐 무게 확인(위탁수하물 초과 요금 대비)","90일 장기 여행자보험 종료일 재확인"]}],"emergency":[{"label":"미국 긴급(경찰·구급·소방 통합)","phone":"911","note":"미국 전역 공통"},{"label":"캐나다 긴급","phone":"911","note":"캐나다 전역 공통"},{"label":"주로스앤젤레스 대한민국 총영사관","phone":"+1-213-385-9300","note":"북미 서부 구간 담당"},{"label":"주뉴욕 대한민국 총영사관","phone":"+1-646-674-6000","note":"북미 동부 구간 담당"},{"label":"주밴쿠버 대한민국 총영사관","phone":"+1-604-681-9581","note":"캐나다 구간 담당"},{"label":"멕시코 긴급","phone":"911","note":"멕시코 전역"},{"label":"주멕시코 대한민국 대사관","phone":"+52-55-5203-8534","note":"멕시코·칸쿤 구간 담당"},{"label":"쿠바 긴급(경찰)","phone":"106","note":"쿠바"},{"label":"페루 긴급(경찰)","phone":"105","note":"페루"},{"label":"주페루 대한민국 대사관","phone":"+51-1-632-5000","note":"리마·쿠스코 구간 담당"},{"label":"볼리비아 긴급(경찰)","phone":"110","note":"볼리비아"},{"label":"칠레 긴급(경찰)","phone":"133","note":"칠레"},{"label":"아르헨티나 긴급(경찰)","phone":"911","note":"아르헨티나"},{"label":"주아르헨티나 대한민국 대사관","phone":"+54-11-4802-8865","note":"부에노스아이레스·엘칼라파테·살타 구간 담당"},{"label":"우루과이 긴급(경찰)","phone":"911","note":"우루과이"},{"label":"브라질 긴급(경찰)","phone":"190","note":"브라질"},{"label":"주브라질 대한민국 대사관(브라질리아)","phone":"+55-61-3321-2500","note":"상파울루·리우 구간은 총영사관 별도"},{"label":"주상파울루 대한민국 총영사관","phone":"+55-11-3141-0553","note":"상파울루·리우 구간 담당"},{"label":"대한민국 영사 콜센터 24H","phone":"+82-2-3210-0404","note":"전 세계 공통, 수신자부담 가능"}],"theme_music":[{"title":"Route 66","artist":"Nat King Cole","youtube_id":"DVOxG4geA9M"},{"title":"California Dreamin'","artist":"The Mamas & the Papas","youtube_id":"N-aK6JnyFmk"},{"title":"El Cóndor Pasa","artist":"Traditional (Andes)","youtube_id":"lE6RN4nkC9k"},{"title":"Oye Como Va","artist":"Tito Puente","youtube_id":"wZesM6zhs2c"},{"title":"Garota de Ipanema","artist":"João Gilberto","youtube_id":"eltjfjs-N2s"},{"title":"Libertango","artist":"Astor Piazzolla","youtube_id":"P2M-cztbAaU"}],"booking_priorities":[{"category":"visa","label":"미국 ESTA","when":"출발 2주 전까지(여유 두고 1개월 전 권장)","status":"필수사전신청","note":"전자여행허가, 유효기간 2년. 온라인 신청 esta.cbp.dhs.gov"},{"category":"visa","label":"캐나다 eTA","when":"출발 2주 전까지","status":"필수사전신청","note":"밴쿠버 입국용 전자여행허가"},{"category":"visa","label":"볼리비아 입국 요건 확인","when":"출발 1~2개월 전","status":"확인필요","note":"한국 여권 기준 비자 필요 여부는 시기에 따라 바뀔 수 있어 출발 전 최신 정보 재확인 필수"},{"category":"transport","label":"북미 렌터카/캠핑카","when":"3~6개월 전","status":"필수사전예약","note":"편도 반납 조합, 국립공원 성수기 캠핑장 확보 위해 서둘러야 함"},{"category":"activity","label":"인티라이미(6/24) 유료 관람석","when":"3~4개월 전","status":"필수사전예약","note":"쿠스코 삭사이와만 — 인기 축제라 좌석 조기 매진"},{"category":"activity","label":"마추픽추 입장권","when":"2~3개월 전","status":"필수사전예약","note":"시간대별 티켓제, 성수기 매진 흔함. 오얀타이탐보→아과스칼리엔테스 기차도 함께 예약"},{"category":"activity","label":"알카트라즈 섬 페리","when":"1~2개월 전","status":"필수사전예약","note":"샌프란시스코, 성수기 당일 매진 잦음"},{"category":"activity","label":"디즈니월드 라이트닝레인","when":"방문 60일 전부터","status":"추천예약","note":"공식 앱(My Disney Experience)에서 사전 예약해야 대기시간 절감"},{"category":"hotel","label":"쿠스코·라파스 한인민박","when":"2~3개월 전","status":"추천예약","note":"인기 민박은 성수기에 빨리 마감됨"},{"category":"hotel","label":"이구아수·엘칼라파테 로지형 숙소","when":"2~3개월 전","status":"추천예약","note":"소도시라 객실 수 자체가 적음"},{"category":"insurance","label":"90일 장기 해외여행자보험","when":"출발 1개월 전","status":"필수사전가입","note":"단기 여행자보험은 보장기간이 90일 미만인 경우가 많아 반드시 장기 플랜 확인"},{"category":"transport","label":"쿠바 관광카드(Tourist Card)","when":"출발 전","status":"필수사전준비","note":"항공사 또는 여행사를 통해 발급, 미국 카드 사용 불가하니 현금 준비"},{"category":"transport","label":"국제운전면허증","when":"출발 전","status":"필수사전준비","note":"경찰서/운전면허시험장에서 발급, 한국 면허증 원본도 함께 지참"}]};
+</script>
+<script>
+function ymd(d){return d.toISOString().slice(0,10)}
+function dayDiff(a,b){return Math.round((new Date(a)-new Date(b))/86400000)}
+function scrollTo2(s){const el=document.querySelector(s);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+function escAttr(s){return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(msg,type){const el=document.createElement('div');el.className='toast '+(type||'');el.textContent=msg;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2400);}
+
+const TODAY = new Date();
+
+// 배경 떠다니는 아이콘
+(function(){const p=document.getElementById('lanterns');const emojis=['✈️','🧭','🌎','🎒','🗺️'];for(let i=0;i<10;i++){const e=document.createElement('div');e.className='lantern';e.textContent=emojis[i%emojis.length];e.style.left=(Math.random()*100)+'vw';e.style.fontSize=(20+Math.random()*16)+'px';e.style.animationDuration=(20+Math.random()*20)+'s,'+(4+Math.random()*4)+'s';e.style.animationDelay=(Math.random()*8)+'s';p.appendChild(e)}})();
+
+// D-day 배지
+(function(){const today=ymd(TODAY);const start=DATA.meta.start_iso;const end=DATA.meta.end_iso;const el=document.getElementById('ddayBadge');let txt='';
+  if(today<start){txt='⏳ D-'+dayDiff(start,today)+' · 출발 준비 중';}
+  else if(today>end){txt='🏠 여행 완료! · 무사 귀국을 축하드립니다';}
+  else{const dn=dayDiff(today,start)+1;txt='🧭 여행 '+dn+'일째 / '+DATA.itinerary.length+'일';}
+  el.textContent=txt;
+})();
+
+// 진행현황
+(function(){const today=ymd(TODAY);const start=DATA.meta.start_iso;const end=DATA.meta.end_iso;
+  const bar=document.getElementById('progressBar'), txt=document.getElementById('progressText');
+  let pct=0, msg='';
+  if(today<start){pct=0;msg='⏳ 출발까지 D-'+dayDiff(start,today);}
+  else if(today>end){pct=100;msg='🏠 93일의 대장정을 마치셨습니다!';}
+  else{const dn=dayDiff(today,start)+1;pct=Math.min(100,Math.round(dn/DATA.itinerary.length*100));msg='Day '+dn+' / '+DATA.itinerary.length+' ('+pct+'%)';}
+  bar.style.width=pct+'%'; txt.textContent=msg;
+})();
+
+// 전체 일정 타임라인
+(function(){
+  const today=ymd(TODAY);
+  const box=document.getElementById('timelineScroll');
+  DATA.itinerary.forEach(d=>{
+    let cls='day-card';
+    if(d.date<today) cls+=' past';
+    else if(d.date===today) cls+=' today';
+    const el=document.createElement('div');
+    el.className=cls;
+    el.innerHTML='<span class="day-num">Day '+d.day_num+'</span>'+
+      '<div class="day-date">'+d.date.slice(5).replace('-','/')+'</div>'+
+      '<div class="day-city">'+d.city+'</div>'+
+      '<div class="day-title">'+d.title+'</div>';
+    el.onclick=()=>{scrollTo2('#day-'+d.date);};
+    box.appendChild(el);
+  });
+  setTimeout(()=>{const t=box.querySelector('.today');if(t)t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})},300);
+})();
+
+// 오늘
+(function(){
+  const today=ymd(TODAY);
+  const d=DATA.itinerary.find(x=>x.date===today);
+  const lead=document.getElementById('todayLead');
+  const box=document.getElementById('todayContent');
+  if(!d){
+    if(today<DATA.meta.start_iso){
+      lead.textContent='✈️ 출발 전 · D-'+dayDiff(DATA.meta.start_iso,today);
+      box.innerHTML='<div class="card"><h3 style="color:var(--red-deep);font-family:var(--font-heading);margin-bottom:10px">🧭 출발 카운트다운</h3><p>D-'+dayDiff(DATA.meta.start_iso,today)+' · 인천 → 로스앤젤레스 입국</p><p style="margin-top:8px;color:var(--ink-soft)">「🎫 예약 우선순위」탭에서 지금 준비할 것을 확인해주세요.</p></div>';
+    }else{
+      lead.textContent='🏠 여행 완료';
+      box.innerHTML='<div class="card"><h3>무사히 돌아오셨습니다 🌎</h3><p>일기와 사진은 이 대시보드에서 언제든 다시 볼 수 있습니다.</p></div>';
+    }
+    return;
+  }
+  lead.textContent='Day '+d.day_num+' · '+d.city+' · '+d.title;
+  const placeIds=d.places_ids||[];
+  const places=placeIds.map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+  let html='<div class="card" style="margin-bottom:16px"><p style="font-size:15px;line-height:1.8">'+d.summary+'</p></div>';
+  if(places.length){html+='<div class="place-grid">';places.forEach(p=>{html+=placeCardHTML(p);});html+='</div>';}
+  box.innerHTML=html;
+  box.querySelectorAll('.place-card').forEach(el=>{el.onclick=()=>openPlace(el.dataset.id)});
+})();
+
+// 여행지 카드
+function placeCardHTML(p){
+  return '<div class="place-card" data-id="'+p.id+'">'+
+    '<div class="place-thumb" style="background:linear-gradient(135deg,var(--paper),var(--gold-light));display:flex;align-items:center;justify-content:center"><span class="chip-city">📍 '+p.city+'</span><span style="font-size:40px;opacity:.5">🧭</span></div>'+
+    '<div class="place-body">'+
+      '<div class="place-name">'+p.name_ko+'</div>'+
+      '<div class="place-zh">'+(p.name_en||'')+'</div>'+
+      '<div class="place-intro">'+(p.intro||'')+'</div>'+
+      '<div class="place-actions"><span class="mini-chip">'+(p.country||'')+'</span>'+
+      '<span class="mini-chip">👆 상세 열기</span></div>'+
+    '</div></div>';
+}
+(function(){
+  const today=ymd(TODAY);
+  const area=document.getElementById('placesArea');
+  let html='';
+  DATA.itinerary.forEach(d=>{
+    const places=(d.places_ids||[]).map(id=>DATA.places.find(p=>p.id===id)).filter(Boolean);
+    if(!places.length) return;
+    html+='<div class="daysec" id="day-'+d.date+'">';
+    html+='<div class="daysec-head">';
+    html+='<span class="daysec-date">Day '+d.day_num+' · '+d.date.slice(5).replace('-','/')+'</span>';
+    html+='<span class="daysec-title">'+d.city+' · '+d.title+'</span>';
+    if(d.date===today) html+='<span class="badge">TODAY</span>';
+    html+='</div><div class="place-grid">';
+    places.forEach(p=>{html+=placeCardHTML(p)});
+    html+='</div></div>';
+  });
+  area.innerHTML=html;
+  area.querySelectorAll('.place-card').forEach(el=>{el.onclick=()=>openPlace(el.dataset.id)});
+})();
+
+// 모달 (간소화: 소개 · 꿀팁 · 맛집 · 정보)
+function openPlace(id){
+  const p=DATA.places.find(x=>x.id===id);
+  if(!p) return;
+  let html='<div class="modal-hero" style="display:flex;align-items:center;justify-content:center;font-size:72px;opacity:.35">🧭</div>';
+  html+='<div class="modal-body">';
+  html+='<h2>'+p.name_ko+'</h2><div class="m-en">'+(p.name_en||'')+' · '+p.city+', '+(p.country||'')+'</div>';
+  html+='<div class="modal-tabs">';
+  ['소개','꿀팁','맛집','정보'].forEach((t,i)=>{
+    html+='<button class="m-tab'+(i===0?' active':'')+'" data-t="'+i+'">'+t+'</button>';
+  });
+  html+='</div>';
+  html+='<div class="m-panel active" data-p="0"><p>'+(p.intro||'')+'</p></div>';
+  html+='<div class="m-panel" data-p="1"><div class="warn">💡 여행 팁</div><p>'+(p.tip||'—')+'</p></div>';
+  html+='<div class="m-panel" data-p="2">';
+  if(p.nearby_food&&p.nearby_food.length){html+='<h4>🍽️ 주변 맛집·먹거리</h4><ul>';p.nearby_food.forEach(f=>html+='<li>'+f+'</li>');html+='</ul>';}
+  else html+='<p>—</p>';
+  html+='</div>';
+  html+='<div class="m-panel" data-p="3">';
+  if(p.coordinates){html+='<div class="info-row"><strong>🗺️ 지도</strong><span><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+p.coordinates.lat+','+p.coordinates.lng+'">Google Maps ↗</a></span></div>';}
+  html+='</div>';
+  html+='</div>';
+  document.getElementById('modalContent').innerHTML=html;
+  const mc=document.getElementById('modalContent');
+  mc.querySelectorAll('.m-tab').forEach(t=>{
+    t.onclick=()=>{
+      mc.querySelectorAll('.m-tab').forEach(x=>x.classList.remove('active'));
+      mc.querySelectorAll('.m-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      mc.querySelector('.m-panel[data-p="'+t.dataset.t+'"]').classList.add('active');
+    };
+  });
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+
+/* ============ TTS 엔진 (보이스 스킬 표준 템플릿) ============ */
+const ttsScript = DATA.tts_script;
+const ttsDurations = [14.236735, 10.161633, 8.437551, 8.071837, 8.359184, 6.687347, 9.639184, 10.292245, 12.016327, 7.706122, 7.967347, 7.653878, 8.176327, 9.639184, 8.594286, 7.366531, 8.254694, 6.29551, 8.254694, 10.109388, 8.96, 7.88898, 9.691429, 8.254694, 8.96, 10.396735, 9.691429, 9.221224, 7.967347, 9.221224, 6.687347, 9.691429, 7.549388, 7.549388, 6.765714, 7.131429, 11.31102, 8.254694, 10.396735, 10.893061, 15.46449];
+const TTS_HIGHLIGHT_MODE = "data-id";
+let ttsIdx=0, ttsPlaying=false, ttsPaused=false, ttsAudio=null, ttsVoice=null;
+const ttsSynth = window.speechSynthesis;
+const ttsSpeedPresets=[0.85,1.0,1.15]; let ttsSpeedIdx=1;
+function ttsCycleSpeed(){ttsSpeedIdx=(ttsSpeedIdx+1)%ttsSpeedPresets.length;const rate=ttsSpeedPresets[ttsSpeedIdx];if(ttsAudio)ttsAudio.playbackRate=rate;const b=document.getElementById('ttsSpeedBtn');if(b)b.textContent=rate.toFixed(2).replace(/0$/,'')+'x';}
+function ttsPickVoice(){if(!ttsSynth) return null;const v=ttsSynth.getVoices();return v.find(x=>x.lang==='ko-KR')||v.find(x=>x.lang.startsWith('ko'))||v[0]}
+if(ttsSynth) ttsSynth.onvoiceschanged=()=>{ttsVoice=ttsPickVoice();};
+setTimeout(()=>{ttsVoice=ttsPickVoice();},500);
+function ttsPad3(n){return String(n).padStart(3,'0')}
+function ttsCumSec(idx){let s=0;for(let i=0;i<idx;i++) s+=ttsDurations[i]||0; return s}
+function ttsFmtTime(sec){const m=Math.floor(sec/60),s=Math.floor(sec%60);return m+':'+String(s).padStart(2,'0')}
+function ttsUpdateStatus(){const pct=((ttsIdx+1)/ttsScript.length)*100;const bar=document.getElementById('ttsProg'),st=document.getElementById('ttsStatus');if(bar)bar.style.width=pct+'%';if(st)st.textContent=(ttsIdx+1)+'/'+ttsScript.length+' · '+ttsFmtTime(ttsCumSec(ttsIdx));}
+function ttsHighlight(kw){
+  document.querySelectorAll('.place-card-active,.tts-highlight-active').forEach(el=>el.classList.remove('place-card-active','tts-highlight-active'));
+  if(!kw) return;
+  const target=document.querySelector('[data-id="'+kw+'"]');
+  if(target){target.classList.add('place-card-active');target.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+function ttsFallbackSpeak(item,onDone){const u=new SpeechSynthesisUtterance(item.text);if(ttsVoice)u.voice=ttsVoice;u.lang='ko-KR';u.rate=1.05;u.pitch=1.0;u.onend=onDone;ttsSynth.cancel();ttsSynth.speak(u);}
+function ttsSpeakCur(){
+  const item=ttsScript[ttsIdx]; if(!item) return;
+  ttsHighlight(item.kw); ttsUpdateStatus();
+  if(ttsAudio){ttsAudio.onended=null;ttsAudio.onerror=null;ttsAudio.pause();}
+  const a=new Audio('tts-audio/'+ttsPad3(ttsIdx+1)+'.mp3');
+  a.playbackRate=ttsSpeedPresets[ttsSpeedIdx];
+  ttsAudio=a;
+  a.onended=()=>{if(ttsPlaying && !ttsPaused) ttsAdvanceNext();};
+  a.onerror=()=>{ttsFallbackSpeak(item,()=>{if(ttsPlaying && !ttsPaused) ttsAdvanceNext();});};
+  a.play().catch(()=>{ttsFallbackSpeak(item,()=>{if(ttsPlaying && !ttsPaused) ttsAdvanceNext();});});
+}
+function ttsAdvanceNext(){if(ttsIdx+1<ttsScript.length){ttsIdx++;ttsSpeakCur();}else{ttsPlaying=false;toast('✅ 해설 완료!');}}
+function ttsPlay(){if(ttsPaused){ttsPaused=false;if(ttsAudio)ttsAudio.play();else ttsSpeakCur();return;}if(ttsPlaying)return;ttsPlaying=true;ttsIdx=0;ttsSpeakCur();toast('▶ 해설 시작!');}
+function ttsPause(){if(!ttsPlaying)return;if(ttsAudio)ttsAudio.pause();ttsSynth.pause();ttsPaused=true;}
+function ttsStop(){if(ttsAudio){ttsAudio.onended=null;ttsAudio.onerror=null;ttsAudio.pause();ttsAudio=null;}ttsSynth.cancel();ttsPlaying=false;ttsPaused=false;ttsIdx=0;document.querySelectorAll('.place-card-active').forEach(el=>el.classList.remove('place-card-active'));ttsUpdateStatus();}
+function ttsNext(){if(ttsAudio){ttsAudio.onended=null;ttsAudio.onerror=null;ttsAudio.pause();}ttsSynth.cancel();ttsIdx=Math.min(ttsIdx+1,ttsScript.length-1);if(ttsPlaying){ttsSpeakCur()}else{ttsHighlight(ttsScript[ttsIdx].kw);ttsUpdateStatus()}}
+function ttsPrev(){if(ttsAudio){ttsAudio.onended=null;ttsAudio.onerror=null;ttsAudio.pause();}ttsSynth.cancel();ttsIdx=Math.max(ttsIdx-1,0);if(ttsPlaying){ttsSpeakCur()}else{ttsHighlight(ttsScript[ttsIdx].kw);ttsUpdateStatus()}}
+document.addEventListener('DOMContentLoaded', ttsUpdateStatus);
+if(document.readyState!=='loading') ttsUpdateStatus();
+
+/* ============ 이동수단 가이드 ============ */
+(function(){
+  const tg=DATA.transport_guide; const area=document.getElementById('transportArea');
+  function block(title,items){
+    let h='<h3 style="font-family:var(--font-heading);color:var(--red-deep);font-size:19px;margin:20px 0 12px">'+title+'</h3>';
+    items.forEach(it=>{h+='<div class="card" style="margin-bottom:12px"><div style="font-weight:700;color:var(--red-primary);margin-bottom:6px">'+it.h+'</div><div style="font-size:14.5px;line-height:1.7;color:var(--ink-soft)">'+it.d+'</div></div>';});
+    return h;
+  }
+  area.innerHTML = block(tg.na_title, tg.na_items) + block(tg.latam_title, tg.latam_items);
+})();
+
+/* ============ 숙소 전략 ============ */
+(function(){
+  const ag=DATA.accommodation_guide; const area=document.getElementById('stayArea');
+  function block(g){
+    let h='<div class="card" style="margin-bottom:16px;border-left-color:var(--gold)"><h3 style="font-family:var(--font-heading);color:var(--red-deep);margin-bottom:10px">'+g.h+'</h3><ul style="padding-left:20px;line-height:1.9;font-size:14.5px">';
+    g.items.forEach(it=>h+='<li>'+it+'</li>');
+    return h+'</ul></div>';
+  }
+  area.innerHTML = block(ag.na) + block(ag.latam);
+})();
+
+/* ============ 예약 우선순위 ============ */
+(function(){
+  const grid=document.getElementById('bookingGrid');
+  const catLabel={visa:'🛂 비자·전자허가',transport:'🚐 교통',activity:'🎢 액티비티',hotel:'🏨 숙소',insurance:'🛡️ 보험'};
+  function render(filter){
+    let list=DATA.booking_priorities;
+    if(filter!=='all') list=list.filter(r=>r.category===filter);
+    grid.innerHTML=list.map(r=>'<div class="voucher" data-cat="'+r.category+'">'+
+      '<span class="voucher-status booked" style="background:var(--info)">'+r.status+'</span>'+
+      '<div class="voucher-cat">'+(catLabel[r.category]||r.category)+'</div>'+
+      '<div class="voucher-label">'+r.label+'</div>'+
+      '<div class="voucher-when">🕒 '+r.when+'</div>'+
+      (r.note?'<div class="voucher-note">'+r.note+'</div>':'')+
+    '</div>').join('');
+  }
+  document.querySelectorAll('#bookingFilter .wtab').forEach(b=>{
+    b.onclick=()=>{document.querySelectorAll('#bookingFilter .wtab').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.bf);}
+  });
+  render('all');
+  document.getElementById('bookingSummary').textContent='아직 예약된 것은 없습니다 · 총 '+DATA.booking_priorities.length+'건을 시기별로 준비하세요';
+})();
+
+/* ============ 기후 가이드 ============ */
+(function(){
+  const area=document.getElementById('climateArea');
+  area.innerHTML = DATA.climate.map(c=>'<div class="card" style="margin-bottom:12px"><div style="font-weight:700;color:var(--red-primary);font-family:var(--font-heading);margin-bottom:6px">'+c.period+'</div><div style="font-size:14.5px;line-height:1.7;color:var(--ink-soft)">'+c.desc+'</div></div>').join('');
+})();
+
+/* ============ 축제 & 이벤트 ============ */
+(function(){
+  const area=document.getElementById('festivalsArea');
+  area.innerHTML = DATA.festivals.map(f=>'<div class="card" style="margin-bottom:14px;border-left-color:var(--red-primary)"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px"><span style="font-weight:700;font-family:var(--font-heading);color:var(--red-deep);font-size:17px">'+f.name_ko+'</span><span class="mini-chip">📅 '+f.date+'</span></div><div style="font-size:13.5px;color:var(--gold-antique);margin-bottom:6px">'+f.city+'</div><div style="font-size:14.5px;line-height:1.7">'+f.desc+'</div></div>').join('');
+  const vn=DATA.venezuela_note;
+  document.getElementById('venezuelaNote').innerHTML='<b>'+vn.title+'</b><p style="margin-top:8px">'+vn.body+'</p>';
+})();
+
+/* ============ 마일리지 가이드 ============ */
+(function(){
+  const mg=DATA.mileage_guide;
+  document.getElementById('mileageTitle').textContent='✈️ '+mg.title.replace('✈️ ','');
+  document.getElementById('mileageSubtitle').textContent=mg.subtitle;
+  const area=document.getElementById('mileageArea');
+  let html='';
+  mg.categories.forEach(cat=>{
+    html+='<div class="card" style="margin-bottom:16px;border-left-color:var(--gold)">';
+    html+='<h3 style="font-family:var(--font-heading);color:var(--red-deep);font-size:18px;margin-bottom:12px;border-bottom:1px dashed var(--gold);padding-bottom:8px">'+cat.name+'</h3>';
+    cat.items.forEach(it=>{html+='<div style="padding:10px 0;border-bottom:1px dotted var(--gray-warm)"><div style="font-weight:700;color:var(--red-primary);margin-bottom:4px;font-size:15px">'+it.perk+'</div><div style="font-size:14px;color:var(--ink-soft);line-height:1.65">'+it.desc+'</div></div>';});
+    html+='</div>';
+  });
+  area.innerHTML=html;
+  document.getElementById('mileageNote').textContent='💡 '+mg.note;
+})();
+
+/* ============ 여행 언어 ============ */
+(function(){
+  const lg=DATA.language_guide; const area=document.getElementById('languageArea');
+  function block(title,phrases,langKey){
+    let h='<h3 style="font-family:var(--font-heading);color:var(--red-deep);font-size:19px;margin:20px 0 12px">'+title+'</h3><div class="place-grid">';
+    phrases.forEach(p=>{
+      h+='<div class="card"><div style="font-weight:700;margin-bottom:6px">'+p.ko+'</div>'+
+         '<div style="font-size:16px;color:var(--red-primary);font-weight:700">'+(p[langKey]||'')+'</div>'+
+         (p.pron?'<div style="font-size:13px;color:var(--gold-antique);margin-top:4px">🔤 '+p.pron+'</div>':'')+
+         '</div>';
+    });
+    return h+'</div>';
+  }
+  area.innerHTML = block(lg.en_title, lg.en_phrases, 'en') + block(lg.es_title, lg.es_phrases, 'es') + block(lg.pt_title, lg.pt_phrases, 'pt');
+})();
+
+/* ============ 짐싸기 ============ */
+(function(){
+  const ps=DATA.packing_strategy; document.getElementById('packingTitle').textContent=ps.title;
+  const area=document.getElementById('packingArea');
+  area.innerHTML = ps.items.map(it=>'<div class="card" style="margin-bottom:12px"><div style="font-weight:700;color:var(--red-primary);margin-bottom:6px">🎒 '+it.h+'</div><div style="font-size:14.5px;line-height:1.7;color:var(--ink-soft)">'+it.d+'</div></div>').join('');
+})();
+
+/* ============ 체크리스트 (구간별, localStorage) ============ */
+function chkKey(phase,idx){return 'chk_nasa_'+phase.replace(/[^a-zA-Z0-9가-힣]/g,'')+'_'+idx}
+(function(){
+  const area=document.getElementById('checklistArea');
+  let html='';
+  DATA.phase_checklists.forEach(sec=>{
+    html+='<div class="card" style="margin-bottom:16px"><h3 style="font-family:var(--font-heading);color:var(--red-deep);margin-bottom:12px">'+sec.phase+'</h3>';
+    sec.items.forEach((it,i)=>{
+      const key=chkKey(sec.phase,i);
+      const checked=localStorage.getItem(key)==='1';
+      html+='<label style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dotted var(--gray-warm);cursor:pointer">'+
+        '<input type="checkbox" '+(checked?'checked':'')+' data-key="'+key+'" style="margin-top:4px;width:18px;height:18px;flex-shrink:0">'+
+        '<span style="font-size:14.5px;line-height:1.6'+(checked?';text-decoration:line-through;color:var(--ink-soft)':'')+'">'+it+'</span></label>';
+    });
+    html+='</div>';
+  });
+  area.innerHTML=html;
+  area.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.onchange=()=>{localStorage.setItem(cb.dataset.key, cb.checked?'1':'0'); cb.parentElement.querySelector('span').style.textDecoration=cb.checked?'line-through':'none'; cb.parentElement.querySelector('span').style.color=cb.checked?'var(--ink-soft)':'var(--ink)';};
+  });
+})();
+
+/* ============ 음악 (간단 YouTube 재생) ============ */
+(function(){
+  const area=document.getElementById('musicArea');
+  area.innerHTML = DATA.theme_music.map((m,i)=>'<div class="music-item" data-yid="'+escAttr(m.youtube_id)+'" data-title="'+escAttr(m.title)+'" data-artist="'+escAttr(m.artist||'')+'"><div class="music-play">▶</div><div class="music-meta"><div class="music-title">'+m.title+'</div><div class="music-sub">'+(m.artist||'')+'</div></div></div>').join('');
+  area.querySelectorAll('.music-item').forEach(el=>{
+    el.onclick=()=>playMusic(el.dataset.yid, el.dataset.title, el.dataset.artist);
+  });
+})();
+function playMusic(yid,title,artist){
+  const mp=document.getElementById('musicPlayer');
+  mp.innerHTML='<div class="mp-toggle" onclick="this.closest(\'#musicPlayer\').classList.remove(\'show\')">✕</div>'+
+    '<div class="mp-meta"><div class="mp-title">🎵 '+title+' — '+artist+'</div></div>'+
+    '<iframe id="ytFrame" src="https://www.youtube.com/embed/'+yid+'?autoplay=1" frameborder="0" allow="autoplay" style="width:160px;height:60px;border-radius:8px"></iframe>';
+  mp.classList.add('show');
+  document.querySelectorAll('.music-item.playing').forEach(x=>x.classList.remove('playing'));
+  const active=Array.from(document.querySelectorAll('.music-item')).find(x=>x.dataset.yid===yid);
+  if(active) active.classList.add('playing');
+}
+
+/* ============ 일기 (IndexedDB) ============ */
+function openJournalDB(){return new Promise((res,rej)=>{const r=indexedDB.open('nasa_trip_data',2);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('journal'))db.createObjectStore('journal',{keyPath:'id',autoIncrement:true});if(!db.objectStoreNames.contains('media'))db.createObjectStore('media',{keyPath:'id',autoIncrement:true});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);})}
+async function renderJournal(){
+  try{
+    const db=await openJournalDB();
+    const tx=db.transaction('journal','readonly'); const store=tx.objectStore('journal');
+    const req=store.getAll();
+    req.onsuccess=()=>{
+      const items=(req.result||[]).sort((a,b)=>b.id-a.id);
+      const box=document.getElementById('journalList');
+      if(!items.length){box.innerHTML='<p style="color:var(--ink-soft);text-align:center;padding:20px">아직 작성된 일기가 없습니다.</p>';return;}
+      box.innerHTML=items.map(it=>'<div class="card" style="margin-bottom:10px"><div style="font-size:12px;color:var(--gold-antique);margin-bottom:6px">'+(it.date||'')+'</div><div style="white-space:pre-wrap;font-size:14.5px;line-height:1.7">'+escAttr(it.text||'')+'</div></div>').join('');
+    };
+  }catch(e){document.getElementById('journalList').innerHTML='<p style="color:var(--error)">일기를 불러오지 못했습니다.</p>';}
+}
+async function saveJournal(){
+  const ta=document.getElementById('journalInput'); const text=ta.value.trim();
+  if(!text){toast('내용을 입력해주세요','error');return;}
+  const db=await openJournalDB();
+  const tx=db.transaction('journal','readwrite');
+  tx.objectStore('journal').add({text, date:new Date().toLocaleString('ko-KR')});
+  tx.oncomplete=()=>{ta.value='';toast('💗 저장되었습니다');renderJournal();};
+}
+let mediaRec=null, recChunks=[];
+function startRecording(){
+  if(!navigator.mediaDevices){toast('이 기기는 녹음을 지원하지 않습니다','error');return;}
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    recChunks=[]; mediaRec=new MediaRecorder(stream);
+    mediaRec.ondataavailable=e=>recChunks.push(e.data);
+    mediaRec.onstop=async ()=>{
+      const blob=new Blob(recChunks,{type:'audio/webm'});
+      const reader=new FileReader();
+      reader.onload=async ()=>{
+        const db=await openJournalDB();
+        const tx=db.transaction('journal','readwrite');
+        tx.objectStore('journal').add({text:'🎙️ 음성 메모 (재생은 백업 파일에서 가능)', date:new Date().toLocaleString('ko-KR'), audio:reader.result});
+        tx.oncomplete=()=>{toast('🎙️ 음성 메모 저장됨');renderJournal();};
+      };
+      reader.readAsDataURL(blob);
+    };
+    mediaRec.start(); toast('🎙️ 녹음 시작 — 다시 누르면 종료됩니다');
+    document.querySelector('[onclick="startRecording()"]').setAttribute('onclick','stopRecording()');
+  }).catch(()=>toast('마이크 권한이 필요합니다','error'));
+}
+function stopRecording(){
+  if(mediaRec) mediaRec.stop();
+  const btn=document.querySelector('[onclick="stopRecording()"]');
+  if(btn) btn.setAttribute('onclick','startRecording()');
+}
+async function exportJournalText(){
+  const db=await openJournalDB();
+  const tx=db.transaction('journal','readonly');
+  const req=tx.objectStore('journal').getAll();
+  req.onsuccess=()=>{
+    const items=(req.result||[]).sort((a,b)=>a.id-b.id);
+    const text=items.map(it=>'['+(it.date||'')+']\n'+(it.text||'')).join('\n\n');
+    const blob=new Blob([text],{type:'text/plain'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='여행일기.txt'; a.click();
+  };
+}
+async function backupAll(){
+  const db=await openJournalDB();
+  const jTx=db.transaction('journal','readonly'); const journal=await new Promise(r=>{jTx.objectStore('journal').getAll().onsuccess=e=>r(e.target.result)});
+  const mTx=db.transaction('media','readonly'); const media=await new Promise(r=>{mTx.objectStore('media').getAll().onsuccess=e=>r(e.target.result)});
+  const backup={journal, media, checklists:{}, exported:new Date().toISOString()};
+  Object.keys(localStorage).filter(k=>k.startsWith('chk_nasa_')).forEach(k=>backup.checklists[k]=localStorage.getItem(k));
+  const blob=new Blob([JSON.stringify(backup)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='여행백업_'+ymd(TODAY)+'.json'; a.click();
+  toast('📦 백업 파일이 다운로드되었습니다');
+}
+async function restoreBackup(ev){
+  const file=ev.target.files[0]; if(!file) return;
+  const text=await file.text();
+  try{
+    const backup=JSON.parse(text);
+    const db=await openJournalDB();
+    if(backup.journal&&backup.journal.length){const tx=db.transaction('journal','readwrite');const store=tx.objectStore('journal');backup.journal.forEach(it=>{delete it.id;store.add(it);});}
+    if(backup.media&&backup.media.length){const tx=db.transaction('media','readwrite');const store=tx.objectStore('media');backup.media.forEach(it=>{delete it.id;store.add(it);});}
+    if(backup.checklists){Object.keys(backup.checklists).forEach(k=>localStorage.setItem(k,backup.checklists[k]));}
+    toast('📥 복원되었습니다 — 새로고침합니다');
+    setTimeout(()=>location.reload(),1200);
+  }catch(e){toast('백업 파일을 읽지 못했습니다','error');}
+}
+renderJournal();
+
+/* ============ 갤러리 (IndexedDB) ============ */
+async function renderGallery(){
+  try{
+    const db=await openJournalDB();
+    const tx=db.transaction('media','readonly');
+    const req=tx.objectStore('media').getAll();
+    req.onsuccess=()=>{
+      const items=(req.result||[]).sort((a,b)=>b.id-a.id);
+      const box=document.getElementById('galleryList');
+      if(!items.length){box.innerHTML='<p style="color:var(--ink-soft);text-align:center;padding:20px">아직 업로드된 사진/동영상이 없습니다.</p>';return;}
+      box.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:16px">'+
+        items.map(it=>{
+          const isVideo=(it.type||'').startsWith('video');
+          return '<div style="aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--paper)">'+
+            (isVideo?'<video src="'+it.data+'" style="width:100%;height:100%;object-fit:cover" controls></video>':'<img src="'+it.data+'" style="width:100%;height:100%;object-fit:cover">')+
+          '</div>';
+        }).join('')+'</div>';
+    };
+  }catch(e){document.getElementById('galleryList').innerHTML='<p style="color:var(--error)">불러오지 못했습니다.</p>';}
+}
+function handleGalleryUpload(ev){
+  const files=Array.from(ev.target.files||[]);
+  if(!files.length) return;
+  files.forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=async ()=>{
+      const db=await openJournalDB();
+      const tx=db.transaction('media','readwrite');
+      tx.objectStore('media').add({data:reader.result, type:file.type, date:new Date().toLocaleString('ko-KR')});
+      tx.oncomplete=()=>renderGallery();
+    };
+    reader.readAsDataURL(file);
+  });
+  toast('📷 업로드 완료');
+}
+renderGallery();
+
+/* ============ 비상 연락처 ============ */
+(function(){
+  const area=document.getElementById('emergencyArea');
+  area.innerHTML='<div class="place-grid">'+DATA.emergency.map(e=>
+    '<div class="card" style="display:flex;gap:12px;align-items:center"><div class="emer-icon">☎️</div><div><div style="font-weight:700">'+e.label+'</div>'+
+    '<div style="font-size:14px;color:var(--red-primary);font-weight:700"><a href="tel:'+e.phone.replace(/[^+\d]/g,'')+'">'+e.phone+'</a></div>'+
+    '<div style="font-size:12.5px;color:var(--ink-soft)">'+e.note+'</div></div></div>'
+  ).join('')+'</div>';
+})();
+
+const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.1});
+document.querySelectorAll('.section').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
