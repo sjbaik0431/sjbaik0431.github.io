@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>전체 이동 경로 지도 · 인천→북미→중남미→인천</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/trip-map.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🗺️ 전체 여정 지도<small>백상진·박현교 부부 북미·중남미 대장정 2027.4.25~7.26(약 93일)</small></div>
+  <nav>
+    <a href="overview.html" class="on">✈️ 전체 여정</a>
+    <a href="../index.html">← 대시보드</a>
+  </nav>
+</div>
+
+<div class="head">
+  <h1>전체 여정 · 약 93일 (2027.4.25 ~ 7.26)</h1>
+  <p>인천 → 로스앤젤레스 입국 → 북미 서부·로키·동부 렌터카·캠핑카 로드트립 → 멕시코·쿠바 →
+     페루·볼리비아·칠레 안데스 구간 → 파타고니아·아르헨티나·우루과이 → 브라질 → 홍콩 경유 → 인천 귀국.
+     두 대륙, 약 36개 도시를 잇는 대장정입니다. 아래 <b>「여정 재생」</b> 버튼을 누르면 이동수단별 색으로 경로가 순서대로 그려집니다.</p>
+</div>
+
+<div class="daybar" id="daybar"></div>
+
+<div class="wrap">
+  <div class="mapbox">
+    <div id="map"></div>
+    <div class="ctrl">
+      <button id="btnPlay">▶ 여정 재생</button>
+      <button id="btnReset" class="ghost">↺ 처음부터</button>
+      <button id="btnFit" class="ghost">🔍 전체보기</button>
+      <div class="spd"><span>속도</span>
+        <b data-s="0.6">느리게</b><b data-s="1" class="on">보통</b><b data-s="2">빠르게</b>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="bar"><i></i></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:#C0392B"></i>항공</span>
+      <span><i style="background:#455A64"></i>렌터카·캠핑카</span>
+      <span><i style="background:#4527A0"></i>버스</span>
+      <span><i style="background:#6A1B9A"></i>기차</span>
+      <span><i style="background:#00838F"></i>페리(선박)</span>
+      <span><i style="background:#00695C"></i>관광셔틀</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>여정 순서</h3>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+
+<div class="note">
+  <b>구간 총정리</b> ·
+  🇺🇸🇨🇦 <b>북미(Day1~57)</b>: LA→샌디에고→라스베가스→샌프란시스코→시애틀→밴쿠버→(캠핑카)유타 국립공원→덴버→시카고→나이아가라→보스턴→뉴욕→워싱턴DC→애틀랜타→올랜도→마이애미 ·
+  🇲🇽🇨🇺 <b>중미(Day58~65)</b>: 멕시코시티→칸쿤→아바나 ·
+  🇵🇪🇧🇴🇨🇱 <b>안데스(Day66~80)</b>: 리마→쿠스코(★6/24 인티라이미)→마추픽추→푸노→라파스→우유니→아타카마 ·
+  🇦🇷🇺🇾🇧🇷 <b>남미 동부(Day81~93)</b>: 엘칼라파테(빙하)→부에노스아이레스→몬테비데오→살타→이구아수→상파울루→리우 → 홍콩 경유 → 인천.
+  대한항공 스카이팀 동맹으로 <b>델타(북미)·아에로멕시코(멕시코)·아르헨티나항공(아르헨티나 국내선)</b> 구간은 마일리지 적립·이용이 가능합니다 — 상세는 대시보드 「✈️ 마일리지」 탭 참고.
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/trip-map.js"></script>
+<script src="map_data.js"></script>
+</body>
+</html>
