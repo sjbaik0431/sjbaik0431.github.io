@@ -816,10 +816,18 @@ async function shareText(text,title){
 }
 
 // backup / restore
-function backup(){
+async function backup(){
   const data={app:'parkgolf',ver:2,exportedAt:new Date().toISOString(),current:S,history:loadHist(),courses:loadCourses()};
-  const blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='parkgolf_backup_'+todayStr()+'.json'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+  const json=JSON.stringify(data,null,1), fname='parkgolf_backup_'+todayStr()+'.json';
+  // claude.ai 아티팩트 뷰어 안에서는 downloads 기능으로 저장
+  try{
+    if(window.claude&&typeof window.claude.use==='function'){
+      const dl=await window.claude.use('downloads');
+      if(dl){ try{ await dl.save({filename:fname,data:json}); toast('백업 파일을 저장했습니다'); }catch(e){ if(!(e&&e.code==='declined')) toast('이 화면에서는 파일 저장이 지원되지 않습니다'); } return; }
+    }
+  }catch(e){}
+  const blob=new Blob([json],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
   toast('백업 파일을 저장했습니다');
 }
 function restore(file){
