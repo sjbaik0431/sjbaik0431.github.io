@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <title>파크골프 스코어카드</title>
-<meta name="description" content="14홀 2인용 파크골프 스코어카드. 홀별 파(3/4/5) 직접 설정, 자동 합계, 오프라인 저장.">
+<meta name="description" content="14홀 2인용 파크골프 스코어카드. 홀별 파 드롭다운 선택, 회차·날짜·골프장 기록, 자동 합계, 역대 전적.">
 <meta name="theme-color" content="#1f6f43">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -51,7 +51,15 @@ body{
   -webkit-user-select:none;user-select:none;
 }
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;touch-action:manipulation}
-input{font-family:inherit}
+input,select{font-family:inherit;color:var(--t1)}
+select{
+  -webkit-appearance:none;appearance:none;
+  background-color:var(--card2);border:1px solid var(--border);border-radius:12px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237f8f84' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+  padding:0 40px 0 14px;outline:none;cursor:pointer;
+}
+select:focus{border-color:var(--green)}
 
 /* ===== header ===== */
 .hdr{
@@ -61,33 +69,45 @@ input{font-family:inherit}
   box-shadow:0 2px 8px rgba(0,0,0,.18);
 }
 .hdr-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.hdr-title{font-weight:800;font-size:17px;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
-.hdr-title small{font-weight:600;font-size:12px;opacity:.85;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:999px}
-.hdr-actions{display:flex;gap:6px}
+.hdr-title{font-weight:800;font-size:17px;letter-spacing:-.2px;display:flex;align-items:center;gap:8px;min-width:0}
+.hdr-title small{font-weight:600;font-size:12px;opacity:.9;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:999px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.hdr-actions{display:flex;gap:6px;flex-shrink:0}
 .ibtn{
   width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);
   display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;
 }
 .ibtn:active{background:rgba(255,255,255,.3)}
-
-/* totals strip */
 .totals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .tot{
   background:rgba(255,255,255,.14);border-radius:12px;padding:8px 10px;
   display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;
 }
 .tot.lead{background:rgba(255,255,255,.26);outline:2px solid rgba(255,255,255,.7)}
-.tot-name{font-size:12px;font-weight:700;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tot-name{font-size:12px;font-weight:700;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:22px}
 .tot-main{display:flex;align-items:baseline;gap:6px}
 .tot-strokes{font-size:26px;font-weight:800;line-height:1}
 .tot-par{font-size:14px;font-weight:700;opacity:.95}
 .tot-sub{font-size:11px;opacity:.8}
 .crown{position:absolute;right:8px;top:6px;font-size:16px}
 
-/* ===== tabs ===== */
-.tabs{
-  display:flex;gap:6px;padding:12px 16px 4px;
+/* round info bar */
+.rinfo{
+  margin:12px 16px 0;max-width:720px;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 12px;
+  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);cursor:pointer;
 }
+.rinfo:active{background:var(--card2)}
+.rinfo .rn{
+  background:var(--green);color:#fff;font-weight:900;font-size:14px;border-radius:10px;padding:8px 10px;white-space:nowrap;
+}
+.rinfo .rt{flex:1;min-width:0}
+.rinfo .rt b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rinfo .rt span{font-size:12px;color:var(--t3)}
+.rinfo .edit{color:var(--t3);font-size:14px}
+@media (min-width:752px){ .rinfo{margin-left:auto;margin-right:auto} }
+
+/* ===== tabs ===== */
+.tabs{display:flex;gap:6px;padding:12px 16px 4px;max-width:752px;margin:0 auto}
 .tab{
   flex:1;padding:10px 0;border-radius:12px;font-weight:700;font-size:14px;
   background:var(--card);border:1px solid var(--border);color:var(--t2);
@@ -98,7 +118,7 @@ input{font-family:inherit}
 .panel{display:none}
 .panel.on{display:block}
 
-/* ===== input panel: one hole at a time ===== */
+/* ===== input panel ===== */
 .hole-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 10px}
 .nav-btn{
   width:52px;height:52px;border-radius:14px;background:var(--card);border:1px solid var(--border);
@@ -119,14 +139,10 @@ input{font-family:inherit}
   background:var(--card);border:1px solid var(--border);border-radius:16px;
   padding:14px;box-shadow:var(--shadow);margin-bottom:12px;
 }
-.card-label{font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-.par-seg{display:flex;gap:8px}
-.par-opt{
-  flex:1;padding:14px 0;border-radius:12px;background:var(--card2);border:2px solid transparent;
-  font-size:20px;font-weight:800;color:var(--t2);
-}
-.par-opt.on{background:var(--green-soft);border-color:var(--green);color:var(--green)}
-.par-opt:active{transform:scale(.97)}
+.card-label{font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.3px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.par-row{display:flex;align-items:center;gap:10px}
+.par-select{height:60px;font-size:22px;font-weight:800;flex:1}
+.par-select.unset{color:var(--t3);font-weight:700;font-size:16px;border-style:dashed}
 .par-hint{font-size:12px;color:var(--t3);margin-top:8px}
 
 .player-card{display:flex;flex-direction:column;gap:10px}
@@ -134,10 +150,7 @@ input{font-family:inherit}
 .pc-name{font-weight:800;font-size:16px;display:flex;align-items:center;gap:6px;min-width:0}
 .pc-name span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc-name .edit{font-size:13px;color:var(--t3)}
-.badge{
-  font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;
-  background:var(--card2);color:var(--t2);white-space:nowrap;
-}
+.badge{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--card2);color:var(--t2);white-space:nowrap}
 .badge.under{background:var(--blue-soft);color:var(--blue)}
 .badge.even{background:var(--green-soft);color:var(--green)}
 .badge.over{background:var(--amber-soft);color:var(--amber)}
@@ -149,42 +162,32 @@ input{font-family:inherit}
 }
 .step:active{background:var(--green-soft);border-color:var(--green)}
 .step.minus:disabled{opacity:.3}
-.score-box{
-  height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--card2);border:1px solid var(--border);
-}
+.score-box{height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border)}
 .score-num{font-size:36px;font-weight:900;line-height:1}
 .score-num.empty{color:var(--t3);font-size:24px;font-weight:700}
 .score-term{font-size:12px;font-weight:700;color:var(--t2);margin-top:2px}
 .quick{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.qk{
-  padding:9px 0;border-radius:10px;background:var(--card2);border:1px solid var(--border);
-  font-size:12px;font-weight:700;color:var(--t2);white-space:nowrap;overflow:hidden;
-}
-.hist .qk{font-size:13px}
-.hist .next-row{display:flex}
+.qk{padding:9px 0;border-radius:10px;background:var(--card2);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--t2);white-space:nowrap;overflow:hidden}
 .qk:active{background:var(--green-soft);border-color:var(--green);color:var(--green)}
 .qk.on{background:var(--green);color:#fff;border-color:var(--green)}
 
 .next-row{display:flex;gap:10px;margin-top:4px}
-.big-btn{
-  flex:1;height:54px;border-radius:14px;font-size:16px;font-weight:800;
-  background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;
-}
+.big-btn{flex:1;height:54px;border-radius:14px;font-size:16px;font-weight:800;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px}
 .big-btn.ghost{background:var(--card);color:var(--t1);border:1px solid var(--border)}
+.big-btn.danger{background:var(--card);color:var(--red);border:1px solid var(--border)}
 .big-btn:active{filter:brightness(.92)}
 .big-btn:disabled{opacity:.4}
 
 /* ===== scorecard table ===== */
 .table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow)}
 table{border-collapse:collapse;width:100%;min-width:320px}
-th,td{padding:10px 6px;text-align:center;border-bottom:1px solid var(--border);font-size:15px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--border);font-size:15px}
 th{background:var(--card2);font-size:12px;font-weight:800;color:var(--t2);position:sticky;top:0}
 th.name{max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-tr.hole-row:active{background:var(--card2)}
 td.h{font-weight:800;color:var(--t1)}
-td.p{color:var(--t2);font-weight:700}
-td.p .pchip{display:inline-flex;min-width:36px;padding:4px 8px;border-radius:8px;background:var(--card2);font-weight:800;color:var(--t1);justify-content:center}
+td.h button{width:40px;height:40px;border-radius:10px;font-weight:800;font-size:15px;background:var(--card2);color:var(--t1)}
+td.p select{height:40px;width:68px;padding:0 24px 0 10px;font-size:15px;font-weight:800;border-radius:10px;background-position:right 8px center;background-size:12px}
+td.p select.unset{color:var(--t3);border-style:dashed}
 td.s{font-weight:800;font-size:17px}
 td.s .cell{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px}
 .cell.under{background:var(--blue-soft);color:var(--blue)}
@@ -199,15 +202,42 @@ tr.total td{background:var(--green-soft);font-weight:900;font-size:16px;color:va
 tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--t3);padding:10px 4px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+.muted{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
 
-/* result banner */
-.result{
-  background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:16px;
-  margin-bottom:12px;box-shadow:var(--shadow);display:none;
-}
+.result{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);display:none}
 .result.on{display:block}
 .result h3{margin:0 0 6px;font-size:18px}
 .result p{margin:0;font-size:14px;opacity:.95}
+
+/* ===== record panel ===== */
+.h2h{
+  background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.h2h-title{font-size:12px;font-weight:700;opacity:.85;margin-bottom:8px;letter-spacing:.3px}
+.h2h-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+.h2h-p{text-align:center}
+.h2h-p .nm{font-size:14px;font-weight:700;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h2h-p .w{font-size:40px;font-weight:900;line-height:1.1}
+.h2h-p .w small{font-size:14px;font-weight:700;opacity:.85;margin-left:2px}
+.h2h-mid{text-align:center;font-size:13px;font-weight:800;opacity:.9;background:rgba(255,255,255,.18);border-radius:10px;padding:6px 10px;white-space:nowrap}
+.h2h-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.h2h-sub div{background:rgba(255,255,255,.14);border-radius:10px;padding:8px 10px;font-size:12px;line-height:1.5}
+.h2h-sub b{font-size:14px}
+.streak{margin-top:10px;font-size:13px;font-weight:700;text-align:center;opacity:.95}
+
+.rlist .hist{border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:8px;background:var(--card);box-shadow:var(--shadow);font-size:14px}
+.hist-top{display:flex;align-items:center;gap:8px}
+.hist-top .rn{background:var(--green-soft);color:var(--green);font-weight:900;font-size:12px;border-radius:8px;padding:4px 8px;white-space:nowrap}
+.hist-top b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-top .win{font-size:12px;font-weight:800;color:var(--t2);white-space:nowrap}
+.hist .m{font-size:12px;color:var(--t3);margin-top:4px}
+.hist .r{display:flex;justify-content:space-between;gap:8px;margin-top:6px;padding:6px 10px;border-radius:8px;background:var(--card2)}
+.hist .r.w{background:var(--green-soft)}
+.hist .r span{font-weight:700}
+.hist .acts{display:flex;gap:6px;margin-top:8px}
+.hist .acts .qk{flex:1;font-size:13px;padding:10px 0}
+.hist.cur{border-color:var(--green)}
+.empty{color:var(--t3);font-size:14px;text-align:center;padding:24px 10px;line-height:1.6}
 
 /* ===== bottom bar ===== */
 .bar{
@@ -223,32 +253,23 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 }
 .bar button span{font-size:16px}
 .bar button:active{background:var(--green-soft)}
-.bar button.danger{color:var(--red)}
+.bar button.primary{background:var(--green);color:#fff;border-color:var(--green)}
 
 /* ===== modal ===== */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:none;align-items:flex-end;justify-content:center}
 .modal-bg.on{display:flex}
-.modal{
-  background:var(--card);width:100%;max-width:720px;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));
-  max-height:85vh;overflow-y:auto;
-}
+.modal{background:var(--card);width:100%;max-width:720px;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow-y:auto}
 .modal h3{margin:0 0 12px;font-size:17px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12px;font-weight:700;color:var(--t3);margin-bottom:4px}
-.field input{
-  width:100%;height:46px;border-radius:12px;border:1px solid var(--border);background:var(--card2);
-  color:var(--t1);font-size:16px;padding:0 12px;outline:none;
-}
+.field input,.field select{width:100%;height:48px;border-radius:12px;border:1px solid var(--border);background-color:var(--card2);color:var(--t1);font-size:16px;padding:0 12px;outline:none}
+.field select{padding-right:40px}
 .field input:focus{border-color:var(--green)}
 .row{display:flex;gap:8px}
 .row .field{flex:1}
-.hist{border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:var(--card2);font-size:14px}
-.hist b{font-weight:800}
-.hist .m{font-size:12px;color:var(--t3);margin-top:2px}
-.hist .r{display:flex;justify-content:space-between;gap:8px;margin-top:4px}
-.hist .r span{font-weight:700}
-.empty{color:var(--t3);font-size:14px;text-align:center;padding:20px}
-.muted{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
+.row .field.sm{flex:0 0 112px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chips .qk{flex:0 0 auto;padding:7px 12px;font-size:12px}
 
 .toast{
   position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
@@ -256,11 +277,7 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
   opacity:0;pointer-events:none;transition:.25s;z-index:60;white-space:nowrap;
 }
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
-@media (min-width:560px){
-  .hdr-title{font-size:19px}
-  .tot-strokes{font-size:30px}
-}
+@media (min-width:560px){ .hdr-title{font-size:19px} .tot-strokes{font-size:30px} }
 </style>
 </head>
 <body>
@@ -275,21 +292,28 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
   </div>
   <div class="totals">
     <div class="tot" id="tot0">
-      <div class="tot-name" id="totName0">플레이어 1</div>
+      <div class="tot-name" id="totName0">박프로</div>
       <div class="tot-main"><div class="tot-strokes" id="totStrokes0">0</div><div class="tot-par" id="totPar0">E</div></div>
       <div class="tot-sub" id="totSub0">0홀 완료</div>
     </div>
     <div class="tot" id="tot1">
-      <div class="tot-name" id="totName1">플레이어 2</div>
+      <div class="tot-name" id="totName1">백프로</div>
       <div class="tot-main"><div class="tot-strokes" id="totStrokes1">0</div><div class="tot-par" id="totPar1">E</div></div>
       <div class="tot-sub" id="totSub1">0홀 완료</div>
     </div>
   </div>
 </header>
 
+<div class="rinfo" id="rinfo" role="button" aria-label="라운드 정보 편집">
+  <div class="rn" id="riRound">1차전</div>
+  <div class="rt"><b id="riCourse">골프장 이름을 입력하세요</b><span id="riDate"></span></div>
+  <div class="edit">✎</div>
+</div>
+
 <nav class="tabs">
-  <button class="tab on" data-tab="input">✏️ 홀별 입력</button>
+  <button class="tab on" data-tab="input">✏️ 입력</button>
   <button class="tab" data-tab="card">📋 스코어카드</button>
+  <button class="tab" data-tab="record">🏆 역대 전적</button>
 </nav>
 
 <main class="wrap">
@@ -307,17 +331,20 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 
     <div class="card">
       <div class="card-label"><span>이 홀의 파 (PAR)</span><span id="parAllHint"></span></div>
-      <div class="par-seg" id="parSeg">
-        <button class="par-opt" data-par="3">파 3</button>
-        <button class="par-opt" data-par="4">파 4</button>
-        <button class="par-opt" data-par="5">파 5</button>
+      <div class="par-row">
+        <select class="par-select" id="parSelect" aria-label="파 선택">
+          <option value="0">파 선택 ▾</option>
+          <option value="3">파 3</option>
+          <option value="4">파 4</option>
+          <option value="5">파 5</option>
+        </select>
       </div>
-      <div class="par-hint">홀마다 직접 선택하세요. 선택값은 자동 저장되어 다음 라운드에도 유지됩니다.</div>
+      <div class="par-hint">드롭다운에서 파 3 / 파 4 / 파 5를 고르세요. 홀별 파는 저장되어 같은 골프장에서 다음 라운드에도 그대로 쓰입니다.</div>
     </div>
 
     <div class="card player-card" id="pcard0">
       <div class="pc-top">
-        <div class="pc-name" data-player="0"><span id="pName0">플레이어 1</span><span class="edit">✎</span></div>
+        <div class="pc-name" data-player="0"><span id="pName0">박프로</span><span class="edit">✎</span></div>
         <div class="badge" id="pBadge0">미입력</div>
       </div>
       <div class="stepper">
@@ -330,7 +357,7 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 
     <div class="card player-card" id="pcard1">
       <div class="pc-top">
-        <div class="pc-name" data-player="1"><span id="pName1">플레이어 2</span><span class="edit">✎</span></div>
+        <div class="pc-name" data-player="1"><span id="pName1">백프로</span><span class="edit">✎</span></div>
         <div class="badge" id="pBadge1">미입력</div>
       </div>
       <div class="stepper">
@@ -354,10 +381,10 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
       <table id="scoreTable">
         <thead>
           <tr>
-            <th style="width:44px">홀</th>
-            <th style="width:56px">파</th>
-            <th class="name" id="thName0">플레이어 1</th>
-            <th class="name" id="thName1">플레이어 2</th>
+            <th style="width:48px">홀</th>
+            <th style="width:76px">파</th>
+            <th class="name" id="thName0">박프로</th>
+            <th class="name" id="thName1">백프로</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -370,56 +397,78 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
       <span><i style="background:var(--amber-soft)"></i>보기</span>
       <span><i style="background:var(--red-soft)"></i>더블보기 이상</span>
     </div>
-    <div class="muted">행을 탭하면 해당 홀 입력 화면으로 이동합니다.</div>
+    <div class="muted">파 칸의 드롭다운으로 모든 홀의 파를 한 화면에서 바꿀 수 있습니다. 홀 번호를 탭하면 그 홀 입력 화면으로 이동합니다.</div>
+  </section>
+
+  <!-- ===== RECORD PANEL ===== -->
+  <section class="panel" id="panel-record">
+    <div class="h2h" id="h2h"></div>
+    <div class="rlist" id="rlist"></div>
+    <div class="next-row" style="margin-top:8px">
+      <button class="big-btn ghost" id="exportHist">📤 전적 공유</button>
+      <button class="big-btn danger" id="clearHistory">기록 전체 삭제</button>
+    </div>
   </section>
 
 </main>
 
 <div class="bar">
   <button id="btnShare"><span>📤</span>공유</button>
-  <button id="btnHistory"><span>📚</span>기록</button>
-  <button id="btnSave"><span>💾</span>라운드 저장</button>
-  <button id="btnReset" class="danger"><span>🔄</span>새 게임</button>
+  <button id="btnSave" class="primary"><span>💾</span>라운드 저장</button>
+  <button id="btnNew"><span>➕</span>다음 차전</button>
+</div>
+
+<!-- Round info modal -->
+<div class="modal-bg" id="mRound">
+  <div class="modal">
+    <h3>🏌️ 라운드 정보</h3>
+    <div class="row">
+      <div class="field sm"><label>회차</label>
+        <select id="inRound"></select>
+      </div>
+      <div class="field"><label>날짜</label><input type="date" id="inDate"></div>
+    </div>
+    <div class="field"><label>골프장 이름</label><input id="inCourse" maxlength="24" placeholder="예: 세종 파크골프장">
+      <div class="chips" id="courseChips"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label>플레이어 1</label><input id="inName0" maxlength="12" placeholder="박프로"></div>
+      <div class="field"><label>플레이어 2</label><input id="inName1" maxlength="12" placeholder="백프로"></div>
+    </div>
+    <div class="next-row"><button class="big-btn" id="closeRound">완료</button></div>
+  </div>
 </div>
 
 <!-- Settings modal -->
 <div class="modal-bg" id="mSettings">
   <div class="modal">
     <h3>⚙️ 설정</h3>
-    <div class="row">
-      <div class="field"><label>플레이어 1 이름</label><input id="inName0" maxlength="12" placeholder="플레이어 1"></div>
-      <div class="field"><label>플레이어 2 이름</label><input id="inName1" maxlength="12" placeholder="플레이어 2"></div>
-    </div>
-    <div class="field"><label>코스/장소 이름 (선택)</label><input id="inCourse" maxlength="20" placeholder="예: 세종 파크골프장"></div>
     <div class="field"><label>홀 수</label>
-      <div class="par-seg">
-        <button class="par-opt" data-holes="9">9홀</button>
-        <button class="par-opt" data-holes="14">14홀</button>
-        <button class="par-opt" data-holes="18">18홀</button>
-      </div>
-      <div class="par-hint">홀 수를 바꾸면 현재 점수는 유지되고 표시 범위만 바뀝니다.</div>
+      <select id="inHoles">
+        <option value="9">9홀</option>
+        <option value="14">14홀</option>
+        <option value="18">18홀</option>
+      </select>
+      <div class="par-hint">홀 수를 바꾸면 점수는 유지되고 표시 범위만 바뀝니다.</div>
     </div>
     <div class="field"><label>모든 홀 파 일괄 설정</label>
-      <div class="par-seg">
-        <button class="par-opt" data-parall="3">전부 파 3</button>
-        <button class="par-opt" data-parall="4">전부 파 4</button>
-        <button class="par-opt" data-parall="5">전부 파 5</button>
+      <select id="inParAll">
+        <option value="">선택 안 함</option>
+        <option value="3">전부 파 3</option>
+        <option value="4">전부 파 4</option>
+        <option value="5">전부 파 5</option>
+      </select>
+      <div class="par-hint">일괄 설정 후 홀별 드롭다운에서 개별로 다시 바꿀 수 있습니다.</div>
+    </div>
+    <div class="field"><label>데이터</label>
+      <div class="next-row" style="margin-top:0">
+        <button class="big-btn ghost" id="btnBackup" style="height:46px;font-size:14px">백업 파일 저장</button>
+        <button class="big-btn ghost" id="btnRestore" style="height:46px;font-size:14px">백업 불러오기</button>
       </div>
-      <div class="par-hint">일괄 설정 후 개별 홀에서 다시 바꿀 수 있습니다.</div>
+      <input type="file" id="fileRestore" accept="application/json,.json" style="display:none">
+      <div class="par-hint">기록은 이 기기 브라우저에 저장됩니다. 폰을 바꾸거나 브라우저 데이터를 지우기 전에 백업해 두세요.</div>
     </div>
     <div class="next-row"><button class="big-btn" id="closeSettings">완료</button></div>
-  </div>
-</div>
-
-<!-- History modal -->
-<div class="modal-bg" id="mHistory">
-  <div class="modal">
-    <h3>📚 저장된 라운드</h3>
-    <div id="histList"></div>
-    <div class="next-row">
-      <button class="big-btn ghost" id="clearHistory">기록 전체 삭제</button>
-      <button class="big-btn" id="closeHistory">닫기</button>
-    </div>
   </div>
 </div>
 
@@ -437,29 +486,53 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 <script>
 (function(){
 'use strict';
-const KEY='parkgolf.v1';
-const HKEY='parkgolf.history.v1';
+const KEY='parkgolf.v2';
+const HKEY='parkgolf.history.v2';
+const CKEY='parkgolf.courses.v1';   // 골프장별 파 프리셋 {name:{holes,par[]}}
 const MAXH=18;
+const DEF_NAMES=['박프로','백프로'];
+
+const todayStr=()=>{ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
 const defState=()=>({
-  names:['플레이어 1','플레이어 2'],
+  id:uid(),
+  round:1,
+  date:todayStr(),
+  names:DEF_NAMES.slice(),
   course:'',
   holes:14,
-  par:Array(MAXH).fill(0),              // 0 = 미설정
-  scores:[Array(MAXH).fill(0),Array(MAXH).fill(0)], // 0 = 미입력
+  par:Array(MAXH).fill(0),
+  scores:[Array(MAXH).fill(0),Array(MAXH).fill(0)],
   cur:0,
   tab:'input',
   theme:'',
-  startedAt:Date.now()
+  savedAt:0,
+  dirty:false
 });
 
 let S=load();
 function load(){
   try{
-    const raw=localStorage.getItem(KEY);
-    if(!raw) return defState();
-    const o=JSON.parse(raw);
-    const d=defState();
+    let raw=localStorage.getItem(KEY);
+    if(!raw){
+      // v1 마이그레이션
+      const v1=localStorage.getItem('parkgolf.v1');
+      if(v1){
+        const o=JSON.parse(v1); const d=defState();
+        d.names=(o.names||[]).map((n,i)=>(!n||/^플레이어 ?[12]$/.test(n))?DEF_NAMES[i]:n);
+        if(d.names.length<2) d.names=DEF_NAMES.slice();
+        d.course=o.course||''; d.holes=o.holes||14; d.par=o.par||d.par; d.scores=o.scores||d.scores; d.theme=o.theme||'';
+        d.date=o.startedAt?new Date(o.startedAt).toISOString().slice(0,10):todayStr();
+        const h1=localStorage.getItem('parkgolf.history.v1');
+        if(h1&&!localStorage.getItem(HKEY)){
+          try{ const list=JSON.parse(h1); const conv=list.slice().reverse().map((r,i)=>({id:uid(),round:i+1,date:new Date(r.at).toISOString().slice(0,10),at:r.at,course:r.course||'',holes:r.holes,names:r.names,par:r.par,scores:r.scores,strokes:r.strokes,diff:r.diff,done:r.done})).reverse(); localStorage.setItem(HKEY,JSON.stringify(conv)); d.round=conv.length+1; }catch(e){}
+        }
+        return d;
+      }
+      return defState();
+    }
+    const o=JSON.parse(raw); const d=defState();
     for(const k in d) if(!(k in o)) o[k]=d[k];
     while(o.par.length<MAXH) o.par.push(0);
     o.scores.forEach(a=>{while(a.length<MAXH)a.push(0)});
@@ -467,51 +540,39 @@ function load(){
   }catch(e){return defState()}
 }
 function save(){ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} }
+function loadHist(){ try{ return JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){ return []; } }
+function saveHist(a){ try{ localStorage.setItem(HKEY,JSON.stringify(a)); }catch(e){} }
+function loadCourses(){ try{ return JSON.parse(localStorage.getItem(CKEY)||'{}'); }catch(e){ return {}; } }
+function saveCourses(c){ try{ localStorage.setItem(CKEY,JSON.stringify(c)); }catch(e){} }
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate=s=>{ if(!s) return ''; const [y,m,d]=s.split('-'); return y+'.'+m+'.'+d; };
+const dow=s=>{ try{ return ['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]+'요일'; }catch(e){ return ''; } };
 
 // ===== helpers =====
 function parOf(h){ return S.par[h]||0; }
 function termOf(diff){
-  if(diff<=-3) return '알바트로스';
-  if(diff===-2) return '이글';
-  if(diff===-1) return '버디';
-  if(diff===0) return '파';
-  if(diff===1) return '보기';
-  if(diff===2) return '더블보기';
-  if(diff===3) return '트리플보기';
-  return '+'+diff;
+  if(diff<=-3) return '알바트로스'; if(diff===-2) return '이글'; if(diff===-1) return '버디'; if(diff===0) return '파';
+  if(diff===1) return '보기'; if(diff===2) return '더블보기'; if(diff===3) return '트리플보기'; return '+'+diff;
 }
-function clsOf(diff){
-  if(diff<=-2) return 'eagle';
-  if(diff===-1) return 'under';
-  if(diff===0) return 'even';
-  if(diff===1) return 'over';
-  return 'bad';
-}
+function clsOf(diff){ if(diff<=-2) return 'eagle'; if(diff===-1) return 'under'; if(diff===0) return 'even'; if(diff===1) return 'over'; return 'bad'; }
 function fmtPar(n){ return n===0?'E':(n>0?'+'+n:String(n)); }
 function stats(p){
-  let strokes=0,diff=0,done=0,parKnown=true;
-  for(let h=0;h<S.holes;h++){
-    const sc=S.scores[p][h];
-    if(sc>0){ strokes+=sc; done++; if(parOf(h)>0) diff+=sc-parOf(h); else parKnown=false; }
-  }
-  return {strokes,diff,done,parKnown};
+  let strokes=0,diff=0,done=0;
+  for(let h=0;h<S.holes;h++){ const sc=S.scores[p][h]; if(sc>0){ strokes+=sc; done++; if(parOf(h)>0) diff+=sc-parOf(h); } }
+  return {strokes,diff,done};
 }
 function totalPar(){ let t=0; for(let h=0;h<S.holes;h++) t+=parOf(h); return t; }
-function allDone(){
-  for(let h=0;h<S.holes;h++) if(!(S.scores[0][h]>0&&S.scores[1][h]>0)) return false;
-  return true;
+function allDone(){ for(let h=0;h<S.holes;h++) if(!(S.scores[0][h]>0&&S.scores[1][h]>0)) return false; return true; }
+function winnerOf(strokes,done,holes){
+  if(done[0]<holes||done[1]<holes) return -2; // 미완료
+  if(strokes[0]<strokes[1]) return 0; if(strokes[1]<strokes[0]) return 1; return -1;
 }
+function markDirty(){ S.dirty=true; }
 
 // ===== render =====
-function render(){
-  renderHeader();
-  renderInput();
-  renderTable();
-  save();
-}
+function render(){ renderHeader(); renderRoundInfo(); renderInput(); renderTable(); renderRecord(); save(); }
 function renderHeader(){
   $('courseTag').textContent=(S.course?S.course+' · ':'')+S.holes+'홀';
   const st=[stats(0),stats(1)];
@@ -520,17 +581,20 @@ function renderHeader(){
     $('totStrokes'+p).textContent=st[p].strokes;
     $('totPar'+p).textContent=st[p].done?fmtPar(st[p].diff):'E';
     $('totSub'+p).textContent=st[p].done+'/'+S.holes+'홀 완료';
-    $('tot'+p).classList.remove('lead');
-    const c=$('tot'+p).querySelector('.crown'); if(c) c.remove();
+    $('tot'+p).classList.remove('lead'); const c=$('tot'+p).querySelector('.crown'); if(c) c.remove();
   }
-  // leader (only compare when both have same holes done and >0)
   if(st[0].done>0&&st[1].done>0){
-    const a=st[0],b=st[1];
-    let lead=-1;
+    const a=st[0],b=st[1]; let lead=-1;
     if(a.done===b.done){ if(a.strokes<b.strokes) lead=0; else if(b.strokes<a.strokes) lead=1; }
     else { if(a.diff<b.diff) lead=0; else if(b.diff<a.diff) lead=1; }
     if(lead>=0){ $('tot'+lead).classList.add('lead'); const sp=document.createElement('span'); sp.className='crown'; sp.textContent='👑'; $('tot'+lead).appendChild(sp); }
   }
+}
+function renderRoundInfo(){
+  $('riRound').textContent=S.round+'차전';
+  $('riCourse').textContent=S.course||'골프장 이름을 입력하세요';
+  $('riCourse').style.color=S.course?'':'var(--t3)';
+  $('riDate').textContent=fmtDate(S.date)+' '+dow(S.date)+(S.savedAt?(S.dirty?' · 수정됨(미저장)':' · 저장됨'):' · 미저장');
 }
 function renderInput(){
   const h=S.cur;
@@ -538,16 +602,13 @@ function renderInput(){
   $('prevHole').disabled=h===0;
   $('nextHole').disabled=h>=S.holes-1;
   $('goNext').textContent=h>=S.holes-1?'스코어카드 보기 →':'다음 홀 →';
-  // dots
   const dots=$('holeDots'); dots.innerHTML='';
   for(let i=0;i<S.holes;i++){
     const d=document.createElement('div'); d.className='dot'+(S.scores[0][i]>0&&S.scores[1][i]>0?' done':'')+(i===h?' cur':'');
     const b=document.createElement('button'); b.setAttribute('aria-label',(i+1)+'번 홀로 이동'); b.dataset.go=i; d.appendChild(b); dots.appendChild(d);
   }
-  // par
-  document.querySelectorAll('#parSeg .par-opt').forEach(b=>b.classList.toggle('on',+b.dataset.par===parOf(h)));
+  const sel=$('parSelect'); sel.value=String(parOf(h)); sel.classList.toggle('unset',!parOf(h));
   $('parAllHint').textContent=parOf(h)?'':'⚠️ 파 미설정';
-  // players
   for(let p=0;p<2;p++){
     $('pName'+p).textContent=S.names[p];
     const sc=S.scores[p][h], par=parOf(h);
@@ -556,45 +617,34 @@ function renderInput(){
       num.textContent=sc; num.classList.remove('empty');
       if(par>0){ const d=sc-par; term.textContent=termOf(d); badge.textContent=fmtPar(d)+' · '+termOf(d); badge.className='badge '+(d<0?'under':d===0?'even':d===1?'over':'bad'); }
       else { term.textContent=sc+'타'; badge.textContent=sc+'타'; badge.className='badge'; }
-    } else {
-      num.textContent='–'; num.classList.add('empty'); term.textContent='탭해서 입력'; badge.textContent='미입력'; badge.className='badge';
-    }
+    } else { num.textContent='–'; num.classList.add('empty'); term.textContent='탭해서 입력'; badge.textContent='미입력'; badge.className='badge'; }
     document.querySelector('.step.minus[data-player="'+p+'"]').disabled=sc<=0;
-    // quick buttons
     const q=$('quick'+p); q.innerHTML='';
-    const base=par||4;
-    const opts=[]; for(let v=Math.max(1,base-2);v<=base+3;v++) opts.push(v);
-    opts.forEach(v=>{
-      const b=document.createElement('button'); b.className='qk'+(sc===v?' on':''); b.dataset.player=p; b.dataset.set=v;
-      b.textContent=par>0?(v+' '+shortTerm(v-par)):String(v); q.appendChild(b);
-    });
+    const base=par||4; const opts=[]; for(let v=Math.max(1,base-2);v<=base+3;v++) opts.push(v);
+    opts.forEach(v=>{ const b=document.createElement('button'); b.className='qk'+(sc===v?' on':''); b.dataset.player=p; b.dataset.set=v; b.textContent=par>0?(v+' '+shortTerm(v-par)):String(v); q.appendChild(b); });
   }
 }
-function shortTerm(d){
-  if(d<=-2) return '🦅'; if(d===-1) return '버디'; if(d===0) return '파'; if(d===1) return '보기'; if(d===2) return '더블'; return '+'+d;
+function shortTerm(d){ if(d<=-2) return '🦅'; if(d===-1) return '버디'; if(d===0) return '파'; if(d===1) return '보기'; if(d===2) return '더블'; return '+'+d; }
+function parSelectHtml(h){
+  const par=parOf(h);
+  return '<select data-parh="'+h+'" class="'+(par?'':'unset')+'" aria-label="'+(h+1)+'번 홀 파">'
+    +'<option value="0"'+(par===0?' selected':'')+'>?</option>'
+    +[3,4,5].map(v=>'<option value="'+v+'"'+(par===v?' selected':'')+'>'+v+'</option>').join('')+'</select>';
 }
 function renderTable(){
   $('thName0').textContent=S.names[0]; $('thName1').textContent=S.names[1];
   const tb=$('tbody'); let html='';
   const half=Math.ceil(S.holes/2);
-  const sub=[[0,0,0],[0,0,0]]; // [strokes,par,count] per player for current half
-  let subPar=0;
-  function cell(p,h){
-    const sc=S.scores[p][h], par=parOf(h);
-    if(!(sc>0)) return '<span class="cell none">·</span>';
-    if(!par) return '<span class="cell even">'+sc+'</span>';
-    return '<span class="cell '+clsOf(sc-par)+'">'+sc+'</span>';
-  }
+  let sub=[[0,0,0],[0,0,0]], subPar=0;
+  function cell(p,h){ const sc=S.scores[p][h], par=parOf(h); if(!(sc>0)) return '<span class="cell none">·</span>'; if(!par) return '<span class="cell even">'+sc+'</span>'; return '<span class="cell '+clsOf(sc-par)+'">'+sc+'</span>'; }
   function subRow(label){
     html+='<tr class="sub"><td>'+label+'</td><td>'+(subPar||'–')+'</td>';
-    for(let p=0;p<2;p++){
-      const s=sub[p]; html+='<td>'+(s[2]?s[0]+' <span style="opacity:.75">('+fmtPar(s[0]-s[1])+')</span>':'–')+'</td>';
-    }
-    html+='</tr>'; sub[0]=[0,0,0]; sub[1]=[0,0,0]; subPar=0;
+    for(let p=0;p<2;p++){ const s=sub[p]; html+='<td>'+(s[2]?s[0]+' <span style="opacity:.75">('+fmtPar(s[0]-s[1])+')</span>':'–')+'</td>'; }
+    html+='</tr>'; sub=[[0,0,0],[0,0,0]]; subPar=0;
   }
   for(let h=0;h<S.holes;h++){
     const par=parOf(h);
-    html+='<tr class="hole-row" data-go="'+h+'"><td class="h">'+(h+1)+'</td><td class="p"><span class="pchip">'+(par||'?')+'</span></td><td class="s">'+cell(0,h)+'</td><td class="s">'+cell(1,h)+'</td></tr>';
+    html+='<tr><td class="h"><button data-go="'+h+'">'+(h+1)+'</button></td><td class="p">'+parSelectHtml(h)+'</td><td class="s">'+cell(0,h)+'</td><td class="s">'+cell(1,h)+'</td></tr>';
     subPar+=par;
     for(let p=0;p<2;p++){ const sc=S.scores[p][h]; if(sc>0){ sub[p][0]+=sc; if(par) sub[p][1]+=par; sub[p][2]++; } }
     if(h===half-1&&S.holes>9) subRow('전반<br><small>1–'+half+'</small>');
@@ -606,108 +656,187 @@ function renderTable(){
   html+='</tr>';
   tb.innerHTML=html;
 
-  // result banner
   const r=$('result');
   if(allDone()){
-    const a=st[0],b=st[1];
-    let msg;
+    const a=st[0],b=st[1]; let msg;
+    const head='<div style="font-size:12px;opacity:.85;margin-bottom:4px">'+S.round+'차전 · '+fmtDate(S.date)+(S.course?' · '+esc(S.course):'')+'</div>';
     if(a.strokes<b.strokes) msg='<h3>🏆 '+esc(S.names[0])+' 승리!</h3><p>'+a.strokes+'타 ('+fmtPar(a.diff)+') vs '+b.strokes+'타 ('+fmtPar(b.diff)+') · '+(b.strokes-a.strokes)+'타 차</p>';
     else if(b.strokes<a.strokes) msg='<h3>🏆 '+esc(S.names[1])+' 승리!</h3><p>'+b.strokes+'타 ('+fmtPar(b.diff)+') vs '+a.strokes+'타 ('+fmtPar(a.diff)+') · '+(a.strokes-b.strokes)+'타 차</p>';
     else msg='<h3>🤝 무승부!</h3><p>두 분 모두 '+a.strokes+'타 ('+fmtPar(a.diff)+')</p>';
-    r.innerHTML=msg; r.classList.add('on');
+    r.innerHTML=head+msg+(S.dirty||!S.savedAt?'<p style="margin-top:8px;font-size:12px;opacity:.9">💾 아래 "라운드 저장"을 누르면 역대 전적에 반영됩니다.</p>':''); r.classList.add('on');
   } else r.classList.remove('on');
 }
 
-// ===== actions =====
-function setPar(h,v){ S.par[h]=v; render(); }
-function addScore(p,d){
-  const h=S.cur; let sc=S.scores[p][h];
-  if(sc<=0){ sc=d>0?(parOf(h)||4):0; }
-  else sc=Math.max(0,sc+d);
-  S.scores[p][h]=sc; render(); vib();
-}
-function setScore(p,v){ S.scores[p][S.cur]=v; render(); vib(); }
-function go(h){ S.cur=Math.max(0,Math.min(S.holes-1,h)); render(); }
-function vib(){ try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){} }
-function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),1800); }
-function setTab(t){
-  S.tab=t;
-  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  $('panel-input').classList.toggle('on',t==='input');
-  $('panel-card').classList.toggle('on',t==='card');
-  save(); window.scrollTo({top:0});
-}
-
-function summaryText(){
-  const d=new Date(S.startedAt);
-  const ds=d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');
-  const st=[stats(0),stats(1)];
-  let t='⛳ 파크골프 스코어카드 '+(S.course?'· '+S.course+' ':'')+'('+ds+', '+S.holes+'홀)\n\n';
-  t+='홀 | 파 | '+S.names[0]+' | '+S.names[1]+'\n';
-  for(let h=0;h<S.holes;h++){
-    t+=(h+1)+' | '+(parOf(h)||'?')+' | '+(S.scores[0][h]||'-')+' | '+(S.scores[1][h]||'-')+'\n';
-  }
-  t+='\n합계 | '+(totalPar()||'-')+' | '+st[0].strokes+' ('+fmtPar(st[0].diff)+') | '+st[1].strokes+' ('+fmtPar(st[1].diff)+')\n';
-  if(allDone()){
-    if(st[0].strokes<st[1].strokes) t+='\n🏆 '+S.names[0]+' 승리 ('+(st[1].strokes-st[0].strokes)+'타 차)';
-    else if(st[1].strokes<st[0].strokes) t+='\n🏆 '+S.names[1]+' 승리 ('+(st[0].strokes-st[1].strokes)+'타 차)';
-    else t+='\n🤝 무승부';
-  }
-  return t;
-}
-async function share(){
-  const text=summaryText();
-  try{
-    if(navigator.share){ await navigator.share({title:'파크골프 스코어카드',text}); return; }
-  }catch(e){ if(e&&e.name==='AbortError') return; }
-  try{ await navigator.clipboard.writeText(text); toast('클립보드에 복사했습니다'); }
-  catch(e){ prompt('아래 내용을 복사하세요', text); }
-}
-
-// history
-function loadHist(){ try{ return JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){ return []; } }
-function saveHist(a){ try{ localStorage.setItem(HKEY,JSON.stringify(a.slice(0,20))); }catch(e){} }
-function saveRound(){
-  const st=[stats(0),stats(1)];
-  if(st[0].done===0&&st[1].done===0){ toast('입력된 점수가 없습니다'); return; }
-  const list=loadHist();
-  list.unshift({
-    at:Date.now(), course:S.course, holes:S.holes, names:S.names.slice(), par:S.par.slice(0,S.holes),
-    scores:[S.scores[0].slice(0,S.holes),S.scores[1].slice(0,S.holes)],
-    strokes:[st[0].strokes,st[1].strokes], diff:[st[0].diff,st[1].diff], done:[st[0].done,st[1].done]
+// ===== record (역대 전적) =====
+function computeRecord(list){
+  const rec={w:[0,0],d:0,n:0,strokes:[0,0],cnt:[0,0],best:[null,null],diff:[0,0],streak:{p:-1,n:0},lastWinner:-2,margin:[0,0]};
+  const complete=list.filter(r=>r.done&&r.done[0]===r.holes&&r.done[1]===r.holes);
+  rec.n=complete.length;
+  complete.forEach(r=>{
+    const w=winnerOf(r.strokes,r.done,r.holes);
+    if(w===0) rec.w[0]++; else if(w===1) rec.w[1]++; else rec.d++;
+    for(let p=0;p<2;p++){ rec.strokes[p]+=r.strokes[p]; rec.cnt[p]++; rec.diff[p]+=r.diff[p]; if(rec.best[p]===null||r.strokes[p]<rec.best[p]) rec.best[p]=r.strokes[p]; }
+    if(w>=0) rec.margin[w]=Math.max(rec.margin[w],Math.abs(r.strokes[0]-r.strokes[1]));
   });
-  saveHist(list); toast('라운드를 저장했습니다');
+  // streak: list is newest first
+  for(const r of complete){ const w=winnerOf(r.strokes,r.done,r.holes); if(rec.streak.p===-1){ rec.streak.p=w; rec.streak.n=1; } else if(w===rec.streak.p) rec.streak.n++; else break; }
+  return rec;
 }
-function renderHist(){
-  const list=loadHist(); const box=$('histList');
-  if(!list.length){ box.innerHTML='<div class="empty">저장된 라운드가 없습니다.<br>하단 "라운드 저장"을 누르면 여기에 쌓입니다.</div>'; return; }
+function renderRecord(){
+  const list=loadHist();
+  const rec=computeRecord(list);
+  const names=S.names;
+  let h='<div class="h2h-title">🏆 역대 전적 · 완료된 라운드 '+rec.n+'회</div>';
+  h+='<div class="h2h-row">';
+  h+='<div class="h2h-p"><div class="nm">'+esc(names[0])+'</div><div class="w">'+rec.w[0]+'<small>승</small></div></div>';
+  h+='<div class="h2h-mid">'+(rec.d?rec.d+'무':'vs')+'</div>';
+  h+='<div class="h2h-p"><div class="nm">'+esc(names[1])+'</div><div class="w">'+rec.w[1]+'<small>승</small></div></div>';
+  h+='</div>';
+  if(rec.n){
+    h+='<div class="h2h-sub">';
+    for(let p=0;p<2;p++){
+      const avg=rec.cnt[p]?(rec.strokes[p]/rec.cnt[p]):0;
+      h+='<div>평균 <b>'+avg.toFixed(1)+'타</b><br>최고 <b>'+rec.best[p]+'타</b> · 평균 '+fmtPar(Math.round(rec.diff[p]/rec.cnt[p]*10)/10)+'</div>';
+    }
+    h+='</div>';
+    if(rec.streak.n>=2&&rec.streak.p>=0) h+='<div class="streak">🔥 '+esc(names[rec.streak.p])+' '+rec.streak.n+'연승 중</div>';
+    else if(rec.w[0]===rec.w[1]) h+='<div class="streak">⚖️ 팽팽한 호각세</div>';
+  } else h+='<div class="streak" style="opacity:.85">14홀을 모두 입력하고 "라운드 저장"을 누르면 전적이 쌓입니다.</div>';
+  $('h2h').innerHTML=h;
+
+  const box=$('rlist');
+  if(!list.length){ box.innerHTML='<div class="empty">저장된 라운드가 없습니다.<br>하단 "라운드 저장"을 누르면 여기에 1차전, 2차전… 순서로 쌓입니다.</div>'; return; }
   box.innerHTML=list.map((r,i)=>{
-    const d=new Date(r.at);
-    const ds=d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    let win='';
-    if(r.done[0]===r.holes&&r.done[1]===r.holes){ win=r.strokes[0]<r.strokes[1]?' · 🏆 '+esc(r.names[0]):r.strokes[1]<r.strokes[0]?' · 🏆 '+esc(r.names[1]):' · 🤝 무승부'; }
-    return '<div class="hist"><b>'+esc(r.course||'파크골프')+' · '+r.holes+'홀</b><div class="m">'+ds+win+'</div>'
-      +'<div class="r"><span>'+esc(r.names[0])+'</span><span>'+r.strokes[0]+'타 ('+fmtPar(r.diff[0])+')</span></div>'
-      +'<div class="r"><span>'+esc(r.names[1])+'</span><span>'+r.strokes[1]+'타 ('+fmtPar(r.diff[1])+')</span></div>'
-      +'<div class="next-row" style="margin-top:8px"><button class="qk" data-load="'+i+'">불러오기</button><button class="qk" data-del="'+i+'">삭제</button></div></div>';
+    const w=winnerOf(r.strokes,r.done,r.holes);
+    const winTxt=w===-2?'진행 중 ('+Math.min(r.done[0],r.done[1])+'/'+r.holes+'홀)':w===-1?'🤝 무승부':'🏆 '+esc(r.names[w])+' +'+Math.abs(r.strokes[0]-r.strokes[1]);
+    return '<div class="hist'+(r.id===S.id?' cur':'')+'">'
+      +'<div class="hist-top"><span class="rn">'+r.round+'차전</span><b>'+esc(r.course||'골프장 미입력')+'</b><span class="win">'+winTxt+'</span></div>'
+      +'<div class="m">'+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀'+(r.id===S.id?' · 현재 라운드':'')+'</div>'
+      +'<div class="r'+(w===0?' w':'')+'"><span>'+esc(r.names[0])+'</span><span>'+r.strokes[0]+'타 ('+fmtPar(r.diff[0])+')</span></div>'
+      +'<div class="r'+(w===1?' w':'')+'"><span>'+esc(r.names[1])+'</span><span>'+r.strokes[1]+'타 ('+fmtPar(r.diff[1])+')</span></div>'
+      +'<div class="acts"><button class="qk" data-load="'+i+'">열기</button><button class="qk" data-sharer="'+i+'">공유</button><button class="qk" data-del="'+i+'">삭제</button></div></div>';
   }).join('');
 }
 
-function newGame(keepPar){
+// ===== actions =====
+function setPar(h,v){ S.par[h]=v; markDirty(); rememberCoursePar(); render(); }
+function addScore(p,d){
+  const h=S.cur; let sc=S.scores[p][h];
+  if(sc<=0){ sc=d>0?(parOf(h)||4):0; } else sc=Math.max(0,sc+d);
+  S.scores[p][h]=sc; markDirty(); render(); vib();
+}
+function setScore(p,v){ S.scores[p][S.cur]=v; markDirty(); render(); vib(); }
+function go(h){ S.cur=Math.max(0,Math.min(S.holes-1,h)); render(); }
+function vib(){ try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){} }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),1900); }
+function setTab(t){
+  S.tab=t;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
+  ['input','card','record'].forEach(k=>$('panel-'+k).classList.toggle('on',t===k));
+  save(); window.scrollTo({top:0});
+}
+// 골프장별 파 프리셋 기억/적용
+function rememberCoursePar(){
+  if(!S.course) return;
+  const c=loadCourses(); c[S.course]={holes:S.holes,par:S.par.slice()}; saveCourses(c);
+}
+function applyCoursePar(name){
+  const c=loadCourses()[name]; if(!c) return false;
+  const hasPar=S.par.slice(0,S.holes).some(v=>v>0);
+  if(hasPar) return false;
+  S.holes=c.holes||S.holes; S.par=c.par.slice(); while(S.par.length<MAXH) S.par.push(0);
+  return true;
+}
+
+function roundRecord(){
+  const st=[stats(0),stats(1)];
+  return { id:S.id, round:S.round, date:S.date, at:Date.now(), course:S.course, holes:S.holes, names:S.names.slice(),
+    par:S.par.slice(0,S.holes), scores:[S.scores[0].slice(0,S.holes),S.scores[1].slice(0,S.holes)],
+    strokes:[st[0].strokes,st[1].strokes], diff:[st[0].diff,st[1].diff], done:[st[0].done,st[1].done] };
+}
+function saveRound(silent){
+  const st=[stats(0),stats(1)];
+  if(st[0].done===0&&st[1].done===0){ if(!silent) toast('입력된 점수가 없습니다'); return false; }
+  const list=loadHist();
+  const rec=roundRecord();
+  const i=list.findIndex(r=>r.id===S.id);
+  if(i>=0) list[i]=rec; else list.unshift(rec);
+  list.sort((a,b)=>(b.round-a.round)||(b.date.localeCompare(a.date)));
+  saveHist(list); rememberCoursePar();
+  S.savedAt=Date.now(); S.dirty=false; render();
+  if(!silent) toast(allDone()?S.round+'차전 결과를 전적에 저장했습니다':S.round+'차전 진행 상황을 저장했습니다');
+  return true;
+}
+function nextRound(){
+  const st=[stats(0),stats(1)];
+  if((st[0].done+st[1].done>0)&&(S.dirty||!S.savedAt)){
+    if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 저장하고 다음 차전으로 넘어갈까요?\n(취소하면 저장하지 않고 넘어갑니다)')) saveRound(true);
+  }
+  const list=loadHist();
+  const maxRound=list.reduce((m,r)=>Math.max(m,r.round||0),0);
+  S.id=uid(); S.round=Math.max(maxRound,S.round)+1; S.date=todayStr();
   S.scores=[Array(MAXH).fill(0),Array(MAXH).fill(0)];
-  if(!keepPar) S.par=Array(MAXH).fill(0);
-  S.cur=0; S.startedAt=Date.now(); setTab('input'); render();
+  S.cur=0; S.savedAt=0; S.dirty=false;
+  setTab('input'); render(); toast(S.round+'차전 시작! 파 설정과 이름은 그대로 유지됩니다');
+  openRound();
+}
+
+function summaryText(rec,withRecord){
+  const r=rec||roundRecord();
+  const list=loadHist(); const h2=computeRecord(list);
+  let t='⛳ 파크골프 '+r.round+'차전'+(r.course?' · '+r.course:'')+'\n📅 '+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀\n\n';
+  const tp=r.par.reduce((a,b)=>a+(b||0),0);
+  t+='홀 | 파 | '+r.names[0]+' | '+r.names[1]+'\n';
+  for(let h=0;h<r.holes;h++) t+=(h+1)+' | '+(r.par[h]||'?')+' | '+(r.scores[0][h]||'-')+' | '+(r.scores[1][h]||'-')+'\n';
+  t+='\n합계 | '+(tp||'-')+' | '+r.strokes[0]+' ('+fmtPar(r.diff[0])+') | '+r.strokes[1]+' ('+fmtPar(r.diff[1])+')\n';
+  const w=winnerOf(r.strokes,r.done,r.holes);
+  if(w===0||w===1) t+='\n🏆 '+r.names[w]+' 승리 ('+Math.abs(r.strokes[0]-r.strokes[1])+'타 차)';
+  else if(w===-1) t+='\n🤝 무승부';
+  else t+='\n⏳ 진행 중 ('+Math.min(r.done[0],r.done[1])+'/'+r.holes+'홀)';
+  if(withRecord!==false&&h2.n) t+='\n\n📊 역대 전적: '+S.names[0]+' '+h2.w[0]+'승 '+(h2.d?h2.d+'무 ':'')+S.names[1]+' '+h2.w[1]+'승 (총 '+h2.n+'회)';
+  return t;
+}
+function recordText(){
+  const list=loadHist(); const h2=computeRecord(list);
+  let t='📊 '+S.names[0]+' vs '+S.names[1]+' 파크골프 역대 전적\n';
+  t+=S.names[0]+' '+h2.w[0]+'승 · '+(h2.d?h2.d+'무 · ':'')+S.names[1]+' '+h2.w[1]+'승 (완료 '+h2.n+'회)\n';
+  if(h2.n){ for(let p=0;p<2;p++) t+=S.names[p]+': 평균 '+(h2.strokes[p]/h2.cnt[p]).toFixed(1)+'타, 최고 '+h2.best[p]+'타\n'; }
+  t+='\n';
+  list.slice().reverse().forEach(r=>{
+    const w=winnerOf(r.strokes,r.done,r.holes);
+    t+=r.round+'차전 '+fmtDate(r.date)+(r.course?' '+r.course:'')+' — '+r.names[0]+' '+r.strokes[0]+' : '+r.strokes[1]+' '+r.names[1]+' → '+(w===-2?'진행 중':w===-1?'무승부':r.names[w]+' 승')+'\n';
+  });
+  return t.trim();
+}
+async function shareText(text,title){
+  try{ if(navigator.share){ await navigator.share({title:title||'파크골프 스코어카드',text}); return; } }
+  catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(text); toast('클립보드에 복사했습니다. 카톡 등에 붙여넣기 하세요'); }
+  catch(e){ prompt('아래 내용을 복사하세요', text); }
+}
+
+// backup / restore
+function backup(){
+  const data={app:'parkgolf',ver:2,exportedAt:new Date().toISOString(),current:S,history:loadHist(),courses:loadCourses()};
+  const blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='parkgolf_backup_'+todayStr()+'.json'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+  toast('백업 파일을 저장했습니다');
+}
+function restore(file){
+  const fr=new FileReader();
+  fr.onload=()=>{ try{
+    const d=JSON.parse(fr.result); if(d.app!=='parkgolf') throw 0;
+    if(!confirm('백업을 불러오면 현재 기기의 기록이 백업 내용으로 바뀝니다. 계속할까요?')) return;
+    if(Array.isArray(d.history)) saveHist(d.history); if(d.courses) saveCourses(d.courses);
+    if(d.current){ localStorage.setItem(KEY,JSON.stringify(d.current)); S=load(); }
+    applyTheme(); render(); toast('백업을 불러왔습니다');
+  }catch(e){ toast('올바른 백업 파일이 아닙니다'); } };
+  fr.readAsText(file);
 }
 
 // theme
-function applyTheme(){
-  if(S.theme) document.documentElement.setAttribute('data-theme',S.theme);
-  else document.documentElement.removeAttribute('data-theme');
-}
-function toggleTheme(){
-  const dark=S.theme==='dark'||(!S.theme&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
-  S.theme=dark?'light':'dark'; applyTheme(); save();
-}
+function applyTheme(){ if(S.theme) document.documentElement.setAttribute('data-theme',S.theme); else document.documentElement.removeAttribute('data-theme'); }
+function toggleTheme(){ const dark=S.theme==='dark'||(!S.theme&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches); S.theme=dark?'light':'dark'; applyTheme(); save(); }
 
 // ===== events =====
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
@@ -715,46 +844,54 @@ $('prevHole').addEventListener('click',()=>go(S.cur-1));
 $('nextHole').addEventListener('click',()=>go(S.cur+1));
 $('goNext').addEventListener('click',()=>{ if(S.cur>=S.holes-1) setTab('card'); else go(S.cur+1); });
 $('holeDots').addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b) go(+b.dataset.go); });
-$('parSeg').addEventListener('click',e=>{ const b=e.target.closest('[data-par]'); if(b){ setPar(S.cur,+b.dataset.par); vib(); } });
+$('parSelect').addEventListener('change',e=>{ setPar(S.cur,+e.target.value); vib(); });
 document.querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>addScore(+b.dataset.player,+b.dataset.d)));
 document.querySelectorAll('.quick').forEach(q=>q.addEventListener('click',e=>{ const b=e.target.closest('[data-set]'); if(b) setScore(+b.dataset.player,+b.dataset.set); }));
-$('clearHole').addEventListener('click',()=>{ S.scores[0][S.cur]=0; S.scores[1][S.cur]=0; render(); });
+$('clearHole').addEventListener('click',()=>{ S.scores[0][S.cur]=0; S.scores[1][S.cur]=0; markDirty(); render(); });
 $('tbody').addEventListener('click',e=>{ const r=e.target.closest('[data-go]'); if(r){ go(+r.dataset.go); setTab('input'); } });
+$('tbody').addEventListener('change',e=>{ const s=e.target.closest('[data-parh]'); if(s){ S.par[+s.dataset.parh]=+s.value; markDirty(); rememberCoursePar(); render(); } });
 
 $('btnTheme').addEventListener('click',toggleTheme);
-$('btnShare').addEventListener('click',share);
-$('btnSave').addEventListener('click',saveRound);
-$('btnReset').addEventListener('click',()=>{
-  const st=[stats(0),stats(1)];
-  if(st[0].done+st[1].done>0){
-    if(!confirm('현재 점수를 지우고 새 게임을 시작할까요?\n(홀별 파 설정과 이름은 유지됩니다. 먼저 "라운드 저장"을 눌러두면 기록에 남습니다.)')) return;
-  }
-  newGame(true); toast('새 게임을 시작합니다');
-});
+$('btnShare').addEventListener('click',()=>shareText(summaryText()));
+$('btnSave').addEventListener('click',()=>saveRound(false));
+$('btnNew').addEventListener('click',nextRound);
+$('exportHist').addEventListener('click',()=>{ if(!loadHist().length){ toast('저장된 라운드가 없습니다'); return; } shareText(recordText(),'파크골프 역대 전적'); });
+$('clearHistory').addEventListener('click',()=>{ if(loadHist().length&&confirm('저장된 라운드 기록과 역대 전적을 모두 삭제할까요?\n(되돌릴 수 없습니다. 설정에서 먼저 백업을 권장합니다)')){ saveHist([]); S.savedAt=0; render(); toast('기록을 모두 삭제했습니다'); } });
+
+// round info modal
+function openRound(){
+  const sel=$('inRound'); sel.innerHTML='';
+  const maxR=Math.max(S.round+5,10);
+  for(let i=1;i<=maxR;i++){ const o=document.createElement('option'); o.value=i; o.textContent=i+'차전'; if(i===S.round) o.selected=true; sel.appendChild(o); }
+  $('inDate').value=S.date; $('inCourse').value=S.course; $('inName0').value=S.names[0]; $('inName1').value=S.names[1];
+  const courses=Object.keys(loadCourses()); const ch=$('courseChips'); ch.innerHTML='';
+  courses.slice(0,8).forEach(c=>{ const b=document.createElement('button'); b.className='qk'; b.textContent=c; b.dataset.course=c; ch.appendChild(b); });
+  $('mRound').classList.add('on');
+}
+function commitRound(){
+  S.round=+$('inRound').value||S.round;
+  S.date=$('inDate').value||todayStr();
+  const newCourse=$('inCourse').value.trim().slice(0,24);
+  const changed=newCourse!==S.course; S.course=newCourse;
+  S.names[0]=($('inName0').value.trim()||DEF_NAMES[0]).slice(0,12);
+  S.names[1]=($('inName1').value.trim()||DEF_NAMES[1]).slice(0,12);
+  if(changed&&S.course&&applyCoursePar(S.course)) toast('"'+S.course+'"의 홀별 파를 불러왔습니다');
+  markDirty(); $('mRound').classList.remove('on'); render();
+}
+$('rinfo').addEventListener('click',openRound);
+$('closeRound').addEventListener('click',commitRound);
+$('mRound').addEventListener('click',e=>{ if(e.target.id==='mRound') commitRound(); });
+$('courseChips').addEventListener('click',e=>{ const b=e.target.closest('[data-course]'); if(b) $('inCourse').value=b.dataset.course; });
 
 // settings
-$('btnSettings').addEventListener('click',()=>{
-  $('inName0').value=S.names[0]; $('inName1').value=S.names[1]; $('inCourse').value=S.course;
-  document.querySelectorAll('[data-holes]').forEach(b=>b.classList.toggle('on',+b.dataset.holes===S.holes));
-  document.querySelectorAll('[data-parall]').forEach(b=>b.classList.remove('on'));
-  $('mSettings').classList.add('on');
-});
-function commitSettings(){
-  S.names[0]=($('inName0').value.trim()||'플레이어 1').slice(0,12);
-  S.names[1]=($('inName1').value.trim()||'플레이어 2').slice(0,12);
-  S.course=$('inCourse').value.trim().slice(0,20);
-  render();
-}
-$('closeSettings').addEventListener('click',()=>{ commitSettings(); $('mSettings').classList.remove('on'); });
-$('mSettings').addEventListener('click',e=>{ if(e.target.id==='mSettings'){ commitSettings(); $('mSettings').classList.remove('on'); } });
-document.querySelectorAll('[data-holes]').forEach(b=>b.addEventListener('click',()=>{
-  S.holes=+b.dataset.holes; if(S.cur>=S.holes) S.cur=S.holes-1;
-  document.querySelectorAll('[data-holes]').forEach(x=>x.classList.toggle('on',x===b)); render();
-}));
-document.querySelectorAll('[data-parall]').forEach(b=>b.addEventListener('click',()=>{
-  const v=+b.dataset.parall; for(let h=0;h<MAXH;h++) S.par[h]=v;
-  document.querySelectorAll('[data-parall]').forEach(x=>x.classList.toggle('on',x===b)); render(); toast('모든 홀을 파 '+v+'로 설정했습니다');
-}));
+$('btnSettings').addEventListener('click',()=>{ $('inHoles').value=String(S.holes); $('inParAll').value=''; $('mSettings').classList.add('on'); });
+$('closeSettings').addEventListener('click',()=>$('mSettings').classList.remove('on'));
+$('mSettings').addEventListener('click',e=>{ if(e.target.id==='mSettings') $('mSettings').classList.remove('on'); });
+$('inHoles').addEventListener('change',e=>{ S.holes=+e.target.value; if(S.cur>=S.holes) S.cur=S.holes-1; markDirty(); rememberCoursePar(); render(); });
+$('inParAll').addEventListener('change',e=>{ const v=+e.target.value; if(!v) return; for(let h=0;h<MAXH;h++) S.par[h]=v; markDirty(); rememberCoursePar(); render(); toast('모든 홀을 파 '+v+'로 설정했습니다'); });
+$('btnBackup').addEventListener('click',backup);
+$('btnRestore').addEventListener('click',()=>$('fileRestore').click());
+$('fileRestore').addEventListener('change',e=>{ const f=e.target.files[0]; if(f) restore(f); e.target.value=''; });
 
 // name quick edit
 let editP=0;
@@ -762,46 +899,47 @@ document.querySelectorAll('.pc-name').forEach(el=>el.addEventListener('click',()
   editP=+el.dataset.player; $('mNameTitle').textContent='플레이어 '+(editP+1)+' 이름';
   $('inNameOne').value=S.names[editP]; $('mName').classList.add('on'); setTimeout(()=>$('inNameOne').focus(),50);
 }));
-function saveNameOne(){ S.names[editP]=($('inNameOne').value.trim()||('플레이어 '+(editP+1))).slice(0,12); $('mName').classList.remove('on'); render(); }
+function saveNameOne(){ S.names[editP]=($('inNameOne').value.trim()||DEF_NAMES[editP]).slice(0,12); markDirty(); $('mName').classList.remove('on'); render(); }
 $('saveNameOne').addEventListener('click',saveNameOne);
 $('inNameOne').addEventListener('keydown',e=>{ if(e.key==='Enter') saveNameOne(); });
 $('mName').addEventListener('click',e=>{ if(e.target.id==='mName') $('mName').classList.remove('on'); });
 
-// history
-$('btnHistory').addEventListener('click',()=>{ renderHist(); $('mHistory').classList.add('on'); });
-$('closeHistory').addEventListener('click',()=>$('mHistory').classList.remove('on'));
-$('mHistory').addEventListener('click',e=>{ if(e.target.id==='mHistory') $('mHistory').classList.remove('on'); });
-$('clearHistory').addEventListener('click',()=>{ if(loadHist().length&&confirm('저장된 라운드 기록을 모두 삭제할까요?')){ saveHist([]); renderHist(); } });
-$('histList').addEventListener('click',e=>{
-  const l=e.target.closest('[data-load]'), d=e.target.closest('[data-del]');
+// history list actions
+$('rlist').addEventListener('click',e=>{
+  const l=e.target.closest('[data-load]'), d=e.target.closest('[data-del]'), s=e.target.closest('[data-sharer]');
   const list=loadHist();
   if(l){
     const r=list[+l.dataset.load]; if(!r) return;
-    if(!confirm('이 라운드를 불러올까요? 현재 입력 중인 점수는 덮어씌워집니다.')) return;
-    S.names=r.names.slice(); S.course=r.course||''; S.holes=r.holes;
-    S.par=Array(MAXH).fill(0); r.par.forEach((v,i)=>S.par[i]=v);
-    S.scores=[Array(MAXH).fill(0),Array(MAXH).fill(0)]; r.scores[0].forEach((v,i)=>S.scores[0][i]=v); r.scores[1].forEach((v,i)=>S.scores[1][i]=v);
-    S.startedAt=r.at; S.cur=0; $('mHistory').classList.remove('on'); setTab('card'); render(); toast('라운드를 불러왔습니다');
+    if(r.id!==S.id){
+      if((S.dirty||!S.savedAt)&&(stats(0).done+stats(1).done>0)){ if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 먼저 저장할까요?')) saveRound(true); }
+      S.id=r.id; S.round=r.round; S.date=r.date; S.names=r.names.slice(); S.course=r.course||''; S.holes=r.holes;
+      S.par=Array(MAXH).fill(0); r.par.forEach((v,i)=>S.par[i]=v);
+      S.scores=[Array(MAXH).fill(0),Array(MAXH).fill(0)]; r.scores[0].forEach((v,i)=>S.scores[0][i]=v); r.scores[1].forEach((v,i)=>S.scores[1][i]=v);
+      S.savedAt=r.at||Date.now(); S.dirty=false; S.cur=0;
+    }
+    setTab('card'); render(); toast(r.round+'차전을 열었습니다');
+  } else if(s){
+    const r=list[+s.dataset.sharer]; if(r) shareText(summaryText(r,false),'파크골프 '+r.round+'차전');
   } else if(d){
-    list.splice(+d.dataset.del,1); saveHist(list); renderHist();
+    const r=list[+d.dataset.del]; if(!r) return;
+    if(!confirm(r.round+'차전 ('+fmtDate(r.date)+') 기록을 삭제할까요?')) return;
+    list.splice(+d.dataset.del,1); saveHist(list); if(r.id===S.id){ S.savedAt=0; S.dirty=true; } render();
   }
 });
 
-// swipe between holes on input panel
+// swipe between holes
 (function(){
-  let x0=null,y0=null;
-  const el=$('panel-input');
-  el.addEventListener('touchstart',e=>{ const t=e.touches[0]; x0=t.clientX; y0=t.clientY; },{passive:true});
-  el.addEventListener('touchend',e=>{
-    if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null;
-    if(Math.abs(dx)>70&&Math.abs(dy)<50){ if(dx<0) go(S.cur+1); else go(S.cur-1); }
-  },{passive:true});
+  let x0=null,y0=null; const el=$('panel-input');
+  el.addEventListener('touchstart',e=>{ if(e.target.closest('select')) return; const t=e.touches[0]; x0=t.clientX; y0=t.clientY; },{passive:true});
+  el.addEventListener('touchend',e=>{ if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null; if(Math.abs(dx)>70&&Math.abs(dy)<50){ if(dx<0) go(S.cur+1); else go(S.cur-1); } },{passive:true});
 })();
 
 // init
 applyTheme();
 setTab(S.tab||'input');
 render();
+// 첫 실행이면 라운드 정보 입력창 바로 열기
+if(!S.course&&!loadHist().length&&stats(0).done+stats(1).done===0&&!sessionStorage.getItem('pg.intro')){ try{sessionStorage.setItem('pg.intro','1')}catch(e){} setTimeout(openRound,350); }
 })();
 </script>
 </body>
