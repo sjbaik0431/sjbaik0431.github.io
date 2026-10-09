@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <title>파크골프 스코어카드</title>
-<meta name="description" content="14홀 2인용 파크골프 스코어카드. 홀별 파 드롭다운 선택, 회차·날짜·골프장 기록, 자동 합계, 역대 전적.">
+<meta name="description" content="파크골프 스코어카드 (2~4인). 홀별 파 드롭다운, 골프장별 홀 규격 자동 입력, 회차·날짜 기록, 수기 스코어카드 사진 판독, 자동 합계, 역대 전적.">
 <meta name="theme-color" content="#1f6f43">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -62,68 +62,48 @@ select{
 select:focus{border-color:var(--green)}
 
 /* ===== header ===== */
-.hdr{
-  position:sticky;top:0;z-index:20;
-  background:var(--green);color:#fff;
-  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.18);
-}
+.hdr{position:sticky;top:0;z-index:20;background:var(--green);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .hdr-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .hdr-title{font-weight:800;font-size:17px;letter-spacing:-.2px;display:flex;align-items:center;gap:8px;min-width:0}
 .hdr-title small{font-weight:600;font-size:12px;opacity:.9;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:999px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
 .hdr-actions{display:flex;gap:6px;flex-shrink:0}
-.ibtn{
-  width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);
-  display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;
-}
+.ibtn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
 .ibtn:active{background:rgba(255,255,255,.3)}
 .totals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.tot{
-  background:rgba(255,255,255,.14);border-radius:12px;padding:8px 10px;
-  display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;
-}
+.totals.n3{grid-template-columns:1fr 1fr 1fr}
+.totals.n4{grid-template-columns:1fr 1fr 1fr 1fr}
+.tot{background:rgba(255,255,255,.14);border-radius:12px;padding:8px 8px;display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;min-width:0}
 .tot.lead{background:rgba(255,255,255,.26);outline:2px solid rgba(255,255,255,.7)}
-.tot-name{font-size:12px;font-weight:700;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:22px}
-.tot-main{display:flex;align-items:baseline;gap:6px}
-.tot-strokes{font-size:26px;font-weight:800;line-height:1}
-.tot-par{font-size:14px;font-weight:700;opacity:.95}
-.tot-sub{font-size:11px;opacity:.8}
-.crown{position:absolute;right:8px;top:6px;font-size:16px}
+.tot-name{font-size:12px;font-weight:700;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:18px}
+.tot-main{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.tot-strokes{font-size:24px;font-weight:800;line-height:1}
+.totals.n4 .tot-strokes,.totals.n3 .tot-strokes{font-size:20px}
+.tot-par{font-size:13px;font-weight:700;opacity:.95}
+.tot-sub{font-size:11px;opacity:.8;white-space:nowrap}
+.crown{position:absolute;right:6px;top:5px;font-size:14px}
 
 /* round info bar */
-.rinfo{
-  margin:12px 16px 0;max-width:720px;
-  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 12px;
-  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);cursor:pointer;
-}
+.rinfo{margin:12px 16px 0;max-width:720px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);cursor:pointer}
 .rinfo:active{background:var(--card2)}
-.rinfo .rn{
-  background:var(--green);color:#fff;font-weight:900;font-size:14px;border-radius:10px;padding:8px 10px;white-space:nowrap;
-}
+.rinfo .rn{background:var(--green);color:#fff;font-weight:900;font-size:14px;border-radius:10px;padding:8px 10px;white-space:nowrap}
 .rinfo .rt{flex:1;min-width:0}
 .rinfo .rt b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rinfo .rt span{font-size:12px;color:var(--t3)}
 .rinfo .edit{color:var(--t3);font-size:14px}
+.rinfo .thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
 @media (min-width:752px){ .rinfo{margin-left:auto;margin-right:auto} }
 
 /* ===== tabs ===== */
 .tabs{display:flex;gap:6px;padding:12px 16px 4px;max-width:752px;margin:0 auto}
-.tab{
-  flex:1;padding:10px 0;border-radius:12px;font-weight:700;font-size:14px;
-  background:var(--card);border:1px solid var(--border);color:var(--t2);
-}
+.tab{flex:1;padding:10px 0;border-radius:12px;font-weight:700;font-size:14px;background:var(--card);border:1px solid var(--border);color:var(--t2)}
 .tab.on{background:var(--green);color:#fff;border-color:var(--green)}
-
 .wrap{padding:8px 16px 0;max-width:720px;margin:0 auto}
 .panel{display:none}
 .panel.on{display:block}
 
 /* ===== input panel ===== */
 .hole-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 10px}
-.nav-btn{
-  width:52px;height:52px;border-radius:14px;background:var(--card);border:1px solid var(--border);
-  font-size:22px;font-weight:800;color:var(--t1);display:flex;align-items:center;justify-content:center;
-}
+.nav-btn{width:52px;height:52px;border-radius:14px;background:var(--card);border:1px solid var(--border);font-size:22px;font-weight:800;color:var(--t1);display:flex;align-items:center;justify-content:center}
 .nav-btn:disabled{opacity:.3}
 .nav-btn:active:not(:disabled){background:var(--card2)}
 .hole-title{flex:1;text-align:center}
@@ -132,20 +112,18 @@ select:focus{border-color:var(--green)}
 .hole-dots{display:flex;gap:4px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .dot{width:14px;height:14px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:0}
 .dot.done{background:var(--green)}
+.dot.half{background:var(--amber)}
 .dot.cur{outline:2px solid var(--green);outline-offset:2px}
 .dot button{width:100%;height:100%;border-radius:50%}
 
-.card{
-  background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:14px;box-shadow:var(--shadow);margin-bottom:12px;
-}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px;box-shadow:var(--shadow);margin-bottom:12px}
 .card-label{font-size:12px;font-weight:700;color:var(--t3);letter-spacing:.3px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
 .par-row{display:flex;align-items:center;gap:10px}
 .par-select{height:60px;font-size:22px;font-weight:800;flex:1}
 .par-select.unset{color:var(--t3);font-weight:700;font-size:16px;border-style:dashed}
-.par-hint{font-size:12px;color:var(--t3);margin-top:8px}
+.par-hint{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
 
-.player-card{display:flex;flex-direction:column;gap:10px}
+.player-card{display:flex;flex-direction:column;gap:10px;padding:12px 14px}
 .pc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .pc-name{font-weight:800;font-size:16px;display:flex;align-items:center;gap:6px;min-width:0}
 .pc-name span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -156,15 +134,12 @@ select:focus{border-color:var(--green)}
 .badge.over{background:var(--amber-soft);color:var(--amber)}
 .badge.bad{background:var(--red-soft);color:var(--red)}
 .stepper{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px;align-items:center}
-.step{
-  height:72px;border-radius:14px;background:var(--card2);border:1px solid var(--border);
-  font-size:32px;font-weight:800;color:var(--t1);display:flex;align-items:center;justify-content:center;
-}
+.step{height:64px;border-radius:14px;background:var(--card2);border:1px solid var(--border);font-size:30px;font-weight:800;color:var(--t1);display:flex;align-items:center;justify-content:center}
 .step:active{background:var(--green-soft);border-color:var(--green)}
 .step.minus:disabled{opacity:.3}
-.score-box{height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border)}
-.score-num{font-size:36px;font-weight:900;line-height:1}
-.score-num.empty{color:var(--t3);font-size:24px;font-weight:700}
+.score-box{height:64px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--border)}
+.score-num{font-size:32px;font-weight:900;line-height:1}
+.score-num.empty{color:var(--t3);font-size:22px;font-weight:700}
 .score-term{font-size:12px;font-weight:700;color:var(--t2);margin-top:2px}
 .quick{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
 .qk{padding:9px 0;border-radius:10px;background:var(--card2);border:1px solid var(--border);font-size:12px;font-weight:700;color:var(--t2);white-space:nowrap;overflow:hidden}
@@ -175,31 +150,32 @@ select:focus{border-color:var(--green)}
 .big-btn{flex:1;height:54px;border-radius:14px;font-size:16px;font-weight:800;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px}
 .big-btn.ghost{background:var(--card);color:var(--t1);border:1px solid var(--border)}
 .big-btn.danger{background:var(--card);color:var(--red);border:1px solid var(--border)}
+.big-btn.sm{height:46px;font-size:14px}
 .big-btn:active{filter:brightness(.92)}
 .big-btn:disabled{opacity:.4}
 
 /* ===== scorecard table ===== */
 .table-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow)}
 table{border-collapse:collapse;width:100%;min-width:320px}
-th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--border);font-size:15px}
+th,td{padding:8px 4px;text-align:center;border-bottom:1px solid var(--border);font-size:15px}
 th{background:var(--card2);font-size:12px;font-weight:800;color:var(--t2);position:sticky;top:0}
-th.name{max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+th.name{max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 td.h{font-weight:800;color:var(--t1)}
-td.h button{width:40px;height:40px;border-radius:10px;font-weight:800;font-size:15px;background:var(--card2);color:var(--t1)}
-td.p select{height:40px;width:68px;padding:0 24px 0 10px;font-size:15px;font-weight:800;border-radius:10px;background-position:right 8px center;background-size:12px}
+td.h button{width:36px;height:36px;border-radius:10px;font-weight:800;font-size:15px;background:var(--card2);color:var(--t1)}
+td.p select{height:36px;width:60px;padding:0 20px 0 8px;font-size:14px;font-weight:800;border-radius:10px;background-position:right 6px center;background-size:11px}
 td.p select.unset{color:var(--t3);border-style:dashed}
-td.s{font-weight:800;font-size:17px}
-td.s .cell{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px}
+td.s{font-weight:800;font-size:16px}
+td.s .cell{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px}
 .cell.under{background:var(--blue-soft);color:var(--blue)}
 .cell.eagle{background:var(--blue);color:#fff}
 .cell.even{color:var(--t1)}
 .cell.over{background:var(--amber-soft);color:var(--amber)}
 .cell.bad{background:var(--red-soft);color:var(--red)}
 .cell.none{color:var(--t3);font-weight:600}
-tr.sub td{background:var(--card2);font-weight:800;color:var(--t2);font-size:13px;white-space:nowrap}
+tr.sub td{background:var(--card2);font-weight:800;color:var(--t2);font-size:12px;white-space:nowrap}
 tr.sub td small{font-size:10px;font-weight:600;color:var(--t3)}
-tr.total td{background:var(--green-soft);font-weight:900;font-size:16px;color:var(--green);border-bottom:none}
-tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
+tr.total td{background:var(--green-soft);font-weight:900;font-size:15px;color:var(--green);border-bottom:none}
+tr.total td small{display:block;font-size:10px;font-weight:700;color:var(--t2)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--t3);padding:10px 4px}
 .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
 .muted{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
@@ -208,21 +184,22 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 .result.on{display:block}
 .result h3{margin:0 0 6px;font-size:18px}
 .result p{margin:0;font-size:14px;opacity:.95}
+.result .rank{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.result .rank div{display:flex;justify-content:space-between;background:rgba(255,255,255,.14);border-radius:8px;padding:6px 10px;font-size:14px;font-weight:700}
 
 /* ===== record panel ===== */
-.h2h{
-  background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow);
-}
+.h2h{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
 .h2h-title{font-size:12px;font-weight:700;opacity:.85;margin-bottom:8px;letter-spacing:.3px}
-.h2h-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
-.h2h-p{text-align:center}
-.h2h-p .nm{font-size:14px;font-weight:700;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.h2h-p .w{font-size:40px;font-weight:900;line-height:1.1}
-.h2h-p .w small{font-size:14px;font-weight:700;opacity:.85;margin-left:2px}
-.h2h-mid{text-align:center;font-size:13px;font-weight:800;opacity:.9;background:rgba(255,255,255,.18);border-radius:10px;padding:6px 10px;white-space:nowrap}
-.h2h-sub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.h2h-sub div{background:rgba(255,255,255,.14);border-radius:10px;padding:8px 10px;font-size:12px;line-height:1.5}
-.h2h-sub b{font-size:14px}
+.h2h-row{display:grid;gap:8px}
+.h2h-row.n2{grid-template-columns:1fr 1fr}
+.h2h-row.n3{grid-template-columns:1fr 1fr 1fr}
+.h2h-row.n4{grid-template-columns:1fr 1fr 1fr 1fr}
+.h2h-p{text-align:center;background:rgba(255,255,255,.12);border-radius:12px;padding:8px 4px;min-width:0}
+.h2h-p .nm{font-size:13px;font-weight:700;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h2h-p .w{font-size:34px;font-weight:900;line-height:1.1}
+.h2h-row.n4 .h2h-p .w,.h2h-row.n3 .h2h-p .w{font-size:28px}
+.h2h-p .w small{font-size:13px;font-weight:700;opacity:.85;margin-left:1px}
+.h2h-p .st{font-size:11px;opacity:.85;margin-top:4px;line-height:1.4}
 .streak{margin-top:10px;font-size:13px;font-weight:700;text-align:center;opacity:.95}
 
 .rlist .hist{border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:8px;background:var(--card);box-shadow:var(--shadow);font-size:14px}
@@ -240,17 +217,8 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 .empty{color:var(--t3);font-size:14px;text-align:center;padding:24px 10px;line-height:1.6}
 
 /* ===== bottom bar ===== */
-.bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:20;
-  background:var(--card);border-top:1px solid var(--border);
-  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
-  display:flex;gap:8px;max-width:720px;margin:0 auto;
-}
-.bar button{
-  flex:1;height:46px;border-radius:12px;font-weight:700;font-size:13px;
-  background:var(--card2);border:1px solid var(--border);color:var(--t1);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
-}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--border);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:8px;max-width:720px;margin:0 auto}
+.bar button{flex:1;height:46px;border-radius:12px;font-weight:700;font-size:12px;background:var(--card2);border:1px solid var(--border);color:var(--t1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;white-space:nowrap}
 .bar button span{font-size:16px}
 .bar button:active{background:var(--green-soft)}
 .bar button.primary{background:var(--green);color:#fff;border-color:var(--green)}
@@ -258,24 +226,47 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 /* ===== modal ===== */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:50;display:none;align-items:flex-end;justify-content:center}
 .modal-bg.on{display:flex}
-.modal{background:var(--card);width:100%;max-width:720px;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow-y:auto}
-.modal h3{margin:0 0 12px;font-size:17px}
+.modal{background:var(--card);width:100%;max-width:720px;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:90vh;overflow-y:auto}
+.modal h3{margin:0 0 12px;font-size:17px;display:flex;align-items:center;justify-content:space-between}
+.modal h3 .x{font-size:20px;color:var(--t3);padding:0 6px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12px;font-weight:700;color:var(--t3);margin-bottom:4px}
 .field input,.field select{width:100%;height:48px;border-radius:12px;border:1px solid var(--border);background-color:var(--card2);color:var(--t1);font-size:16px;padding:0 12px;outline:none}
 .field select{padding-right:40px}
 .field input:focus{border-color:var(--green)}
 .row{display:flex;gap:8px}
-.row .field{flex:1}
+.row .field{flex:1;min-width:0}
 .row .field.sm{flex:0 0 112px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .chips .qk{flex:0 0 auto;padding:7px 12px;font-size:12px}
+.chips .qk.on{background:var(--green);color:#fff;border-color:var(--green)}
+.names-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.spec-box{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:13px;line-height:1.5}
+.spec-box b{color:var(--green)}
+.spec-box .pars{font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:1px;margin-top:4px;word-break:break-all}
+.spec-box .pars span{display:inline-block;min-width:22px;text-align:center;border-radius:6px;background:var(--card);border:1px solid var(--border);margin:2px 1px;padding:1px 0}
 
-.toast{
-  position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
-  background:var(--t1);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:700;
-  opacity:0;pointer-events:none;transition:.25s;z-index:60;white-space:nowrap;
-}
+/* ===== photo / grid modal ===== */
+.photo-box{border:2px dashed var(--border);border-radius:14px;padding:12px;text-align:center;background:var(--card2);margin-bottom:12px}
+.photo-box img{max-width:100%;max-height:46vh;border-radius:10px;display:block;margin:0 auto 8px;background:#000}
+.photo-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.photo-btns .qk{flex:1;min-width:110px;padding:11px 8px;font-size:13px}
+.ai-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.ai-row .big-btn{height:48px;font-size:15px}
+.ai-status{font-size:12px;color:var(--t3);margin:-4px 0 10px;line-height:1.5;min-height:16px}
+.ai-status.err{color:var(--red)}
+.grid-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px}
+table.grid{min-width:0}
+table.grid th,table.grid td{padding:5px 3px}
+table.grid td.p select{width:56px;height:38px;padding:0 18px 0 6px;font-size:14px;background-position:right 5px center}
+table.grid input{width:44px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--card2);color:var(--t1);font-size:16px;font-weight:800;text-align:center;outline:none;padding:0}
+table.grid input:focus{border-color:var(--green)}
+table.grid input.ai{background:var(--blue-soft);border-color:var(--blue)}
+table.grid input.chg{background:var(--amber-soft);border-color:var(--amber)}
+.grid-foot{font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5}
+.grid-foot i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin:0 3px 0 6px}
+
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--t1);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:60;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 @media (min-width:560px){ .hdr-title{font-size:19px} .tot-strokes{font-size:30px} }
 </style>
@@ -290,23 +281,13 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
       <button class="ibtn" id="btnSettings" title="설정" aria-label="설정">⚙️</button>
     </div>
   </div>
-  <div class="totals">
-    <div class="tot" id="tot0">
-      <div class="tot-name" id="totName0">박프로</div>
-      <div class="tot-main"><div class="tot-strokes" id="totStrokes0">0</div><div class="tot-par" id="totPar0">E</div></div>
-      <div class="tot-sub" id="totSub0">0홀 완료</div>
-    </div>
-    <div class="tot" id="tot1">
-      <div class="tot-name" id="totName1">백프로</div>
-      <div class="tot-main"><div class="tot-strokes" id="totStrokes1">0</div><div class="tot-par" id="totPar1">E</div></div>
-      <div class="tot-sub" id="totSub1">0홀 완료</div>
-    </div>
-  </div>
+  <div class="totals" id="totals"></div>
 </header>
 
 <div class="rinfo" id="rinfo" role="button" aria-label="라운드 정보 편집">
   <div class="rn" id="riRound">1차전</div>
   <div class="rt"><b id="riCourse">골프장 이름을 입력하세요</b><span id="riDate"></span></div>
+  <img class="thumb" id="riThumb" alt="" style="display:none">
   <div class="edit">✎</div>
 </div>
 
@@ -339,54 +320,30 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
           <option value="5">파 5</option>
         </select>
       </div>
-      <div class="par-hint">드롭다운에서 파 3 / 파 4 / 파 5를 고르세요. 홀별 파는 저장되어 같은 골프장에서 다음 라운드에도 그대로 쓰입니다.</div>
+      <div class="par-hint">드롭다운에서 파 3 / 파 4 / 파 5를 고르세요. 홀별 파는 골프장 이름별 규격으로 저장되어, 같은 골프장을 고르면 자동으로 채워집니다.</div>
     </div>
 
-    <div class="card player-card" id="pcard0">
-      <div class="pc-top">
-        <div class="pc-name" data-player="0"><span id="pName0">박프로</span><span class="edit">✎</span></div>
-        <div class="badge" id="pBadge0">미입력</div>
-      </div>
-      <div class="stepper">
-        <button class="step minus" data-player="0" data-d="-1" aria-label="타수 빼기">−</button>
-        <div class="score-box"><div class="score-num empty" id="pScore0">–</div><div class="score-term" id="pTerm0">탭해서 입력</div></div>
-        <button class="step plus" data-player="0" data-d="1" aria-label="타수 더하기">+</button>
-      </div>
-      <div class="quick" id="quick0"></div>
-    </div>
-
-    <div class="card player-card" id="pcard1">
-      <div class="pc-top">
-        <div class="pc-name" data-player="1"><span id="pName1">백프로</span><span class="edit">✎</span></div>
-        <div class="badge" id="pBadge1">미입력</div>
-      </div>
-      <div class="stepper">
-        <button class="step minus" data-player="1" data-d="-1" aria-label="타수 빼기">−</button>
-        <div class="score-box"><div class="score-num empty" id="pScore1">–</div><div class="score-term" id="pTerm1">탭해서 입력</div></div>
-        <button class="step plus" data-player="1" data-d="1" aria-label="타수 더하기">+</button>
-      </div>
-      <div class="quick" id="quick1"></div>
-    </div>
+    <div id="playerCards"></div>
 
     <div class="next-row">
       <button class="big-btn ghost" id="clearHole">이 홀 지우기</button>
       <button class="big-btn" id="goNext">다음 홀 →</button>
+    </div>
+    <div class="next-row" style="margin-top:10px">
+      <button class="big-btn ghost sm" id="btnPhoto1">📷 수기 스코어카드 사진으로 입력</button>
     </div>
   </section>
 
   <!-- ===== SCORECARD PANEL ===== -->
   <section class="panel" id="panel-card">
     <div class="result" id="result"></div>
+    <div class="next-row" style="margin:0 0 10px">
+      <button class="big-btn ghost sm" id="btnPhoto2">📷 사진으로 입력</button>
+      <button class="big-btn ghost sm" id="btnGrid">⌨️ 표로 한 번에 입력</button>
+    </div>
     <div class="table-wrap">
       <table id="scoreTable">
-        <thead>
-          <tr>
-            <th style="width:48px">홀</th>
-            <th style="width:76px">파</th>
-            <th class="name" id="thName0">박프로</th>
-            <th class="name" id="thName1">백프로</th>
-          </tr>
-        </thead>
+        <thead><tr id="thead"></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
@@ -423,18 +380,17 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
   <div class="modal">
     <h3>🏌️ 라운드 정보</h3>
     <div class="row">
-      <div class="field sm"><label>회차</label>
-        <select id="inRound"></select>
-      </div>
+      <div class="field sm"><label>회차</label><select id="inRound"></select></div>
       <div class="field"><label>날짜</label><input type="date" id="inDate"></div>
     </div>
-    <div class="field"><label>골프장 이름</label><input id="inCourse" maxlength="24" placeholder="예: 세종 파크골프장">
+    <div class="field"><label>골프장 이름</label><input id="inCourse" maxlength="24" placeholder="예: 세종 파크골프장" autocomplete="off">
       <div class="chips" id="courseChips"></div>
+      <div class="spec-box" id="specBox" style="display:none"></div>
     </div>
-    <div class="row">
-      <div class="field"><label>플레이어 1</label><input id="inName0" maxlength="12" placeholder="박프로"></div>
-      <div class="field"><label>플레이어 2</label><input id="inName1" maxlength="12" placeholder="백프로"></div>
+    <div class="field"><label>플레이어 수</label>
+      <select id="inNP"><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option></select>
     </div>
+    <div class="field"><label>플레이어 이름</label><div class="names-grid" id="nameInputs"></div></div>
     <div class="next-row"><button class="big-btn" id="closeRound">완료</button></div>
   </div>
 </div>
@@ -442,28 +398,26 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
 <!-- Settings modal -->
 <div class="modal-bg" id="mSettings">
   <div class="modal">
-    <h3>⚙️ 설정</h3>
+    <h3>⚙️ 설정 · 코스 규격</h3>
     <div class="field"><label>홀 수</label>
-      <select id="inHoles">
-        <option value="9">9홀</option>
-        <option value="14">14홀</option>
-        <option value="18">18홀</option>
-      </select>
-      <div class="par-hint">홀 수를 바꾸면 점수는 유지되고 표시 범위만 바뀝니다.</div>
+      <select id="inHoles"><option value="9">9홀</option><option value="14">14홀</option><option value="18">18홀</option></select>
+    </div>
+    <div class="field"><label>홀별 파 한 줄 입력 (골프장 안내판을 보고 1번 홀부터 순서대로)</label>
+      <input id="inParLine" inputmode="numeric" placeholder="예: 3 4 4 5 4 3 4 5 4 4 3 4 5 4" autocomplete="off">
+      <div class="par-hint" id="parLineHint">숫자 3·4·5만 띄어쓰기나 쉼표로 구분해 적고 "적용"을 누르세요. 현재 골프장 이름으로 규격이 저장됩니다.</div>
+      <div class="next-row" style="margin-top:8px"><button class="big-btn ghost sm" id="btnParLine">✔ 홀별 파 적용</button></div>
     </div>
     <div class="field"><label>모든 홀 파 일괄 설정</label>
-      <select id="inParAll">
-        <option value="">선택 안 함</option>
-        <option value="3">전부 파 3</option>
-        <option value="4">전부 파 4</option>
-        <option value="5">전부 파 5</option>
-      </select>
-      <div class="par-hint">일괄 설정 후 홀별 드롭다운에서 개별로 다시 바꿀 수 있습니다.</div>
+      <select id="inParAll"><option value="">선택 안 함</option><option value="3">전부 파 3</option><option value="4">전부 파 4</option><option value="5">전부 파 5</option></select>
+    </div>
+    <div class="field"><label>저장된 골프장 규격</label>
+      <div id="courseList" class="chips"></div>
+      <div class="par-hint">골프장 이름을 입력하고 파를 설정하면 그 이름으로 규격이 자동 저장됩니다. 칩을 길게 누르면 삭제할 수 있습니다.</div>
     </div>
     <div class="field"><label>데이터</label>
       <div class="next-row" style="margin-top:0">
-        <button class="big-btn ghost" id="btnBackup" style="height:46px;font-size:14px">백업 파일 저장</button>
-        <button class="big-btn ghost" id="btnRestore" style="height:46px;font-size:14px">백업 불러오기</button>
+        <button class="big-btn ghost sm" id="btnBackup">백업 파일 저장</button>
+        <button class="big-btn ghost sm" id="btnRestore">백업 불러오기</button>
       </div>
       <input type="file" id="fileRestore" accept="application/json,.json" style="display:none">
       <div class="par-hint">기록은 이 기기 브라우저에 저장됩니다. 폰을 바꾸거나 브라우저 데이터를 지우기 전에 백업해 두세요.</div>
@@ -481,370 +435,354 @@ tr.total td small{display:block;font-size:11px;font-weight:700;color:var(--t2)}
   </div>
 </div>
 
+<!-- Photo + grid modal -->
+<div class="modal-bg" id="mPhoto">
+  <div class="modal">
+    <h3><span id="mPhotoTitle">📷 사진으로 입력</span><button class="x" id="closePhoto" aria-label="닫기">✕</button></h3>
+    <div class="photo-box" id="photoBox">
+      <img id="photoImg" alt="수기 스코어카드 사진" style="display:none">
+      <div class="photo-btns">
+        <button class="qk" id="btnCam">📸 카메라로 찍기</button>
+        <button class="qk" id="btnGal">🖼️ 앨범에서 선택</button>
+        <button class="qk" id="btnPhotoDel" style="display:none">🗑 사진 제거</button>
+      </div>
+      <input type="file" id="fileCam" accept="image/*" capture="environment" style="display:none">
+      <input type="file" id="fileGal" accept="image/*" style="display:none">
+    </div>
+    <div class="ai-row" id="aiRow" style="display:none">
+      <button class="big-btn" id="btnAI">🤖 Claude로 점수 읽기</button>
+      <button class="big-btn ghost" id="btnAIStop" style="display:none;flex:0 0 80px">중지</button>
+    </div>
+    <div class="ai-status" id="aiStatus"></div>
+    <div class="grid-wrap"><table class="grid" id="gridTable"><thead><tr id="gthead"></tr></thead><tbody id="gtbody"></tbody></table></div>
+    <div class="grid-foot">사진을 보면서 표에 바로 입력해도 됩니다. <i style="background:var(--blue-soft);border:1px solid var(--blue)"></i>Claude가 읽은 값 <i style="background:var(--amber-soft);border:1px solid var(--amber)"></i>기존 값과 다른 칸</div>
+    <div class="next-row" style="margin-top:12px">
+      <button class="big-btn ghost" id="gridClear">표 비우기</button>
+      <button class="big-btn" id="gridApply">✔ 점수판에 적용</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
 'use strict';
-const KEY='parkgolf.v2';
-const HKEY='parkgolf.history.v2';
-const CKEY='parkgolf.courses.v1';   // 골프장별 파 프리셋 {name:{holes,par[]}}
-const MAXH=18;
-const DEF_NAMES=['박프로','백프로'];
+const KEY='parkgolf.v3';
+const HKEY='parkgolf.history.v3';
+const CKEY='parkgolf.courses.v1';   // {골프장이름: {holes, par[]}}
+const PKEY='parkgolf.photos.v1';    // {roundId: dataURL}
+const MAXH=18, MAXP=4;
+const DEF_NAMES=['박프로','백프로','플레이어 3','플레이어 4'];
 
 const todayStr=()=>{ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); };
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const arr=(n,v)=>Array.from({length:n},()=>v);
 
 const defState=()=>({
-  id:uid(),
-  round:1,
-  date:todayStr(),
-  names:DEF_NAMES.slice(),
-  course:'',
-  holes:14,
-  par:Array(MAXH).fill(0),
-  scores:[Array(MAXH).fill(0),Array(MAXH).fill(0)],
-  cur:0,
-  tab:'input',
-  theme:'',
-  savedAt:0,
-  dirty:false
+  id:uid(), round:1, date:todayStr(),
+  names:DEF_NAMES.slice(0,2), course:'', holes:14,
+  par:arr(MAXH,0), scores:[arr(MAXH,0),arr(MAXH,0)],
+  cur:0, tab:'input', theme:'', savedAt:0, dirty:false
 });
-
+function normalize(o){
+  const d=defState();
+  for(const k in d) if(!(k in o)) o[k]=d[k];
+  if(!Array.isArray(o.names)||o.names.length<2) o.names=DEF_NAMES.slice(0,2);
+  o.names=o.names.slice(0,MAXP);
+  if(!Array.isArray(o.par)) o.par=[]; while(o.par.length<MAXH) o.par.push(0);
+  if(!Array.isArray(o.scores)) o.scores=[];
+  while(o.scores.length<o.names.length) o.scores.push(arr(MAXH,0));
+  o.scores=o.scores.slice(0,o.names.length);
+  o.scores.forEach(a=>{ while(a.length<MAXH) a.push(0); });
+  return o;
+}
 let S=load();
 function load(){
   try{
-    let raw=localStorage.getItem(KEY);
-    if(!raw){
-      // v1 마이그레이션
-      const v1=localStorage.getItem('parkgolf.v1');
-      if(v1){
-        const o=JSON.parse(v1); const d=defState();
-        d.names=(o.names||[]).map((n,i)=>(!n||/^플레이어 ?[12]$/.test(n))?DEF_NAMES[i]:n);
-        if(d.names.length<2) d.names=DEF_NAMES.slice();
-        d.course=o.course||''; d.holes=o.holes||14; d.par=o.par||d.par; d.scores=o.scores||d.scores; d.theme=o.theme||'';
-        d.date=o.startedAt?new Date(o.startedAt).toISOString().slice(0,10):todayStr();
-        const h1=localStorage.getItem('parkgolf.history.v1');
-        if(h1&&!localStorage.getItem(HKEY)){
-          try{ const list=JSON.parse(h1); const conv=list.slice().reverse().map((r,i)=>({id:uid(),round:i+1,date:new Date(r.at).toISOString().slice(0,10),at:r.at,course:r.course||'',holes:r.holes,names:r.names,par:r.par,scores:r.scores,strokes:r.strokes,diff:r.diff,done:r.done})).reverse(); localStorage.setItem(HKEY,JSON.stringify(conv)); d.round=conv.length+1; }catch(e){}
-        }
-        return d;
-      }
-      return defState();
-    }
-    const o=JSON.parse(raw); const d=defState();
-    for(const k in d) if(!(k in o)) o[k]=d[k];
-    while(o.par.length<MAXH) o.par.push(0);
-    o.scores.forEach(a=>{while(a.length<MAXH)a.push(0)});
-    return o;
-  }catch(e){return defState()}
+    const raw=localStorage.getItem(KEY);
+    if(raw) return normalize(JSON.parse(raw));
+    const v2=localStorage.getItem('parkgolf.v2');   // v2 → v3 마이그레이션
+    if(v2){ const o=normalize(JSON.parse(v2)); const h2=localStorage.getItem('parkgolf.history.v2'); if(h2&&!localStorage.getItem(HKEY)) localStorage.setItem(HKEY,h2); return o; }
+    return defState();
+  }catch(e){ return defState(); }
 }
-function save(){ try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
 function loadHist(){ try{ return JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){ return []; } }
-function saveHist(a){ try{ localStorage.setItem(HKEY,JSON.stringify(a)); }catch(e){} }
+function saveHist(a){ try{ localStorage.setItem(HKEY,JSON.stringify(a)); }catch(e){ toast('저장 공간이 부족합니다. 설정에서 백업 후 오래된 기록을 지워주세요'); } }
 function loadCourses(){ try{ return JSON.parse(localStorage.getItem(CKEY)||'{}'); }catch(e){ return {}; } }
 function saveCourses(c){ try{ localStorage.setItem(CKEY,JSON.stringify(c)); }catch(e){} }
+function loadPhotos(){ try{ return JSON.parse(localStorage.getItem(PKEY)||'{}'); }catch(e){ return {}; } }
+function savePhotos(p){ const keys=Object.keys(p); if(keys.length>8) keys.slice(0,keys.length-8).forEach(k=>delete p[k]); try{ localStorage.setItem(PKEY,JSON.stringify(p)); }catch(e){ toast('사진 저장 공간이 부족해 사진은 보관하지 않습니다'); } }
+function photoOf(id){ return loadPhotos()[id]||''; }
+function setPhoto(id,dataUrl){ const p=loadPhotos(); if(dataUrl) p[id]=dataUrl; else delete p[id]; savePhotos(p); }
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtDate=s=>{ if(!s) return ''; const [y,m,d]=s.split('-'); return y+'.'+m+'.'+d; };
 const dow=s=>{ try{ return ['일','월','화','수','목','금','토'][new Date(s+'T00:00:00').getDay()]+'요일'; }catch(e){ return ''; } };
+const NP=()=>S.names.length;
+const normName=s=>String(s||'').trim().replace(/\s+/g,' ');
 
 // ===== helpers =====
 function parOf(h){ return S.par[h]||0; }
-function termOf(diff){
-  if(diff<=-3) return '알바트로스'; if(diff===-2) return '이글'; if(diff===-1) return '버디'; if(diff===0) return '파';
-  if(diff===1) return '보기'; if(diff===2) return '더블보기'; if(diff===3) return '트리플보기'; return '+'+diff;
-}
+function termOf(diff){ if(diff<=-3) return '알바트로스'; if(diff===-2) return '이글'; if(diff===-1) return '버디'; if(diff===0) return '파'; if(diff===1) return '보기'; if(diff===2) return '더블보기'; if(diff===3) return '트리플보기'; return '+'+diff; }
+function shortTerm(d){ if(d<=-2) return '🦅'; if(d===-1) return '버디'; if(d===0) return '파'; if(d===1) return '보기'; if(d===2) return '더블'; return '+'+d; }
 function clsOf(diff){ if(diff<=-2) return 'eagle'; if(diff===-1) return 'under'; if(diff===0) return 'even'; if(diff===1) return 'over'; return 'bad'; }
 function fmtPar(n){ return n===0?'E':(n>0?'+'+n:String(n)); }
-function stats(p){
-  let strokes=0,diff=0,done=0;
-  for(let h=0;h<S.holes;h++){ const sc=S.scores[p][h]; if(sc>0){ strokes+=sc; done++; if(parOf(h)>0) diff+=sc-parOf(h); } }
-  return {strokes,diff,done};
-}
+function stats(p){ let strokes=0,diff=0,done=0; for(let h=0;h<S.holes;h++){ const sc=S.scores[p][h]; if(sc>0){ strokes+=sc; done++; if(parOf(h)>0) diff+=sc-parOf(h); } } return {strokes,diff,done}; }
+function allStats(){ return S.names.map((_,p)=>stats(p)); }
 function totalPar(){ let t=0; for(let h=0;h<S.holes;h++) t+=parOf(h); return t; }
-function allDone(){ for(let h=0;h<S.holes;h++) if(!(S.scores[0][h]>0&&S.scores[1][h]>0)) return false; return true; }
-function winnerOf(strokes,done,holes){
-  if(done[0]<holes||done[1]<holes) return -2; // 미완료
-  if(strokes[0]<strokes[1]) return 0; if(strokes[1]<strokes[0]) return 1; return -1;
-}
+function holeDone(h){ return S.scores.every(a=>a[h]>0); }
+function holeAny(h){ return S.scores.some(a=>a[h]>0); }
+function allDone(){ for(let h=0;h<S.holes;h++) if(!holeDone(h)) return false; return true; }
+function winnersOf(r){ if(!r.done.every(d=>d===r.holes)) return null; const min=Math.min(...r.strokes); return r.strokes.map((s,i)=>s===min?i:-1).filter(i=>i>=0); }
 function markDirty(){ S.dirty=true; }
+function vib(){ try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){} }
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),2200); }
+
+// ===== 골프장 규격 (holes + par[]) =====
+function courseSpec(name){ const c=loadCourses()[normName(name)]; return c&&Array.isArray(c.par)?c:null; }
+function specSummary(c){ const ps=c.par.slice(0,c.holes); const tot=ps.reduce((a,b)=>a+(b||0),0); const cnt=[3,4,5].map(v=>ps.filter(x=>x===v).length); return c.holes+'홀 · 파 '+tot+' (파3×'+cnt[0]+' · 파4×'+cnt[1]+' · 파5×'+cnt[2]+')'; }
+function rememberCoursePar(){ const n=normName(S.course); if(!n) return; if(!S.par.slice(0,S.holes).some(v=>v>0)) return; const c=loadCourses(); c[n]={holes:S.holes,par:S.par.slice(),updatedAt:Date.now()}; saveCourses(c); }
+function applyCourseSpec(name,force){
+  const c=courseSpec(name); if(!c) return false;
+  const same=c.holes===S.holes&&c.par.slice(0,S.holes).every((v,i)=>v===(S.par[i]||0));
+  if(same) return false;
+  const hasPar=S.par.slice(0,S.holes).some(v=>v>0);
+  if(hasPar&&!force){ if(!confirm('"'+name+'"에 저장된 규격('+specSummary(c)+')으로 홀 수와 파를 바꿀까요?\n(점수는 그대로 유지됩니다)')) return false; }
+  S.holes=c.holes||S.holes; S.par=c.par.slice(); while(S.par.length<MAXH) S.par.push(0); if(S.cur>=S.holes) S.cur=S.holes-1;
+  return true;
+}
+function parseParLine(s){ const nums=String(s||'').split(/[^0-9]+/).filter(Boolean).map(Number); if(!nums.length||nums.some(n=>![3,4,5].includes(n))) return null; return nums.slice(0,MAXH); }
 
 // ===== render =====
 function render(){ renderHeader(); renderRoundInfo(); renderInput(); renderTable(); renderRecord(); save(); }
 function renderHeader(){
-  $('courseTag').textContent=(S.course?S.course+' · ':'')+S.holes+'홀';
-  const st=[stats(0),stats(1)];
-  for(let p=0;p<2;p++){
-    $('totName'+p).textContent=S.names[p];
-    $('totStrokes'+p).textContent=st[p].strokes;
-    $('totPar'+p).textContent=st[p].done?fmtPar(st[p].diff):'E';
-    $('totSub'+p).textContent=st[p].done+'/'+S.holes+'홀 완료';
-    $('tot'+p).classList.remove('lead'); const c=$('tot'+p).querySelector('.crown'); if(c) c.remove();
-  }
-  if(st[0].done>0&&st[1].done>0){
-    const a=st[0],b=st[1]; let lead=-1;
-    if(a.done===b.done){ if(a.strokes<b.strokes) lead=0; else if(b.strokes<a.strokes) lead=1; }
-    else { if(a.diff<b.diff) lead=0; else if(b.diff<a.diff) lead=1; }
-    if(lead>=0){ $('tot'+lead).classList.add('lead'); const sp=document.createElement('span'); sp.className='crown'; sp.textContent='👑'; $('tot'+lead).appendChild(sp); }
-  }
+  $('courseTag').textContent=(S.course?S.course+' · ':'')+S.holes+'홀'+(totalPar()?' · 파'+totalPar():'');
+  const st=allStats(); const box=$('totals'); box.className='totals n'+NP();
+  let lead=-1;
+  if(st.every(s=>s.done>0)){ const sameDone=st.every(s=>s.done===st[0].done); const key=sameDone?st.map(s=>s.strokes):st.map(s=>s.diff); const min=Math.min(...key); const idx=key.map((v,i)=>v===min?i:-1).filter(i=>i>=0); if(idx.length===1) lead=idx[0]; }
+  box.innerHTML=S.names.map((n,p)=>'<div class="tot'+(p===lead?' lead':'')+'"><div class="tot-name">'+esc(n)+'</div><div class="tot-main"><div class="tot-strokes">'+st[p].strokes+'</div><div class="tot-par">'+(st[p].done?fmtPar(st[p].diff):'E')+'</div></div><div class="tot-sub">'+st[p].done+'/'+S.holes+'홀</div>'+(p===lead?'<span class="crown">👑</span>':'')+'</div>').join('');
 }
 function renderRoundInfo(){
   $('riRound').textContent=S.round+'차전';
   $('riCourse').textContent=S.course||'골프장 이름을 입력하세요';
   $('riCourse').style.color=S.course?'':'var(--t3)';
-  $('riDate').textContent=fmtDate(S.date)+' '+dow(S.date)+(S.savedAt?(S.dirty?' · 수정됨(미저장)':' · 저장됨'):' · 미저장');
+  $('riDate').textContent=fmtDate(S.date)+' '+dow(S.date)+' · '+NP()+'명'+(S.savedAt?(S.dirty?' · 수정됨':' · 저장됨'):' · 미저장');
+  const ph=photoOf(S.id); const img=$('riThumb'); if(ph){ img.src=ph; img.style.display=''; } else { img.removeAttribute('src'); img.style.display='none'; }
 }
 function renderInput(){
   const h=S.cur;
   $('holeNum').textContent=h+1;
-  $('prevHole').disabled=h===0;
-  $('nextHole').disabled=h>=S.holes-1;
+  $('prevHole').disabled=h===0; $('nextHole').disabled=h>=S.holes-1;
   $('goNext').textContent=h>=S.holes-1?'스코어카드 보기 →':'다음 홀 →';
   const dots=$('holeDots'); dots.innerHTML='';
-  for(let i=0;i<S.holes;i++){
-    const d=document.createElement('div'); d.className='dot'+(S.scores[0][i]>0&&S.scores[1][i]>0?' done':'')+(i===h?' cur':'');
-    const b=document.createElement('button'); b.setAttribute('aria-label',(i+1)+'번 홀로 이동'); b.dataset.go=i; d.appendChild(b); dots.appendChild(d);
-  }
+  for(let i=0;i<S.holes;i++){ const d=document.createElement('div'); d.className='dot'+(holeDone(i)?' done':holeAny(i)?' half':'')+(i===h?' cur':''); const b=document.createElement('button'); b.setAttribute('aria-label',(i+1)+'번 홀로 이동'); b.dataset.go=i; d.appendChild(b); dots.appendChild(d); }
   const sel=$('parSelect'); sel.value=String(parOf(h)); sel.classList.toggle('unset',!parOf(h));
   $('parAllHint').textContent=parOf(h)?'':'⚠️ 파 미설정';
-  for(let p=0;p<2;p++){
-    $('pName'+p).textContent=S.names[p];
-    const sc=S.scores[p][h], par=parOf(h);
-    const num=$('pScore'+p), term=$('pTerm'+p), badge=$('pBadge'+p);
-    if(sc>0){
-      num.textContent=sc; num.classList.remove('empty');
-      if(par>0){ const d=sc-par; term.textContent=termOf(d); badge.textContent=fmtPar(d)+' · '+termOf(d); badge.className='badge '+(d<0?'under':d===0?'even':d===1?'over':'bad'); }
-      else { term.textContent=sc+'타'; badge.textContent=sc+'타'; badge.className='badge'; }
-    } else { num.textContent='–'; num.classList.add('empty'); term.textContent='탭해서 입력'; badge.textContent='미입력'; badge.className='badge'; }
-    document.querySelector('.step.minus[data-player="'+p+'"]').disabled=sc<=0;
-    const q=$('quick'+p); q.innerHTML='';
-    const base=par||4; const opts=[]; for(let v=Math.max(1,base-2);v<=base+3;v++) opts.push(v);
-    opts.forEach(v=>{ const b=document.createElement('button'); b.className='qk'+(sc===v?' on':''); b.dataset.player=p; b.dataset.set=v; b.textContent=par>0?(v+' '+shortTerm(v-par)):String(v); q.appendChild(b); });
-  }
-}
-function shortTerm(d){ if(d<=-2) return '🦅'; if(d===-1) return '버디'; if(d===0) return '파'; if(d===1) return '보기'; if(d===2) return '더블'; return '+'+d; }
-function parSelectHtml(h){
   const par=parOf(h);
-  return '<select data-parh="'+h+'" class="'+(par?'':'unset')+'" aria-label="'+(h+1)+'번 홀 파">'
-    +'<option value="0"'+(par===0?' selected':'')+'>?</option>'
-    +[3,4,5].map(v=>'<option value="'+v+'"'+(par===v?' selected':'')+'>'+v+'</option>').join('')+'</select>';
+  $('playerCards').innerHTML=S.names.map((n,p)=>{
+    const sc=S.scores[p][h]; let num,term,badge,bcls='badge';
+    if(sc>0){ num=sc; if(par>0){ const d=sc-par; term=termOf(d); badge=fmtPar(d)+' · '+termOf(d); bcls='badge '+(d<0?'under':d===0?'even':d===1?'over':'bad'); } else { term=sc+'타'; badge=sc+'타'; } }
+    else { num='–'; term='탭해서 입력'; badge='미입력'; }
+    const base=par||4; const opts=[]; for(let v=Math.max(1,base-2);v<=base+3;v++) opts.push(v);
+    return '<div class="card player-card"><div class="pc-top"><div class="pc-name" data-player="'+p+'"><span>'+esc(n)+'</span><span class="edit">✎</span></div><div class="'+bcls+'">'+badge+'</div></div>'
+      +'<div class="stepper"><button class="step minus" data-player="'+p+'" data-d="-1" aria-label="타수 빼기"'+(sc<=0?' disabled':'')+'>−</button><div class="score-box"><div class="score-num'+(sc>0?'':' empty')+'">'+num+'</div><div class="score-term">'+term+'</div></div><button class="step plus" data-player="'+p+'" data-d="1" aria-label="타수 더하기">+</button></div>'
+      +'<div class="quick">'+opts.map(v=>'<button class="qk'+(sc===v?' on':'')+'" data-player="'+p+'" data-set="'+v+'">'+(par>0?(v+' '+shortTerm(v-par)):v)+'</button>').join('')+'</div></div>';
+  }).join('');
 }
+function parSelectHtml(h){ const par=parOf(h); return '<select data-parh="'+h+'" class="'+(par?'':'unset')+'" aria-label="'+(h+1)+'번 홀 파"><option value="0"'+(par===0?' selected':'')+'>?</option>'+[3,4,5].map(v=>'<option value="'+v+'"'+(par===v?' selected':'')+'>'+v+'</option>').join('')+'</select>'; }
 function renderTable(){
-  $('thName0').textContent=S.names[0]; $('thName1').textContent=S.names[1];
-  const tb=$('tbody'); let html='';
-  const half=Math.ceil(S.holes/2);
-  let sub=[[0,0,0],[0,0,0]], subPar=0;
+  $('thead').innerHTML='<th style="width:44px">홀</th><th style="width:64px">파</th>'+S.names.map(n=>'<th class="name">'+esc(n)+'</th>').join('');
+  const tb=$('tbody'); let html=''; const half=Math.ceil(S.holes/2);
+  let sub=S.names.map(()=>[0,0,0]), subPar=0;
   function cell(p,h){ const sc=S.scores[p][h], par=parOf(h); if(!(sc>0)) return '<span class="cell none">·</span>'; if(!par) return '<span class="cell even">'+sc+'</span>'; return '<span class="cell '+clsOf(sc-par)+'">'+sc+'</span>'; }
-  function subRow(label){
-    html+='<tr class="sub"><td>'+label+'</td><td>'+(subPar||'–')+'</td>';
-    for(let p=0;p<2;p++){ const s=sub[p]; html+='<td>'+(s[2]?s[0]+' <span style="opacity:.75">('+fmtPar(s[0]-s[1])+')</span>':'–')+'</td>'; }
-    html+='</tr>'; sub=[[0,0,0],[0,0,0]]; subPar=0;
-  }
+  function subRow(label){ html+='<tr class="sub"><td>'+label+'</td><td>'+(subPar||'–')+'</td>'+sub.map(s=>'<td>'+(s[2]?s[0]+' <span style="opacity:.75">('+fmtPar(s[0]-s[1])+')</span>':'–')+'</td>').join('')+'</tr>'; sub=S.names.map(()=>[0,0,0]); subPar=0; }
   for(let h=0;h<S.holes;h++){
     const par=parOf(h);
-    html+='<tr><td class="h"><button data-go="'+h+'">'+(h+1)+'</button></td><td class="p">'+parSelectHtml(h)+'</td><td class="s">'+cell(0,h)+'</td><td class="s">'+cell(1,h)+'</td></tr>';
-    subPar+=par;
-    for(let p=0;p<2;p++){ const sc=S.scores[p][h]; if(sc>0){ sub[p][0]+=sc; if(par) sub[p][1]+=par; sub[p][2]++; } }
+    html+='<tr><td class="h"><button data-go="'+h+'">'+(h+1)+'</button></td><td class="p">'+parSelectHtml(h)+'</td>'+S.names.map((_,p)=>'<td class="s">'+cell(p,h)+'</td>').join('')+'</tr>';
+    subPar+=par; S.names.forEach((_,p)=>{ const sc=S.scores[p][h]; if(sc>0){ sub[p][0]+=sc; if(par) sub[p][1]+=par; sub[p][2]++; } });
     if(h===half-1&&S.holes>9) subRow('전반<br><small>1–'+half+'</small>');
     if(h===S.holes-1&&S.holes>9) subRow('후반<br><small>'+(half+1)+'–'+S.holes+'</small>');
   }
-  const st=[stats(0),stats(1)];
-  html+='<tr class="total"><td>합계</td><td>'+(totalPar()||'–')+'<small>파</small></td>';
-  for(let p=0;p<2;p++) html+='<td>'+st[p].strokes+'<small>'+(st[p].done?fmtPar(st[p].diff):'–')+' · '+st[p].done+'홀</small></td>';
-  html+='</tr>';
+  const st=allStats();
+  html+='<tr class="total"><td>합계</td><td>'+(totalPar()||'–')+'<small>파</small></td>'+st.map(s=>'<td>'+s.strokes+'<small>'+(s.done?fmtPar(s.diff):'–')+' · '+s.done+'홀</small></td>').join('')+'</tr>';
   tb.innerHTML=html;
-
   const r=$('result');
   if(allDone()){
-    const a=st[0],b=st[1]; let msg;
+    const order=st.map((s,i)=>i).sort((a,b)=>st[a].strokes-st[b].strokes);
+    const min=st[order[0]].strokes; const winners=order.filter(i=>st[i].strokes===min);
     const head='<div style="font-size:12px;opacity:.85;margin-bottom:4px">'+S.round+'차전 · '+fmtDate(S.date)+(S.course?' · '+esc(S.course):'')+'</div>';
-    if(a.strokes<b.strokes) msg='<h3>🏆 '+esc(S.names[0])+' 승리!</h3><p>'+a.strokes+'타 ('+fmtPar(a.diff)+') vs '+b.strokes+'타 ('+fmtPar(b.diff)+') · '+(b.strokes-a.strokes)+'타 차</p>';
-    else if(b.strokes<a.strokes) msg='<h3>🏆 '+esc(S.names[1])+' 승리!</h3><p>'+b.strokes+'타 ('+fmtPar(b.diff)+') vs '+a.strokes+'타 ('+fmtPar(a.diff)+') · '+(a.strokes-b.strokes)+'타 차</p>';
-    else msg='<h3>🤝 무승부!</h3><p>두 분 모두 '+a.strokes+'타 ('+fmtPar(a.diff)+')</p>';
-    r.innerHTML=head+msg+(S.dirty||!S.savedAt?'<p style="margin-top:8px;font-size:12px;opacity:.9">💾 아래 "라운드 저장"을 누르면 역대 전적에 반영됩니다.</p>':''); r.classList.add('on');
+    let msg=winners.length===1?'<h3>🏆 '+esc(S.names[winners[0]])+' 승리!</h3>':'<h3>🤝 '+winners.map(i=>esc(S.names[i])).join(' · ')+' 공동 1위!</h3>';
+    const medals=['🥇','🥈','🥉','4위']; let rank=0, prev=null;
+    msg+='<div class="rank">'+order.map((i,k)=>{ if(st[i].strokes!==prev){ rank=k; prev=st[i].strokes; } return '<div><span>'+medals[rank]+' '+esc(S.names[i])+'</span><span>'+st[i].strokes+'타 ('+fmtPar(st[i].diff)+')'+(st[i].strokes-min>0?' · +'+(st[i].strokes-min):'')+'</span></div>'; }).join('')+'</div>';
+    r.innerHTML=head+msg+(S.dirty||!S.savedAt?'<p style="margin-top:8px;font-size:12px;opacity:.9">💾 "라운드 저장"을 누르면 역대 전적에 반영됩니다.</p>':''); r.classList.add('on');
   } else r.classList.remove('on');
 }
 
-// ===== record (역대 전적) =====
+// ===== record (역대 전적, 이름 기준 집계) =====
 function computeRecord(list){
-  const rec={w:[0,0],d:0,n:0,strokes:[0,0],cnt:[0,0],best:[null,null],diff:[0,0],streak:{p:-1,n:0},lastWinner:-2,margin:[0,0]};
-  const complete=list.filter(r=>r.done&&r.done[0]===r.holes&&r.done[1]===r.holes);
-  rec.n=complete.length;
-  complete.forEach(r=>{
-    const w=winnerOf(r.strokes,r.done,r.holes);
-    if(w===0) rec.w[0]++; else if(w===1) rec.w[1]++; else rec.d++;
-    for(let p=0;p<2;p++){ rec.strokes[p]+=r.strokes[p]; rec.cnt[p]++; rec.diff[p]+=r.diff[p]; if(rec.best[p]===null||r.strokes[p]<rec.best[p]) rec.best[p]=r.strokes[p]; }
-    if(w>=0) rec.margin[w]=Math.max(rec.margin[w],Math.abs(r.strokes[0]-r.strokes[1]));
+  const by={}; const get=n=>by[n]||(by[n]={w:0,cnt:0,strokes:0,best:null,diff:0,draws:0});
+  let n=0, draws=0; const streak={name:'',n:0}; let broken=false;
+  list.forEach(r=>{
+    const ws=winnersOf(r); if(!ws) return; n++;
+    r.names.forEach((nm,i)=>{ const g=get(nm); g.cnt++; g.strokes+=r.strokes[i]; g.diff+=r.diff[i]; if(g.best===null||r.strokes[i]<g.best) g.best=r.strokes[i]; });
+    let winner=''; if(ws.length===1){ winner=r.names[ws[0]]; get(winner).w++; } else { draws++; ws.forEach(i=>get(r.names[i]).draws++); }
+    if(!broken){ if(!streak.name){ if(winner){ streak.name=winner; streak.n=1; } else broken=true; } else if(winner===streak.name) streak.n++; else broken=true; }
   });
-  // streak: list is newest first
-  for(const r of complete){ const w=winnerOf(r.strokes,r.done,r.holes); if(rec.streak.p===-1){ rec.streak.p=w; rec.streak.n=1; } else if(w===rec.streak.p) rec.streak.n++; else break; }
-  return rec;
+  return {by,n,draws,streak};
 }
 function renderRecord(){
-  const list=loadHist();
-  const rec=computeRecord(list);
-  const names=S.names;
-  let h='<div class="h2h-title">🏆 역대 전적 · 완료된 라운드 '+rec.n+'회</div>';
-  h+='<div class="h2h-row">';
-  h+='<div class="h2h-p"><div class="nm">'+esc(names[0])+'</div><div class="w">'+rec.w[0]+'<small>승</small></div></div>';
-  h+='<div class="h2h-mid">'+(rec.d?rec.d+'무':'vs')+'</div>';
-  h+='<div class="h2h-p"><div class="nm">'+esc(names[1])+'</div><div class="w">'+rec.w[1]+'<small>승</small></div></div>';
-  h+='</div>';
-  if(rec.n){
-    h+='<div class="h2h-sub">';
-    for(let p=0;p<2;p++){
-      const avg=rec.cnt[p]?(rec.strokes[p]/rec.cnt[p]):0;
-      h+='<div>평균 <b>'+avg.toFixed(1)+'타</b><br>최고 <b>'+rec.best[p]+'타</b> · 평균 '+fmtPar(Math.round(rec.diff[p]/rec.cnt[p]*10)/10)+'</div>';
-    }
-    h+='</div>';
-    if(rec.streak.n>=2&&rec.streak.p>=0) h+='<div class="streak">🔥 '+esc(names[rec.streak.p])+' '+rec.streak.n+'연승 중</div>';
-    else if(rec.w[0]===rec.w[1]) h+='<div class="streak">⚖️ 팽팽한 호각세</div>';
-  } else h+='<div class="streak" style="opacity:.85">14홀을 모두 입력하고 "라운드 저장"을 누르면 전적이 쌓입니다.</div>';
+  const list=loadHist(); const rec=computeRecord(list);
+  let h='<div class="h2h-title">🏆 역대 전적 · 완료된 라운드 '+rec.n+'회'+(rec.draws?' · 무승부 '+rec.draws+'회':'')+'</div>';
+  h+='<div class="h2h-row n'+NP()+'">'+S.names.map(nm=>{ const g=rec.by[nm]; return '<div class="h2h-p"><div class="nm">'+esc(nm)+'</div><div class="w">'+(g?g.w:0)+'<small>승</small></div><div class="st">'+(g&&g.cnt?('평균 '+(g.strokes/g.cnt).toFixed(1)+'타<br>최고 '+g.best+'타 · '+g.cnt+'회'):'기록 없음')+'</div></div>'; }).join('')+'</div>';
+  const others=Object.keys(rec.by).filter(nm=>!S.names.includes(nm)&&rec.by[nm].w>0);
+  if(others.length) h+='<div class="streak" style="font-weight:600;font-size:12px">그 외: '+others.map(nm=>esc(nm)+' '+rec.by[nm].w+'승').join(' · ')+'</div>';
+  if(rec.n){ if(rec.streak.n>=2) h+='<div class="streak">🔥 '+esc(rec.streak.name)+' '+rec.streak.n+'연승 중</div>'; }
+  else h+='<div class="streak" style="opacity:.85">모든 홀을 입력하고 "라운드 저장"을 누르면 전적이 쌓입니다.</div>';
   $('h2h').innerHTML=h;
-
   const box=$('rlist');
   if(!list.length){ box.innerHTML='<div class="empty">저장된 라운드가 없습니다.<br>하단 "라운드 저장"을 누르면 여기에 1차전, 2차전… 순서로 쌓입니다.</div>'; return; }
+  const photos=loadPhotos();
   box.innerHTML=list.map((r,i)=>{
-    const w=winnerOf(r.strokes,r.done,r.holes);
-    const winTxt=w===-2?'진행 중 ('+Math.min(r.done[0],r.done[1])+'/'+r.holes+'홀)':w===-1?'🤝 무승부':'🏆 '+esc(r.names[w])+' +'+Math.abs(r.strokes[0]-r.strokes[1]);
-    return '<div class="hist'+(r.id===S.id?' cur':'')+'">'
-      +'<div class="hist-top"><span class="rn">'+r.round+'차전</span><b>'+esc(r.course||'골프장 미입력')+'</b><span class="win">'+winTxt+'</span></div>'
-      +'<div class="m">'+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀'+(r.id===S.id?' · 현재 라운드':'')+'</div>'
-      +'<div class="r'+(w===0?' w':'')+'"><span>'+esc(r.names[0])+'</span><span>'+r.strokes[0]+'타 ('+fmtPar(r.diff[0])+')</span></div>'
-      +'<div class="r'+(w===1?' w':'')+'"><span>'+esc(r.names[1])+'</span><span>'+r.strokes[1]+'타 ('+fmtPar(r.diff[1])+')</span></div>'
+    const ws=winnersOf(r); const winTxt=!ws?'진행 중 ('+Math.min(...r.done)+'/'+r.holes+'홀)':ws.length>1?'🤝 공동 1위':'🏆 '+esc(r.names[ws[0]]); const min=ws?Math.min(...r.strokes):null;
+    return '<div class="hist'+(r.id===S.id?' cur':'')+'"><div class="hist-top"><span class="rn">'+r.round+'차전</span><b>'+esc(r.course||'골프장 미입력')+'</b><span class="win">'+winTxt+'</span></div>'
+      +'<div class="m">'+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀 · '+r.names.length+'명'+(photos[r.id]?' · 📷':'')+(r.id===S.id?' · 현재 라운드':'')+'</div>'
+      +r.names.map((nm,p)=>'<div class="r'+(ws&&r.strokes[p]===min?' w':'')+'"><span>'+esc(nm)+'</span><span>'+r.strokes[p]+'타 ('+fmtPar(r.diff[p])+')</span></div>').join('')
       +'<div class="acts"><button class="qk" data-load="'+i+'">열기</button><button class="qk" data-sharer="'+i+'">공유</button><button class="qk" data-del="'+i+'">삭제</button></div></div>';
   }).join('');
 }
 
 // ===== actions =====
 function setPar(h,v){ S.par[h]=v; markDirty(); rememberCoursePar(); render(); }
-function addScore(p,d){
-  const h=S.cur; let sc=S.scores[p][h];
-  if(sc<=0){ sc=d>0?(parOf(h)||4):0; } else sc=Math.max(0,sc+d);
-  S.scores[p][h]=sc; markDirty(); render(); vib();
-}
+function addScore(p,d){ const h=S.cur; let sc=S.scores[p][h]; if(sc<=0){ sc=d>0?(parOf(h)||4):0; } else sc=Math.max(0,sc+d); S.scores[p][h]=sc; markDirty(); render(); vib(); }
 function setScore(p,v){ S.scores[p][S.cur]=v; markDirty(); render(); vib(); }
 function go(h){ S.cur=Math.max(0,Math.min(S.holes-1,h)); render(); }
-function vib(){ try{ if(navigator.vibrate) navigator.vibrate(8); }catch(e){} }
-function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),1900); }
-function setTab(t){
-  S.tab=t;
-  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  ['input','card','record'].forEach(k=>$('panel-'+k).classList.toggle('on',t===k));
-  save(); window.scrollTo({top:0});
-}
-// 골프장별 파 프리셋 기억/적용
-function rememberCoursePar(){
-  if(!S.course) return;
-  const c=loadCourses(); c[S.course]={holes:S.holes,par:S.par.slice()}; saveCourses(c);
-}
-function applyCoursePar(name){
-  const c=loadCourses()[name]; if(!c) return false;
-  const hasPar=S.par.slice(0,S.holes).some(v=>v>0);
-  if(hasPar) return false;
-  S.holes=c.holes||S.holes; S.par=c.par.slice(); while(S.par.length<MAXH) S.par.push(0);
-  return true;
-}
+function setTab(t){ S.tab=t; document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t)); ['input','card','record'].forEach(k=>$('panel-'+k).classList.toggle('on',t===k)); save(); window.scrollTo({top:0}); }
+function setPlayerCount(n){ n=Math.max(2,Math.min(MAXP,n)); while(S.names.length<n){ S.names.push(DEF_NAMES[S.names.length]||('플레이어 '+(S.names.length+1))); S.scores.push(arr(MAXH,0)); } S.names=S.names.slice(0,n); S.scores=S.scores.slice(0,n); }
 
-function roundRecord(){
-  const st=[stats(0),stats(1)];
-  return { id:S.id, round:S.round, date:S.date, at:Date.now(), course:S.course, holes:S.holes, names:S.names.slice(),
-    par:S.par.slice(0,S.holes), scores:[S.scores[0].slice(0,S.holes),S.scores[1].slice(0,S.holes)],
-    strokes:[st[0].strokes,st[1].strokes], diff:[st[0].diff,st[1].diff], done:[st[0].done,st[1].done] };
-}
+function roundRecord(){ const st=allStats(); return { id:S.id, round:S.round, date:S.date, at:Date.now(), course:S.course, holes:S.holes, names:S.names.slice(), par:S.par.slice(0,S.holes), scores:S.scores.map(a=>a.slice(0,S.holes)), strokes:st.map(s=>s.strokes), diff:st.map(s=>s.diff), done:st.map(s=>s.done) }; }
 function saveRound(silent){
-  const st=[stats(0),stats(1)];
-  if(st[0].done===0&&st[1].done===0){ if(!silent) toast('입력된 점수가 없습니다'); return false; }
-  const list=loadHist();
-  const rec=roundRecord();
-  const i=list.findIndex(r=>r.id===S.id);
-  if(i>=0) list[i]=rec; else list.unshift(rec);
+  const st=allStats(); if(st.every(s=>s.done===0)){ if(!silent) toast('입력된 점수가 없습니다'); return false; }
+  const list=loadHist(); const rec=roundRecord(); const i=list.findIndex(r=>r.id===S.id); if(i>=0) list[i]=rec; else list.unshift(rec);
   list.sort((a,b)=>(b.round-a.round)||(b.date.localeCompare(a.date)));
-  saveHist(list); rememberCoursePar();
-  S.savedAt=Date.now(); S.dirty=false; render();
+  saveHist(list); rememberCoursePar(); S.savedAt=Date.now(); S.dirty=false; render();
   if(!silent) toast(allDone()?S.round+'차전 결과를 전적에 저장했습니다':S.round+'차전 진행 상황을 저장했습니다');
   return true;
 }
 function nextRound(){
-  const st=[stats(0),stats(1)];
-  if((st[0].done+st[1].done>0)&&(S.dirty||!S.savedAt)){
-    if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 저장하고 다음 차전으로 넘어갈까요?\n(취소하면 저장하지 않고 넘어갑니다)')) saveRound(true);
-  }
-  const list=loadHist();
-  const maxRound=list.reduce((m,r)=>Math.max(m,r.round||0),0);
-  S.id=uid(); S.round=Math.max(maxRound,S.round)+1; S.date=todayStr();
-  S.scores=[Array(MAXH).fill(0),Array(MAXH).fill(0)];
-  S.cur=0; S.savedAt=0; S.dirty=false;
-  setTab('input'); render(); toast(S.round+'차전 시작! 파 설정과 이름은 그대로 유지됩니다');
-  openRound();
+  const st=allStats();
+  if(st.some(s=>s.done>0)&&(S.dirty||!S.savedAt)){ if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 저장하고 다음 차전으로 넘어갈까요?\n(취소하면 저장하지 않고 넘어갑니다)')) saveRound(true); }
+  const maxRound=loadHist().reduce((m,r)=>Math.max(m,r.round||0),0);
+  S.id=uid(); S.round=Math.max(maxRound,S.round)+1; S.date=todayStr(); S.scores=S.names.map(()=>arr(MAXH,0)); S.cur=0; S.savedAt=0; S.dirty=false;
+  setTab('input'); render(); toast(S.round+'차전 시작! 코스 규격과 이름은 그대로 유지됩니다'); openRound();
 }
 
 function summaryText(rec,withRecord){
-  const r=rec||roundRecord();
-  const list=loadHist(); const h2=computeRecord(list);
-  let t='⛳ 파크골프 '+r.round+'차전'+(r.course?' · '+r.course:'')+'\n📅 '+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀\n\n';
+  const r=rec||roundRecord(); const h2=computeRecord(loadHist());
+  let t='⛳ 파크골프 '+r.round+'차전'+(r.course?' · '+r.course:'')+'\n📅 '+fmtDate(r.date)+' '+dow(r.date)+' · '+r.holes+'홀 · '+r.names.length+'명\n\n';
   const tp=r.par.reduce((a,b)=>a+(b||0),0);
-  t+='홀 | 파 | '+r.names[0]+' | '+r.names[1]+'\n';
-  for(let h=0;h<r.holes;h++) t+=(h+1)+' | '+(r.par[h]||'?')+' | '+(r.scores[0][h]||'-')+' | '+(r.scores[1][h]||'-')+'\n';
-  t+='\n합계 | '+(tp||'-')+' | '+r.strokes[0]+' ('+fmtPar(r.diff[0])+') | '+r.strokes[1]+' ('+fmtPar(r.diff[1])+')\n';
-  const w=winnerOf(r.strokes,r.done,r.holes);
-  if(w===0||w===1) t+='\n🏆 '+r.names[w]+' 승리 ('+Math.abs(r.strokes[0]-r.strokes[1])+'타 차)';
-  else if(w===-1) t+='\n🤝 무승부';
-  else t+='\n⏳ 진행 중 ('+Math.min(r.done[0],r.done[1])+'/'+r.holes+'홀)';
-  if(withRecord!==false&&h2.n) t+='\n\n📊 역대 전적: '+S.names[0]+' '+h2.w[0]+'승 '+(h2.d?h2.d+'무 ':'')+S.names[1]+' '+h2.w[1]+'승 (총 '+h2.n+'회)';
+  t+='홀 | 파 | '+r.names.join(' | ')+'\n';
+  for(let h=0;h<r.holes;h++) t+=(h+1)+' | '+(r.par[h]||'?')+' | '+r.scores.map(a=>a[h]||'-').join(' | ')+'\n';
+  t+='\n합계 | '+(tp||'-')+' | '+r.strokes.map((s,i)=>s+' ('+fmtPar(r.diff[i])+')').join(' | ')+'\n';
+  const ws=winnersOf(r);
+  if(!ws) t+='\n⏳ 진행 중 ('+Math.min(...r.done)+'/'+r.holes+'홀)';
+  else { const order=r.names.map((_,i)=>i).sort((a,b)=>r.strokes[a]-r.strokes[b]); t+='\n'+(ws.length===1?'🏆 '+r.names[ws[0]]+' 승리':'🤝 '+ws.map(i=>r.names[i]).join('·')+' 공동 1위')+'\n순위: '+order.map((i,k)=>(k+1)+'위 '+r.names[i]+' '+r.strokes[i]+'타').join(', '); }
+  if(withRecord!==false&&h2.n) t+='\n\n📊 역대 전적: '+r.names.map(nm=>nm+' '+((h2.by[nm]||{}).w||0)+'승').join(' · ')+(h2.draws?' · 무승부 '+h2.draws:'')+' (총 '+h2.n+'회)';
   return t;
 }
 function recordText(){
   const list=loadHist(); const h2=computeRecord(list);
-  let t='📊 '+S.names[0]+' vs '+S.names[1]+' 파크골프 역대 전적\n';
-  t+=S.names[0]+' '+h2.w[0]+'승 · '+(h2.d?h2.d+'무 · ':'')+S.names[1]+' '+h2.w[1]+'승 (완료 '+h2.n+'회)\n';
-  if(h2.n){ for(let p=0;p<2;p++) t+=S.names[p]+': 평균 '+(h2.strokes[p]/h2.cnt[p]).toFixed(1)+'타, 최고 '+h2.best[p]+'타\n'; }
-  t+='\n';
-  list.slice().reverse().forEach(r=>{
-    const w=winnerOf(r.strokes,r.done,r.holes);
-    t+=r.round+'차전 '+fmtDate(r.date)+(r.course?' '+r.course:'')+' — '+r.names[0]+' '+r.strokes[0]+' : '+r.strokes[1]+' '+r.names[1]+' → '+(w===-2?'진행 중':w===-1?'무승부':r.names[w]+' 승')+'\n';
-  });
+  let t='📊 파크골프 역대 전적 ('+S.names.join(' vs ')+')\n'+S.names.map(nm=>nm+' '+((h2.by[nm]||{}).w||0)+'승').join(' · ')+(h2.draws?' · 무승부 '+h2.draws+'회':'')+' (완료 '+h2.n+'회)\n';
+  S.names.forEach(nm=>{ const g=h2.by[nm]; if(g&&g.cnt) t+=nm+': 평균 '+(g.strokes/g.cnt).toFixed(1)+'타, 최고 '+g.best+'타\n'; });
+  t+='\n'; list.slice().reverse().forEach(r=>{ const ws=winnersOf(r); t+=r.round+'차전 '+fmtDate(r.date)+(r.course?' '+r.course:'')+' — '+r.names.map((nm,i)=>nm+' '+r.strokes[i]).join(' : ')+' → '+(!ws?'진행 중':ws.length>1?'공동 1위':r.names[ws[0]]+' 승')+'\n'; });
   return t.trim();
 }
 async function shareText(text,title){
-  try{ if(navigator.share){ await navigator.share({title:title||'파크골프 스코어카드',text}); return; } }
-  catch(e){ if(e&&e.name==='AbortError') return; }
-  try{ await navigator.clipboard.writeText(text); toast('클립보드에 복사했습니다. 카톡 등에 붙여넣기 하세요'); }
-  catch(e){ prompt('아래 내용을 복사하세요', text); }
+  try{ if(navigator.share){ await navigator.share({title:title||'파크골프 스코어카드',text}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(text); toast('클립보드에 복사했습니다. 카톡 등에 붙여넣기 하세요'); }catch(e){ prompt('아래 내용을 복사하세요', text); }
 }
 
-// backup / restore
+// ===== backup / restore =====
 async function backup(){
-  const data={app:'parkgolf',ver:2,exportedAt:new Date().toISOString(),current:S,history:loadHist(),courses:loadCourses()};
-  const json=JSON.stringify(data,null,1), fname='parkgolf_backup_'+todayStr()+'.json';
-  // claude.ai 아티팩트 뷰어 안에서는 downloads 기능으로 저장
-  try{
-    if(window.claude&&typeof window.claude.use==='function'){
-      const dl=await window.claude.use('downloads');
-      if(dl){ try{ await dl.save({filename:fname,data:json}); toast('백업 파일을 저장했습니다'); }catch(e){ if(!(e&&e.code==='declined')) toast('이 화면에서는 파일 저장이 지원되지 않습니다'); } return; }
-    }
-  }catch(e){}
-  const blob=new Blob([json],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
-  toast('백업 파일을 저장했습니다');
+  const data={app:'parkgolf',ver:3,exportedAt:new Date().toISOString(),current:S,history:loadHist(),courses:loadCourses(),photos:loadPhotos()};
+  const json=JSON.stringify(data), fname='parkgolf_backup_'+todayStr()+'.json';
+  try{ if(window.claude&&typeof window.claude.use==='function'){ const dl=await window.claude.use('downloads'); if(dl){ try{ await dl.save({filename:fname,data:json}); toast('백업 파일을 저장했습니다'); }catch(e){ if(!(e&&e.code==='declined')) toast('이 화면에서는 파일 저장이 지원되지 않습니다'); } return; } } }catch(e){}
+  const blob=new Blob([json],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500); toast('백업 파일을 저장했습니다');
 }
 function restore(file){
   const fr=new FileReader();
-  fr.onload=()=>{ try{
-    const d=JSON.parse(fr.result); if(d.app!=='parkgolf') throw 0;
-    if(!confirm('백업을 불러오면 현재 기기의 기록이 백업 내용으로 바뀝니다. 계속할까요?')) return;
-    if(Array.isArray(d.history)) saveHist(d.history); if(d.courses) saveCourses(d.courses);
-    if(d.current){ localStorage.setItem(KEY,JSON.stringify(d.current)); S=load(); }
-    applyTheme(); render(); toast('백업을 불러왔습니다');
-  }catch(e){ toast('올바른 백업 파일이 아닙니다'); } };
+  fr.onload=()=>{ try{ const d=JSON.parse(fr.result); if(d.app!=='parkgolf') throw 0; if(!confirm('백업을 불러오면 현재 기기의 기록이 백업 내용으로 바뀝니다. 계속할까요?')) return;
+    if(Array.isArray(d.history)) saveHist(d.history); if(d.courses) saveCourses(d.courses); if(d.photos) savePhotos(d.photos);
+    if(d.current){ localStorage.setItem(KEY,JSON.stringify(normalize(d.current))); S=load(); }
+    applyTheme(); render(); toast('백업을 불러왔습니다'); }catch(e){ toast('올바른 백업 파일이 아닙니다'); } };
   fr.readAsText(file);
 }
 
-// theme
+// ===== theme =====
 function applyTheme(){ if(S.theme) document.documentElement.setAttribute('data-theme',S.theme); else document.documentElement.removeAttribute('data-theme'); }
 function toggleTheme(){ const dark=S.theme==='dark'||(!S.theme&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches); S.theme=dark?'light':'dark'; applyTheme(); save(); }
+
+// ===== photo + grid =====
+let gridVals=null, aiCtl=null, sampleFn=null, sampleImages=false;
+async function initSample(){ try{ if(!(window.claude&&typeof window.claude.use==='function')) return; const s=await window.claude.use('sample'); if(!s) return; sampleFn=s; const lim=await s.limits().catch(()=>null); sampleImages=!!(lim&&lim.images); }catch(e){} }
+function compressImage(file){
+  return new Promise((res,rej)=>{ const img=new Image(); const url=URL.createObjectURL(file);
+    img.onload=()=>{ try{ const MAX=1100; let w=img.width,h=img.height; const sc=Math.min(1,MAX/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc); const c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg',0.72)); }catch(e){ rej(e); } };
+    img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('decode')); }; img.src=url; });
+}
+function dataUrlToBlob(d){ const [meta,b64]=d.split(','); const mime=(meta.match(/data:(.*?);/)||[])[1]||'image/jpeg'; const bin=atob(b64); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new Blob([u],{type:mime}); }
+function openPhoto(title){
+  $('mPhotoTitle').textContent=title||'📷 사진으로 입력';
+  gridVals={par:S.par.slice(0,S.holes),scores:S.scores.map(a=>a.slice(0,S.holes)),ai:S.names.map(()=>arr(S.holes,false))};
+  renderPhotoBox(); renderGrid(); $('aiStatus').textContent=''; $('aiStatus').className='ai-status'; $('mPhoto').classList.add('on');
+}
+function renderPhotoBox(){
+  const ph=photoOf(S.id); const img=$('photoImg');
+  if(ph){ img.src=ph; img.style.display=''; $('btnPhotoDel').style.display=''; $('btnCam').textContent='📸 다시 찍기'; $('btnGal').textContent='🖼️ 다른 사진'; }
+  else { img.removeAttribute('src'); img.style.display='none'; $('btnPhotoDel').style.display='none'; $('btnCam').textContent='📸 카메라로 찍기'; $('btnGal').textContent='🖼️ 앨범에서 선택'; }
+  $('aiRow').style.display=(sampleFn&&sampleImages&&ph)?'':'none';
+}
+function renderGrid(){
+  $('gthead').innerHTML='<th>홀</th><th>파</th>'+S.names.map(n=>'<th class="name">'+esc(n)+'</th>').join('');
+  let html='';
+  for(let h=0;h<S.holes;h++){
+    const par=gridVals.par[h]||0;
+    html+='<tr><td class="h">'+(h+1)+'</td><td class="p"><select data-gp="'+h+'" class="'+(par?'':'unset')+'"><option value="0"'+(par?'':' selected')+'>?</option>'+[3,4,5].map(v=>'<option value="'+v+'"'+(par===v?' selected':'')+'>'+v+'</option>').join('')+'</select></td>';
+    S.names.forEach((_,p)=>{ const v=gridVals.scores[p][h]||''; const cls=(gridVals.ai[p][h]?'ai':'')+((v&&v!==(S.scores[p][h]||''))?' chg':''); html+='<td><input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="2" data-gs="'+p+'-'+h+'" value="'+v+'" class="'+cls.trim()+'"></td>'; });
+    html+='</tr>';
+  }
+  $('gtbody').innerHTML=html;
+}
+async function handlePhotoFile(file){ if(!file) return; try{ const d=await compressImage(file); setPhoto(S.id,d); renderPhotoBox(); renderRoundInfo(); toast('사진을 저장했습니다'+(sampleFn&&sampleImages?'. "Claude로 점수 읽기"를 눌러보세요':'')); }catch(e){ toast('사진을 읽을 수 없습니다'); } }
+function fuzzyIdx(name,list){ const n=String(name||'').replace(/\s/g,''); let i=list.findIndex(x=>x.replace(/\s/g,'')===n); if(i>=0) return i; return list.findIndex(x=>n&&(x.replace(/\s/g,'').includes(n)||n.includes(x.replace(/\s/g,'')))); }
+async function runAI(){
+  const ph=photoOf(S.id); if(!ph||!sampleFn) return;
+  const st=$('aiStatus'); st.className='ai-status'; st.textContent='🤖 Claude가 사진을 읽는 중입니다… (10~40초)';
+  $('btnAI').disabled=true; $('btnAIStop').style.display=''; aiCtl=new AbortController();
+  const prompt='이 사진은 파크골프 수기 스코어카드입니다. 코스는 '+S.holes+'홀이고 플레이어는 '+NP()+'명입니다: '+S.names.join(', ')+'.\n'
+    +'각 홀의 파(3/4/5)와 각 플레이어의 타수(1~15 사이 정수)를 읽어 JSON으로만 답하세요. 합계·소계 행은 제외하고, 읽을 수 없거나 비어 있는 칸은 null로 두세요. 플레이어 열 이름이 사진에 있으면 그대로 적고, 없으면 왼쪽부터 순서대로 위 이름을 쓰세요.\n'
+    +'형식 예시: {"players":["박프로","백프로"],"rows":[{"hole":1,"par":3,"scores":[3,4]},{"hole":2,"par":4,"scores":[null,5]}]}';
+  try{
+    const data=await sampleFn.json(prompt,{images:dataUrlToBlob(ph),signal:aiCtl.signal,cache:false,modelTier:'default'});
+    const rows=Array.isArray(data)?data:(data&&data.rows)||[]; const players=(data&&Array.isArray(data.players))?data.players:[];
+    const map=S.names.map((_,i)=>i); if(players.length){ S.names.forEach((nm,i)=>{ const j=fuzzyIdx(nm,players.map(String)); map[i]=j>=0?j:i; }); }
+    let filled=0;
+    rows.forEach(r=>{ const h=(+r.hole)-1; if(!(h>=0&&h<S.holes)) return; const par=+r.par; if([3,4,5].includes(par)) gridVals.par[h]=par; S.names.forEach((_,i)=>{ const v=Array.isArray(r.scores)?r.scores[map[i]]:null; const n=parseInt(v,10); if(n>=1&&n<=15){ gridVals.scores[i][h]=n; gridVals.ai[i][h]=true; filled++; } }); });
+    renderGrid();
+    st.textContent=filled?('✅ '+filled+'개 칸을 읽었습니다. 사진과 대조해 틀린 칸은 고친 뒤 "점수판에 적용"을 누르세요.'):'⚠️ 점수를 읽지 못했습니다. 사진을 더 밝고 똑바로 찍어 다시 시도하거나 표에 직접 입력하세요.';
+  }catch(e){
+    const code=e&&e.code; st.className='ai-status err';
+    st.textContent=code==='cancelled'?'중지했습니다.':code==='not_granted'||code==='sampling_disabled'?'Claude 사용이 허용되지 않았습니다. 표에 직접 입력해 주세요.':code==='rate_limited'?'요청이 많습니다. 잠시 후 다시 시도해 주세요.':code==='image_rejected'?'사진 파일을 처리할 수 없습니다. 다른 사진을 선택해 주세요.':code==='invalid_json'?'읽은 결과를 해석하지 못했습니다. 다시 시도해 주세요.':'읽기에 실패했습니다. 다시 시도하거나 표에 직접 입력해 주세요.';
+  }finally{ $('btnAI').disabled=false; $('btnAIStop').style.display='none'; aiCtl=null; }
+}
+function applyGrid(){
+  let changed=0;
+  for(let h=0;h<S.holes;h++){ const p=gridVals.par[h]||0; if(p!==parOf(h)){ S.par[h]=p; changed++; } S.names.forEach((_,i)=>{ const v=gridVals.scores[i][h]||0; if(v!==(S.scores[i][h]||0)){ S.scores[i][h]=v; changed++; } }); }
+  if(changed){ markDirty(); rememberCoursePar(); }
+  $('mPhoto').classList.remove('on'); render(); toast(changed?changed+'개 칸을 반영했습니다':'바뀐 내용이 없습니다');
+}
 
 // ===== events =====
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
@@ -853,12 +791,10 @@ $('nextHole').addEventListener('click',()=>go(S.cur+1));
 $('goNext').addEventListener('click',()=>{ if(S.cur>=S.holes-1) setTab('card'); else go(S.cur+1); });
 $('holeDots').addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b) go(+b.dataset.go); });
 $('parSelect').addEventListener('change',e=>{ setPar(S.cur,+e.target.value); vib(); });
-document.querySelectorAll('.step').forEach(b=>b.addEventListener('click',()=>addScore(+b.dataset.player,+b.dataset.d)));
-document.querySelectorAll('.quick').forEach(q=>q.addEventListener('click',e=>{ const b=e.target.closest('[data-set]'); if(b) setScore(+b.dataset.player,+b.dataset.set); }));
-$('clearHole').addEventListener('click',()=>{ S.scores[0][S.cur]=0; S.scores[1][S.cur]=0; markDirty(); render(); });
+$('playerCards').addEventListener('click',e=>{ const s=e.target.closest('.step'); if(s){ addScore(+s.dataset.player,+s.dataset.d); return; } const q=e.target.closest('[data-set]'); if(q){ setScore(+q.dataset.player,+q.dataset.set); return; } const n=e.target.closest('.pc-name'); if(n) openNameEdit(+n.dataset.player); });
+$('clearHole').addEventListener('click',()=>{ S.scores.forEach(a=>a[S.cur]=0); markDirty(); render(); });
 $('tbody').addEventListener('click',e=>{ const r=e.target.closest('[data-go]'); if(r){ go(+r.dataset.go); setTab('input'); } });
 $('tbody').addEventListener('change',e=>{ const s=e.target.closest('[data-parh]'); if(s){ S.par[+s.dataset.parh]=+s.value; markDirty(); rememberCoursePar(); render(); } });
-
 $('btnTheme').addEventListener('click',toggleTheme);
 $('btnShare').addEventListener('click',()=>shareText(summaryText()));
 $('btnSave').addEventListener('click',()=>saveRound(false));
@@ -866,88 +802,107 @@ $('btnNew').addEventListener('click',nextRound);
 $('exportHist').addEventListener('click',()=>{ if(!loadHist().length){ toast('저장된 라운드가 없습니다'); return; } shareText(recordText(),'파크골프 역대 전적'); });
 $('clearHistory').addEventListener('click',()=>{ if(loadHist().length&&confirm('저장된 라운드 기록과 역대 전적을 모두 삭제할까요?\n(되돌릴 수 없습니다. 설정에서 먼저 백업을 권장합니다)')){ saveHist([]); S.savedAt=0; render(); toast('기록을 모두 삭제했습니다'); } });
 
-// round info modal
+// ----- round info modal (골프장 규격 자동 입력 포함) -----
+function renderNameInputs(n){ const box=$('nameInputs'); box.innerHTML=''; for(let i=0;i<n;i++){ const inp=document.createElement('input'); inp.maxLength=12; inp.placeholder=DEF_NAMES[i]||('플레이어 '+(i+1)); inp.value=S.names[i]||''; inp.dataset.ni=i; box.appendChild(inp); } }
+function renderSpecBox(){
+  const name=normName($('inCourse').value); const c=name?courseSpec(name):null; const box=$('specBox');
+  document.querySelectorAll('#courseChips [data-course]').forEach(b=>b.classList.toggle('on',b.dataset.course===name));
+  if(c){ box.style.display=''; box.innerHTML='📐 저장된 규격 자동 입력: <b>'+specSummary(c)+'</b><div class="pars">'+c.par.slice(0,c.holes).map(v=>'<span>'+(v||'?')+'</span>').join('')+'</div>'; }
+  else if(name){ box.style.display=''; box.innerHTML='🆕 처음 가는 골프장입니다. 홀별 파를 설정하면 <b>'+esc(name)+'</b> 규격으로 저장되어 다음부터 자동 입력됩니다.<br><span style="color:var(--t3)">설정(⚙️)의 "홀별 파 한 줄 입력"으로 안내판 파를 한 번에 적을 수 있습니다.</span>'; }
+  else box.style.display='none';
+}
 function openRound(){
-  const sel=$('inRound'); sel.innerHTML='';
-  const maxR=Math.max(S.round+5,10);
+  const sel=$('inRound'); sel.innerHTML=''; const maxR=Math.max(S.round+5,10);
   for(let i=1;i<=maxR;i++){ const o=document.createElement('option'); o.value=i; o.textContent=i+'차전'; if(i===S.round) o.selected=true; sel.appendChild(o); }
-  $('inDate').value=S.date; $('inCourse').value=S.course; $('inName0').value=S.names[0]; $('inName1').value=S.names[1];
-  const courses=Object.keys(loadCourses()); const ch=$('courseChips'); ch.innerHTML='';
-  courses.slice(0,8).forEach(c=>{ const b=document.createElement('button'); b.className='qk'; b.textContent=c; b.dataset.course=c; ch.appendChild(b); });
-  $('mRound').classList.add('on');
+  $('inDate').value=S.date; $('inCourse').value=S.course; $('inNP').value=String(NP()); renderNameInputs(NP());
+  const cs=loadCourses(); const names=Object.keys(cs).sort((a,b)=>(cs[b].updatedAt||0)-(cs[a].updatedAt||0)); const ch=$('courseChips'); ch.innerHTML='';
+  names.slice(0,10).forEach(c=>{ const b=document.createElement('button'); b.className='qk'; b.textContent=c; b.dataset.course=c; ch.appendChild(b); });
+  renderSpecBox(); $('mRound').classList.add('on');
 }
 function commitRound(){
-  S.round=+$('inRound').value||S.round;
-  S.date=$('inDate').value||todayStr();
-  const newCourse=$('inCourse').value.trim().slice(0,24);
-  const changed=newCourse!==S.course; S.course=newCourse;
-  S.names[0]=($('inName0').value.trim()||DEF_NAMES[0]).slice(0,12);
-  S.names[1]=($('inName1').value.trim()||DEF_NAMES[1]).slice(0,12);
-  if(changed&&S.course&&applyCoursePar(S.course)) toast('"'+S.course+'"의 홀별 파를 불러왔습니다');
+  S.round=+$('inRound').value||S.round; S.date=$('inDate').value||todayStr();
+  const newCourse=normName($('inCourse').value).slice(0,24); const changed=newCourse!==S.course; S.course=newCourse;
+  const n=+$('inNP').value||NP();
+  const vals=[...document.querySelectorAll('#nameInputs input')].map((inp,i)=>(inp.value.trim()||DEF_NAMES[i]||('플레이어 '+(i+1))).slice(0,12));
+  setPlayerCount(n); vals.forEach((v,i)=>{ if(i<S.names.length) S.names[i]=v; });
+  if(S.course&&(changed||!S.par.slice(0,S.holes).some(v=>v>0))&&applyCourseSpec(S.course,!S.par.slice(0,S.holes).some(v=>v>0))) toast('"'+S.course+'" 규격을 자동 입력했습니다: '+specSummary(courseSpec(S.course)));
   markDirty(); $('mRound').classList.remove('on'); render();
 }
 $('rinfo').addEventListener('click',openRound);
 $('closeRound').addEventListener('click',commitRound);
 $('mRound').addEventListener('click',e=>{ if(e.target.id==='mRound') commitRound(); });
-$('courseChips').addEventListener('click',e=>{ const b=e.target.closest('[data-course]'); if(b) $('inCourse').value=b.dataset.course; });
+$('inNP').addEventListener('change',e=>{ const cur=[...document.querySelectorAll('#nameInputs input')].map(i=>i.value); renderNameInputs(+e.target.value); document.querySelectorAll('#nameInputs input').forEach((inp,i)=>{ if(cur[i]!==undefined) inp.value=cur[i]; }); });
+$('courseChips').addEventListener('click',e=>{ const b=e.target.closest('[data-course]'); if(b){ $('inCourse').value=b.dataset.course; renderSpecBox(); } });
+$('inCourse').addEventListener('input',renderSpecBox);
 
-// settings
-$('btnSettings').addEventListener('click',()=>{ $('inHoles').value=String(S.holes); $('inParAll').value=''; $('mSettings').classList.add('on'); });
+// ----- settings (코스 규격) -----
+function renderCourseList(){
+  const cs=loadCourses(); const names=Object.keys(cs).sort((a,b)=>(cs[b].updatedAt||0)-(cs[a].updatedAt||0)); const box=$('courseList'); box.innerHTML='';
+  if(!names.length){ box.innerHTML='<span style="font-size:12px;color:var(--t3)">저장된 골프장이 없습니다.</span>'; return; }
+  names.forEach(nm=>{ const b=document.createElement('button'); b.className='qk'+(nm===S.course?' on':''); b.textContent=nm+' · '+specSummary(cs[nm]).split(' (')[0]; b.dataset.cname=nm; box.appendChild(b); });
+}
+let pressT=null;
+$('courseList').addEventListener('click',e=>{ const b=e.target.closest('[data-cname]'); if(!b||pressT==='fired') { pressT=null; return; } const nm=b.dataset.cname; if(confirm('"'+nm+'" 규격을 현재 라운드에 적용할까요?')){ S.course=nm; applyCourseSpec(nm,true); markDirty(); render(); renderCourseList(); $('inHoles').value=String(S.holes); toast('"'+nm+'" 규격을 적용했습니다'); } });
+$('courseList').addEventListener('touchstart',e=>{ const b=e.target.closest('[data-cname]'); if(!b) return; pressT=setTimeout(()=>{ pressT='fired'; const nm=b.dataset.cname; if(confirm('"'+nm+'" 저장 규격을 삭제할까요?')){ const cs=loadCourses(); delete cs[nm]; saveCourses(cs); renderCourseList(); } },700); },{passive:true});
+$('courseList').addEventListener('touchend',()=>{ if(pressT&&pressT!=='fired'){ clearTimeout(pressT); pressT=null; } },{passive:true});
+$('courseList').addEventListener('contextmenu',e=>{ const b=e.target.closest('[data-cname]'); if(!b) return; e.preventDefault(); const nm=b.dataset.cname; if(confirm('"'+nm+'" 저장 규격을 삭제할까요?')){ const cs=loadCourses(); delete cs[nm]; saveCourses(cs); renderCourseList(); } });
+$('btnSettings').addEventListener('click',()=>{ $('inHoles').value=String(S.holes); $('inParAll').value=''; $('inParLine').value=S.par.slice(0,S.holes).some(v=>v>0)?S.par.slice(0,S.holes).map(v=>v||'?').join(' '):''; $('parLineHint').textContent=S.course?('적용하면 "'+S.course+'" 규격으로 저장됩니다. 숫자 3·4·5만 띄어쓰기나 쉼표로 구분해 1번 홀부터 적으세요.'):'숫자 3·4·5만 띄어쓰기나 쉼표로 구분해 1번 홀부터 적으세요. 골프장 이름을 먼저 입력해 두면 그 이름으로 규격이 저장됩니다.'; renderCourseList(); $('mSettings').classList.add('on'); });
 $('closeSettings').addEventListener('click',()=>$('mSettings').classList.remove('on'));
 $('mSettings').addEventListener('click',e=>{ if(e.target.id==='mSettings') $('mSettings').classList.remove('on'); });
-$('inHoles').addEventListener('change',e=>{ S.holes=+e.target.value; if(S.cur>=S.holes) S.cur=S.holes-1; markDirty(); rememberCoursePar(); render(); });
-$('inParAll').addEventListener('change',e=>{ const v=+e.target.value; if(!v) return; for(let h=0;h<MAXH;h++) S.par[h]=v; markDirty(); rememberCoursePar(); render(); toast('모든 홀을 파 '+v+'로 설정했습니다'); });
+$('inHoles').addEventListener('change',e=>{ S.holes=+e.target.value; if(S.cur>=S.holes) S.cur=S.holes-1; markDirty(); rememberCoursePar(); render(); renderCourseList(); });
+$('btnParLine').addEventListener('click',()=>{ const ps=parseParLine($('inParLine').value); if(!ps){ toast('3, 4, 5 숫자만 입력해 주세요'); return; } if(![9,14,18].includes(ps.length)&&!confirm(ps.length+'개 홀 파를 입력했습니다. 홀 수를 '+ps.length+'홀로 맞출까요?')) return; S.holes=ps.length; S.par=arr(MAXH,0); ps.forEach((v,i)=>S.par[i]=v); if(S.cur>=S.holes) S.cur=S.holes-1; markDirty(); rememberCoursePar(); render(); renderCourseList(); $('inHoles').value=String(S.holes); toast((S.course?'"'+S.course+'" 규격 저장 · ':'')+S.holes+'홀 파 '+totalPar()+' 적용'); });
+$('inParAll').addEventListener('change',e=>{ const v=+e.target.value; if(!v) return; for(let h=0;h<MAXH;h++) S.par[h]=v; markDirty(); rememberCoursePar(); render(); renderCourseList(); $('inParLine').value=S.par.slice(0,S.holes).join(' '); toast('모든 홀을 파 '+v+'로 설정했습니다'); });
 $('btnBackup').addEventListener('click',backup);
 $('btnRestore').addEventListener('click',()=>$('fileRestore').click());
 $('fileRestore').addEventListener('change',e=>{ const f=e.target.files[0]; if(f) restore(f); e.target.value=''; });
 
-// name quick edit
+// ----- name quick edit -----
 let editP=0;
-document.querySelectorAll('.pc-name').forEach(el=>el.addEventListener('click',()=>{
-  editP=+el.dataset.player; $('mNameTitle').textContent='플레이어 '+(editP+1)+' 이름';
-  $('inNameOne').value=S.names[editP]; $('mName').classList.add('on'); setTimeout(()=>$('inNameOne').focus(),50);
-}));
-function saveNameOne(){ S.names[editP]=($('inNameOne').value.trim()||DEF_NAMES[editP]).slice(0,12); markDirty(); $('mName').classList.remove('on'); render(); }
+function openNameEdit(p){ editP=p; $('mNameTitle').textContent='플레이어 '+(p+1)+' 이름'; $('inNameOne').value=S.names[p]; $('mName').classList.add('on'); setTimeout(()=>$('inNameOne').focus(),50); }
+function saveNameOne(){ S.names[editP]=($('inNameOne').value.trim()||DEF_NAMES[editP]||('플레이어 '+(editP+1))).slice(0,12); markDirty(); $('mName').classList.remove('on'); render(); }
 $('saveNameOne').addEventListener('click',saveNameOne);
 $('inNameOne').addEventListener('keydown',e=>{ if(e.key==='Enter') saveNameOne(); });
 $('mName').addEventListener('click',e=>{ if(e.target.id==='mName') $('mName').classList.remove('on'); });
 
-// history list actions
+// ----- history list actions -----
 $('rlist').addEventListener('click',e=>{
-  const l=e.target.closest('[data-load]'), d=e.target.closest('[data-del]'), s=e.target.closest('[data-sharer]');
-  const list=loadHist();
-  if(l){
-    const r=list[+l.dataset.load]; if(!r) return;
-    if(r.id!==S.id){
-      if((S.dirty||!S.savedAt)&&(stats(0).done+stats(1).done>0)){ if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 먼저 저장할까요?')) saveRound(true); }
-      S.id=r.id; S.round=r.round; S.date=r.date; S.names=r.names.slice(); S.course=r.course||''; S.holes=r.holes;
-      S.par=Array(MAXH).fill(0); r.par.forEach((v,i)=>S.par[i]=v);
-      S.scores=[Array(MAXH).fill(0),Array(MAXH).fill(0)]; r.scores[0].forEach((v,i)=>S.scores[0][i]=v); r.scores[1].forEach((v,i)=>S.scores[1][i]=v);
-      S.savedAt=r.at||Date.now(); S.dirty=false; S.cur=0;
-    }
+  const l=e.target.closest('[data-load]'), d=e.target.closest('[data-del]'), s=e.target.closest('[data-sharer]'); const list=loadHist();
+  if(l){ const r=list[+l.dataset.load]; if(!r) return;
+    if(r.id!==S.id){ if((S.dirty||!S.savedAt)&&allStats().some(x=>x.done>0)){ if(confirm('현재 '+S.round+'차전이 저장되지 않았습니다. 먼저 저장할까요?')) saveRound(true); }
+      S.id=r.id; S.round=r.round; S.date=r.date; S.names=r.names.slice(0,MAXP); S.course=r.course||''; S.holes=r.holes; S.par=arr(MAXH,0); r.par.forEach((v,i)=>S.par[i]=v);
+      S.scores=S.names.map((_,p)=>{ const a=arr(MAXH,0); (r.scores[p]||[]).forEach((v,i)=>a[i]=v); return a; }); S.savedAt=r.at||Date.now(); S.dirty=false; S.cur=0; }
     setTab('card'); render(); toast(r.round+'차전을 열었습니다');
-  } else if(s){
-    const r=list[+s.dataset.sharer]; if(r) shareText(summaryText(r,false),'파크골프 '+r.round+'차전');
-  } else if(d){
-    const r=list[+d.dataset.del]; if(!r) return;
-    if(!confirm(r.round+'차전 ('+fmtDate(r.date)+') 기록을 삭제할까요?')) return;
-    list.splice(+d.dataset.del,1); saveHist(list); if(r.id===S.id){ S.savedAt=0; S.dirty=true; } render();
-  }
+  } else if(s){ const r=list[+s.dataset.sharer]; if(r) shareText(summaryText(r,false),'파크골프 '+r.round+'차전'); }
+  else if(d){ const r=list[+d.dataset.del]; if(!r) return; if(!confirm(r.round+'차전 ('+fmtDate(r.date)+') 기록을 삭제할까요?')) return; list.splice(+d.dataset.del,1); saveHist(list); setPhoto(r.id,''); if(r.id===S.id){ S.savedAt=0; S.dirty=true; } render(); }
 });
 
+// ----- photo / grid modal events -----
+$('btnPhoto1').addEventListener('click',()=>openPhoto('📷 사진으로 입력'));
+$('btnPhoto2').addEventListener('click',()=>openPhoto('📷 사진으로 입력'));
+$('btnGrid').addEventListener('click',()=>openPhoto('⌨️ 표로 한 번에 입력'));
+$('closePhoto').addEventListener('click',()=>{ if(aiCtl) aiCtl.abort(); $('mPhoto').classList.remove('on'); });
+$('btnCam').addEventListener('click',()=>$('fileCam').click());
+$('btnGal').addEventListener('click',()=>$('fileGal').click());
+$('fileCam').addEventListener('change',e=>{ handlePhotoFile(e.target.files[0]); e.target.value=''; });
+$('fileGal').addEventListener('change',e=>{ handlePhotoFile(e.target.files[0]); e.target.value=''; });
+$('btnPhotoDel').addEventListener('click',()=>{ setPhoto(S.id,''); renderPhotoBox(); renderRoundInfo(); });
+$('btnAI').addEventListener('click',runAI);
+$('btnAIStop').addEventListener('click',()=>{ if(aiCtl) aiCtl.abort(); });
+$('gtbody').addEventListener('input',e=>{ const i=e.target.closest('[data-gs]'); if(i){ const [p,h]=i.dataset.gs.split('-').map(Number); const v=parseInt(i.value.replace(/\D/g,''),10); gridVals.scores[p][h]=(v>=1&&v<=15)?v:0; gridVals.ai[p][h]=false; i.className=(gridVals.scores[p][h]&&gridVals.scores[p][h]!==(S.scores[p][h]||0))?'chg':''; } });
+$('gtbody').addEventListener('change',e=>{ const s=e.target.closest('[data-gp]'); if(s){ gridVals.par[+s.dataset.gp]=+s.value; s.classList.toggle('unset',!+s.value); } });
+$('gtbody').addEventListener('keydown',e=>{ const i=e.target.closest('[data-gs]'); if(!i||e.key!=='Enter') return; e.preventDefault(); const all=[...document.querySelectorAll('#gtbody [data-gs]')]; const k=all.indexOf(i); const np=NP(); const nxt=all[k+np]||all[(k%np)+1]; if(nxt){ nxt.focus(); nxt.select(); } });
+$('gridClear').addEventListener('click',()=>{ if(!confirm('표의 점수를 모두 비울까요? (적용 전까지 점수판에는 영향 없음)')) return; gridVals.scores=S.names.map(()=>arr(S.holes,0)); gridVals.ai=S.names.map(()=>arr(S.holes,false)); renderGrid(); });
+$('gridApply').addEventListener('click',applyGrid);
+
 // swipe between holes
-(function(){
-  let x0=null,y0=null; const el=$('panel-input');
+(function(){ let x0=null,y0=null; const el=$('panel-input');
   el.addEventListener('touchstart',e=>{ if(e.target.closest('select')) return; const t=e.touches[0]; x0=t.clientX; y0=t.clientY; },{passive:true});
   el.addEventListener('touchend',e=>{ if(x0===null) return; const t=e.changedTouches[0]; const dx=t.clientX-x0, dy=t.clientY-y0; x0=y0=null; if(Math.abs(dx)>70&&Math.abs(dy)<50){ if(dx<0) go(S.cur+1); else go(S.cur-1); } },{passive:true});
 })();
 
 // init
-applyTheme();
-setTab(S.tab||'input');
-render();
-// 첫 실행이면 라운드 정보 입력창 바로 열기
-if(!S.course&&!loadHist().length&&stats(0).done+stats(1).done===0&&!sessionStorage.getItem('pg.intro')){ try{sessionStorage.setItem('pg.intro','1')}catch(e){} setTimeout(openRound,350); }
+applyTheme(); setTab(S.tab||'input'); render(); initSample();
+if(!S.course&&!loadHist().length&&allStats().every(s=>s.done===0)&&!sessionStorage.getItem('pg.intro')){ try{sessionStorage.setItem('pg.intro','1')}catch(e){} setTimeout(openRound,350); }
 })();
 </script>
 </body>
