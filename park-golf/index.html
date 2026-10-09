@@ -450,12 +450,13 @@ table.grid input.chg{background:var(--amber-soft);border-color:var(--amber)}
       <input type="file" id="fileGal" accept="image/*" style="display:none">
     </div>
     <div class="ai-row" id="aiRow" style="display:none">
-      <button class="big-btn" id="btnAI">🤖 Claude로 점수 읽기</button>
+      <button class="big-btn" id="btnAI">🤖 Claude로 점수 다시 읽기</button>
       <button class="big-btn ghost" id="btnAIStop" style="display:none;flex:0 0 80px">중지</button>
     </div>
     <div class="ai-status" id="aiStatus"></div>
+    <div class="par-hint" id="aiNote" style="display:none;margin:-4px 0 10px;padding:10px 12px;border:1px dashed var(--border);border-radius:12px;background:var(--card2)"></div>
     <div class="grid-wrap"><table class="grid" id="gridTable"><thead><tr id="gthead"></tr></thead><tbody id="gtbody"></tbody></table></div>
-    <div class="grid-foot">사진을 보면서 표에 바로 입력해도 됩니다. <i style="background:var(--blue-soft);border:1px solid var(--blue)"></i>Claude가 읽은 값 <i style="background:var(--amber-soft);border:1px solid var(--amber)"></i>기존 값과 다른 칸</div>
+    <div class="grid-foot">사진을 찍으면 Claude가 읽은 점수가 점수판에 바로 들어갑니다. 틀린 칸은 여기서 고치고 "점수판에 적용"을 누르세요. <i style="background:var(--blue-soft);border:1px solid var(--blue)"></i>Claude가 읽은 값 <i style="background:var(--amber-soft);border:1px solid var(--amber)"></i>기존 값과 다른 칸</div>
     <div class="next-row" style="margin-top:12px">
       <button class="big-btn ghost" id="gridClear">표 비우기</button>
       <button class="big-btn" id="gridApply">✔ 점수판에 적용</button>
@@ -726,7 +727,18 @@ function toggleTheme(){ const dark=S.theme==='dark'||(!S.theme&&window.matchMedi
 
 // ===== photo + grid =====
 let gridVals=null, aiCtl=null, sampleFn=null, sampleImages=false;
-async function initSample(){ try{ if(!(window.claude&&typeof window.claude.use==='function')) return; const s=await window.claude.use('sample'); if(!s) return; sampleFn=s; const lim=await s.limits().catch(()=>null); sampleImages=!!(lim&&lim.images); }catch(e){} }
+const ARTIFACT_URL='https://claude.ai/artifact/TpzTPHX2TJrEqhEYkEvCfE';
+let runtimeChecked=false;
+async function initSample(){
+  try{
+    if(window.claude&&typeof window.claude.use==='function'){
+      const s=await window.claude.use('sample');
+      if(s){ sampleFn=s; try{ const lim=await s.limits(); sampleImages=!!(lim&&lim.images); }catch(e){ sampleImages=false; } }
+    }
+  }catch(e){}
+  runtimeChecked=true;
+  if($('mPhoto').classList.contains('on')) renderPhotoBox();
+}
 function compressImage(file){
   return new Promise((res,rej)=>{ const img=new Image(); const url=URL.createObjectURL(file);
     img.onload=()=>{ try{ const MAX=1100; let w=img.width,h=img.height; const sc=Math.min(1,MAX/Math.max(w,h)); w=Math.round(w*sc); h=Math.round(h*sc); const c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg',0.72)); }catch(e){ rej(e); } };
@@ -742,7 +754,13 @@ function renderPhotoBox(){
   const ph=photoOf(S.id); const img=$('photoImg');
   if(ph){ img.src=ph; img.style.display=''; $('btnPhotoDel').style.display=''; $('btnCam').textContent='📸 다시 찍기'; $('btnGal').textContent='🖼️ 다른 사진'; }
   else { img.removeAttribute('src'); img.style.display='none'; $('btnPhotoDel').style.display='none'; $('btnCam').textContent='📸 카메라로 찍기'; $('btnGal').textContent='🖼️ 앨범에서 선택'; }
-  $('aiRow').style.display=(sampleFn&&sampleImages&&ph)?'':'none';
+  $('aiRow').style.display=(sampleFn&&ph)?'':'none';
+  const note=$('aiNote');
+  if(!ph){ note.style.display='none'; }
+  else if(sampleFn&&sampleImages){ note.style.display='none'; }
+  else if(sampleFn&&!sampleImages){ note.style.display=''; note.innerHTML='⚠️ 이 Claude 앱 버전은 사진 전송을 지원하지 않아 자동 판독이 안 됩니다. 앱을 최신으로 업데이트하거나 사진을 보며 아래 표에 입력하세요.'; }
+  else if(!runtimeChecked){ note.style.display=''; note.innerHTML='⏳ Claude 연결 확인 중…'; }
+  else { note.style.display=''; note.innerHTML='ℹ️ <b>자동 판독은 Claude 앱 주소에서 열었을 때만 동작합니다.</b> 지금 주소에서는 사진을 보며 아래 표에 직접 입력하세요.<br><a href="'+ARTIFACT_URL+'" target="_blank" rel="noopener" style="color:var(--green);font-weight:800">Claude에서 열기 →</a> (같은 기기라도 기록은 따로 저장되니 설정의 백업으로 옮길 수 있습니다)'; }
 }
 function renderGrid(){
   $('gthead').innerHTML='<th>홀</th><th>파</th>'+S.names.map(n=>'<th class="name">'+esc(n)+'</th>').join('');
@@ -755,27 +773,50 @@ function renderGrid(){
   }
   $('gtbody').innerHTML=html;
 }
-async function handlePhotoFile(file){ if(!file) return; try{ const d=await compressImage(file); setPhoto(S.id,d); renderPhotoBox(); renderRoundInfo(); toast('사진을 저장했습니다'+(sampleFn&&sampleImages?'. "Claude로 점수 읽기"를 눌러보세요':'')); }catch(e){ toast('사진을 읽을 수 없습니다'); } }
+async function handlePhotoFile(file){
+  if(!file) return;
+  try{ const d=await compressImage(file); setPhoto(S.id,d); renderPhotoBox(); renderRoundInfo(); }
+  catch(e){ toast('사진을 읽을 수 없습니다'); return; }
+  if(sampleFn){ toast('사진 저장 완료 · 점수를 자동으로 읽습니다'); runAI(true); }
+  else toast('사진을 저장했습니다. 사진을 보며 표에 입력하세요');
+}
 function fuzzyIdx(name,list){ const n=String(name||'').replace(/\s/g,''); let i=list.findIndex(x=>x.replace(/\s/g,'')===n); if(i>=0) return i; return list.findIndex(x=>n&&(x.replace(/\s/g,'').includes(n)||n.includes(x.replace(/\s/g,'')))); }
-async function runAI(){
+async function runAI(auto){
   const ph=photoOf(S.id); if(!ph||!sampleFn) return;
-  const st=$('aiStatus'); st.className='ai-status'; st.textContent='🤖 Claude가 사진을 읽는 중입니다… (10~40초)';
-  $('btnAI').disabled=true; $('btnAIStop').style.display=''; aiCtl=new AbortController();
-  const prompt='이 사진은 파크골프 수기 스코어카드입니다. 코스는 '+S.holes+'홀이고 플레이어는 '+NP()+'명입니다: '+S.names.join(', ')+'.\n'
-    +'각 홀의 파(3/4/5)와 각 플레이어의 타수(1~15 사이 정수)를 읽어 JSON으로만 답하세요. 합계·소계 행은 제외하고, 읽을 수 없거나 비어 있는 칸은 null로 두세요. 플레이어 열 이름이 사진에 있으면 그대로 적고, 없으면 왼쪽부터 순서대로 위 이름을 쓰세요.\n'
-    +'형식 예시: {"players":["박프로","백프로"],"rows":[{"hole":1,"par":3,"scores":[3,4]},{"hole":2,"par":4,"scores":[null,5]}]}';
+  if(aiCtl){ aiCtl.abort(); }
+  const st=$('aiStatus'); st.className='ai-status'; st.textContent='🤖 Claude가 사진에서 점수를 읽는 중입니다… (10~40초, 처음에는 허용 확인창이 뜹니다)';
+  $('btnAI').disabled=true; $('btnAIStop').style.display=''; aiCtl=new AbortController(); const myCtl=aiCtl;
+  const prompt='이 사진은 파크골프(park golf) 수기 스코어카드(손으로 쓴 점수표)입니다. 코스는 '+S.holes+'홀이고 플레이어는 '+NP()+'명입니다: '+S.names.join(', ')+'.\n'
+    +'표에서 홀 번호(1~'+S.holes+'), 각 홀의 파(3/4/5), 각 플레이어의 타수(1~15 사이 정수)를 읽어 주세요. 손글씨 숫자이므로 4와 9, 1과 7, 3과 5가 헷갈리면 파크골프에서 흔한 값(파 ±2)을 우선하세요. 홀이 가로줄이 아니라 세로줄로 배치된 표일 수도 있습니다. 합계·소계·전반·후반 행과 서명 칸은 제외하세요.\n'
+    +'반드시 JSON 하나만 답하세요. 읽을 수 없거나 비어 있는 칸은 null. players는 사진에 적힌 열 이름을 왼쪽부터 순서대로 적고, 이름이 없으면 위 플레이어 이름을 순서대로 쓰세요. rows의 scores는 players와 같은 순서입니다.\n'
+    +'형식: {"players":["박프로","백프로"],"rows":[{"hole":1,"par":3,"scores":[3,4]},{"hole":2,"par":4,"scores":[null,5]}]}';
   try{
-    const data=await sampleFn.json(prompt,{images:dataUrlToBlob(ph),signal:aiCtl.signal,cache:false,modelTier:'default'});
-    const rows=Array.isArray(data)?data:(data&&data.rows)||[]; const players=(data&&Array.isArray(data.players))?data.players:[];
-    const map=S.names.map((_,i)=>i); if(players.length){ S.names.forEach((nm,i)=>{ const j=fuzzyIdx(nm,players.map(String)); map[i]=j>=0?j:i; }); }
-    let filled=0;
-    rows.forEach(r=>{ const h=(+r.hole)-1; if(!(h>=0&&h<S.holes)) return; const par=+r.par; if([3,4,5].includes(par)) gridVals.par[h]=par; S.names.forEach((_,i)=>{ const v=Array.isArray(r.scores)?r.scores[map[i]]:null; const n=parseInt(v,10); if(n>=1&&n<=15){ gridVals.scores[i][h]=n; gridVals.ai[i][h]=true; filled++; } }); });
+    const data=await sampleFn.json(prompt,{images:dataUrlToBlob(ph),signal:myCtl.signal,cache:false,modelTier:'default'});
+    if(myCtl.signal.aborted) return;
+    const rows=Array.isArray(data)?data:(data&&Array.isArray(data.rows))?data.rows:[];
+    const players=(data&&Array.isArray(data.players))?data.players.map(String):[];
+    const map=S.names.map((_,i)=>i); if(players.length){ S.names.forEach((nm,i)=>{ const j=fuzzyIdx(nm,players); map[i]=j>=0?j:i; }); }
+    // 점수판에 자동 입력: 빈 칸은 채우고, 이미 다른 값이 있는 칸은 충돌로 표시(덮어쓰지 않음)
+    let filled=0, conflicts=0, parSet=0;
+    rows.forEach(r=>{
+      const h=(+r.hole)-1; if(!(h>=0&&h<S.holes)) return;
+      const par=+r.par; if([3,4,5].includes(par)){ gridVals.par[h]=par; if(!parOf(h)){ S.par[h]=par; parSet++; } }
+      let scs=r.scores; if(scs&&!Array.isArray(scs)&&typeof scs==='object') scs=players.map(nm=>scs[nm]);
+      S.names.forEach((_,i)=>{ const v=Array.isArray(scs)?scs[map[i]]:null; const n=parseInt(v,10); if(!(n>=1&&n<=15)) return;
+        gridVals.scores[i][h]=n; gridVals.ai[i][h]=true;
+        const cur=S.scores[i][h]||0;
+        if(!cur){ S.scores[i][h]=n; filled++; } else if(cur!==n){ conflicts++; } });
+    });
+    if(filled||parSet){ markDirty(); rememberCoursePar(); render(); }
     renderGrid();
-    st.textContent=filled?('✅ '+filled+'개 칸을 읽었습니다. 사진과 대조해 틀린 칸은 고친 뒤 "점수판에 적용"을 누르세요.'):'⚠️ 점수를 읽지 못했습니다. 사진을 더 밝고 똑바로 찍어 다시 시도하거나 표에 직접 입력하세요.';
+    if(filled||conflicts) st.innerHTML='✅ <b>'+filled+'개 칸을 점수판에 자동 입력했습니다.</b>'+(parSet?' 파 '+parSet+'개 홀 설정.':'')+(conflicts?' ⚠️ '+conflicts+'개 칸은 이미 입력된 값과 달라 덮어쓰지 않았습니다(주황색). 사진과 대조해 고친 뒤 "점수판에 적용"을 누르세요.':' 사진과 대조해 틀린 칸이 있으면 고치고 "점수판에 적용"을 누르세요.');
+    else st.textContent='⚠️ 점수를 읽지 못했습니다. 표 전체가 보이게 밝은 곳에서 똑바로 다시 찍거나, 사진을 보며 아래 표에 직접 입력하세요.';
+    if(filled) toast(filled+'개 칸 자동 입력 완료');
   }catch(e){
+    if(myCtl.signal.aborted&&!(e&&e.code==='cancelled')) return;
     const code=e&&e.code; st.className='ai-status err';
-    st.textContent=code==='cancelled'?'중지했습니다.':code==='not_granted'||code==='sampling_disabled'?'Claude 사용이 허용되지 않았습니다. 표에 직접 입력해 주세요.':code==='rate_limited'?'요청이 많습니다. 잠시 후 다시 시도해 주세요.':code==='image_rejected'?'사진 파일을 처리할 수 없습니다. 다른 사진을 선택해 주세요.':code==='invalid_json'?'읽은 결과를 해석하지 못했습니다. 다시 시도해 주세요.':'읽기에 실패했습니다. 다시 시도하거나 표에 직접 입력해 주세요.';
-  }finally{ $('btnAI').disabled=false; $('btnAIStop').style.display='none'; aiCtl=null; }
+    st.textContent=code==='cancelled'?'중지했습니다.':code==='not_granted'||code==='sampling_disabled'?'Claude 사용이 허용되지 않았습니다. 허용 확인창에서 "허용"을 누르거나, 표에 직접 입력해 주세요.':code==='images_unavailable'?'이 화면에서는 사진 전송이 지원되지 않습니다. Claude 앱을 최신으로 업데이트하거나 표에 직접 입력해 주세요.':code==='rate_limited'?'요청이 많습니다. 잠시 후 "Claude로 점수 읽기"를 다시 눌러 주세요.':code==='image_rejected'?'사진 파일을 처리할 수 없습니다. 다른 사진을 선택해 주세요.':code==='invalid_json'||code==='empty_completion'?'읽은 결과를 해석하지 못했습니다. "Claude로 점수 읽기"를 다시 눌러 주세요.':'읽기에 실패했습니다('+(code||'오류')+'). 다시 시도하거나 표에 직접 입력해 주세요.';
+  }finally{ if(aiCtl===myCtl){ $('btnAI').disabled=false; $('btnAIStop').style.display='none'; aiCtl=null; } }
 }
 function applyGrid(){
   let changed=0;
@@ -886,7 +927,7 @@ $('btnGal').addEventListener('click',()=>$('fileGal').click());
 $('fileCam').addEventListener('change',e=>{ handlePhotoFile(e.target.files[0]); e.target.value=''; });
 $('fileGal').addEventListener('change',e=>{ handlePhotoFile(e.target.files[0]); e.target.value=''; });
 $('btnPhotoDel').addEventListener('click',()=>{ setPhoto(S.id,''); renderPhotoBox(); renderRoundInfo(); });
-$('btnAI').addEventListener('click',runAI);
+$('btnAI').addEventListener('click',()=>runAI(false));
 $('btnAIStop').addEventListener('click',()=>{ if(aiCtl) aiCtl.abort(); });
 $('gtbody').addEventListener('input',e=>{ const i=e.target.closest('[data-gs]'); if(i){ const [p,h]=i.dataset.gs.split('-').map(Number); const v=parseInt(i.value.replace(/\D/g,''),10); gridVals.scores[p][h]=(v>=1&&v<=15)?v:0; gridVals.ai[p][h]=false; i.className=(gridVals.scores[p][h]&&gridVals.scores[p][h]!==(S.scores[p][h]||0))?'chg':''; } });
 $('gtbody').addEventListener('change',e=>{ const s=e.target.closest('[data-gp]'); if(s){ gridVals.par[+s.dataset.gp]=+s.value; s.classList.toggle('unset',!+s.value); } });
