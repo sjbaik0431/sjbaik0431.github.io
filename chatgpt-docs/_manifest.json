@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "visibility": "public",
+  "updated_at": "2026-10-25T18:10:35+09:00",
+  "documents": [
+    {
+      "document_id": "github-usage-guide",
+      "title": "GitHub 사용 안내",
+      "path": "chatgpt-docs/2026/github-guide/index.html",
+      "created_at": "2026-10-25T18:10:35+09:00",
+      "updated_at": "2026-10-25T18:10:35+09:00",
+      "content_sha256": "07961a3b68fda1fc315a3fbf208724f918e0cb7e1278b1c717dd52e78f9e2ccb",
+      "assets": [],
+      "publication": "github-pages",
+      "public_url": "https://sjbaik0431.github.io/chatgpt-docs/2026/github-guide/"
+    }
+  ]
+}
