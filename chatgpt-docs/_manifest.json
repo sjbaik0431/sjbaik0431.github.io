@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "visibility": "public",
-  "updated_at": "2026-11-09T20:39:00+09:00",
+  "updated_at": "2026-11-14T04:12:00+09:00",
   "documents": [
     {
       "document_id": "github-usage-guide",
@@ -38,6 +38,18 @@
       "assets": [],
       "publication": "github-pages",
       "public_url": "https://sjbaik0431.github.io/chatgpt-docs/2026/tamius-cheerful-golf/"
+    },
+    {
+      "document_id": "fukuoka-taiwan-group-budget-2027",
+      "title": "14명 청주 출발 후쿠오카·대만 직접수배 예산",
+      "path": "chatgpt-docs/2026/fukuoka-taiwan-group-budget/index.html",
+      "category": "travel",
+      "visibility": "public",
+      "created_at": "2026-11-14T04:12:00+09:00",
+      "updated_at": "2026-11-14T04:12:00+09:00",
+      "assets": [],
+      "publication": "github-pages",
+      "public_url": "https://sjbaik0431.github.io/chatgpt-docs/2026/fukuoka-taiwan-group-budget/"
     }
   ]
 }
